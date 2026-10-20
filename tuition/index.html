@@ -1,0 +1,346 @@
+<!doctype html>
+<html lang="si">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="description" content="Demo tuition class website with timetable, fees and WhatsApp registration. Made by Rodrigo&#x27;s Studio, Kotte.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Rodrigo's Studio">
+<meta property="og:title" content="Bhoomi A/L Geography · demo by Rodrigo&#x27;s Studio">
+<meta property="og:description" content="Demo tuition class website with timetable, fees and WhatsApp registration. Made by Rodrigo&#x27;s Studio, Kotte.">
+<meta property="og:url" content="https://rodrigos-studio.github.io/tuition/">
+<meta property="og:image" content="https://rodrigos-studio.github.io/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230C7558'/%3E%3Ctext x='32' y='45' font-family='Arial' font-weight='900' font-size='38' text-anchor='middle' fill='%23F2C230'%3ER%3C/text%3E%3C/svg%3E">
+<style>:root{color-scheme:light;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0;font:14px system-ui,-apple-system,'Segoe UI',Roboto,sans-serif}img{max-width:100%}[hidden]{display:none!important}</style>
+</head>
+<body>
+<title>Bhoomi A/L Geography</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Zilla+Slab:wght@500;700&family=Source+Sans+3:wght@400;600;700&family=IBM+Plex+Mono:wght@500&family=Noto+Serif+Sinhala:wght@600;800&family=Noto+Sans+Sinhala:wght@400;600&display=swap">
+<style>
+/* Layout: a topographic-map hero (contour lines drawn on canvas), then timetable, fees, syllabus and a register form that writes a WhatsApp message. */
+:root{
+  --bg:#F3F6F1; --paper:#FFFFFF; --ink:#13271F; --muted:#56655D; --line:#D9E0DA;
+  --contour:#B4672A; --water:#2C73B0; --forest:#2B7A4C; --forest-ink:#FFFFFF; --band:#E7EEE6;
+  --display:"Zilla Slab",Georgia,serif;
+  --body:"Source Sans 3","Noto Sans Sinhala",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --si-head:"Noto Serif Sinhala","Noto Sans Sinhala","Iskoola Pota",serif;
+  --si:"Noto Sans Sinhala","Iskoola Pota",sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,Consolas,monospace;
+  --rib-bg:#13271F; --rib-fg:#F3F6F1; --rib-hi:#F0B37E;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0E1613; --paper:#15201B; --ink:#E6EDE8; --muted:#A3B0A8; --line:#25332C;
+  --contour:#E0904F; --water:#6FAEE6; --forest:#5BBE87; --forest-ink:#082015; --band:#13201A;
+  --rib-bg:#1E2D26; --rib-fg:#E6EDE8; --rib-hi:#F0B37E; color-scheme:dark;
+}}
+:root[data-theme="dark"]{
+  --bg:#0E1613; --paper:#15201B; --ink:#E6EDE8; --muted:#A3B0A8; --line:#25332C;
+  --contour:#E0904F; --water:#6FAEE6; --forest:#5BBE87; --forest-ink:#082015; --band:#13201A;
+  --rib-bg:#1E2D26; --rib-fg:#E6EDE8; --rib-hi:#F0B37E; color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.7;-webkit-font-smoothing:antialiased}
+button,input,select{font:inherit;color:inherit}
+.wrap{max-width:1080px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.si{font-family:var(--si)}
+.mono{font-family:var(--mono);font-size:13px;letter-spacing:.02em}
+a{color:var(--water)}
+:focus-visible{outline:3px solid var(--contour);outline-offset:2px;border-radius:6px}
+.ribbon{background:var(--rib-bg);color:var(--rib-fg);font-size:13px;text-align:center;padding-block:7px}
+.ribbon b{color:var(--rib-hi)}
+
+/* hero */
+.hero{position:relative;overflow:hidden;border-bottom:1px solid var(--line)}
+#topo{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.hero .wrap{position:relative;padding-block:44px 40px;display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:28px;align-items:end}
+@media (max-width:800px){.hero .wrap{grid-template-columns:minmax(0,1fr);padding-block:30px 28px}}
+.kicker{font-family:var(--mono);font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--contour);margin:0 0 10px}
+h1{font-family:var(--si-head);font-weight:800;font-size:clamp(34px,6vw,58px);line-height:1.25;margin:0;text-wrap:balance}
+.en{font-family:var(--display);font-weight:700;font-size:clamp(20px,2.6vw,26px);margin:10px 0 0;color:var(--forest)}
+.lede{max-width:46ch;margin:12px 0 0;color:var(--ink);font-family:var(--si)}
+.lede-en{max-width:52ch;margin:8px 0 0;color:var(--muted);font-size:15px}
+.cta{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:46px;padding:10px 20px;border-radius:10px;font-weight:700;text-decoration:none;border:2px solid transparent;cursor:pointer}
+.btn-main{background:var(--forest);color:var(--forest-ink)}
+.btn-line{border-color:var(--ink);color:var(--ink);background:var(--paper)}
+.free{display:inline-block;margin-top:14px;font-family:var(--si);font-weight:600;font-size:15px;background:var(--paper);border:1.5px dashed var(--contour);color:var(--contour);padding:4px 12px;border-radius:999px}
+
+.next{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:18px 20px}
+.next h2{margin:0 0 8px;font-family:var(--display);font-size:20px}
+.next ol{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+.next li{display:grid;grid-template-columns:auto minmax(0,1fr);gap:2px 12px;align-items:baseline}
+.next .when{grid-row:1 / span 2;font-family:var(--si);font-weight:600;font-size:13px;color:var(--forest);background:var(--band);padding:2px 8px;border-radius:6px;white-space:nowrap;min-width:6.4em;text-align:center}
+.next .what{font-weight:700}
+.next .where{color:var(--muted);font-size:15px;font-family:var(--si)}
+.next .what{font-family:var(--si)}
+
+/* sections */
+section{padding-block:40px 8px}
+.sh{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 14px;margin-bottom:16px}
+.sh h2{font-family:var(--si-head);font-weight:800;font-size:clamp(26px,3.6vw,34px);margin:0}
+.sh .en2{font-family:var(--display);font-weight:700;font-size:20px;color:var(--muted)}
+
+.tt{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+@media (max-width:860px){.tt{grid-template-columns:minmax(0,1fr)}}
+.cls{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:18px;display:flex;flex-direction:column;gap:6px}
+.cls .year{font-family:var(--mono);font-size:13px;color:var(--contour)}
+.cls h3{margin:0;font-family:var(--si-head);font-size:22px;line-height:1.35}
+.cls h3 small{display:block;font-family:var(--display);font-size:16px;color:var(--muted);font-weight:700}
+.cls dl{display:grid;grid-template-columns:auto minmax(0,1fr);gap:4px 12px;margin:8px 0 0;font-size:15px;font-family:var(--si)}
+.cls dt{color:var(--muted)}
+.cls dd{margin:0;font-weight:600}
+.cls .fee{margin-top:auto;padding-top:10px;border-top:1px dashed var(--line);display:flex;justify-content:space-between;align-items:baseline;font-variant-numeric:tabular-nums}
+.cls .fee b{font-size:20px}
+
+.units{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+@media (max-width:760px){.units{grid-template-columns:minmax(0,1fr)}}
+.unit{border-left:3px solid var(--contour);padding:4px 0 4px 16px}
+.unit h3{margin:0;font-family:var(--si-head);font-size:20px}
+.unit .en3{margin:0 0 6px;font-family:var(--display);font-weight:700;color:var(--muted);font-size:16px}
+.unit ul{margin:0;padding-left:18px;color:var(--ink)}
+.unit li{margin:2px 0;font-family:var(--si)}
+.unit li small{display:block;font-family:var(--body);color:var(--muted);font-size:13.5px;line-height:1.4}
+
+.notice{background:var(--band);border-radius:14px;padding:18px 20px;display:grid;gap:8px}
+.notice p{margin:0;font-family:var(--si)}
+.notice p small{display:block;font-family:var(--body);color:var(--muted);font-size:14px}
+.notice .si{font-weight:600}
+
+/* register */
+.reg{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:24px;align-items:start}
+@media (max-width:800px){.reg{grid-template-columns:minmax(0,1fr)}}
+form{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:20px;display:grid;gap:12px}
+.field{display:grid;gap:4px;font-weight:600;font-size:15px;min-width:0}
+.field .si{font-weight:600}
+.field input,.field select{width:100%;min-width:0;min-height:46px;padding:10px 12px;border:1px solid var(--line);border-radius:10px;background:var(--bg);font-size:16px;font-weight:400}
+.two{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:12px}
+@media (max-width:420px){.two{grid-template-columns:minmax(0,1fr)}}
+.err{color:var(--contour);font-size:14px;min-height:1em;margin:0}
+.preview{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:20px}
+.preview h3{margin:0 0 8px;font-family:var(--display)}
+.msg{white-space:pre-wrap;font-size:15px;background:var(--bg);border-radius:10px;padding:12px;border:1px solid var(--line);margin:0 0 12px;min-height:120px}
+.row{display:flex;flex-wrap:wrap;gap:10px}
+.row .btn{flex:1 1 200px}
+.place{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+@media (max-width:700px){.place{grid-template-columns:minmax(0,1fr)}}
+.place .box{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:18px}
+.place h3{margin:0 0 6px;font-size:18px}
+.place p{margin:0 0 8px;color:var(--muted)}
+.chip{border:1px solid var(--line);background:transparent;border-radius:8px;padding:4px 10px;font-weight:700;font-size:13px;cursor:pointer}
+footer{padding-block:36px 40px;color:var(--muted);font-size:14px;text-align:center}
+</style>
+
+<div class="ribbon">Demo website · sample tuition class made by <b>Rodrigo's Studio</b> · not a real class</div>
+
+<header class="hero">
+  <canvas id="topo" aria-hidden="true"></canvas>
+  <div class="wrap">
+    <div>
+      <p class="kicker"><span class="si">භූමි · කෝට්ටේ සහ Zoom</span></p>
+      <h1>උසස් පෙළ භූගෝල විද්‍යාව</h1>
+      <p class="en"><span class="si">සිංහල මාධ්‍යය · 2027 සහ 2028 කණ්ඩායම්</span></p>
+      <p class="lede">සහන් ජයසිංහ ගුරුතුමා (B.A. Hons, භූගෝල විද්‍යාව) සමඟ න්‍යාය, පුනරීක්ෂණ සහ ප්‍රශ්න පත්‍ර පන්ති. කෝට්ටේ කුඩා කණ්ඩායම් වශයෙන්, එම පාඩම්ම Zoom හරහා සජීවීව.</p>
+      <p class="lede-en">A/L Geography in Sinhala medium: theory, revision and paper classes in Kotte and live on Zoom.</p>
+      <div class="cta">
+        <a class="btn btn-main si" href="#register">ලියාපදිංචි වන්න</a>
+        <a class="btn btn-line si" href="#timetable">පන්ති කාලසටහන</a>
+      </div>
+      <span class="free">පළමු පන්තිය නොමිලේ</span>
+    </div>
+    <aside class="next" aria-labelledby="next-h">
+      <h2 id="next-h"><span class="si">ඊළඟ පන්ති</span> <span style="font-size:14px;color:var(--muted);font-weight:500">Next classes</span></h2>
+      <ol id="next-list"></ol>
+    </aside>
+  </div>
+</header>
+
+<main>
+  <section class="wrap" id="timetable" aria-labelledby="tt-h">
+    <div class="sh"><h2 id="tt-h">පන්ති කාලසටහන සහ ගාස්තු</h2><span class="en2">Timetable &amp; fees</span></div>
+    <div class="tt" id="tt"></div>
+  </section>
+
+  <section class="wrap" aria-labelledby="u-h">
+    <div class="sh"><h2 id="u-h">විෂය නිර්දේශය</h2><span class="en2">What we cover</span></div>
+    <div class="units">
+      <div class="unit"><h3>භෞතික භූගෝල විද්‍යාව</h3><p class="en3">Physical geography</p>
+        <ul><li>භූ රූප, ගංගා සහ වෙරළ<small>Landforms, rivers and coasts</small></li>
+            <li>කාලගුණය, දේශගුණය සහ මෝසම්<small>Weather, climate and the monsoons</small></li>
+            <li>ස්වාභාවික ආපදා: ගංවතුර, නාය යෑම්, නියඟ<small>Floods, landslides, droughts</small></li></ul></div>
+      <div class="unit"><h3>මානව සහ ආර්ථික භූගෝල විද්‍යාව</h3><p class="en3">Human &amp; economic geography</p>
+        <ul><li>ජනගහනය සහ ජනාවාස<small>Population and settlements</small></li>
+            <li>කෘෂිකර්මය, කර්මාන්ත සහ වෙළඳාම<small>Agriculture, industry and trade</small></li>
+            <li>සංචාරක ව්‍යාපාරය සහ ප්‍රවාහනය<small>Tourism and transport</small></li></ul></div>
+      <div class="unit"><h3>ශ්‍රී ලංකාවේ භූගෝලය</h3><p class="en3">Geography of Sri Lanka</p>
+        <ul><li>තලා තුන සහ මධ්‍යම කඳුකරය<small>The three peneplains and the central highlands</small></li>
+            <li>තෙත්, අතරමැදි සහ වියළි කලාප<small>Wet, intermediate and dry zones</small></li>
+            <li>ගංගා, වැව් සහ සම්පත්<small>Rivers, tanks and resources</small></li></ul></div>
+      <div class="unit"><h3>සිතියම් සහ ප්‍රායෝගික කටයුතු</h3><p class="en3">Maps &amp; practical work</p>
+        <ul><li>1:50,000 භූ ලක්ෂණ සිතියම් කියවීම<small>Reading 1:50,000 topographic sheets</small></li>
+            <li>සමෝච්ච රේඛා, හරස්කඩ සහ බෑවුම්<small>Contours, cross-sections and gradients</small></li>
+            <li>විභාගය සඳහා ප්‍රස්තාර සහ සංඛ්‍යාලේඛන<small>Graphs and statistics for the exam</small></li></ul></div>
+    </div>
+  </section>
+
+  <section class="wrap" aria-labelledby="n-h">
+    <div class="sh"><h2 id="n-h">දැනුම්දීම්</h2><span class="en2">Notices</span></div>
+    <div class="notice">
+      <p>පොහොය දිනවල පන්ති පැවැත්වෙන්නේ නැත.<small>No classes on Poya days.</small></p>
+      <p>සිතියම් පන්තියට 1:50,000 සිතියම් පත්‍රය, රූල කූරක් සහ වර්ණ පැන්සල් රැගෙන එන්න.<small>Map classes: bring your 1:50,000 sheet, a ruler and colour pencils.</small></p>
+      <p>පන්තියට සහභාගී වීමට නොහැකි වූවා නම්, Zoom පටිගත කිරීම දින 7ක් පන්තියේ WhatsApp කණ්ඩායමේ ඇත.<small>Missed a class? The Zoom recording stays in the class WhatsApp group for 7 days.</small></p>
+    </div>
+  </section>
+
+  <section class="wrap" id="register" aria-labelledby="r-h">
+    <div class="sh"><h2 id="r-h">ලියාපදිංචි වන්න</h2><span class="en2">Register on WhatsApp</span></div>
+    <div class="reg">
+      <form id="form" novalidate>
+        <label class="field" for="f-name"><span><span class="si">නම</span> · Name</span><input id="f-name" autocomplete="name" placeholder="නෙත්මි රත්නායක" required></label>
+        <label class="field" for="f-phone"><span><span class="si">දුරකථන අංකය</span> · Phone</span><input id="f-phone" inputmode="tel" autocomplete="tel" placeholder="07X XXX XXXX" required></label>
+        <div class="two">
+          <label class="field" for="f-year"><span><span class="si">උසස් පෙළ වර්ෂය</span> · A/L year</span>
+            <select id="f-year"><option>2028</option><option>2027</option></select></label>
+          <label class="field" for="f-class"><span><span class="si">පන්තිය</span> · Class</span><select id="f-class" class="si"></select></label>
+        </div>
+        <label class="field" for="f-school"><span><span class="si">පාසල</span> · School (optional)</span><input id="f-school" placeholder="ඔබේ පාසල"></label>
+        <p class="err si" id="err" role="status"></p>
+        <button class="btn btn-main si" type="submit">WhatsApp පණිවිඩය සාදන්න</button>
+      </form>
+      <div class="preview">
+        <h3><span class="si">ගුරුතුමාට ලැබෙන පණිවිඩය</span></h3>
+        <div class="msg si" id="msg">ඔබේ නම සහ දුරකථන අංකය ඇතුළත් කළ විට පණිවිඩය මෙහි පෙන්වයි.</div>
+        <div class="row">
+          <a class="btn btn-main si" id="wa" href="#register" target="_blank" rel="noopener" aria-disabled="true">WhatsApp හරහා යවන්න</a>
+          <button class="btn btn-line si" type="button" id="copy">පණිවිඩය පිටපත් කරන්න</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap" aria-labelledby="p-h">
+    <div class="sh"><h2 id="p-h">ස්ථානය සහ සම්බන්ධ වීම</h2><span class="en2">Where &amp; contact</span></div>
+    <div class="place">
+      <div class="box"><h3 class="si">කෝට්ටේ පන්තිය</h3><p class="si">කෝට්ටේ පාර, පිටකෝට්ටේ (මෙම demo එක සඳහා උදාහරණ ලිපිනයකි)</p>
+        <a class="si" href="https://www.google.com/maps/search/?api=1&query=Pita+Kotte" target="_blank" rel="noopener">Google Maps හි විවෘත කරන්න</a></div>
+      <div class="box"><h3 class="si">දුරකථන සහ WhatsApp</h3><p><span id="phone">07X XXX XXXX</span> <button class="chip si" type="button" id="copy-phone">පිටපත් කරන්න</button></p>
+        <p class="si">ගුරුතුමාගේ සැබෑ දුරකථන අංකය මෙහි දැමේ.</p></div>
+    </div>
+  </section>
+</main>
+
+<footer class="wrap">Demo site designed and built by Rodrigo's Studio. Websites and video for Sri Lankan businesses and classes.</footer>
+
+<script>
+(() => {
+const WA_NUMBER = "";   // the teacher's WhatsApp, e.g. "94771234567". Empty = WhatsApp asks who to send it to.
+const CLASSES = [
+  { key: "theory", year: "2028", si: "න්‍යාය පන්තිය", en: "Theory", day: 6, start: "08:00", end: "11:00", where: "කෝට්ටේ + Zoom", fee: 2500 },
+  { key: "revision", year: "2027", si: "පුනරීක්ෂණ පන්තිය", en: "Revision", day: 0, start: "13:30", end: "16:30", where: "කෝට්ටේ", fee: 2500 },
+  { key: "paper", year: "2027", si: "ප්‍රශ්න පත්‍ර පන්තිය", en: "Paper class", day: 3, start: "19:00", end: "21:00", where: "Zoom", fee: 1500 },
+];
+const DAYS_EN = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+const DAYS = ["ඉරිදා", "සඳුදා", "අඟහරුවාදා", "බදාදා", "බ්‍රහස්පතින්දා", "සිකුරාදා", "සෙනසුරාදා"];
+const $ = s => document.querySelector(s);
+const toMin = s => +s.slice(0, 2) * 60 + +s.slice(3);
+const tm = s => { const m = toMin(s), h = Math.floor(m / 60), mm = m % 60; return `${h < 12 ? "පෙ.ව." : "ප.ව."} ${h % 12 || 12}.${String(mm).padStart(2, "0")}`; };
+const tmEnd = s => { const m = toMin(s), h = Math.floor(m / 60), mm = m % 60; return `${h % 12 || 12}.${String(mm).padStart(2, "0")}`; };
+const rs = n => "රු. " + n.toLocaleString("en-LK");
+
+function lkNow() {
+  const p = new Intl.DateTimeFormat("en-GB", { timeZone: "Asia/Colombo", weekday: "long", hour: "2-digit", minute: "2-digit", hourCycle: "h23" }).formatToParts(new Date());
+  const g = t => p.find(x => x.type === t).value;
+  return { day: DAYS_EN.indexOf(g("weekday")), mins: +g("hour") * 60 + +g("minute") };
+}
+function daysUntil(c, now) {
+  let d = (c.day - now.day + 7) % 7;
+  if (d === 0 && now.mins >= toMin(c.end)) d = 7;
+  return d;
+}
+function render() {
+  const now = lkNow();
+  const order = CLASSES.map(c => ({ c, d: daysUntil(c, now) })).sort((a, b) => a.d - b.d || toMin(a.c.start) - toMin(b.c.start));
+  $("#next-list").innerHTML = order.map(({ c, d }) => {
+    const live = d === 0 && now.mins >= toMin(c.start) && now.mins < toMin(c.end);
+    const when = live ? "දැන් පැවැත්වේ" : d === 0 ? "අද" : d === 1 ? "හෙට" : `දින ${d}කින්`;
+    return `<li><span class="when">${when}</span><span class="what">${c.si} · ${c.year}</span>
+      <span class="where">${DAYS[c.day]} ${tm(c.start)} · ${c.where}</span></li>`;
+  }).join("");
+  $("#tt").innerHTML = CLASSES.map(c => `
+    <article class="cls">
+      <span class="year"><span class="si">${c.year} උසස් පෙළ</span></span>
+      <h3>${c.si}<small>${c.en}</small></h3>
+      <dl><dt>දිනය</dt><dd>${DAYS[c.day]}</dd><dt>වේලාව</dt><dd>${tm(c.start)} – ${tmEnd(c.end)}</dd><dt>ස්ථානය</dt><dd>${c.where}</dd></dl>
+      <div class="fee"><span class="si" style="color:var(--muted);font-size:14px">මාසික ගාස්තුව</span><b class="si">${rs(c.fee)}</b></div>
+    </article>`).join("");
+}
+$("#f-class").innerHTML = CLASSES.map(c => `<option value="${c.key}">${c.si} · ${c.year} (${DAYS[c.day]})</option>`).join("");
+
+function message() {
+  const c = CLASSES.find(x => x.key === $("#f-class").value);
+  return ["ආයුබෝවන්! මම උසස් පෙළ භූගෝල විද්‍යාව පන්තියට ලියාපදිංචි වීමට කැමතියි.",
+    `නම: ${$("#f-name").value.trim()}`, `දුරකථන අංකය: ${$("#f-phone").value.trim()}`, `උසස් පෙළ වර්ෂය: ${$("#f-year").value}`,
+    `පන්තිය: ${c.si} (${DAYS[c.day]} ${tm(c.start)}, ${c.where})`,
+    $("#f-school").value.trim() ? `පාසල: ${$("#f-school").value.trim()}` : ""].filter(Boolean).join("\n");
+}
+const EMPTY = "ඔබේ නම සහ දුරකථන අංකය ඇතුළත් කළ විට පණිවිඩය මෙහි පෙන්වයි.";
+let ready = false;
+function update(show) {
+  const name = $("#f-name").value.trim(), phone = $("#f-phone").value.replace(/\D/g, "");
+  const ok = name.length >= 2 && phone.length >= 9;
+  if (show) $("#err").textContent = ok ? "" : !name ? "කරුණාකර ඔබේ නම ඇතුළත් කරන්න." : "කරුණාකර නිවැරදි දුරකථන අංකයක් ඇතුළත් කරන්න.";
+  if (ok || ready) {
+    ready = ok;
+    $("#msg").textContent = ok ? message() : EMPTY;
+    const wa = $("#wa");
+    wa.href = ok ? `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(message())}` : "#register";
+    wa.setAttribute("aria-disabled", String(!ok));
+  }
+}
+$("#form").addEventListener("submit", e => { e.preventDefault(); update(true); if (ready) $("#wa").focus(); });
+$("#form").addEventListener("input", () => update(false));
+$("#wa").addEventListener("click", e => { if (!ready) { e.preventDefault(); update(true); $("#f-name").focus(); } });
+async function copy(text, btn, el) {
+  try { await navigator.clipboard.writeText(text); const t = btn.textContent; btn.textContent = "පිටපත් විය"; setTimeout(() => btn.textContent = t, 1500); }
+  catch { const r = document.createRange(); r.selectNodeContents(el); const s = getSelection(); s.removeAllRanges(); s.addRange(r); }
+}
+$("#copy").addEventListener("click", e => { if (!ready) { update(true); return; } copy(message(), e.currentTarget, $("#msg")); });
+$("#copy-phone").addEventListener("click", e => copy($("#phone").textContent, e.currentTarget, $("#phone")));
+
+/* contour lines of two hills, like a 1:50,000 sheet */
+const cv = $("#topo"), ctx = cv.getContext("2d");
+function drawTopo() {
+  const r = cv.getBoundingClientRect(), dpr = Math.min(2, window.devicePixelRatio || 1);
+  cv.width = Math.round(r.width * dpr); cv.height = Math.round(r.height * dpr);
+  ctx.setTransform(dpr, 0, 0, dpr, 0, 0); ctx.clearRect(0, 0, r.width, r.height);
+  const col = getComputedStyle(document.documentElement).getPropertyValue("--contour").trim() || "#B4672A";
+  const hills = [{ x: r.width * .86, y: r.height * .2, k: 14, s: 1 }, { x: r.width * .58, y: r.height * 1.05, k: 11, s: .8 }];
+  ctx.strokeStyle = col; ctx.lineJoin = "round";
+  for (const hl of hills) for (let i = 1; i <= hl.k; i++) {
+    ctx.globalAlpha = i % 5 === 0 ? .32 : .16; ctx.lineWidth = i % 5 === 0 ? 1.4 : 1;
+    ctx.beginPath();
+    for (let a = 0; a <= 360; a += 4) {
+      const t = a * Math.PI / 180;
+      const rad = i * 26 * hl.s * (1 + .13 * Math.sin(3 * t + i * .3) + .07 * Math.sin(5 * t - i * .5) + .04 * Math.sin(9 * t));
+      const px = hl.x + rad * Math.cos(t) * 1.35, py = hl.y + rad * Math.sin(t);
+      a ? ctx.lineTo(px, py) : ctx.moveTo(px, py);
+    }
+    ctx.closePath(); ctx.stroke();
+  }
+  ctx.globalAlpha = 1;
+}
+new ResizeObserver(drawTopo).observe(cv);
+matchMedia("(prefers-color-scheme: dark)").addEventListener("change", drawTopo);
+new MutationObserver(drawTopo).observe(document.documentElement, { attributes: true, attributeFilter: ["data-theme"] });
+
+render(); setInterval(render, 60_000);
+})();
+</script>
+
+</body>
+</html>
