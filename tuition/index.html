@@ -135,6 +135,24 @@ form{background:var(--paper);border:1px solid var(--line);border-radius:14px;pad
 .place h3{margin:0 0 6px;font-size:18px}
 .place p{margin:0 0 8px;color:var(--muted)}
 .chip{border:1px solid var(--line);background:transparent;border-radius:8px;padding:4px 10px;font-weight:700;font-size:13px;cursor:pointer}
+/* teacher and results */
+.tr{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);gap:16px;align-items:stretch}
+@media (max-width:820px){.tr{grid-template-columns:minmax(0,1fr)}}
+.teacher,.results{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:20px}
+.teacher{display:grid;grid-template-columns:auto minmax(0,1fr);gap:14px 18px;align-content:start}
+.avatar{width:88px;height:88px;border-radius:50%;background:var(--forest);color:var(--forest-ink);display:grid;place-items:center;font-family:var(--si-head);font-weight:800;font-size:34px;line-height:1;box-shadow:0 0 0 4px var(--paper),0 0 0 6px var(--contour)}
+.teacher h3{margin:4px 0 0;font-family:var(--si-head);font-size:22px;line-height:1.35}
+.teacher .cred{margin:2px 0 0;font-family:var(--display);font-weight:700;color:var(--muted);font-size:16px;line-height:1.4}
+.teacher ul{grid-column:1 / -1;margin:0;padding-left:18px}
+.teacher li{margin:4px 0;font-family:var(--si)}
+.teacher li small,.results .yr small{display:block;font-family:var(--body);color:var(--muted);font-size:13.5px;line-height:1.4}
+.results .yr{margin:0 0 12px;font-family:var(--si-head);font-weight:800;font-size:20px;line-height:1.35}
+.stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.stat{background:var(--band);border-radius:10px;padding:12px 8px;text-align:center;display:grid;gap:2px}
+.stat b{font-family:var(--display);font-weight:700;font-size:clamp(28px,6vw,38px);line-height:1.1;color:var(--forest);font-variant-numeric:tabular-nums}
+.stat span{font-family:var(--si);font-size:14px;line-height:1.35;color:var(--ink)}
+.rank{margin:14px 0 0;padding-top:12px;border-top:1px dashed var(--line);font-family:var(--si);font-weight:600}
+.rank small{display:block;font-family:var(--body);font-weight:400;color:var(--muted);font-size:13.5px}
 footer{padding-block:36px 40px;color:var(--muted);font-size:14px;text-align:center}
 </style>
 
@@ -166,6 +184,34 @@ footer{padding-block:36px 40px;color:var(--muted);font-size:14px;text-align:cent
   <section class="wrap" id="timetable" aria-labelledby="tt-h">
     <div class="sh"><h2 id="tt-h">පන්ති කාලසටහන සහ ගාස්තු</h2><span class="en2">Timetable &amp; fees</span></div>
     <div class="tt" id="tt"></div>
+  </section>
+
+  <section class="wrap" aria-labelledby="t-h">
+    <div class="sh"><h2 id="t-h">ගුරුතුමා සහ ප්‍රතිඵල</h2><span class="en2">Teacher &amp; results</span></div>
+    <div class="tr">
+      <div class="teacher">
+        <div class="avatar" aria-hidden="true">ස</div>
+        <div>
+          <h3>සහන් ජයසිංහ</h3>
+          <p class="cred">B.A. (Hons) Geography</p>
+        </div>
+        <ul>
+          <li>උසස් පෙළ භූගෝල විද්‍යාව ඉගැන්වීමේ වසර 12ක පළපුරුද්ද<small>12 years teaching A/L Geography</small></li>
+          <li>සෑම සතියකම ප්‍රශ්න පත්‍රයක් සහ සටහන්<small>A paper and printed notes every week</small></li>
+          <li>සිසුන් 15 දෙනෙකුට අඩු කුඩා කණ්ඩායම්<small>Small groups of under 15 students</small></li>
+        </ul>
+      </div>
+      <div class="results">
+        <p class="yr">2025 උසස් පෙළ ප්‍රතිඵල<small>2025 A/L results</small></p>
+        <div class="stats">
+          <div class="stat"><b>14</b><span>A සාමාර්ථ</span></div>
+          <div class="stat"><b>22</b><span>B සාමාර්ථ</span></div>
+          <div class="stat"><b>96%</b><span>සමත් වීම</span></div>
+        </div>
+        <p class="rank">කොළඹ දිස්ත්‍රික්කයේ 3 වන ස්ථානය අපේ පන්තියෙන්<small>3rd in Colombo district came from this class</small></p>
+        <p class="rank">2024: A සාමාර්ථ 11 · B සාමාර්ථ 19 · සමත් වීම 94%<small>2024 results</small></p>
+      </div>
+    </div>
   </section>
 
   <section class="wrap" aria-labelledby="u-h">
@@ -228,10 +274,10 @@ footer{padding-block:36px 40px;color:var(--muted);font-size:14px;text-align:cent
   <section class="wrap" aria-labelledby="p-h">
     <div class="sh"><h2 id="p-h">ස්ථානය සහ සම්බන්ධ වීම</h2><span class="en2">Where &amp; contact</span></div>
     <div class="place">
-      <div class="box"><h3 class="si">කෝට්ටේ පන්තිය</h3><p class="si">කෝට්ටේ පාර, පිටකෝට්ටේ (මෙම demo එක සඳහා උදාහරණ ලිපිනයකි)</p>
+      <div class="box"><h3 class="si">කෝට්ටේ පන්තිය</h3><p class="si">කෝට්ටේ පාර, පිටකෝට්ටේ</p>
         <a class="si" href="https://www.google.com/maps/search/?api=1&query=Pita+Kotte" target="_blank" rel="noopener">Google Maps හි විවෘත කරන්න</a></div>
-      <div class="box"><h3 class="si">දුරකථන සහ WhatsApp</h3><p><span id="phone">07X XXX XXXX</span> <button class="chip si" type="button" id="copy-phone">පිටපත් කරන්න</button></p>
-        <p class="si">ගුරුතුමාගේ සැබෑ දුරකථන අංකය මෙහි දැමේ.</p></div>
+      <div class="box"><h3 class="si">දුරකථන සහ WhatsApp</h3><p><span id="phone">072 499 6667</span> <button class="chip si" type="button" id="copy-phone">පිටපත් කරන්න</button></p>
+        <p class="si">මෙම demo එකේ ඇමතුම් සහ ලියාපදිංචි වීම් Rodrigo's Studio වෙත පැමිණේ.</p></div>
     </div>
   </section>
 </main>
@@ -240,7 +286,7 @@ footer{padding-block:36px 40px;color:var(--muted);font-size:14px;text-align:cent
 
 <script>
 (() => {
-const WA_NUMBER = "";   // the teacher's WhatsApp, e.g. "94771234567". Empty = WhatsApp asks who to send it to.
+const WA_NUMBER = "94724996667";   // demo registrations go to Rodrigo's Studio; a real site uses the teacher's number
 const CLASSES = [
   { key: "theory", year: "2028", si: "න්‍යාය පන්තිය", en: "Theory", day: 6, start: "08:00", end: "11:00", where: "කෝට්ටේ + Zoom", fee: 2500 },
   { key: "revision", year: "2027", si: "පුනරීක්ෂණ පන්තිය", en: "Revision", day: 0, start: "13:30", end: "16:30", where: "කෝට්ටේ", fee: 2500 },

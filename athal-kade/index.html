@@ -99,6 +99,7 @@ h2.big{font-family:var(--display);font-weight:400;font-size:clamp(32px,5vw,44px)
 .cat h3 .si{font-family:var(--sinhala);font-size:15px;font-weight:700;color:var(--muted)}
 .item{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:4px 14px;padding:12px 0;border-bottom:1px dashed var(--line);align-items:center}
 .item .nm{font-weight:800}
+.item .nm .si{font-family:var(--sinhala);font-weight:500;font-size:14px;color:var(--muted);white-space:nowrap}
 .tag{display:inline-block;margin-left:6px;font-size:11px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--chili);vertical-align:2px}
 .item .ds{grid-column:1;color:var(--muted);font-size:14px;line-height:1.4}
 .item .right{grid-row:1 / span 2;grid-column:2;display:flex;flex-direction:column;align-items:flex-end;gap:6px}
@@ -181,7 +182,7 @@ footer{padding-block:28px 120px;color:var(--muted);font-size:14px;text-align:cen
     <div class="visit">
       <div class="box">
         <h3>Address</h3>
-        <p>No. 42, Kotte Road, Pita Kotte<br>(sample address for this demo)</p>
+        <p>Kotte Road, Pita Kotte</p>
         <p><a href="https://www.google.com/maps/search/?api=1&query=Pita+Kotte" target="_blank" rel="noopener">Open in Google Maps</a></p>
       </div>
       <div class="box">
@@ -191,8 +192,8 @@ footer{padding-block:28px 120px;color:var(--muted);font-size:14px;text-align:cen
       </div>
       <div class="box">
         <h3>Call or WhatsApp</h3>
-        <div class="copyrow"><span class="num" id="phone">07X XXX XXXX</span><button class="chip" type="button" id="copy-phone">Copy</button></div>
-        <p class="note" style="margin-top:8px">The café's real number goes here.</p>
+        <div class="copyrow"><span class="num" id="phone">072 499 6667</span><button class="chip" type="button" id="copy-phone">Copy</button></div>
+        <p class="note" style="margin-top:8px">In this demo, calls and orders go to Rodrigo's Studio.</p>
       </div>
     </div>
   </section>
@@ -231,13 +232,13 @@ footer{padding-block:28px 120px;color:var(--muted);font-size:14px;text-align:cen
 
 <script>
 (() => {
-const WA_NUMBER = "";   // the café's WhatsApp number, e.g. "94771234567". Empty = WhatsApp asks who to send it to.
+const WA_NUMBER = "94724996667";   // demo orders go to Rodrigo's Studio; a real site uses the café's number
 const HOURS = [         // Sunday first, 24h "HH:MM"
   ["Sunday", "08:00", "14:00"], ["Monday", "07:00", "21:30"], ["Tuesday", "07:00", "21:30"],
   ["Wednesday", "07:00", "21:30"], ["Thursday", "07:00", "21:30"], ["Friday", "07:00", "21:30"], ["Saturday", "07:00", "21:30"]];
 const MENU = [
   { id: "tea", name: "Tea & coffee", si: "තේ සහ කෝපි", items: [
-    ["Plain tea (kahata)", "Strong Ceylon tea, sugar on the side", 80],
+    ["Plain tea", "Strong Ceylon tea, sugar on the side", 80],
     ["Milk tea", "Pulled the kade way, frothy on top", 180, "Popular"],
     ["Ginger tea", "Fresh inguru, good for rainy evenings", 150],
     ["Kopi", "Ceylon filter coffee with a bite of jaggery", 250],
@@ -258,6 +259,11 @@ const MENU = [
     ["Love cake", "Semolina and cashew cake, one slice", 280],
     ["Curd & treacle", "Buffalo curd with kithul treacle", 450]]},
 ];
+const SI = {            // Sinhala name shown next to each item
+  "Plain tea": "කහට", "Milk tea": "කිරි තේ", "Ginger tea": "ඉඟුරු තේ", "Kopi": "කෝපි", "Iced coffee": "අයිස් කෝපි",
+  "Fish bun": "මාළු පාන්", "Parippu vadai": "පරිප්පු වඩේ", "Chicken roll": "චිකන් රෝල්", "Egg patty": "බිත්තර පැටිස්", "Vegetable roti": "එළවළු රොටී",
+  "Chicken kottu": "චිකන් කොත්තු", "Egg kottu": "බිත්තර කොත්තු", "Cheese kottu": "චීස් කොත්තු", "Rice & curry": "බත් සහ කරි",
+  "Watalappan": "වටලප්පන්", "Love cake": "ලව් කේක්", "Curd & treacle": "මී කිරි සහ පැණි" };
 const $ = s => document.querySelector(s);
 const rs = n => "Rs " + n.toLocaleString("en-LK");
 const qty = {};
@@ -301,7 +307,7 @@ function itemHTML(it) {
   const q = qty[it.n] || 0;
   const ctl = q ? `<span class="step" aria-label="${it.n} quantity"><button type="button" data-minus="${it.n}" aria-label="One less ${it.n}">−</button><span>${q}</span><button type="button" data-plus="${it.n}" aria-label="One more ${it.n}">+</button></span>`
                 : `<button class="add" type="button" data-plus="${it.n}">Add</button>`;
-  return `<div class="item" data-item="${it.n}"><div class="nm">${it.n}${it.tag ? `<span class="tag">${it.tag}</span>` : ""}</div>
+  return `<div class="item" data-item="${it.n}"><div class="nm">${it.n}${it.tag ? `<span class="tag">${it.tag}</span>` : ""}${SI[it.n] ? ` <span class="si">${SI[it.n]}</span>` : ""}</div>
     <div class="right"><span class="price num">${rs(it.p)}</span>${ctl}</div><div class="ds">${it.d}</div></div>`;
 }
 function refreshItem(n) {
