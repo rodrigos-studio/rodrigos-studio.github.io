@@ -23,84 +23,79 @@
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100..125,400..900&family=IBM+Plex+Mono:wght@500;600&family=Noto+Sans+Sinhala:wght@500;700&family=Lilita+One&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100..125,400..900&family=Noto+Sans+Sinhala:wght@500;700&family=Lilita+One&display=swap">
 <style>
-/* Layout: a technical drawing on graph paper. Hero = a phone measured with dimension lines, then work, prices, process, about, questions, contact. */
+/* Layout: Sinhala-first one-page site for a local web studio. Plain paper background, demo phone, demos, services, prices, steps, about, questions, contact. */
 :root{
-  --paper:#F2F5F2; --grid:rgba(18,32,43,.055); --surface:#FFFFFF; --ink:#12202B; --ink-2:#4A5966; --line:#D2DAD5;
-  --accent:#0C7558; --accent-ink:#FFFFFF; --label:#F2C230; --label-ink:#1C1A10; --dim:#C2462E;
+  --paper:#F4F6F3; --surface:#FFFFFF; --ink:#12202B; --ink-2:#4A5966; --line:#D6DDD8;
+  --accent:#0C7558; --accent-ink:#FFFFFF; --label:#F2C230; --label-ink:#1C1A10; --soft:#E6EFEA;
   --band:#12202B; --band-ink:#F2F5F2;
   --display:"Archivo","Arial Narrow",system-ui,sans-serif;
   --body:"Archivo",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
-  --mono:"IBM Plex Mono",ui-monospace,Consolas,monospace;
   --si:"Noto Sans Sinhala","Iskoola Pota",sans-serif;
   /* mini demo colours (fixed: they are pictures of the client sites) */
   --kopi-red:#C93A27; --kopi-teal:#0A7F7B; --kopi-mango:#F4B52C; --geo-green:#2B7A4C; --geo-brown:#B4672A;
 }
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
-  --paper:#0C1318; --grid:rgba(230,236,239,.05); --surface:#131C23; --ink:#E5ECEF; --ink-2:#9EAFB9; --line:#24323B;
-  --accent:#39C796; --accent-ink:#04211A; --label:#F2C230; --label-ink:#1C1A10; --dim:#F07A5F; color-scheme:dark;
+  --paper:#0C1318; --surface:#131C23; --ink:#E5ECEF; --ink-2:#9EAFB9; --line:#24323B;
+  --accent:#39C796; --accent-ink:#04211A; --label:#F2C230; --label-ink:#1C1A10; --soft:#15302A; color-scheme:dark;
   --band:#172631; --band-ink:#E5ECEF;
 }}
 :root[data-theme="dark"]{
-  --paper:#0C1318; --grid:rgba(230,236,239,.05); --surface:#131C23; --ink:#E5ECEF; --ink-2:#9EAFB9; --line:#24323B;
-  --accent:#39C796; --accent-ink:#04211A; --label:#F2C230; --label-ink:#1C1A10; --dim:#F07A5F; color-scheme:dark;
+  --paper:#0C1318; --surface:#131C23; --ink:#E5ECEF; --ink-2:#9EAFB9; --line:#24323B;
+  --accent:#39C796; --accent-ink:#04211A; --label:#F2C230; --label-ink:#1C1A10; --soft:#15302A; color-scheme:dark;
   --band:#172631; --band-ink:#E5ECEF;
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
-body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.55;-webkit-font-smoothing:antialiased;
-  background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);background-size:20px 20px}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased}
 body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--paper)}
 button{font:inherit;color:inherit}
 .wrap{max-width:1120px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
-.mono{font-family:var(--mono);font-size:12.5px;letter-spacing:.06em;text-transform:uppercase}
 .si{font-family:var(--si)}
 a{color:var(--accent)}
 :focus-visible{outline:3px solid var(--label);outline-offset:2px;border-radius:4px}
-h1,h2,h3{font-family:var(--display);text-wrap:balance}
-h2{font-size:clamp(30px,4.6vw,46px);line-height:1.05;margin:0;font-weight:850;font-stretch:115%;letter-spacing:-.01em}
+h1,h2,h3{text-wrap:balance}
 
 /* header */
-.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:9;background:color-mix(in srgb,var(--paper) 88%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:9;background:color-mix(in srgb,var(--paper) 90%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
 .top .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:60px}
 .logo{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--ink);font-family:var(--display);font-weight:900;font-stretch:125%;letter-spacing:.02em;font-size:18px}
 .logo svg{width:34px;height:28px}
-.nav{display:flex;gap:22px;align-items:center}
-.nav a{color:var(--ink);text-decoration:none;font-weight:600;font-size:15px}
+.nav{display:flex;gap:22px;align-items:center;font-family:var(--si)}
+.nav a{color:var(--ink);text-decoration:none;font-weight:700;font-size:15px}
 .nav a.btn-main,.nav a.btn-main:hover{color:var(--accent-ink)}
 .nav a:hover{color:var(--accent)}
 @media (max-width:760px){.nav .hide-s{display:none}}
+@media (max-width:440px){.hide-xs{display:none}}
 @media (max-width:440px){.logo{font-size:14.5px;font-stretch:108%;gap:8px}.logo svg{width:27px;height:22px}.top .btn-sm{padding:6px 10px;font-size:13px}}
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:46px;padding:10px 20px;border-radius:10px;font-weight:700;text-decoration:none;border:2px solid transparent;cursor:pointer;font-size:16px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:46px;padding:10px 20px;border-radius:10px;font-weight:700;text-decoration:none;border:2px solid transparent;cursor:pointer;font-size:16px;font-family:var(--si)}
 .btn-main{background:var(--accent);color:var(--accent-ink)}
 .btn-line{border-color:var(--ink);color:var(--ink);background:var(--surface)}
 .btn-sm{min-height:38px;padding:6px 14px;font-size:14px}
 
-/* hero */
-.hero .wrap{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:40px;align-items:center;padding-block:56px 64px}
-@media (max-width:860px){.hero .wrap{grid-template-columns:minmax(0,1fr);padding-block:32px 40px;gap:28px}}
-.eyebrow{color:var(--dim);margin:0 0 14px}
-h1{font-size:clamp(42px,7.2vw,84px);line-height:.98;margin:0;font-weight:900;font-stretch:118%;letter-spacing:-.02em}
+/* headings: Sinhala first, English under it */
+h1{font-family:var(--si);font-weight:700;font-size:clamp(36px,6.4vw,64px);line-height:1.2;margin:0}
 h1 em{font-style:normal;color:var(--accent)}
-.hero .si-line{font-family:var(--si);font-weight:700;font-size:clamp(17px,2.2vw,21px);color:var(--ink-2);margin:16px 0 0}
-.lede{font-size:clamp(17px,2vw,19px);max-width:46ch;margin:14px 0 0}
-.cta{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
-.specs{display:flex;flex-wrap:wrap;gap:8px 22px;margin:22px 0 0;padding:0;list-style:none}
-.specs li{display:flex;gap:8px;align-items:baseline}
-.specs b{font-family:var(--mono);font-size:13px;color:var(--accent)}
+h2{font-family:var(--si);font-weight:700;font-size:clamp(26px,3.8vw,38px);line-height:1.3;margin:0}
+.en{display:block;font-family:var(--display);font-weight:600;font-size:clamp(15px,1.6vw,17px);color:var(--ink-2);margin-top:4px;line-height:1.4;text-wrap:balance}
+.sec-top{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:end;gap:8px 24px;margin-bottom:24px}
+.sec-top p{margin:0;color:var(--ink-2);max-width:50ch;font-family:var(--si);font-size:16px}
+section{padding-block:52px}
 
-/* measured phone */
-.bench{position:relative;justify-self:center;padding:34px 0 0 46px}
-.dim-h{position:absolute;left:46px;right:0;top:6px;height:14px;border-left:1.5px solid var(--dim);border-right:1.5px solid var(--dim)}
-.dim-h::before{content:"";position:absolute;left:0;right:0;top:50%;border-top:1.5px solid var(--dim)}
-.dim-h span,.dim-v span{position:absolute;font-family:var(--mono);font-size:12px;font-weight:600;color:var(--dim);background:var(--paper);padding:0 6px}
-.dim-h span{left:50%;top:50%;transform:translate(-50%,-50%)}
-.dim-v{position:absolute;top:34px;bottom:0;left:10px;width:14px;border-top:1.5px solid var(--dim);border-bottom:1.5px solid var(--dim)}
-.dim-v::before{content:"";position:absolute;top:0;bottom:0;left:50%;border-left:1.5px solid var(--dim)}
-.dim-v span{top:50%;left:50%;transform:translate(-50%,-50%) rotate(-90deg);white-space:nowrap}
-.phone{width:248px;aspect-ratio:390/780;max-width:100%;border-radius:34px;background:#0F1417;padding:10px;box-shadow:0 18px 40px rgba(0,0,0,.18)}
+/* hero */
+.hero .wrap{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:40px;align-items:center;padding-block:52px 60px}
+@media (max-width:860px){.hero .wrap{grid-template-columns:minmax(0,1fr);padding-block:30px 40px;gap:30px}}
+.hero .en{font-size:clamp(17px,2vw,20px);margin-top:10px}
+.lede{font-family:var(--si);font-size:clamp(16.5px,1.9vw,18.5px);max-width:44ch;margin:18px 0 0}
+.lede-en{max-width:52ch;margin:8px 0 0;color:var(--ink-2);font-size:15.5px}
+.cta{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
+.from{margin:16px 0 0;font-family:var(--si);font-size:15.5px;color:var(--ink-2)}
+.from b{color:var(--ink)}
+
+/* demo phone */
+.phone{justify-self:center;width:250px;aspect-ratio:390/780;max-width:100%;border-radius:34px;background:#0F1417;padding:10px;box-shadow:0 18px 40px rgba(0,0,0,.18)}
 .screen{height:100%;border-radius:26px;overflow:hidden;background:#F6FAF9;color:#1D1A16;display:flex;flex-direction:column;font-family:system-ui,sans-serif}
 .k-rib{background:#1D1A16;color:#F6FAF9;font-size:7.5px;text-align:center;padding:4px}
 .k-body{padding:12px 12px 0;display:flex;flex-direction:column;gap:7px;flex:1;min-height:0}
@@ -113,23 +108,14 @@ h1 em{font-style:normal;color:var(--accent)}
 .k-row s{text-decoration:none;font-size:8px;border:1.5px solid var(--kopi-teal);color:var(--kopi-teal);border-radius:5px;padding:1px 7px}
 .k-bar{margin-top:auto;background:#1D1A16;color:#F6FAF9;display:flex;justify-content:space-between;align-items:center;padding:8px 12px;font-size:9px;font-weight:800}
 .k-bar s{text-decoration:none;background:var(--kopi-mango);color:#1D1A16;border-radius:5px;padding:3px 7px}
-.sticker{position:absolute;right:-18px;bottom:52px;transform:rotate(-6deg);background:var(--label);color:var(--label-ink);border-radius:6px;padding:8px 12px 9px;box-shadow:0 6px 16px rgba(0,0,0,.18);font-family:var(--mono);font-size:11px;line-height:1.45;font-weight:600}
-.sticker b{display:block;font-size:12.5px;letter-spacing:.08em}
-@media (max-width:420px){.sticker{right:-6px}}
 
-/* sections */
-section{padding-block:56px}
-.sec-top{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:end;gap:8px 24px;margin-bottom:24px}
-.sec-top p{margin:0;color:var(--ink-2);max-width:48ch}
-.tagno{display:block;color:var(--dim);margin-bottom:8px}
-
-/* work */
+/* demos */
 .work{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
 @media (max-width:760px){.work{grid-template-columns:minmax(0,1fr)}}
 .case{background:var(--surface);border:1px solid var(--line);border-radius:16px;overflow:hidden;display:flex;flex-direction:column}
-.shot{height:200px;position:relative;overflow:hidden;border-bottom:1px solid var(--line)}
+.shot{height:190px;position:relative;overflow:hidden;border-bottom:1px solid var(--line)}
 .shot.kopi{background:#F6FAF9;display:grid;grid-template-columns:1.1fr 1fr;gap:14px;padding:22px}
-.shot.kopi .t{font-family:"Lilita One","Arial Black",sans-serif;color:var(--kopi-red);font-size:56px;line-height:.9}
+.shot.kopi .t{font-family:"Lilita One","Arial Black",sans-serif;color:var(--kopi-red);font-size:54px;line-height:.9}
 .shot.kopi .s{font-family:var(--si);color:var(--kopi-teal);font-weight:700;font-size:15px;margin-top:6px}
 .shot.kopi .tile{border-radius:14px;background:conic-gradient(from 45deg,var(--kopi-teal) 0 25%,#E9F3F1 0 50%,var(--kopi-teal) 0 75%,#E9F3F1 0) 0 0/36px 36px}
 .shot.geo{background:#F3F6F1;padding:22px;color:#13271F}
@@ -137,76 +123,73 @@ section{padding-block:56px}
 .shot.geo .t{position:relative;font-family:var(--si);font-weight:700;font-size:28px;line-height:1.3;max-width:13ch}
 .shot.geo .s{position:relative;font-family:Georgia,serif;font-weight:700;color:var(--geo-green);margin-top:6px}
 .case .txt{padding:18px 20px 20px;display:flex;flex-direction:column;gap:10px;flex:1}
-.case h3{margin:0;font-size:22px;font-weight:800;font-stretch:110%}
-.case p{margin:0;color:var(--ink-2)}
+.case h3{margin:0;font-family:var(--display);font-size:21px;font-weight:800}
+.case p{margin:0;color:var(--ink-2);font-family:var(--si);font-size:16px}
 .case ul{margin:0;padding:0;list-style:none;display:flex;flex-wrap:wrap;gap:6px}
-.case li{font-size:13px;font-weight:600;border:1px solid var(--line);border-radius:99px;padding:3px 10px}
+.case li{font-family:var(--si);font-size:13.5px;font-weight:500;background:var(--soft);border-radius:8px;padding:3px 10px}
 .case .btn{align-self:flex-start;margin-top:auto}
 
 /* services */
-.svc{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0;border-top:1px solid var(--line);border-left:1px solid var(--line)}
-@media (max-width:860px){.svc{grid-template-columns:repeat(2,minmax(0,1fr))}}
-@media (max-width:520px){.svc{grid-template-columns:minmax(0,1fr)}}
-.svc div{padding:20px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--surface)}
-.svc h3{margin:0 0 6px;font-size:18px;font-weight:800}
-.svc p{margin:0;color:var(--ink-2);font-size:15.5px}
+.svc{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:12px 28px}
+.svc div{padding:16px 0;border-top:2px solid var(--ink)}
+.svc h3{margin:0 0 4px;font-family:var(--si);font-size:19px;font-weight:700;line-height:1.4}
+.svc p{margin:0;color:var(--ink-2);font-family:var(--si);font-size:15.5px}
 
 /* prices */
 .prices{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
 @media (max-width:1000px){.prices{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media (max-width:560px){.prices{grid-template-columns:minmax(0,1fr)}}
-.plan{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:22px;display:flex;flex-direction:column;gap:10px;position:relative}
+.plan{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:22px;display:flex;flex-direction:column;gap:10px}
 .plan.pick{border:2px solid var(--accent)}
-.plan .kind{color:var(--ink-2)}
-.plan h3{margin:0;font-size:21px;font-weight:800}
+.plan .kind{font-family:var(--si);font-size:14px;color:var(--ink-2)}
+.plan h3{margin:0;font-family:var(--display);font-size:21px;font-weight:800}
 .plan .price{font-family:var(--display);font-weight:900;font-stretch:110%;font-size:32px;line-height:1;font-variant-numeric:tabular-nums}
-.plan .price small{display:block;margin-top:4px;font-size:15px;font-weight:600;color:var(--ink-2);font-stretch:100%}
-.plan ul{margin:0;padding-left:18px;color:var(--ink);font-size:15.5px;display:grid;gap:4px}
+.plan .price small{display:block;margin-top:6px;font-family:var(--si);font-size:14.5px;font-weight:500;color:var(--ink-2)}
+.plan ul{margin:0;padding-left:18px;font-family:var(--si);font-size:15.5px;display:grid;gap:4px}
 .plan li.plus{list-style:none;margin-left:-18px;font-weight:700;color:var(--accent)}
-.plan .badge{position:absolute;top:-12px;left:18px;background:var(--accent);color:var(--accent-ink);font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.08em;padding:3px 9px;border-radius:5px}
-.terms{margin:18px 0 0;color:var(--ink-2);font-size:15px;max-width:80ch}
+.terms{margin:18px 0 0;color:var(--ink-2);font-family:var(--si);font-size:15.5px;max-width:80ch}
 
-/* process */
-.steps{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:16px;counter-reset:s}
-@media (max-width:960px){.steps{grid-template-columns:minmax(0,1fr)}}
-.steps li{counter-increment:s;border-top:2px solid var(--ink);padding-top:12px}
-.steps li::before{content:"0" counter(s);font-family:var(--mono);font-size:13px;color:var(--dim);display:block;margin-bottom:6px}
-.steps h3{margin:0 0 4px;font-size:18px;font-weight:800}
-.steps p{margin:0;color:var(--ink-2);font-size:15.5px}
+/* steps */
+.steps{list-style:none;margin:0;padding:0;display:grid;gap:14px;max-width:820px;counter-reset:s}
+.steps li{counter-increment:s;display:grid;grid-template-columns:auto minmax(0,1fr);gap:2px 14px;align-items:start}
+.steps li::before{content:counter(s);grid-row:1 / span 2;width:34px;height:34px;border-radius:50%;background:var(--ink);color:var(--paper);display:grid;place-items:center;font-family:var(--display);font-weight:800;font-size:16px}
+.steps h3{margin:3px 0 0;font-family:var(--si);font-size:18px;font-weight:700;line-height:1.4}
+.steps p{margin:0;color:var(--ink-2);font-family:var(--si);font-size:15.5px}
 
 /* about */
 .about{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:32px;align-items:start}
 @media (max-width:860px){.about{grid-template-columns:minmax(0,1fr)}}
-.about p{margin:0 0 12px;max-width:60ch}
+.about p{margin:0 0 12px;max-width:58ch}
+.about .si-p{font-family:var(--si);font-size:17px}
+.about .en-p{color:var(--ink-2);font-size:15.5px}
 .checks{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:20px}
-.checks h3{margin:0 0 4px;font-size:18px}
-.checks table{width:100%;border-collapse:collapse;font-size:15px}
-.checks td{padding:8px 0;border-bottom:1px dashed var(--line)}
-.checks td:last-child{text-align:right;font-family:var(--mono);font-size:12.5px;color:var(--accent);font-weight:600}
-.checks tr:last-child td{border-bottom:0}
+.checks h3{margin:0 0 10px;font-family:var(--si);font-size:18px;font-weight:700;line-height:1.4}
+.checks ul{list-style:none;margin:0;padding:0;display:grid;gap:8px;font-family:var(--si);font-size:15.5px}
+.checks li{display:grid;grid-template-columns:22px minmax(0,1fr);gap:8px;align-items:start}
+.checks svg{width:20px;height:20px;margin-top:3px;color:var(--accent)}
 
-/* faq */
+/* questions */
 .faq{display:grid;gap:10px;max-width:820px}
 .faq details{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:0 18px}
-.faq summary{cursor:pointer;font-weight:700;padding:16px 0;list-style:none;display:flex;justify-content:space-between;gap:12px}
-.faq summary::after{content:"+";font-family:var(--mono);color:var(--dim);font-size:18px;line-height:1}
+.faq summary{cursor:pointer;font-family:var(--si);font-weight:700;padding:15px 0;list-style:none;display:flex;justify-content:space-between;gap:12px}
+.faq summary::after{content:"+";color:var(--ink-2);font-size:20px;line-height:1.2}
 .faq details[open] summary::after{content:"−"}
 .faq summary::-webkit-details-marker{display:none}
-.faq details p{margin:0 0 16px;color:var(--ink-2)}
+.faq details p{margin:0 0 16px;color:var(--ink-2);font-family:var(--si);font-size:16px}
 
 /* contact */
-.contact{background:var(--band);color:var(--band-ink);border:1px solid var(--line);border-radius:20px;padding:32px;display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:28px}
+.contact{background:var(--band);color:var(--band-ink);border-radius:20px;padding:32px;display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:28px}
 @media (max-width:800px){.contact{grid-template-columns:minmax(0,1fr);padding:24px}}
 .contact h2{color:var(--band-ink)}
-.contact p{margin:12px 0 0;opacity:.85;max-width:44ch}
-.contact .si{display:block;margin-top:8px;opacity:.85}
+.contact .en{color:color-mix(in srgb,var(--band-ink) 75%,transparent)}
+.contact p{margin:14px 0 0;opacity:.88;max-width:44ch;font-family:var(--si)}
 .lines{display:grid;gap:12px;align-content:start}
 .line{background:color-mix(in srgb,var(--band-ink) 7%,transparent);border:1px solid color-mix(in srgb,var(--band-ink) 18%,transparent);border-radius:12px;padding:14px 16px}
-.line .mono{opacity:.7;display:block;margin-bottom:4px}
+.line .lbl{opacity:.75;display:block;margin-bottom:2px;font-family:var(--si);font-size:14px}
 .line .val{display:flex;justify-content:space-between;align-items:center;gap:10px;font-weight:700;font-size:18px;flex-wrap:wrap}
 .chip{border:1px solid color-mix(in srgb,var(--band-ink) 35%,transparent);background:transparent;color:var(--band-ink);border-radius:8px;padding:4px 10px;font-size:13px;font-weight:700;cursor:pointer}
 .contact .btn-main{background:var(--label);color:var(--label-ink)}
-footer{padding-block:28px 36px;color:var(--ink-2);font-size:14px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px}
+footer{padding-block:28px 36px;color:var(--ink-2);font-size:14px;font-family:var(--si)}
 </style>
 
 <header class="top">
@@ -216,10 +199,10 @@ footer{padding-block:28px 36px;color:var(--ink-2);font-size:14px;display:flex;fl
       RODRIGO'S STUDIO
     </a>
     <nav class="nav" aria-label="Sections">
-      <a class="hide-s" href="#work">Work</a>
-      <a class="hide-s" href="#prices">Prices</a>
-      <a class="hide-s" href="#how">How it works</a>
-      <a class="btn btn-main btn-sm" href="#contact">WhatsApp me</a>
+      <a class="hide-s" href="#work">Demo</a>
+      <a class="hide-s" href="#prices">ගණන්</a>
+      <a class="hide-s" href="#how">වැඩේ වෙන විදිය</a>
+      <a class="btn btn-main btn-sm" href="#contact">WhatsApp<span class="hide-xs"> කරන්න</span></a>
     </nav>
   </div>
 </header>
@@ -228,40 +211,33 @@ footer{padding-block:28px 36px;color:var(--ink-2);font-size:14px;display:flex;fl
   <section class="hero" style="padding-block:0">
     <div class="wrap">
       <div>
-        <p class="eyebrow mono">Websites · WhatsApp ordering · Short videos · Sri Lanka</p>
-        <h1>Your business, <em>online</em> by next week.</h1>
-        <p class="si-line">ඔබේ ව්‍යාපාරයට වෙබ් අඩවි සහ වීඩියෝ</p>
-        <p class="lede">I build websites, WhatsApp ordering and short videos for shops, cafés, salons and tuition classes. You talk to the person who builds it, face to face.</p>
+        <h1>ඔබේ shop එක <em>online</em> ගෙනියමු</h1>
+        <span class="en">Websites, WhatsApp orders and Google Maps for shops in Sri Lanka.</span>
+        <p class="lede">කඩ, කෑම කඩ, salon සහ tuition පන්ති වලට website, WhatsApp ඕඩර් සහ කෙටි video මම හදලා දෙනවා. ඔයා කතා කරන්නේ site එක හදන කෙනා එක්කමයි.</p>
+        <p class="lede-en">I'm Rodrigo, from Kotte. I build every site myself and I'm happy to come to your shop to talk.</p>
         <div class="cta">
-          <a class="btn btn-main" href="#work">See my work</a>
-          <a class="btn btn-line" href="#prices">Prices</a>
+          <a class="btn btn-main" href="#work">Demo බලන්න</a>
+          <a class="btn btn-line" href="#prices">ගණන්</a>
         </div>
-        <ul class="specs">
-          <li><b>FROM</b> Rs 35,000</li>
-          <li><b>READY IN</b> 7 days</li>
-          <li><b>OWNER</b> you</li>
-        </ul>
+        <p class="from"><b>Rs 35,000</b> සිට · <b>දවස් 7න්</b> ready · domain එක ඔයාගේ නමින්</p>
       </div>
-      <div class="bench" aria-label="A café website shown on a phone screen, measured like a technical drawing">
-        <div class="dim-h"><span>390 px</span></div>
-        <div class="dim-v"><span>844 px</span></div>
-        <div class="phone">
-          <div class="screen" aria-hidden="true">
-            <div class="k-rib">Athal Kade · Kotte</div>
-            <div class="k-body">
-              <span class="k-pill"><i></i>Open now · closes 9:30 pm</span>
-              <div><div class="k-title">Athal Kade</div><div class="k-sub">ආතල් කඩේ</div></div>
-              <div class="k-tiles"></div>
-              <div class="k-row"><span>Milk tea</span><span>Rs 180 <s>Add</s></span></div>
-              <div class="k-row"><span>Fish bun</span><span>Rs 120 <s>Add</s></span></div>
-              <div class="k-row"><span>Chicken kottu</span><span>Rs 1,100 <s>Add</s></span></div>
-              <div class="k-row"><span>Parippu vadai</span><span>Rs 90 <s>Add</s></span></div>
-              <div class="k-row"><span>Watalappan</span><span>Rs 300 <s>Add</s></span></div>
-            </div>
-            <div class="k-bar"><span>Rs 1,460 · 3 items</span><s>Order on WhatsApp</s></div>
+      <div class="phone" aria-label="Athal Kade demo site on a phone">
+        <div class="screen" aria-hidden="true">
+          <div class="k-rib">Athal Kade · Kotte</div>
+          <div class="k-body">
+            <span class="k-pill"><i></i>Open now · closes 9:30 pm</span>
+            <div><div class="k-title">Athal Kade</div><div class="k-sub">ආතල් කඩේ</div></div>
+            <div class="k-tiles"></div>
+            <div class="k-row"><span>Milk tea</span><span>Rs 180 <s>Add</s></span></div>
+            <div class="k-row"><span>Fish bun</span><span>Rs 120 <s>Add</s></span></div>
+            <div class="k-row"><span>Chicken kottu</span><span>Rs 1,100 <s>Add</s></span></div>
+            <div class="k-row"><span>Parippu vadai</span><span>Rs 90 <s>Add</s></span></div>
+            <div class="k-row"><span>Egg kottu</span><span>Rs 850 <s>Add</s></span></div>
+            <div class="k-row"><span>Love cake</span><span>Rs 280 <s>Add</s></span></div>
+            <div class="k-row"><span>Watalappan</span><span>Rs 300 <s>Add</s></span></div>
           </div>
+          <div class="k-bar"><span>Rs 1,460 · 3 items</span><s>Order on WhatsApp</s></div>
         </div>
-        <div class="sticker"><b>QC PASSED</b>Phone ✓ Tablet ✓<br>Desktop ✓ Dark mode ✓</div>
       </div>
     </div>
   </section>
@@ -269,17 +245,17 @@ footer{padding-block:28px 36px;color:var(--ink-2);font-size:14px;display:flex;fl
   <section id="work" aria-labelledby="work-h">
     <div class="wrap">
       <div class="sec-top">
-        <div><span class="tagno mono">Work</span><h2 id="work-h">Two sites you can try right now</h2></div>
-        <p>Both are working demos. Open them on your phone, add something to an order, fill in the form.</p>
+        <div><h2 id="work-h">Demo sites දෙකක්</h2><span class="en">Two demo sites you can try</span></div>
+        <p>දෙකම වැඩ කරන demo. Phone එකෙන් open කරලා ඕඩර් එකක් දාලා, form එක පුරවලා බලන්න.</p>
       </div>
       <div class="work">
         <article class="case">
           <div class="shot kopi" aria-hidden="true"><div><div class="t">Athal Kade</div><div class="s">ආතල් කඩේ</div></div><div class="tile"></div></div>
           <div class="txt">
-            <h3>Athal Kade · café, Kotte</h3>
-            <p>Menu with prices, customers build an order and send it straight to the café's WhatsApp. Shows "open now" from the real opening hours.</p>
-            <ul><li>Menu in rupees</li><li>Sinhala + English</li><li>WhatsApp ordering</li><li>Pick-up or delivery</li><li>Google Maps</li></ul>
-            <a class="btn btn-line" href="athal-kade/" target="_blank" rel="noopener">Open the café demo</a>
+            <h3>Athal Kade · කෑම කඩයක්</h3>
+            <p>ගණන් එක්ක menu එක. Customer කෑම තෝරලා, ඕඩර් එක total එකත් එක්කම කඩේ WhatsApp එකට යවනවා. කඩේ දැන් open ද කියලා වෙලාව අනුව පෙන්නනවා.</p>
+            <ul><li>Menu + ගණන්</li><li>සිංහල + English</li><li>WhatsApp ඕඩර්</li><li>Pick-up / delivery</li><li>Google Maps</li></ul>
+            <a class="btn btn-line" href="athal-kade/" target="_blank" rel="noopener">කෑම කඩ demo එක</a>
           </div>
         </article>
         <article class="case">
@@ -289,10 +265,10 @@ footer{padding-block:28px 36px;color:var(--ink-2);font-size:14px;display:flex;fl
             <div class="t">උසස් පෙළ භූගෝල විද්‍යාව</div><div class="s">A/L Geography class</div>
           </div>
           <div class="txt">
-            <h3>Bhoomi · A/L tuition class</h3>
-            <p>Sinhala and English. Timetable with the next classes worked out live, fees, the teacher and past results, syllabus, and a registration form that writes the WhatsApp message for the student.</p>
-            <ul><li>Sinhala + English</li><li>Live timetable</li><li>Teacher and results</li><li>WhatsApp registration</li></ul>
-            <a class="btn btn-line" href="tuition/" target="_blank" rel="noopener">Open the class demo</a>
+            <h3>Bhoomi · tuition පන්තියක්</h3>
+            <p>පන්ති කාලසටහන, ගාස්තු, ගුරුතුමා සහ ප්‍රතිඵල, විෂය නිර්දේශය. ළමයා form එක පුරවලා WhatsApp එකෙන් ලියාපදිංචි වෙනවා.</p>
+            <ul><li>සිංහල + English</li><li>කාලසටහන</li><li>ගුරුතුමා සහ ප්‍රතිඵල</li><li>WhatsApp ලියාපදිංචිය</li></ul>
+            <a class="btn btn-line" href="tuition/" target="_blank" rel="noopener">Tuition demo එක</a>
           </div>
         </article>
       </div>
@@ -301,14 +277,13 @@ footer{padding-block:28px 36px;color:var(--ink-2);font-size:14px;display:flex;fl
 
   <section aria-labelledby="svc-h" style="padding-top:8px">
     <div class="wrap">
-      <div class="sec-top"><div><span class="tagno mono">What I make</span><h2 id="svc-h">Everything a small business needs online</h2></div></div>
+      <div class="sec-top"><div><h2 id="svc-h">මම කරන දේවල්</h2><span class="en">What I do</span></div></div>
       <div class="svc">
-        <div><h3>Websites</h3><p>Fast, phone-first sites in Sinhala, English or both. Menus, price lists, galleries.</p></div>
-        <div><h3>WhatsApp ordering &amp; booking</h3><p>Customers pick items or a time slot, and the order arrives on your WhatsApp, already written out.</p></div>
-        <div><h3>Google Maps listing</h3><p>Your shop on the map with hours, photos and a call button, so people nearby find you.</p></div>
-        <div><h3>Short videos &amp; reels</h3><p>Filmed at your shop and edited for Facebook, Instagram and TikTok.</p></div>
-        <div><h3>Logos &amp; menu boards</h3><p>Simple, clean designs for your sign, menu, price list and social posts.</p></div>
-        <div><h3>Alerts &amp; small tools</h3><p>Telegram or WhatsApp reminders, stock and price alerts, and small tools for workshops and labs.</p></div>
+        <div><h3>Website</h3><p>Phone එකට ගැලපෙන site එකක්, සිංහල, English හරි දෙකම. Menu, price list, photos.</p></div>
+        <div><h3>WhatsApp ඕඩර් සහ booking</h3><p>Customer කෑම හරි වෙලාවක් හරි තෝරනවා. ඕඩර් එක ලියවිලාම ඔයාගේ WhatsApp එකට එනවා.</p></div>
+        <div><h3>Google Maps listing</h3><p>ඔයාගේ කඩේ වෙලාවල්, photos, call button එක්ක Map එකේ. ළඟ පාත අයට හොයාගන්න ලේසියි.</p></div>
+        <div><h3>කෙටි video</h3><p>කඩේට ඇවිත් shoot කරලා, Facebook, Instagram, TikTok වලට edit කරලා දෙනවා.</p></div>
+        <div><h3>Logo සහ menu board</h3><p>කඩේ board එකට, menu එකට, price list එකට සරල design.</p></div>
       </div>
     </div>
   </section>
@@ -316,45 +291,44 @@ footer{padding-block:28px 36px;color:var(--ink-2);font-size:14px;display:flex;fl
   <section id="prices" aria-labelledby="price-h">
     <div class="wrap">
       <div class="sec-top">
-        <div><span class="tagno mono">Prices</span><h2 id="price-h">Fixed prices, written before I start</h2></div>
-        <p>One-time prices for the site, plus an optional monthly plan so you never have to touch the technical side.</p>
+        <div><h2 id="price-h">ගණන්</h2><span class="en">Prices</span></div>
+        <p>Site එකට එක පාරක් ගෙවනවා. මාසික plan එක ඕනේ නම් විතරයි.</p>
       </div>
       <div class="prices">
         <div class="plan">
-          <span class="kind mono">One-time</span><h3>Starter site</h3>
-          <div class="price">Rs 35,000<small>one payment</small></div>
-          <ul><li>One page, phone-first</li><li>WhatsApp button</li><li>Menu and price list</li><li>Google Maps listing</li><li>1 round of changes</li><li>Ready in 7 days</li></ul>
+          <span class="kind">එක පාරක්</span><h3>Starter site</h3>
+          <div class="price">Rs 35,000<small>එක පාරක් ගෙවන්නේ</small></div>
+          <ul><li>Page 1ක site එකක්</li><li>WhatsApp + Call buttons</li><li>Menu හරි price list එක</li><li>Google Maps listing</li><li>එක වටයක වෙනස්කම්</li><li>දවස් 7න් ready</li></ul>
         </div>
         <div class="plan pick">
-          <span class="badge">MOST CHOSEN</span>
-          <span class="kind mono">One-time</span><h3>Business site</h3>
-          <div class="price">Rs 65,000<small>one payment</small></div>
-          <ul><li class="plus">Everything in Starter, plus:</li><li>Up to 5 pages</li><li>WhatsApp ordering and booking</li><li>Sinhala and English</li><li>Your photos edited</li><li>2 rounds of changes</li><li>Ready in 10 days</li></ul>
+          <span class="kind">එක පාරක්</span><h3>Business site</h3>
+          <div class="price">Rs 65,000<small>එක පාරක් ගෙවන්නේ</small></div>
+          <ul><li class="plus">Starter එකේ ඔක්කොම, ඊට අමතරව:</li><li>Page 5ක් දක්වා</li><li>WhatsApp ඕඩර් system එක</li><li>සිංහල + English</li><li>ඔයාගේ photos edit කරලා</li><li>වටයන් දෙකක වෙනස්කම්</li><li>දවස් 10න් ready</li></ul>
         </div>
         <div class="plan">
-          <span class="kind mono">Monthly</span><h3>Website care</h3>
-          <div class="price">Rs 5,000<small>per month</small></div>
-          <ul><li>Hosting handled</li><li>Price and menu changes</li><li>Monthly check and backup</li><li>WhatsApp support</li></ul>
+          <span class="kind">මාසෙට, ඕනේ නම් විතරයි</span><h3>Website care</h3>
+          <div class="price">Rs 5,000<small>මාසෙකට</small></div>
+          <ul><li>Hosting මම බලාගන්නවා</li><li>Menu, ගණන්, වෙලාවල් වෙනස් කරනවා</li><li>මාසෙකට check කරලා backup</li><li>WhatsApp එකෙන් උදව්</li></ul>
         </div>
         <div class="plan">
-          <span class="kind mono">Monthly</span><h3>Care + video</h3>
-          <div class="price">Rs 15,000<small>per month</small></div>
-          <ul><li class="plus">Everything in Website care, plus:</li><li>4 short videos a month</li><li>Filmed at your place</li><li>Ready to post</li></ul>
+          <span class="kind">මාසෙට, ඕනේ නම් විතරයි</span><h3>Care + video</h3>
+          <div class="price">Rs 15,000<small>මාසෙකට</small></div>
+          <ul><li class="plus">Website care එකේ ඔක්කොම, ඊට අමතරව:</li><li>මාසෙකට කෙටි video 4ක්</li><li>කඩේට ඇවිත් shoot කරනවා</li><li>Post කරන්න ready</li></ul>
         </div>
       </div>
-      <p class="terms">Ready times start when you send your photos, prices and text. Payment: half to start, half when the site goes live, by bank transfer. The domain name (your web address) is registered in your name and you pay its yearly fee directly, so the site is always yours.</p>
+      <p class="terms">භාගයක් මුලින්, ඉතුරු භාගය site එක live වුණාම, bank transfer එකකින්. Ready වෙන දවස් ගණන් පටන් ගන්නේ photos, ගණන් එව්වාට පස්සේ. Domain එක (web ලිපිනය) ඔයාගේ නමින්ම register කරනවා, ඒ නිසා site එක හැමදාම ඔයාගේ. Plan එකක් නැතුව වෙනසක් ඕනේ නම් එක පාරකට Rs 1,000යි. <a href="packages.pdf">සම්පූර්ණ විස්තර PDF එක</a></p>
     </div>
   </section>
 
   <section id="how" aria-labelledby="how-h">
     <div class="wrap">
-      <div class="sec-top"><div><span class="tagno mono">How it works</span><h2 id="how-h">From first chat to live site</h2></div></div>
+      <div class="sec-top"><div><h2 id="how-h">වැඩේ සිද්ධ වෙන විදිය</h2><span class="en">How it works</span></div></div>
       <ol class="steps">
-        <li><h3>Free chat</h3><p>On WhatsApp, or I come to your shop. You tell me what you sell and who buys it.</p></li>
-        <li><h3>Written quote</h3><p>A fixed price and a date. No surprises later.</p></li>
-        <li><h3>First design</h3><p>In about 3 days you see your site working on your own phone.</p></li>
-        <li><h3>Your changes</h3><p>Tell me what to change. I fix it the same week.</p></li>
-        <li><h3>Live</h3><p>Your site goes on your own web address, and I show you how it all works.</p></li>
+        <li><h3>නොමිලේ sample එකක්</h3><p>ඔයාගේ කඩේ නමින්ම sample එකක් හදලා ගෙනත් පෙන්නනවා.</p></li>
+        <li><h3>එකඟ වෙලා භාගය ගෙවනවා</h3><p>Package එක තෝරලා මුල් භාගය bank transfer කරනවා.</p></li>
+        <li><h3>විස්තර එවනවා</h3><p>Photos, menu, වෙලාවල් WhatsApp කරනවා.</p></li>
+        <li><h3>Site එක බලලා වෙනස්කම් කියනවා</h3><p>Starter දවස් 7න්, Business දවස් 10න් ready.</p></li>
+        <li><h3>Live!</h3><p>Site එකයි Google Maps එකයි online. ඉතුරු භාගය ගෙවනවා.</p></li>
       </ol>
     </div>
   </section>
@@ -362,33 +336,34 @@ footer{padding-block:28px 36px;color:var(--ink-2);font-size:14px;display:flex;fl
   <section aria-labelledby="about-h">
     <div class="wrap about">
       <div>
-        <span class="tagno mono">About</span>
-        <h2 id="about-h">Precision is my day job</h2>
-        <p style="margin-top:16px">I'm Rodrigo. I work in a field where every number has to be exact: instruments are measured, compared against a standard and confirmed before anything is signed off.</p>
-        <p>I build websites the same way. Before your site goes live, it's tested on real phones, slow mobile data and in both Sinhala and English, and you get the checklist.</p>
+        <h2 id="about-h">මම ගැන</h2><span class="en">About me</span>
+        <p class="si-p" style="margin-top:18px">මම Rodrigo, කෝට්ටේ. හැම site එකක්ම මම තනියම හදනවා. ඔයා කතා කරන්නේ මා එක්කමයි, ඕනේ නම් මම කඩේටම එනවා.</p>
+        <p class="si-p">මගේ රැකියාවේ හැම දෙයක්ම හරියට check කරලා තමයි අවසන් කරන්නේ. Website හදද්දීත් මම ඒ විදියමයි.</p>
+        <p class="en-p">I'm Rodrigo, from Kotte. I build every site myself, so you always deal with me. In my day job nothing is signed off until it has been checked, and I build websites the same way.</p>
       </div>
       <div class="checks" aria-labelledby="chk-h">
-        <h3 id="chk-h">Before every site goes live</h3>
-        <table>
-          <tr><td>Works on small and large phones</td><td>CHECKED</td></tr>
-          <tr><td>Loads fast on mobile data</td><td>CHECKED</td></tr>
-          <tr><td>Sinhala text shows correctly</td><td>CHECKED</td></tr>
-          <tr><td>WhatsApp and call buttons work</td><td>CHECKED</td></tr>
-          <tr><td>Shows on Google Maps</td><td>CHECKED</td></tr>
-        </table>
+        <h3 id="chk-h">Site එක live කරන්න කලින් මම බලනවා</h3>
+        <ul>
+          <li><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10.5l4 4 8-9" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg><span>පොඩි, ලොකු phone දෙකේම හරියට පේනවා</span></li>
+          <li><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10.5l4 4 8-9" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Mobile data වලින් ඉක්මනට load වෙනවා</span></li>
+          <li><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10.5l4 4 8-9" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg><span>සිංහල අකුරු හරියට පේනවා</span></li>
+          <li><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10.5l4 4 8-9" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg><span>WhatsApp සහ call buttons වැඩ කරනවා</span></li>
+          <li><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10.5l4 4 8-9" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Google Maps එකේ කඩේ පේනවා</span></li>
+        </ul>
       </div>
     </div>
   </section>
 
   <section aria-labelledby="faq-h">
     <div class="wrap">
-      <div class="sec-top"><div><span class="tagno mono">Questions</span><h2 id="faq-h">Things owners ask me</h2></div></div>
+      <div class="sec-top"><div><h2 id="faq-h">අයිතිකාරයෝ අහන ප්‍රශ්න</h2><span class="en">Questions owners ask</span></div></div>
       <div class="faq">
-        <details><summary>Who owns the website?</summary><p>You do. The web address is registered in your name, and I hand over everything. If you stop working with me, the site stays yours.</p></details>
-        <details><summary>I don't use a computer. Is that a problem?</summary><p>No. You send me changes on WhatsApp, like a new price or a photo, and I update the site.</p></details>
-        <details><summary>How do customers order?</summary><p>They tap items on your site, then one button sends the full order to your WhatsApp with their name and address. No app to install, no extra fees.</p></details>
-        <details><summary>Can the site be in Sinhala?</summary><p>Yes, Sinhala, English or both, with a button to switch.</p></details>
-        <details><summary>What if I only want videos?</summary><p>That's fine. I can film and edit short videos for your Facebook, Instagram or TikTok without building a website.</p></details>
+        <details><summary>Website එක අයිති කාටද?</summary><p>ඔයාට. Web ලිපිනය ඔයාගේ නමින්ම register කරනවා. මා එක්ක වැඩ නැවැත්තුවත් site එක ඔයාගේමයි.</p></details>
+        <details><summary>මට computer පාවිච්චි කරන්න බෑ. ප්‍රශ්නයක්ද?</summary><p>නෑ. අලුත් ගාණක් හරි photo එකක් හරි WhatsApp කරන්න, මම site එක update කරනවා.</p></details>
+        <details><summary>Customers ඕඩර් කරන්නේ කොහොමද?</summary><p>Site එකේ කෑම තෝරලා එක button එකක් ඔබුවාම, ඕඩර් එක නමයි ලිපිනයයි total එකයි එක්කම ඔයාගේ WhatsApp එකට එනවා. App එකක් ඕනේ නෑ, commission නෑ.</p></details>
+        <details><summary>Site එක සිංහලෙන් කරන්න පුළුවන්ද?</summary><p>ඔව්. සිංහල, English හරි දෙකම.</p></details>
+        <details><summary>Site එක hack වුණොත්?</summary><p>Site එකේ login එකක් නෑ, customers ලාගේ card විස්තර, සල්ලි කිසිවක් save වෙන්නේ නෑ. Account වලට two-step verification තියෙනවා, backup එකක් හැමතිස්සෙම මං ළඟ. මොකක් හරි වුණොත් ආපහු දානවා.</p></details>
+        <details><summary>මට video විතරක් ඕනේ නම්?</summary><p>ප්‍රශ්නයක් නෑ. Website එකක් නැතුවත් Facebook, Instagram, TikTok වලට video shoot කරලා edit කරලා දෙන්නම්.</p></details>
       </div>
     </div>
   </section>
@@ -397,28 +372,26 @@ footer{padding-block:28px 36px;color:var(--ink-2);font-size:14px;display:flex;fl
     <div class="wrap">
       <div class="contact">
         <div>
-          <span class="tagno mono" style="color:var(--label)">Contact</span>
-          <h2 id="c-h">Tell me about your business</h2>
-          <p>Send a WhatsApp message with your business name and what you sell. I reply the same day, and I can visit you to talk it through.</p>
-          <span class="si">ඔබේ ව්‍යාපාරය ගැන WhatsApp පණිවිඩයක් එවන්න.</span>
-          <div class="cta"><a class="btn btn-main" id="wa" href="#contact" target="_blank" rel="noopener">Message me on WhatsApp</a></div>
+          <h2 id="c-h">කතා කරමු</h2><span class="en">Let's talk</span>
+          <p>ඔයාගේ කඩේ නමයි, විකුණන දේයි WhatsApp කරන්න. මම එදාම reply කරනවා. ඕනේ නම් කඩේට ඇවිත් කතා කරන්නම්.</p>
+          <div class="cta"><a class="btn btn-main" id="wa" href="#contact" target="_blank" rel="noopener">WhatsApp කරන්න</a></div>
         </div>
         <div class="lines">
-          <div class="line"><span class="mono">WhatsApp / phone</span><div class="val"><span id="phone">072 499 6667</span><button class="chip" type="button" data-copy="phone">Copy</button></div></div>
-          <div class="line"><span class="mono">Email</span><div class="val"><span id="email">alex789rodrigo@gmail.com</span><button class="chip" type="button" data-copy="email">Copy</button></div></div>
-          <div class="line"><span class="mono">Service area</span><div class="val"><span>Island-wide</span></div></div>
+          <div class="line"><span class="lbl">WhatsApp / phone</span><div class="val"><span id="phone">072 499 6667</span><button class="chip" type="button" data-copy="phone">Copy</button></div></div>
+          <div class="line"><span class="lbl">Email</span><div class="val"><span id="email">alex789rodrigo@gmail.com</span><button class="chip" type="button" data-copy="email">Copy</button></div></div>
+          <div class="line"><span class="lbl">සේවා ප්‍රදේශය</span><div class="val"><span class="si">දිවයින පුරා</span></div></div>
         </div>
       </div>
     </div>
   </section>
 </main>
 
-<footer class="wrap"><span>© Rodrigo's Studio · Kotte, Sri Lanka</span><span class="mono" style="font-size:11.5px">Tested on phone · tablet · desktop</span></footer>
+<footer class="wrap">© Rodrigo's Studio · කෝට්ටේ</footer>
 
 <script>
 (() => {
 const WA_NUMBER = "94724996667";   // 072 499 6667
-const text = "Hi Rodrigo, I saw the Rodrigo's Studio website.\nMy business is: \nWhat I sell: \nI'd like: a website / WhatsApp ordering / videos";
+const text = "ආයුබෝවන් Rodrigo, මම Rodrigo's Studio website එක බැලුවා.\nමගේ කඩේ: \nවිකුණන්නේ: \nමට ඕනේ: website / WhatsApp ඕඩර් / video";
 document.getElementById("wa").href = `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(text)}`;
 document.querySelectorAll("[data-copy]").forEach(btn => btn.addEventListener("click", async () => {
   const el = document.getElementById(btn.dataset.copy);
