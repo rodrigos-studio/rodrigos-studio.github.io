@@ -1,0 +1,365 @@
+<!doctype html>
+<html lang="si">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="description" content="Demo cake shop website with a custom cake order form on WhatsApp. Made by Rodrigo&#x27;s Studio, Sri Lanka.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Rodrigo's Studio">
+<meta property="og:title" content="Mihiri Cake House · demo by Rodrigo&#x27;s Studio">
+<meta property="og:description" content="Demo cake shop website with a custom cake order form on WhatsApp. Made by Rodrigo&#x27;s Studio, Sri Lanka.">
+<meta property="og:url" content="https://rodrigos-studio.github.io/cakes/">
+<meta property="og:image" content="https://rodrigos-studio.github.io/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/png" href="https://rodrigos-studio.github.io/icon.png">
+<link rel="apple-touch-icon" href="https://rodrigos-studio.github.io/icon.png">
+<meta name="theme-color" content="#12202B">
+<style>:root{color-scheme:light;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0;font:14px system-ui,-apple-system,'Segoe UI',Roboto,sans-serif}img{max-width:100%}[hidden]{display:none!important}</style>
+</head>
+<body>
+<title>Mihiri Cake House</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&family=Noto+Serif+Sinhala:wght@600;800&family=Noto+Sans+Sinhala:wght@400;600&display=swap">
+<style>
+/* Layout: a bakery counter hero with a big ribbon-cake slice, the cakes by the kilo drawn as layered slices, a cake builder that previews the top of the cake and writes the WhatsApp order, small treats, visit. */
+:root{
+  --bg:#FBF4EC; --surface:#FFFFFF; --ink:#3A241C; --muted:#7A6258; --line:#EADBD0;
+  --berry:#C8374F; --berry-ink:#FFFFFF; --caramel:#C98B4E; --pink:#F2A7B5; --mint:#B9D39A; --cream:#FFF7EF;
+  --display:"DM Serif Display",Georgia,serif;
+  --body:"DM Sans",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  --si-head:"Noto Serif Sinhala","Noto Sans Sinhala","Iskoola Pota",serif;
+  --si:"Noto Sans Sinhala","Iskoola Pota",sans-serif;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
+button,input,select,textarea{font:inherit;color:inherit}
+.wrap{max-width:1080px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.si{font-family:var(--si)}
+.num{font-variant-numeric:tabular-nums}
+a{color:var(--berry)}
+:focus-visible{outline:3px solid var(--caramel);outline-offset:2px;border-radius:6px}
+.ribbon{background:var(--ink);color:var(--bg);font-size:13px;text-align:center;padding-block:7px}
+.ribbon a{color:var(--pink)}
+
+.top{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-block:16px;border-bottom:1px solid var(--line)}
+.brand{text-decoration:none;color:var(--ink);line-height:1}
+.brand b{font-family:var(--display);font-weight:400;font-size:28px}
+.brand b i{color:var(--berry)}
+.brand small{display:block;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-top:4px}
+.top nav{display:flex;gap:22px;align-items:center}
+.top nav a{color:var(--ink);text-decoration:none;font-weight:500;font-size:15px}
+.top nav a.btn-main{color:var(--berry-ink)}
+@media (max-width:720px){.top nav .hide-s{display:none}}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:46px;padding:10px 22px;border-radius:999px;font-weight:700;text-decoration:none;border:1.5px solid transparent;cursor:pointer;font-size:15.5px}
+.btn-main{background:var(--berry);color:var(--berry-ink)}
+.btn-line{border-color:var(--ink);color:var(--ink);background:transparent}
+.btn-sm{min-height:40px;padding:8px 16px;font-size:14.5px}
+
+/* hero */
+.hero{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:36px;align-items:center;padding-block:48px 56px}
+@media (max-width:820px){.hero{grid-template-columns:minmax(0,1fr);padding-block:28px 40px}}
+.status{display:inline-flex;align-items:center;gap:8px;font-size:14px;font-weight:500;padding:6px 14px;border-radius:999px;background:var(--surface);border:1px solid var(--line)}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--muted)}
+.status.open .dot{background:#3E8E5A;box-shadow:0 0 0 4px rgba(62,142,90,.18)}
+.status.closed .dot{background:var(--berry)}
+h1{font-family:var(--display);font-weight:400;font-size:clamp(42px,6.6vw,74px);line-height:1.04;margin:18px 0 0}
+h1 i{color:var(--berry)}
+.si-line{font-family:var(--si-head);font-weight:600;font-size:clamp(17px,2.1vw,20px);color:var(--muted);margin:14px 0 0}
+.lede{max-width:44ch;margin:10px 0 0}
+.cta{display:flex;flex-wrap:wrap;gap:10px;margin-top:24px}
+.counter{position:relative;justify-self:center;width:min(380px,100%);aspect-ratio:1/1;border-radius:50%;background:var(--surface);border:1px solid var(--line);display:grid;place-items:center;box-shadow:0 30px 60px rgba(58,36,28,.08)}
+.counter::before{content:"";position:absolute;inset:18px;border-radius:50%;border:2px dashed var(--line)}
+.stamp{position:absolute;right:-6px;top:22px;transform:rotate(8deg);background:var(--berry);color:#fff;border-radius:50%;width:116px;height:116px;display:grid;place-items:center;text-align:center;font-family:var(--display);font-size:20px;line-height:1.1;box-shadow:0 10px 20px rgba(200,55,79,.25)}
+.stamp small{display:block;font-family:var(--si);font-size:12px;margin-top:4px}
+
+/* cake slices are drawn as small SVGs in script */
+.art{width:180px;max-width:100%}
+.art svg{display:block;width:100%;height:auto}
+.counter .art{width:76%}
+section{padding-block:44px}
+.sh{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:6px 24px;margin-bottom:22px}
+.sh h2{font-family:var(--si-head);font-weight:800;font-size:clamp(26px,3.6vw,34px);margin:0;line-height:1.3}
+.sh h2 small{display:block;font-family:var(--display);font-style:italic;font-weight:400;font-size:24px;color:var(--berry);line-height:1.2}
+.sh p{margin:0;color:var(--muted);max-width:46ch}
+.cakes{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+@media (max-width:860px){.cakes{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:480px){.cakes{grid-template-columns:minmax(0,1fr)}}
+.cake{background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:20px;display:grid;gap:8px;justify-items:start}
+.cake .art{margin:-4px 0 2px -8px}
+.cake h3{margin:0;font-family:var(--display);font-weight:400;font-size:24px;line-height:1.15}
+.cake h3 .si{display:block;font-size:14px;color:var(--muted)}
+.cake p{margin:0;color:var(--muted);font-size:14.5px}
+.cake .pr{font-weight:700}
+.cake .pr small{font-weight:400;color:var(--muted)}
+.cake button{margin-top:4px}
+
+/* builder */
+.builder{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:24px;align-items:start}
+@media (max-width:860px){.builder{grid-template-columns:minmax(0,1fr)}}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:22px;padding:22px}
+.lab{font-weight:700;font-size:14px;margin:0 0 8px}
+.opts{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px}
+.opt{border:1.5px solid var(--line);background:var(--bg);border-radius:12px;padding:8px 14px;cursor:pointer;font-size:14.5px;font-weight:500}
+.opt[aria-pressed="true"]{border-color:var(--berry);background:#FCE9EC;color:var(--berry);font-weight:700}
+.field{display:grid;gap:4px;margin-bottom:14px;font-weight:700;font-size:14px}
+.field input,.field select{width:100%;min-height:46px;padding:10px 12px;border:1px solid var(--line);border-radius:12px;background:var(--bg);font-weight:400;font-size:16px}
+.field small{font-weight:400;color:var(--muted)}
+.two{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:12px}
+@media (max-width:440px){.two{grid-template-columns:minmax(0,1fr)}}
+.preview{display:grid;place-items:center;padding:8px 0 16px}
+.preview svg{width:min(260px,100%);height:auto}
+.preview text{font-family:var(--display);font-style:italic}
+.est{list-style:none;margin:0 0 8px;padding:0}
+.est li{display:flex;justify-content:space-between;gap:12px;padding:6px 0;border-bottom:1px dashed var(--line);font-size:15px}
+.tot{display:flex;justify-content:space-between;font-weight:700;font-size:18px;margin:8px 0 4px}
+.adv{font-size:14px;color:var(--muted);margin:0 0 12px}
+.msg{white-space:pre-wrap;background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:12px;font-size:14px;margin:6px 0 14px}
+.note{font-size:13px;color:var(--muted);margin:0 0 10px}
+
+.treats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+@media (max-width:860px){.treats{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.treat{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:16px}
+.treat h3{margin:0;font-size:16px}
+.treat p{margin:2px 0 0;color:var(--muted);font-size:14px}
+.treat b{display:block;margin-top:6px}
+.rules{margin-top:16px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+@media (max-width:760px){.rules{grid-template-columns:minmax(0,1fr)}}
+.rules div{border-top:2px solid var(--ink);padding-top:10px}
+.rules b{font-family:var(--display);font-weight:400;font-size:22px;display:block}
+.rules span{color:var(--muted);font-size:14.5px}
+
+.visit{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+@media (max-width:760px){.visit{grid-template-columns:minmax(0,1fr)}}
+.visit h3{margin:0 0 6px;font-size:17px}
+.visit p{margin:0 0 8px;color:var(--muted)}
+.hours{width:100%;border-collapse:collapse;font-size:15px}
+.hours td{padding:2px 0}
+.hours td:last-child{text-align:right}
+.hours tr.today td{font-weight:700;color:var(--berry)}
+.copyrow{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.chip{border:1px solid var(--line);background:transparent;border-radius:999px;padding:4px 12px;font-weight:700;font-size:13px;cursor:pointer}
+footer{padding-block:30px 40px;color:var(--muted);font-size:14px;text-align:center}
+</style>
+
+<div class="ribbon">Demo website · sample cake shop made by <a href="https://rodrigos-studio.github.io/">Rodrigo's Studio</a> · not a real business</div>
+
+<div class="wrap">
+  <header class="top">
+    <a class="brand" href="#top"><b>Mihiri <i>Cake</i> House</b><small>Nawala · since 2014</small></a>
+    <nav aria-label="Sections">
+      <a class="hide-s" href="#cakes">Cakes</a>
+      <a class="hide-s" href="#order">Order a cake</a>
+      <a class="hide-s" href="#visit">Visit</a>
+      <a class="btn btn-main btn-sm" href="#order">Order</a>
+    </nav>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div>
+        <span class="status" id="status"><i class="dot"></i><span id="status-text">Checking hours…</span></span>
+        <h1>Birthday cakes, <i>ribbon cake</i> and cheesecake, baked to order</h1>
+        <p class="si-line">ඕඩර් එකට හදන cakes · නාවල</p>
+        <p class="lede">Pick the cake, the size and what to write on top. We send you the price on WhatsApp and bake it fresh for your day.</p>
+        <div class="cta">
+          <a class="btn btn-main" href="#order">Order a cake</a>
+          <a class="btn btn-line" href="#cakes">See prices</a>
+        </div>
+      </div>
+      <div class="counter" aria-hidden="true">
+        <div class="art" id="hero-art"></div>
+        <div class="stamp"><span>2 days<small>කලින් ඕඩර් කරන්න</small></span></div>
+      </div>
+    </section>
+
+    <section id="cakes" aria-labelledby="c-h">
+      <div class="sh"><h2 id="c-h">අපේ cakes<small>Cakes by the kilo</small></h2><p>Every cake is baked to order. Prices are per kilo; half a kilo feeds about 8 people.</p></div>
+      <div class="cakes" id="cake-list"></div>
+    </section>
+
+    <section id="order" aria-labelledby="o-h">
+      <div class="sh"><h2 id="o-h">Cake එකක් ඕඩර් කරන්න<small>Build your cake</small></h2><p>Choose, see the top of your cake, then send the order on WhatsApp. We confirm the price and date.</p></div>
+      <div class="builder">
+        <div class="card">
+          <p class="lab">Cake</p>
+          <div class="opts" id="o-cake"></div>
+          <p class="lab">Size</p>
+          <div class="opts" id="o-size"></div>
+          <p class="lab">Shape</p>
+          <div class="opts" id="o-shape"></div>
+          <label class="field" for="o-text">Message on the cake <small id="o-left">30 letters left</small><input id="o-text" maxlength="30" placeholder="Happy Birthday Amma"></label>
+          <div class="two">
+            <label class="field" for="o-date">For which day?<input id="o-date" type="date"></label>
+            <label class="field" for="o-how">Pick-up or delivery<select id="o-how"><option value="pick">Pick-up from the shop</option><option value="del">Delivery within 5 km (Rs 400)</option></select></label>
+          </div>
+          <label class="field" for="o-name">Your name<input id="o-name" autocomplete="name" placeholder="Nadeesha"></label>
+        </div>
+        <div class="card">
+          <div class="preview" aria-label="Top of your cake"><svg id="top-svg" viewBox="0 0 260 260" role="img"></svg></div>
+          <ul class="est num" id="est"></ul>
+          <div class="tot num"><span>Estimate</span><span id="o-total">Rs 0</span></div>
+          <p class="adv" id="o-adv"></p>
+          <p class="note">This is the message the shop gets on WhatsApp:</p>
+          <div class="msg" id="msg"></div>
+          <a class="btn btn-main" id="wa" href="#order" target="_blank" rel="noopener" style="width:100%">Send order on WhatsApp</a>
+        </div>
+      </div>
+    </section>
+
+    <section aria-labelledby="s-h">
+      <div class="sh"><h2 id="s-h">පොඩි දේවල්<small>Small treats, ready on the counter</small></h2></div>
+      <div class="treats">
+        <div class="treat"><h3>Cupcakes</h3><p>Box of 6, mixed flavours</p><b class="num">Rs 1,800</b></div>
+        <div class="treat"><h3>Brownies</h3><p>Box of 6, fudgy</p><b class="num">Rs 1,500</b></div>
+        <div class="treat"><h3>Love cake</h3><p>One slice, with cashew</p><b class="num">Rs 280</b></div>
+        <div class="treat"><h3>Biscuit pudding</h3><p>Tray for 8 to 10</p><b class="num">Rs 2,400</b></div>
+      </div>
+      <div class="rules">
+        <div><b>2 days</b><span>Order at least two days before. Wedding and tiered cakes: two weeks.</span></div>
+        <div><b>50% advance</b><span>A bank transfer of half the price confirms your order.</span></div>
+        <div><b>No eggs?</b><span>Egg-free chocolate and butter cakes on request.</span></div>
+      </div>
+    </section>
+
+    <section id="visit" aria-labelledby="v-h">
+      <div class="sh"><h2 id="v-h">කඩේට එන්න<small>Visit</small></h2></div>
+      <div class="visit">
+        <div class="card"><h3>Address</h3><p>Nawala Road, Nawala, opposite the bus stop.</p><p><a href="https://www.google.com/maps/search/?api=1&query=Nawala+Road+Nawala" target="_blank" rel="noopener">Open in Google Maps</a></p></div>
+        <div class="card"><h3>Hours</h3><table class="hours num" id="hours"></table></div>
+        <div class="card"><h3>Call or WhatsApp</h3><div class="copyrow"><span class="num" id="phone">072 499 6667</span><button class="chip" type="button" id="copy-phone">Copy</button></div><p class="note" style="margin-top:10px">In this demo, orders go to Rodrigo's Studio.</p></div>
+      </div>
+    </section>
+  </main>
+</div>
+
+<footer class="wrap">Demo site designed and built by <a href="https://rodrigos-studio.github.io/" style="color:inherit;font-weight:700">Rodrigo's Studio</a>. Websites and video for Sri Lankan businesses.</footer>
+
+<script>
+(() => {
+const WA_NUMBER = "94724996667";   // demo orders go to Rodrigo's Studio; a real site uses the shop's number
+const HOURS = { 0:["09:00","20:00"], 1:null, 2:["09:00","20:00"], 3:["09:00","20:00"], 4:["09:00","20:00"], 5:["09:00","20:00"], 6:["09:00","20:00"] };
+const DAYN = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+const CAKES = [
+  { k:"choc", n:"Chocolate fudge", si:"චොකලට් කේක්", d:"Dark chocolate sponge with fudge icing", p:4800, icing:"#5A3528", ink:"#F5E3C8",
+    layers:[["#4A2C21",5],["#7B4A36",1.4],["#4A2C21",5],["#7B4A36",1.4],["#4A2C21",5]], top:"curl" },
+  { k:"ribbon-c", n:"Ribbon cake", si:"රිබන් කේක්", d:"Pink, white and green layers with butter icing", p:3600, icing:"#FFF7EF", ink:"#C8374F",
+    layers:[["#F2A7B5",5],["#FFFDF8",1],["#FBE7C6",5],["#FFFDF8",1],["#B9D39A",5]], top:"swirl" },
+  { k:"butter", n:"Butter cake", si:"බටර් කේක්", d:"The classic, with vanilla butter icing", p:3200, icing:"#FFF4DA", ink:"#9C6B2F",
+    layers:[["#F2CF86",7],["#FFF4DA",1.3],["#EDC778",7]], top:"cherry" },
+  { k:"velvet", n:"Red velvet", si:"රෙඩ් වෙල්වට්", d:"With cream cheese icing", p:5200, icing:"#FFF7EF", ink:"#A8323E",
+    layers:[["#A8323E",5],["#FFF7EF",1.6],["#A8323E",5],["#FFF7EF",1.6],["#A8323E",5]], top:"crumbs" },
+  { k:"mocha", n:"Mocha", si:"කෝපි කේක්", d:"Coffee sponge with mocha butter icing", p:4400, icing:"#EAD3B8", ink:"#6B4226",
+    layers:[["#B07A50",6],["#EAD3B8",1.5],["#B07A50",6],["#EAD3B8",1.5]], top:"bean" },
+  { k:"cheese", n:"Baked cheesecake", si:"චීස් කේක්", d:"Biscuit base, vanilla. Round only", p:6500, icing:"#F7E9CC", ink:"#9C6B2F",
+    layers:[["#F6E7C8",9],["#C9A06A",3]], top:"berry" },
+];
+// a wedge of cake on a plate: tip on the left, cut face (layers) at the front, icing on top and on the outer edge
+function slice(c) {
+  const T = [22, 58], B = [132, 74], A = [160, 50], H = 44;
+  const tot = c.layers.reduce((s, l) => s + l[1], 0); let f = 0;
+  const pt = (p, dy) => `${p[0]},${p[1] + dy}`;
+  const bands = c.layers.map(([col, w]) => { const f0 = f; f += w / tot; return `<polygon points="${pt(T, 6 + (H - 6) * f0)} ${pt(B, 6 + (H - 6) * f0)} ${pt(B, 6 + (H - 6) * f)} ${pt(T, 6 + (H - 6) * f)}" fill="${col}"/>`; }).join("");
+  const tops = {
+    curl: `<path d="M96 58 q10 -9 20 0 q-10 5 -20 0z" fill="#3A2018"/><path d="M100 57 q6 -4 12 0" stroke="#7B4A36" stroke-width="1.6" fill="none"/>`,
+    swirl: `<ellipse cx="106" cy="60" rx="10" ry="5" fill="#FFFDF8" stroke="#EADBD0"/><ellipse cx="106" cy="56" rx="6" ry="3.4" fill="#FFFDF8" stroke="#EADBD0"/><circle cx="106" cy="52.5" r="2.4" fill="#F2A7B5"/>`,
+    cherry: `<path d="M108 52 q4 -10 10 -12" stroke="#5E7A3A" stroke-width="1.6" fill="none"/><circle cx="107" cy="56" r="6" fill="#C8374F"/><circle cx="105" cy="54" r="1.6" fill="#fff" opacity=".7"/>`,
+    crumbs: [[96,60],[104,56],[112,61],[118,57],[101,64],[110,66]].map(([x,y]) => `<circle cx="${x}" cy="${y}" r="2.2" fill="#A8323E"/>`).join(""),
+    bean: `<ellipse cx="106" cy="58" rx="7" ry="4.6" fill="#4A2C21" transform="rotate(-18 106 58)"/><path d="M100 60 q6 -3 12 -4" stroke="#B07A50" stroke-width="1.2" fill="none"/>`,
+    berry: `<path d="M84 60 q22 -10 52 -4 q-6 8 -20 9 q-18 2 -32 -5z" fill="#B3263E" opacity=".9"/><path d="M106 54 l-5 -6 h10z" fill="#5E7A3A"/><path d="M100 56 q6 -4 12 0 q-1 7 -6 9 q-5 -2 -6 -9z" fill="#C8374F"/>`
+  };
+  return `<svg viewBox="0 0 184 136" xmlns="http://www.w3.org/2000/svg">
+    <ellipse cx="94" cy="110" rx="88" ry="20" fill="#FFFFFF" stroke="#EADBD0" stroke-width="1.5"/><ellipse cx="94" cy="110" rx="62" ry="12" fill="none" stroke="#F1E6DC" stroke-width="1.5"/>
+    <ellipse cx="94" cy="112" rx="60" ry="8" fill="#3A241C" opacity=".07"/>
+    <polygon points="${pt(B,0)} ${pt(A,0)} ${pt(A,H)} ${pt(B,H)}" fill="${c.icing}"/><polygon points="${pt(B,0)} ${pt(A,0)} ${pt(A,H)} ${pt(B,H)}" fill="#3A241C" opacity=".12"/>
+    ${bands}
+    <polygon points="${pt(T,0)} ${pt(B,0)} ${pt(B,6)} ${pt(T,6)}" fill="${c.icing}"/>
+    <polygon points="${pt(T,0)} ${pt(B,0)} ${pt(A,0)}" fill="${c.icing}"/>
+    <path d="M${T[0]},${T[1]} L${B[0]},${B[1]} L${A[0]},${A[1]} Z M${T[0]},${T[1]} V${T[1]+H} L${B[0]},${B[1]+H} L${A[0]},${A[1]+H} V${A[1]} M${B[0]},${B[1]} V${B[1]+H}" fill="none" stroke="#3A241C" stroke-opacity=".28" stroke-width="1.2" stroke-linejoin="round"/>
+    ${tops[c.top] || ""}
+  </svg>`;
+}
+const SIZES = [0.5, 1, 1.5, 2, 3];
+const FEEDS = { 0.5:8, 1:16, 1.5:24, 2:32, 3:48 };
+const SHAPES = [["Round", 0], ["Square", 0], ["Heart", 500]];
+const $ = s => document.querySelector(s);
+const rs = n => "Rs " + Math.round(n).toLocaleString("en-LK");
+let cake = "ribbon-c", size = 1, shape = "Round";
+
+function lk(d = new Date()) {
+  const f = new Intl.DateTimeFormat("en-CA", { timeZone:"Asia/Colombo", year:"numeric", month:"2-digit", day:"2-digit", hour:"2-digit", minute:"2-digit", hourCycle:"h23" }).formatToParts(d);
+  const g = t => f.find(p => p.type === t).value; const iso = `${g("year")}-${g("month")}-${g("day")}`;
+  return { iso, mins: +g("hour") * 60 + +g("minute"), dow: new Date(iso + "T12:00:00Z").getUTCDay() };
+}
+const toMin = s => +s.slice(0, 2) * 60 + +s.slice(3);
+const hhmm = m => `${Math.floor(m / 60) % 12 || 12}:${String(m % 60).padStart(2, "0")} ${m < 720 ? "am" : "pm"}`;
+const addDays = (iso, n) => { const d = new Date(iso + "T12:00:00Z"); d.setUTCDate(d.getUTCDate() + n); return d.toISOString().slice(0, 10); };
+const nice = iso => new Date(iso + "T12:00:00Z").toLocaleDateString("en-GB", { weekday:"short", day:"numeric", month:"short", timeZone:"UTC" });
+
+function renderStatus() {
+  const now = lk(); const h = HOURS[now.dow]; const open = h && now.mins >= toMin(h[0]) && now.mins < toMin(h[1]);
+  $("#status").className = "status " + (open ? "open" : "closed");
+  $("#status-text").textContent = open ? `Open now · closes ${hhmm(toMin(h[1]))}` : (h && now.mins < toMin(h[0]) ? `Closed · opens ${hhmm(toMin(h[0]))}` : "Closed now · order on WhatsApp any time");
+  $("#hours").innerHTML = [2,3,4,5,6,0,1].map(d => `<tr class="${d === now.dow ? "today" : ""}"><td>${DAYN[d]}</td><td>${HOURS[d] ? hhmm(toMin(HOURS[d][0])) + " – " + hhmm(toMin(HOURS[d][1])) : "Closed"}</td></tr>`).join("");
+}
+function renderCakes() {
+  $("#cake-list").innerHTML = CAKES.map(c => `<div class="cake"><div class="art" aria-hidden="true">${slice(c)}</div><h3>${c.n}<span class="si">${c.si}</span></h3><p>${c.d}</p><div class="pr num">${rs(c.p)} <small>per kg</small></div><button class="btn btn-line btn-sm" type="button" data-pick="${c.k}">Order this</button></div>`).join("");
+}
+function renderOpts() {
+  $("#o-cake").innerHTML = CAKES.map(c => `<button type="button" class="opt" data-cake="${c.k}" aria-pressed="${c.k === cake}">${c.n}</button>`).join("");
+  $("#o-size").innerHTML = SIZES.map(s => `<button type="button" class="opt" data-size="${s}" aria-pressed="${s === size}">${s} kg</button>`).join("");
+  const shapes = cake === "cheese" ? SHAPES.slice(0, 1) : SHAPES;
+  if (!shapes.some(s => s[0] === shape)) shape = "Round";
+  $("#o-shape").innerHTML = shapes.map(([s, x]) => `<button type="button" class="opt" data-shape="${s}" aria-pressed="${s === shape}">${s}${x ? ` (+${rs(x)})` : ""}</button>`).join("");
+}
+function esc(s) { return s.replace(/[&<>"]/g, c => ({ "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;" }[c])); }
+function renderTop() {
+  const c = CAKES.find(x => x.k === cake); const typed = $("#o-text").value.trim(); const text = typed || "Happy Birthday"; const op = typed ? 1 : .4;
+  const shapeEl = shape === "Square" ? `<rect x="30" y="30" width="200" height="200" rx="18" fill="${c.icing}" stroke="#EADBD0" stroke-width="3"/>`
+    : shape === "Heart" ? `<path d="M130 222 C 60 170, 22 130, 30 86 C 38 46, 92 34, 130 76 C 168 34, 222 46, 230 86 C 238 130, 200 170, 130 222 Z" fill="${c.icing}" stroke="#EADBD0" stroke-width="3"/>`
+    : `<circle cx="130" cy="130" r="104" fill="${c.icing}" stroke="#EADBD0" stroke-width="3"/>`;
+  const dots = Array.from({ length: 16 }, (_, i) => { const a = i / 16 * Math.PI * 2; const r = shape === "Heart" ? 0 : (shape === "Square" ? 0 : 92); return r ? `<circle cx="${130 + r * Math.cos(a)}" cy="${130 + r * Math.sin(a)}" r="4.5" fill="${c.ink}" opacity=".55"/>` : ""; }).join("");
+  const size1 = text.length > 18 ? 18 : 24;
+  const words = text.split(" "); let l1 = "", l2 = "";
+  for (const w of words) { if ((l1 + " " + w).trim().length <= 14 && !l2) l1 = (l1 + " " + w).trim(); else l2 = (l2 + " " + w).trim(); }
+  $("#top-svg").innerHTML = `${shapeEl}${dots}<text x="130" y="${l2 ? 124 : 138}" text-anchor="middle" font-size="${size1}" fill="${c.ink}" opacity="${op}">${esc(l1)}</text>${l2 ? `<text x="130" y="${124 + size1 + 4}" text-anchor="middle" font-size="${size1}" fill="${c.ink}" opacity="${op}">${esc(l2)}</text>` : ""}`;
+  $("#top-svg").setAttribute("aria-label", `${shape} ${c.n} with "${text}" written on top`);
+  $("#o-left").textContent = `${30 - $("#o-text").value.length} letters left`;
+}
+function calc() {
+  const c = CAKES.find(x => x.k === cake); const extra = (SHAPES.find(s => s[0] === shape) || [0, 0])[1]; const del = $("#o-how").value === "del" ? 400 : 0;
+  const base = c.p * size; return { c, base, extra, del, total: base + extra + del };
+}
+function renderOrder() {
+  renderTop();
+  const { c, base, extra, del, total } = calc();
+  $("#est").innerHTML = `<li><span>${c.n} · ${size} kg <small style="color:var(--muted)">(feeds about ${FEEDS[size]})</small></span><span>${rs(base)}</span></li>${extra ? `<li><span>Heart shape</span><span>${rs(extra)}</span></li>` : ""}${del ? `<li><span>Delivery</span><span>${rs(del)}</span></li>` : ""}`;
+  $("#o-total").textContent = rs(total);
+  $("#o-adv").textContent = `Advance to confirm: ${rs(total / 2)} by bank transfer.`;
+  const date = $("#o-date").value, name = $("#o-name").value.trim(), text = $("#o-text").value.trim();
+  const m = ["Hello Mihiri Cake House! I'd like to order a cake:", `${c.n}, ${size} kg, ${shape.toLowerCase()}`, `Message on top: ${text || "(none)"}`,
+    `For: ${date ? nice(date) : "(choose a day)"}`, $("#o-how").value === "del" ? "Delivery, please" : "I'll pick it up", `Estimate: ${rs(total)}`, name ? `Name: ${name}` : ""].filter(Boolean).join("\n");
+  $("#msg").textContent = m; $("#wa").href = `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(m)}`;
+}
+document.addEventListener("click", e => {
+  const a = e.target.closest("[data-cake]"); if (a) { cake = a.dataset.cake; renderOpts(); renderOrder(); }
+  const s = e.target.closest("[data-size]"); if (s) { size = +s.dataset.size; renderOpts(); renderOrder(); }
+  const h = e.target.closest("[data-shape]"); if (h) { shape = h.dataset.shape; renderOpts(); renderOrder(); }
+  const p = e.target.closest("[data-pick]"); if (p) { cake = p.dataset.pick; renderOpts(); renderOrder(); $("#order").scrollIntoView({ behavior:"smooth" }); }
+});
+["#o-text", "#o-date", "#o-how", "#o-name"].forEach(s => $(s).addEventListener("input", renderOrder));
+const min = addDays(lk().iso, 2); $("#o-date").min = min; $("#o-date").value = min;
+$("#copy-phone").addEventListener("click", async e => { const b = e.currentTarget; try { await navigator.clipboard.writeText($("#phone").textContent); b.textContent = "Copied"; setTimeout(() => b.textContent = "Copy", 1500); } catch { const r = document.createRange(); r.selectNodeContents($("#phone")); const s = getSelection(); s.removeAllRanges(); s.addRange(r); } });
+
+$("#hero-art").innerHTML = slice(CAKES[1]);
+renderStatus(); renderCakes(); renderOpts(); renderOrder();
+setInterval(renderStatus, 60_000);
+})();
+</script>
+
+</body>
+</html>

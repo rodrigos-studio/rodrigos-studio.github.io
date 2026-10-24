@@ -23,7 +23,7 @@
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100..125,400..900&family=Noto+Sans+Sinhala:wght@500;700&family=Lilita+One&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=Noto+Sans+Sinhala:wght@500;700&family=Lilita+One&family=Cormorant+Garamond:ital,wght@1,600&family=Fraunces:opsz,wght@9..144,600&family=DM+Serif+Display:ital@0;1&display=swap">
 <style>
 /* Layout: Sinhala-first one-page site for a local web studio. Plain paper background, demo phone, demos, services, prices, steps, about, questions, contact. */
 :root{
@@ -110,8 +110,9 @@ section{padding-block:52px}
 .k-bar s{text-decoration:none;background:var(--kopi-mango);color:#1D1A16;border-radius:5px;padding:3px 7px}
 
 /* demos */
-.work{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
-@media (max-width:760px){.work{grid-template-columns:minmax(0,1fr)}}
+.work{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
+@media (max-width:1000px){.work{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:640px){.work{grid-template-columns:minmax(0,1fr)}}
 .case{background:var(--surface);border:1px solid var(--line);border-radius:16px;overflow:hidden;display:flex;flex-direction:column}
 .shot{height:190px;position:relative;overflow:hidden;border-bottom:1px solid var(--line)}
 .shot.kopi{background:#F6FAF9;display:grid;grid-template-columns:1.1fr 1fr;gap:14px;padding:22px}
@@ -122,6 +123,24 @@ section{padding-block:52px}
 .shot.geo svg{position:absolute;inset:0;width:100%;height:100%}
 .shot.geo .t{position:relative;font-family:var(--si);font-weight:700;font-size:28px;line-height:1.3;max-width:13ch}
 .shot.geo .s{position:relative;font-family:Georgia,serif;font-weight:700;color:var(--geo-green);margin-top:6px}
+.shot.salon{background:#F6F0EB;padding:22px;color:#2E1F27}
+.shot.salon .t{position:relative;font-family:"Cormorant Garamond",Georgia,serif;font-style:italic;font-weight:600;font-size:56px;line-height:.9;color:#9C4F3A}
+.shot.salon .s{position:relative;font-family:var(--si);font-weight:700;font-size:14px;margin-top:8px}
+.shot.salon .arch{position:absolute;right:22px;bottom:-12px;width:96px;height:150px;border-radius:48px 48px 0 0;background:linear-gradient(#EBD3C6,#E1BBA9);border:6px solid #FFFFFF;box-shadow:0 0 0 1px #E2D3C9}
+.shot.cafe{background:radial-gradient(circle at 78% 22%,rgba(233,196,106,.28) 0 18%,transparent 19%),radial-gradient(circle at 92% 70%,rgba(95,127,79,.55) 0 24%,transparent 25%),radial-gradient(circle at 60% 95%,rgba(95,127,79,.4) 0 16%,transparent 17%),#2E4636;padding:22px;color:#F2EEE3}
+.shot.cafe .t{position:relative;font-family:"Fraunces",Georgia,serif;font-weight:600;font-size:40px;line-height:1;max-width:8ch}
+.shot.cafe .s{position:relative;font-family:var(--si);font-weight:700;font-size:14px;margin-top:8px;color:#E9C46A}
+.shot.cafe .leaf{position:absolute;right:26px;bottom:22px;width:92px;height:92px;background:#E9C46A;border-radius:0 70% 0 70%;box-shadow:0 10px 24px rgba(0,0,0,.25)}
+.shot.cakes{background:#FBF4EC;padding:22px;color:#3A241C}
+.shot.cakes .t{position:relative;font-family:"DM Serif Display",Georgia,serif;font-size:40px;line-height:1}
+.shot.cakes .t i{color:#C8374F}
+.shot.cakes .s{position:relative;font-family:var(--si);font-weight:700;font-size:14px;margin-top:8px;color:#7A6258}
+.shot.cakes svg{position:absolute;right:10px;bottom:6px;width:170px;height:auto}
+.shot.night{background:#121110;padding:22px;color:#F1E9DD}
+.shot.night .t{position:relative;font-family:"Archivo",sans-serif;font-stretch:68%;font-weight:900;text-transform:uppercase;font-size:38px;line-height:.95}
+.shot.night .t em{font-style:normal;color:#E2A24A}
+.shot.night .lamp{position:absolute;right:22px;top:24px;width:46px;height:46px;border-radius:50%;background:radial-gradient(circle at 50% 45%,#FFD892 0 22%,#E2A24A 23% 46%,rgba(226,162,74,.16) 47% 100%)}
+.shot.night .felt{position:absolute;right:22px;bottom:22px;width:96px;height:46px;border-radius:4px;border:5px solid #3B2A1D;background:repeating-linear-gradient(#171615 0 6px,#0E0D0C 6px 8px)}
 .case .txt{padding:18px 20px 20px;display:flex;flex-direction:column;gap:10px;flex:1}
 .case h3{margin:0;font-family:var(--display);font-size:21px;font-weight:800}
 .case p{margin:0;color:var(--ink-2);font-family:var(--si);font-size:16px}
@@ -245,8 +264,8 @@ footer{padding-block:28px 36px;color:var(--ink-2);font-size:14px;font-family:var
   <section id="work" aria-labelledby="work-h">
     <div class="wrap">
       <div class="sec-top">
-        <div><h2 id="work-h">Demo sites දෙකක්</h2><span class="en">Two demo sites you can try</span></div>
-        <p>දෙකම වැඩ කරන demo. Phone එකෙන් open කරලා ඕඩර් එකක් දාලා, form එක පුරවලා බලන්න.</p>
+        <div><h2 id="work-h">Demo sites 6ක්</h2><span class="en">Six demo sites you can try</span></div>
+        <p>හැම එකම වැඩ කරන demo. Phone එකෙන් open කරලා ඕඩර් එකක් හරි booking එකක් හරි දාලා බලන්න. ඔබේ කඩේට ගැලපෙන style එක තෝරන්න.</p>
       </div>
       <div class="work">
         <article class="case">
@@ -256,6 +275,42 @@ footer{padding-block:28px 36px;color:var(--ink-2);font-size:14px;font-family:var
             <p>ගණන් එක්ක menu එක. Customer කෑම තෝරලා, ඕඩර් එක total එකත් එක්කම කඩේ WhatsApp එකට යවනවා. කඩේ දැන් open ද කියලා වෙලාව අනුව පෙන්නනවා.</p>
             <ul><li>Menu + ගණන්</li><li>සිංහල + English</li><li>WhatsApp ඕඩර්</li><li>Pick-up / delivery</li><li>Google Maps</li></ul>
             <a class="btn btn-line" href="athal-kade/" target="_blank" rel="noopener">කෑම කඩ demo එක</a>
+          </div>
+        </article>
+        <article class="case">
+          <div class="shot salon" aria-hidden="true"><div class="arch"></div><div class="t">Ruhi</div><div class="s">Salon &amp; Bridal<br>ඇතුල් කෝට්ටේ</div></div>
+          <div class="txt">
+            <h3>Ruhi · salon එකක්</h3>
+            <p>Service list එක ගණන් සහ වෙලාව එක්ක. Customer service තෝරලා, දවසයි free වෙලාවකුයි තෝරලා WhatsApp එකෙන් booking එක යවනවා.</p>
+            <ul><li>Services + ගණන්</li><li>Free වෙලාවල්</li><li>Stylist තෝරන්න</li><li>Bridal enquiry</li><li>WhatsApp booking</li></ul>
+            <a class="btn btn-line" href="https://rodrigos-studio.github.io/salon/" target="_blank" rel="noopener">Salon demo එක</a>
+          </div>
+        </article>
+        <article class="case">
+          <div class="shot cafe" aria-hidden="true"><div class="leaf"></div><div class="t">Nuga Sevana</div><div class="s">Garden café · පිටකෝට්ටේ</div></div>
+          <div class="txt">
+            <h3>Nuga Sevana · garden café</h3>
+            <p>කොළ පාට, ස්වභාවික look එකක්. අද special එක දවස අනුව මාරු වෙනවා. Menu ඕඩර් සහ මේස booking දෙකම WhatsApp එකෙන්.</p>
+            <ul><li>අද special</li><li>Menu ඕඩර්</li><li>මේස booking</li><li>Garden / ඇතුළත</li></ul>
+            <a class="btn btn-line" href="https://rodrigos-studio.github.io/cafe/" target="_blank" rel="noopener">Café demo එක</a>
+          </div>
+        </article>
+        <article class="case">
+          <div class="shot cakes" aria-hidden="true"><svg viewBox="0 0 184 136"><ellipse cx="94" cy="110" rx="88" ry="20" fill="#FFFFFF" stroke="#EADBD0" stroke-width="1.5"/><polygon points="132,74 160,50 160,94 132,118" fill="#E6DCD0"/><polygon points="22,64 132,80 132,92 22,76" fill="#F2A7B5"/><polygon points="22,76 132,92 132,94 22,78" fill="#FFFDF8"/><polygon points="22,78 132,94 132,106 22,90" fill="#FBE7C6"/><polygon points="22,90 132,106 132,108 22,92" fill="#FFFDF8"/><polygon points="22,92 132,108 132,118 22,102" fill="#B9D39A"/><polygon points="22,58 132,74 132,80 22,64" fill="#FFF7EF"/><polygon points="22,58 132,74 160,50" fill="#FFF7EF"/><path d="M22,58 L132,74 L160,50 Z M22,58 V102 L132,118 L160,94 V50 M132,74 V118" fill="none" stroke="#3A241C" stroke-opacity=".28" stroke-width="1.2" stroke-linejoin="round"/><circle cx="106" cy="56" r="5" fill="#C8374F"/></svg><div class="t">Mihiri <i>Cake</i><br>House</div><div class="s">Cake shop · නාවල</div></div>
+          <div class="txt">
+            <h3>Mihiri · cake shop එකක්</h3>
+            <p>Customer cake එක, kg ගාණ, shape එක සහ cake එක උඩ ලියන දේ තෝරනවා. ගාණ එතනම පෙන්නනවා, ඕඩර් එක WhatsApp එකට යනවා.</p>
+            <ul><li>Cake builder</li><li>kg අනුව ගාණ</li><li>Advance 50%</li><li>දවස තෝරන්න</li></ul>
+            <a class="btn btn-line" href="https://rodrigos-studio.github.io/cakes/" target="_blank" rel="noopener">Cake demo එක</a>
+          </div>
+        </article>
+        <article class="case">
+          <div class="shot night" aria-hidden="true"><div class="lamp"></div><div class="felt"></div><div class="t">Pahana<br>Night Kitchen<br><em>Till late</em></div></div>
+          <div class="txt">
+            <h3>Pahana · night restaurant</h3>
+            <p>රෑට open වෙන කඩවලට dark look එකක්. Kitchen වහන්න තියෙන වෙලාව, සතියේ special රෑවල්, සැර තෝරලා ඕඩර්, big screen ළඟ මේස booking.</p>
+            <ul><li>Dark style</li><li>සැර තෝරන්න</li><li>සතියේ specials</li><li>මේස booking</li></ul>
+            <a class="btn btn-line" href="https://rodrigos-studio.github.io/night/" target="_blank" rel="noopener">Restaurant demo එක</a>
           </div>
         </article>
         <article class="case">

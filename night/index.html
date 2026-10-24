@@ -1,0 +1,438 @@
+<!doctype html>
+<html lang="si">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="description" content="Demo late-night restaurant website with menu, match nights and table booking. Made by Rodrigo&#x27;s Studio, Sri Lanka.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Rodrigo's Studio">
+<meta property="og:title" content="Pahana Night Kitchen · demo by Rodrigo&#x27;s Studio">
+<meta property="og:description" content="Demo late-night restaurant website with menu, match nights and table booking. Made by Rodrigo&#x27;s Studio, Sri Lanka.">
+<meta property="og:url" content="https://rodrigos-studio.github.io/night/">
+<meta property="og:image" content="https://rodrigos-studio.github.io/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/png" href="https://rodrigos-studio.github.io/icon.png">
+<link rel="apple-touch-icon" href="https://rodrigos-studio.github.io/icon.png">
+<meta name="theme-color" content="#12202B">
+<style>:root{color-scheme:light;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0;font:14px system-ui,-apple-system,'Segoe UI',Roboto,sans-serif}img{max-width:100%}[hidden]{display:none!important}</style>
+</head>
+<body>
+<title>Pahana Night Kitchen</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,500..900&family=Source+Sans+3:wght@400;600;700&family=Noto+Sans+Sinhala:wght@400;600;700&display=swap">
+<style>
+/* Layout: a late-night kottu kitchen. Dark room, amber light, condensed shop-sign type, a felt letter board for "tonight", the week's nights, a menu with spice level, table booking with big-screen seats. Single dark look on purpose. */
+:root{
+  --bg:#121110; --surface:#1C1A18; --surface2:#25221F; --ink:#F1E9DD; --muted:#A99F92; --line:#36312C;
+  --amber:#E2A24A; --amber-ink:#1A1209; --chili:#D3553A; --ok:#7FC48A;
+  --sign:"Archivo","Arial Narrow",system-ui,sans-serif;
+  --body:"Source Sans 3",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  --si:"Noto Sans Sinhala","Iskoola Pota",sans-serif;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.55;-webkit-font-smoothing:antialiased}
+button,input,select,textarea{font:inherit;color:inherit}
+.wrap{max-width:1100px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.si{font-family:var(--si)}
+.num{font-variant-numeric:tabular-nums}
+a{color:var(--amber)}
+:focus-visible{outline:3px solid var(--amber);outline-offset:2px;border-radius:6px}
+.ribbon{background:var(--amber);color:var(--amber-ink);font-size:13.5px;text-align:center;padding-block:7px;font-weight:600}
+.ribbon a{color:inherit}
+
+.top{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-block:16px;border-bottom:1px solid var(--line)}
+.brand{text-decoration:none;color:var(--ink);line-height:1;display:flex;align-items:center;gap:12px}
+.lamp{width:34px;height:34px;border-radius:50%;background:radial-gradient(circle at 50% 45%,#FFD892 0 22%,var(--amber) 23% 46%,rgba(226,162,74,.18) 47% 100%);flex:none}
+.brand b{font-family:var(--sign);font-stretch:72%;font-weight:900;font-size:27px;letter-spacing:.02em;text-transform:uppercase;display:block}
+.brand small{display:block;font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-top:3px}
+.top nav{display:flex;gap:22px;align-items:center}
+.top nav a{color:var(--ink);text-decoration:none;font-weight:600;font-size:15.5px}
+.top nav a.btn-main{color:var(--amber-ink)}
+@media (max-width:740px){.top nav .hide-s{display:none}}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:48px;padding:10px 22px;border-radius:10px;font-weight:700;text-decoration:none;border:1.5px solid transparent;cursor:pointer;font-size:16px}
+.btn-main{background:var(--amber);color:var(--amber-ink)}
+.btn-line{border-color:var(--line);color:var(--ink);background:transparent}
+.btn-sm{min-height:40px;padding:8px 16px;font-size:15px}
+
+/* hero */
+.hero{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:40px;align-items:center;padding-block:52px 60px}
+@media (max-width:860px){.hero{grid-template-columns:minmax(0,1fr);padding-block:28px 44px;gap:30px}}
+.status{display:inline-flex;align-items:center;gap:8px;font-size:15px;font-weight:600;padding:6px 14px;border-radius:999px;background:var(--surface);border:1px solid var(--line)}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--muted)}
+.status.open .dot{background:var(--ok);box-shadow:0 0 0 4px rgba(127,196,138,.18)}
+.status.soon .dot{background:var(--amber)}
+.status.closed .dot{background:var(--chili)}
+h1{font-family:var(--sign);font-stretch:68%;font-weight:900;text-transform:uppercase;font-size:clamp(52px,9vw,104px);line-height:.92;letter-spacing:-.005em;margin:18px 0 0}
+h1 em{font-style:normal;color:var(--amber)}
+.si-line{font-family:var(--si);font-weight:600;font-size:clamp(17px,2.2vw,20px);color:var(--muted);margin:16px 0 0}
+.lede{max-width:44ch;margin:8px 0 0;color:#D8CEC1}
+.cta{display:flex;flex-wrap:wrap;gap:10px;margin-top:24px}
+
+/* felt letter board */
+.board{background:#191817;border-radius:14px;padding:16px;border:10px solid #3B2A1D;box-shadow:inset 0 0 0 1px #000,0 24px 50px rgba(0,0,0,.45);position:relative}
+.felt{background:repeating-linear-gradient(#141312 0 7px,#0E0D0C 7px 9px);border-radius:4px;padding:18px 14px;text-align:center;display:grid;gap:6px}
+.felt p{margin:0;font-family:var(--sign);font-stretch:80%;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:#F4F0E8;font-size:clamp(17px,2.3vw,22px);line-height:1.25}
+.felt p.sm{font-size:clamp(13px,1.6vw,15px);color:#CFC8BD;letter-spacing:.16em}
+.felt p.am{color:var(--amber)}
+.felt hr{border:0;height:9px;margin:2px 0}
+.clock{display:flex;justify-content:space-between;gap:12px;margin-top:14px;font-size:14.5px;color:var(--muted)}
+.clock b{color:var(--ink)}
+
+section{padding-block:44px}
+.sh{display:flex;flex-wrap:wrap;align-items:end;justify-content:space-between;gap:6px 24px;margin-bottom:22px}
+.sh h2{margin:0;font-family:var(--sign);font-stretch:72%;font-weight:900;text-transform:uppercase;font-size:clamp(34px,5vw,48px);line-height:1}
+.sh h2 .si{display:block;font-size:17px;font-weight:600;text-transform:none;color:var(--amber);margin-bottom:6px;letter-spacing:0}
+.sh p{margin:0;color:var(--muted);max-width:46ch}
+
+/* week */
+.week{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:8px}
+@media (max-width:860px){.week{grid-template-columns:repeat(4,minmax(0,1fr))}}
+@media (max-width:480px){.week{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.night{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px;display:grid;gap:4px;align-content:start;min-height:132px}
+.night .d{font-family:var(--sign);font-stretch:75%;font-weight:800;text-transform:uppercase;letter-spacing:.06em;font-size:15px;color:var(--muted)}
+.night b{font-size:16.5px;line-height:1.25}
+.night span{font-size:14px;color:var(--muted)}
+.night.today{border-color:var(--amber);background:linear-gradient(var(--surface2),var(--surface))}
+.night.today .d{color:var(--amber)}
+.night.off{opacity:.55}
+
+/* menu */
+.tabs{display:flex;gap:8px;overflow-x:auto;padding-bottom:6px;margin-bottom:16px;scrollbar-width:thin}
+.tab{flex:none;border:1px solid var(--line);background:transparent;border-radius:999px;padding:8px 16px;font-weight:700;font-size:15px;cursor:pointer;white-space:nowrap}
+.tab[aria-selected="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.menu{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 36px}
+@media (max-width:760px){.menu{grid-template-columns:minmax(0,1fr)}}
+.item{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:4px 14px;align-items:center;padding:14px 0;border-bottom:1px dashed var(--line)}
+.item h3{margin:0;font-size:17.5px;font-weight:700;line-height:1.3}
+.item h3 .si{font-weight:400;font-size:14px;color:var(--muted);margin-left:6px}
+.item p{margin:2px 0 0;color:var(--muted);font-size:14.5px}
+.item .hot{color:var(--chili);font-size:13px;font-weight:700;letter-spacing:.04em;margin-left:6px}
+.item .right{display:flex;align-items:center;gap:10px}
+.item .pr{font-weight:700}
+.add{width:40px;height:40px;border-radius:10px;border:1px solid var(--amber);background:transparent;color:var(--amber);font-size:22px;line-height:1;cursor:pointer}
+.add:disabled{border-color:var(--line);color:var(--muted);cursor:not-allowed}
+.qty{display:inline-flex;align-items:center;border:1px solid var(--amber);border-radius:10px;overflow:hidden}
+.qty button{width:36px;height:38px;border:0;background:transparent;color:var(--amber);font-size:19px;cursor:pointer}
+.qty span{min-width:22px;text-align:center;font-weight:700}
+.only{font-size:13px;color:var(--amber);font-weight:600}
+
+/* cart bar + sheet */
+.bar{position:fixed;left:0;right:0;bottom:0;z-index:20;background:var(--amber);color:var(--amber-ink);padding:10px max(16px,env(safe-area-inset-right,0px)) calc(10px + env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px));display:flex;justify-content:space-between;align-items:center;gap:12px;font-weight:700;box-shadow:0 -10px 30px rgba(0,0,0,.4)}
+.bar button{background:var(--amber-ink);color:var(--amber);border:0;border-radius:10px;min-height:44px;padding:8px 18px;font-weight:700;cursor:pointer}
+.sheet-bg{position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:30;display:flex;align-items:flex-end;justify-content:center}
+.sheet{background:var(--surface);border:1px solid var(--line);border-bottom:0;border-radius:18px 18px 0 0;width:min(560px,100%);max-height:88vh;overflow:auto;padding:20px max(18px,env(safe-area-inset-right,0px)) calc(20px + env(safe-area-inset-bottom,0px)) max(18px,env(safe-area-inset-left,0px))}
+.sheet h3{margin:0 0 10px;font-family:var(--sign);font-stretch:75%;font-weight:900;text-transform:uppercase;font-size:28px}
+.lines{list-style:none;margin:0 0 12px;padding:0}
+.lines li{display:flex;justify-content:space-between;gap:12px;padding:6px 0;border-bottom:1px dashed var(--line)}
+.lab{font-weight:700;font-size:15px;margin:14px 0 8px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{border:1px solid var(--line);background:var(--surface2);border-radius:10px;padding:8px 14px;cursor:pointer;font-weight:600;font-size:15px}
+.chip[aria-pressed="true"]{border-color:var(--amber);color:var(--amber);background:rgba(226,162,74,.1)}
+.field{display:grid;gap:4px;margin-top:12px;font-weight:700;font-size:15px}
+.field input,.field select{width:100%;min-height:48px;padding:10px 12px;border:1px solid var(--line);border-radius:10px;background:var(--bg);font-weight:400;font-size:16px}
+.msg{white-space:pre-wrap;background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:12px;font-size:14.5px;margin:12px 0;color:#D8CEC1}
+.tot{display:flex;justify-content:space-between;font-weight:700;font-size:19px;margin-top:10px}
+.small{font-size:14px;color:var(--muted);margin:6px 0 0}
+
+/* booking */
+.book{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:20px;align-items:start}
+@media (max-width:860px){.book{grid-template-columns:minmax(0,1fr)}}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:22px}
+.days{display:flex;gap:8px;overflow-x:auto;padding-bottom:4px}
+.day{flex:none;width:66px;border:1px solid var(--line);background:var(--surface2);border-radius:12px;padding:8px 4px;text-align:center;cursor:pointer;line-height:1.2}
+.day b{display:block;font-family:var(--sign);font-stretch:75%;font-size:22px}
+.day small{font-size:12.5px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+.day[aria-pressed="true"]{border-color:var(--amber);background:rgba(226,162,74,.12)}
+.day[aria-pressed="true"] small{color:var(--amber)}
+.day:disabled{opacity:.4;cursor:not-allowed}
+.step{display:inline-flex;align-items:center;gap:0;border:1px solid var(--line);border-radius:10px;overflow:hidden}
+.step button{width:46px;height:46px;border:0;background:var(--surface2);font-size:20px;cursor:pointer}
+.step span{min-width:60px;text-align:center;font-weight:700}
+.match{border:1px solid var(--chili);background:rgba(211,85,58,.1);border-radius:10px;padding:10px 12px;font-size:14.5px;margin-top:12px}
+
+.notes{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+@media (max-width:760px){.notes{grid-template-columns:minmax(0,1fr)}}
+.notes h3{margin:0 0 6px;font-size:18px}
+.notes p{margin:0 0 8px;color:var(--muted)}
+.hours{width:100%;border-collapse:collapse;font-size:15.5px}
+.hours td{padding:3px 0}
+.hours td:last-child{text-align:right}
+.hours tr.today td{color:var(--amber);font-weight:700}
+.copyrow{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.cbtn{border:1px solid var(--line);background:transparent;border-radius:999px;padding:4px 12px;font-weight:700;font-size:13.5px;cursor:pointer}
+.shutter{border-left:3px solid var(--amber);padding:4px 0 4px 14px;margin-top:22px;color:#D8CEC1;max-width:62ch}
+footer{padding-block:30px 110px;color:var(--muted);font-size:14.5px;text-align:center}
+</style>
+
+<div class="ribbon">Demo website · sample restaurant made by <a href="https://rodrigos-studio.github.io/">Rodrigo's Studio</a> · not a real business</div>
+
+<div class="wrap">
+  <header class="top">
+    <a class="brand" href="#top"><span class="lamp" aria-hidden="true"></span><span><b>Pahana Night Kitchen</b><small>Rajagiriya · 5:30 pm till late</small></span></a>
+    <nav aria-label="Sections">
+      <a class="hide-s" href="#menu">Menu</a>
+      <a class="hide-s" href="#nights">This week</a>
+      <a class="hide-s" href="#book">Book a table</a>
+      <a class="btn btn-main btn-sm" href="#menu">Order</a>
+    </nav>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div>
+        <span class="status" id="status"><i class="dot"></i><span id="status-text">Checking the kitchen…</span></span>
+        <h1>Kottu, devilled &amp; hoppers <em>till late</em></h1>
+        <p class="si-line">රෑ 11 වෙනකන් කොත්තු, ඩෙවල්, ආප්ප · සිකුරාදා, සෙනසුරාදා රෑ 12 වෙනකන්</p>
+        <p class="lede">The late kitchen on Kotte Road. Order on WhatsApp for pick-up or delivery, or book a table near the big screen for match nights.</p>
+        <div class="cta">
+          <a class="btn btn-main" href="#menu">See the menu</a>
+          <a class="btn btn-line" href="#book">Book a table</a>
+        </div>
+      </div>
+      <div class="board" aria-label="Tonight's board">
+        <div class="felt" id="felt"></div>
+        <div class="clock num"><span id="kitchen-line">Kitchen</span><span id="now-line"></span></div>
+      </div>
+    </section>
+
+    <section id="nights" aria-labelledby="n-h">
+      <div class="sh"><h2 id="n-h"><span class="si">මේ සතියේ</span>This week</h2><p>Every night has something. Hoppers are on Wednesday, Saturday and Sunday from 6 pm.</p></div>
+      <div class="week" id="week"></div>
+    </section>
+
+    <section id="menu" aria-labelledby="m-h">
+      <div class="sh"><h2 id="m-h"><span class="si">මෙනු එක</span>Menu</h2><p>Add what you want, choose how hot, and send it on WhatsApp. We reply with the ready time.</p></div>
+      <div class="tabs" role="tablist" id="tabs"></div>
+      <div class="menu" id="items"></div>
+    </section>
+
+    <section id="book" aria-labelledby="b-h">
+      <div class="sh"><h2 id="b-h"><span class="si">මේසයක් වෙන් කරන්න</span>Book a table</h2><p>Pick the night, the time and where you want to sit. We confirm on WhatsApp.</p></div>
+      <div class="book">
+        <div class="card">
+          <p class="lab" style="margin-top:0">Night</p>
+          <div class="days" id="days"></div>
+          <div class="field"><label for="b-time">Time</label><select id="b-time"></select></div>
+          <p class="lab">People</p>
+          <div class="step"><button type="button" id="p-minus" aria-label="Fewer people">−</button><span id="p-n" class="num">4</span><button type="button" id="p-plus" aria-label="More people">+</button></div>
+          <p class="lab">Where</p>
+          <div class="chips" id="seat"></div>
+          <div class="match" id="match-note" hidden></div>
+          <div class="field"><label for="b-name">Your name</label><input id="b-name" autocomplete="name" placeholder="Chathura"></div>
+        </div>
+        <div class="card">
+          <p class="lab" style="margin-top:0">This is the message we get on WhatsApp:</p>
+          <div class="msg" id="b-msg"></div>
+          <a class="btn btn-main" id="b-wa" href="#book" target="_blank" rel="noopener" style="width:100%">Send booking on WhatsApp</a>
+          <p class="small">Tables are held for 15 minutes. Groups over 12, message us first.</p>
+        </div>
+      </div>
+    </section>
+
+    <section aria-labelledby="v-h">
+      <div class="sh"><h2 id="v-h"><span class="si">එන්න</span>Find us</h2></div>
+      <div class="notes">
+        <div class="card"><h3>Address</h3><p>Kotte Road, Rajagiriya, two shops down from the flyover. Parking for six cars at the back.</p><p><a href="https://www.google.com/maps/search/?api=1&query=Kotte+Road+Rajagiriya" target="_blank" rel="noopener">Open in Google Maps</a></p></div>
+        <div class="card"><h3>Hours</h3><table class="hours num" id="hours"></table></div>
+        <div class="card"><h3>Call or WhatsApp</h3><div class="copyrow"><span class="num" id="phone">072 499 6667</span><button class="cbtn" type="button" id="copy-phone">Copy</button></div><p class="small" style="margin-top:10px">Delivery within 4 km until 10:30 pm, Rs 250. In this demo, orders go to Rodrigo's Studio.</p></div>
+      </div>
+      <p class="shutter">The shutter is half down until 5:30. That's us cooking, not closed. Come in from 5:30 pm.</p>
+    </section>
+  </main>
+</div>
+
+<footer class="wrap">Demo site designed and built by <a href="https://rodrigos-studio.github.io/" style="color:inherit;font-weight:700">Rodrigo's Studio</a>. Websites and video for Sri Lankan businesses.</footer>
+
+<div class="bar" id="bar" hidden><span id="bar-text" class="num"></span><button type="button" id="open-cart">View order</button></div>
+<div class="sheet-bg" id="sheet-bg" hidden>
+  <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="s-title">
+    <h3 id="s-title">Your order</h3>
+    <ul class="lines num" id="lines"></ul>
+    <p class="lab">How hot?</p>
+    <div class="chips" id="spice"></div>
+    <p class="lab">Pick-up or delivery</p>
+    <div class="chips" id="how"></div>
+    <div class="field" id="addr-f" hidden><label for="addr">Delivery address</label><input id="addr" autocomplete="street-address" placeholder="No. 12, Lake Drive"></div>
+    <div class="field"><label for="when">When</label><select id="when"></select></div>
+    <div class="field"><label for="c-name">Your name</label><input id="c-name" autocomplete="name" placeholder="Chathura"></div>
+    <div class="tot num"><span>Total</span><span id="c-total"></span></div>
+    <div class="msg" id="c-msg"></div>
+    <a class="btn btn-main" id="c-wa" href="#menu" target="_blank" rel="noopener" style="width:100%">Send order on WhatsApp</a>
+    <button class="btn btn-line" type="button" id="close-cart" style="width:100%;margin-top:8px">Keep adding</button>
+  </div>
+</div>
+
+<script>
+(() => {
+const WA_NUMBER = "94724996667";   // demo orders go to Rodrigo's Studio; a real site uses the shop's number
+// 0 = Sunday. "24:00" = midnight.
+const HOURS = { 0:["17:30","23:00"], 1:null, 2:["17:30","23:00"], 3:["17:30","23:00"], 4:["17:30","23:00"], 5:["17:30","24:00"], 6:["17:30","24:00"] };
+const HOPPER_DAYS = [3, 6, 0];
+const DAYN = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+const NIGHTS = {
+  2:["Kottu night","Cheese kottu Rs 1,450 all night"],
+  3:["Hoppers from 6 pm","Egg hoppers with lunu miris"],
+  4:["Family platter","Devilled chicken, fried rice and kottu for 4 · Rs 5,900"],
+  5:["Open till midnight","Kitchen takes last orders at 11:30"],
+  6:["Hoppers + late kitchen","Hoppers from 6, open till midnight"],
+  0:["Cricket on the big screen","When there's a match. Book the screen tables"],
+  1:["Closed","We rest on Mondays"]
+};
+const MENU = [
+  { c:"Kottu", si:"කොත්තු", items:[
+    { n:"Chicken kottu", si:"චිකන් කොත්තු", d:"Godamba roti, chicken curry, egg, leeks", p:1350, hot:1 },
+    { n:"Cheese kottu", si:"චීස් කොත්තු", d:"Chicken kottu folded with melted cheese", p:1650, hot:1 },
+    { n:"Egg kottu", si:"බිත්තර කොත්තු", d:"Two eggs, vegetables, curry gravy", p:950, hot:1 },
+    { n:"String hopper kottu", si:"ඉඳිආප්ප කොත්තු", d:"Chopped string hoppers with chicken", p:1300, hot:1 },
+    { n:"Dolphin kottu", si:"ඩොල්ෆින් කොත්තු", d:"Roti strips tossed with chicken and cheese sauce", p:1750, hot:0 },
+  ]},
+  { c:"Devilled & hot plate", si:"ඩෙවල්", items:[
+    { n:"Devilled chicken", si:"ඩෙවල් චිකන්", d:"Onion, capsicum, chilli paste", p:1400, hot:2 },
+    { n:"Hot butter cuttlefish", si:"හොට් බටර් දැල්ලෝ", d:"Crispy, with fried curry leaves", p:1800, hot:1 },
+    { n:"Devilled prawns", si:"ඩෙවල් ඉස්සෝ", d:"Twelve prawns, tomato and chilli", p:2200, hot:2 },
+    { n:"Chicken hot plate", si:"හොට් ප්ලේට්", d:"Served sizzling, with fried rice", p:2400, hot:1 },
+  ]},
+  { c:"Rice & noodles", si:"බත්, නූඩ්ල්ස්", items:[
+    { n:"Nasi goreng", si:"නාසි ගොරේන්", d:"Fried rice, chicken, fried egg on top", p:1600, hot:1 },
+    { n:"Mixed fried rice", si:"මික්ස් ෆ්‍රයිඩ් රයිස්", d:"Chicken, egg, prawns", p:1500, hot:0 },
+    { n:"Chopsuey rice", si:"චොප්සුයි රයිස්", d:"Fried rice with vegetable chopsuey", p:1700, hot:0 },
+    { n:"Chicken noodles", si:"චිකන් නූඩ්ල්ස්", d:"Wok noodles, soy and chilli", p:1200, hot:1 },
+  ]},
+  { c:"Hoppers", si:"ආප්ප", only:true, items:[
+    { n:"Egg hopper", si:"බිත්තර ආප්ප", d:"With lunu miris", p:150, hot:0 },
+    { n:"Plain hopper", si:"ආප්ප", d:"Crispy edges, soft middle", p:60, hot:0 },
+    { n:"Milk hopper", si:"කිරි ආප්ප", d:"With a little jaggery", p:120, hot:0 },
+    { n:"String hoppers (10)", si:"ඉඳිආප්ප", d:"With kiri hodi and pol sambol", p:300, hot:0 },
+  ]},
+  { c:"Drinks", si:"බීම", items:[
+    { n:"Fresh lime juice", si:"දෙහි", d:"Sweet or salted", p:350, hot:0 },
+    { n:"Faluda", si:"ෆලූඩා", d:"Rose syrup, basil seeds, ice cream", p:650, hot:0 },
+    { n:"Iced Milo", si:"අයිස් මයිලෝ", d:"Tall glass", p:550, hot:0 },
+    { n:"Plain tea", si:"තේ", d:"Hot", p:100, hot:0 },
+  ]},
+];
+const $ = s => document.querySelector(s);
+const rs = n => "Rs " + Math.round(n).toLocaleString("en-LK");
+const cart = new Map(); let tab = 0, spice = "Medium", how = "Pick-up", day = null, people = 4, seat = "Near the big screen";
+
+function lk(d = new Date()) {
+  const f = new Intl.DateTimeFormat("en-CA", { timeZone:"Asia/Colombo", year:"numeric", month:"2-digit", day:"2-digit", hour:"2-digit", minute:"2-digit", hourCycle:"h23" }).formatToParts(d);
+  const g = t => f.find(p => p.type === t).value; const iso = `${g("year")}-${g("month")}-${g("day")}`;
+  return { iso, mins: +g("hour") * 60 + +g("minute"), dow: new Date(iso + "T12:00:00Z").getUTCDay() };
+}
+const toMin = s => +s.slice(0, 2) * 60 + +s.slice(3);
+const hhmm = m => { m = m % 1440; return m === 0 ? "midnight" : `${Math.floor(m / 60) % 12 || 12}:${String(m % 60).padStart(2, "0")} ${m < 720 ? "am" : "pm"}`; };
+const addDays = (iso, n) => { const d = new Date(iso + "T12:00:00Z"); d.setUTCDate(d.getUTCDate() + n); return d.toISOString().slice(0, 10); };
+const dowOf = iso => new Date(iso + "T12:00:00Z").getUTCDay();
+const nice = iso => new Date(iso + "T12:00:00Z").toLocaleDateString("en-GB", { weekday:"short", day:"numeric", month:"short", timeZone:"UTC" });
+const hoppersToday = () => HOPPER_DAYS.includes(lk().dow);
+
+function renderStatus() {
+  const now = lk(), h = HOURS[now.dow]; const el = $("#status"), t = $("#status-text");
+  let line;
+  if (h && now.mins >= toMin(h[0]) && now.mins < toMin(h[1])) {
+    const left = toMin(h[1]) - 30 - now.mins;
+    el.className = "status open"; t.textContent = `Open · kitchen closes ${hhmm(toMin(h[1]))}`;
+    line = left > 0 ? `Last orders in <b>${Math.floor(left / 60)} h ${left % 60} min</b>` : "<b>Last orders now</b>";
+  } else if (h && now.mins < toMin(h[0])) {
+    const wait = toMin(h[0]) - now.mins;
+    el.className = "status soon"; t.textContent = `Opens today at ${hhmm(toMin(h[0]))}`;
+    line = `Kitchen fires up in <b>${Math.floor(wait / 60)} h ${wait % 60} min</b>`;
+  } else {
+    let n = 1; while (!HOURS[(now.dow + n) % 7]) n++;
+    el.className = "status closed"; t.textContent = `Closed now · opens ${n === 1 ? "tomorrow" : DAYN[(now.dow + n) % 7]} 5:30 pm`;
+    line = "<b>See you tomorrow</b>";
+  }
+  $("#kitchen-line").innerHTML = line;
+  $("#now-line").textContent = `${DAYN[now.dow]} ${hhmm(now.mins)}`;
+  const tn = NIGHTS[now.dow];
+  $("#felt").innerHTML = `<p class="sm">Tonight · ${nice(now.iso)}</p><hr><p class="am">${tn[0]}</p><p class="sm">${tn[1]}</p><hr><p>Kottu · Devilled · Rice</p>${hoppersToday() && !/hopper/i.test(tn[0]) ? "<p>Hoppers from 6 pm</p>" : ""}<p class="sm">${h ? `Open ${hhmm(toMin(h[0]))} – ${hhmm(toMin(h[1]))}` : "Closed tonight"}</p>`;
+  $("#week").innerHTML = [0,1,2,3,4,5,6].map(i => { const iso = addDays(now.iso, i), d = dowOf(iso), n = NIGHTS[d];
+    return `<div class="night${i === 0 ? " today" : ""}${HOURS[d] ? "" : " off"}"><span class="d">${i === 0 ? "Tonight" : DAYN[d].slice(0, 3) + " " + iso.slice(8).replace(/^0/, "")}</span><b>${n[0]}</b><span>${n[1]}</span></div>`; }).join("");
+  $("#hours").innerHTML = [2,3,4,5,6,0,1].map(d => `<tr class="${d === now.dow ? "today" : ""}"><td>${DAYN[d]}</td><td>${HOURS[d] ? hhmm(toMin(HOURS[d][0])) + " – " + hhmm(toMin(HOURS[d][1])) : "Closed"}</td></tr>`).join("");
+}
+
+function renderTabs() {
+  $("#tabs").innerHTML = MENU.map((m, i) => `<button class="tab" role="tab" type="button" aria-selected="${i === tab}" data-tab="${i}">${m.c} <span class="si" style="font-weight:400;opacity:.75">${m.si}</span></button>`).join("");
+}
+function renderItems() {
+  const m = MENU[tab]; const can = !m.only || hoppersToday();
+  $("#items").innerHTML = (m.only ? `<p class="only" style="grid-column:1/-1;margin:0 0 4px">${can ? "Hoppers tonight from 6 pm." : "Hoppers are on Wednesday, Saturday and Sunday nights."}</p>` : "") +
+    m.items.map(it => { const key = it.n, q = cart.get(key)?.q || 0;
+      return `<div class="item"><div><h3>${it.n}<span class="si">${it.si}</span>${it.hot === 2 ? '<span class="hot">HOT</span>' : ""}</h3><p>${it.d}</p></div><div class="right"><span class="pr num">${rs(it.p)}</span>${q ? `<span class="qty"><button type="button" data-dec="${key}" aria-label="One less ${it.n}">−</button><span class="num">${q}</span><button type="button" data-inc="${key}" aria-label="One more ${it.n}">+</button></span>` : `<button class="add" type="button" data-inc="${key}" aria-label="Add ${it.n}" ${can ? "" : "disabled"}>+</button>`}</div></div>`; }).join("");
+}
+const findItem = n => { for (const m of MENU) for (const it of m.items) if (it.n === n) return it; };
+function renderCart() {
+  let count = 0, total = 0; for (const [, v] of cart) { count += v.q; total += v.q * v.p; }
+  $("#bar").hidden = count === 0;
+  $("#bar-text").textContent = `${count} item${count === 1 ? "" : "s"} · ${rs(total)}`;
+  const del = how === "Delivery" ? 250 : 0;
+  $("#lines").innerHTML = [...cart].map(([n, v]) => `<li><span>${v.q} × ${n}</span><span>${rs(v.q * v.p)}</span></li>`).join("") + (del ? `<li><span>Delivery</span><span>${rs(del)}</span></li>` : "");
+  $("#c-total").textContent = rs(total + del);
+  $("#spice").innerHTML = ["Mild", "Medium", "Sri Lankan hot"].map(s => `<button type="button" class="chip" data-spice="${s}" aria-pressed="${s === spice}">${s}</button>`).join("");
+  $("#how").innerHTML = ["Pick-up", "Delivery"].map(s => `<button type="button" class="chip" data-how="${s}" aria-pressed="${s === how}">${s === "Delivery" ? "Delivery (Rs 250)" : s}</button>`).join("");
+  $("#addr-f").hidden = how !== "Delivery";
+  const msg = ["Hello Pahana Night Kitchen! Order:", ...[...cart].map(([n, v]) => `${v.q} × ${n}`), `Spice: ${spice}`,
+    how === "Delivery" ? `Delivery to: ${$("#addr").value.trim() || "(address)"}` : "Pick-up", `When: ${$("#when").value}`, `Total: ${rs(total + del)}`,
+    $("#c-name").value.trim() ? `Name: ${$("#c-name").value.trim()}` : ""].filter(Boolean).join("\n");
+  $("#c-msg").textContent = msg; $("#c-wa").href = `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(msg)}`;
+}
+function fillWhen() {
+  const now = lk(), h = HOURS[now.dow]; const opts = [];
+  if (h) { const start = Math.max(toMin(h[0]) + 30, Math.ceil((now.mins + 30) / 15) * 15); const end = toMin(h[1]) - 30;
+    if (now.mins >= toMin(h[0]) && now.mins < end) opts.push("As soon as possible");
+    for (let m = start; m <= end; m += 15) opts.push(`Today ${hhmm(m)}`); }
+  if (!opts.length) opts.push("Next opening, 6:00 pm");
+  const keep = $("#when").value; $("#when").innerHTML = opts.map(o => `<option>${o}</option>`).join(""); if (opts.includes(keep)) $("#when").value = keep;
+}
+
+function renderBooking() {
+  const now = lk();
+  const ds = Array.from({ length: 8 }, (_, i) => addDays(now.iso, i));
+  if (!day || !HOURS[dowOf(day)]) day = ds.find(d => HOURS[dowOf(d)]);
+  $("#days").innerHTML = ds.map((d, i) => `<button type="button" class="day" data-day="${d}" aria-pressed="${d === day}" ${HOURS[dowOf(d)] ? "" : "disabled"}><small>${i === 0 ? "Today" : DAYN[dowOf(d)].slice(0, 3)}</small><b class="num">${+d.slice(8)}</b><small>${HOURS[dowOf(d)] ? "" : "Closed"}</small></button>`).join("");
+  const h = HOURS[dowOf(day)]; const slots = [];
+  for (let m = Math.max(toMin(h[0]) + 30, 18 * 60); m <= toMin(h[1]) - 60; m += 30) if (day !== now.iso || m > now.mins + 30) slots.push(m);
+  const keep = $("#b-time").value; $("#b-time").innerHTML = slots.length ? slots.map(m => `<option>${hhmm(m)}</option>`).join("") : "<option>No more tables tonight</option>";
+  if ([...$("#b-time").options].some(o => o.value === keep)) $("#b-time").value = keep; else if (slots.includes(19 * 60 + 30)) $("#b-time").value = hhmm(19 * 60 + 30);
+  $("#p-n").textContent = people;
+  $("#seat").innerHTML = ["Near the big screen", "Quiet corner", "Upstairs family area"].map(s => `<button type="button" class="chip" data-seat="${s}" aria-pressed="${s === seat}">${s}</button>`).join("");
+  const d = dowOf(day); const mn = $("#match-note");
+  mn.hidden = !(d === 0 || d === 6) || seat !== "Near the big screen";
+  mn.textContent = "Weekend match nights fill up near the screen. Book early, and come 15 minutes before the start.";
+  const name = $("#b-name").value.trim();
+  const msg = ["Hello Pahana Night Kitchen! I'd like to book a table:", `${nice(day)} at ${$("#b-time").value}`, `${people} people`, `Seat: ${seat}`, name ? `Name: ${name}` : ""].filter(Boolean).join("\n");
+  $("#b-msg").textContent = msg; $("#b-wa").href = `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(msg)}`;
+}
+
+document.addEventListener("click", e => {
+  const t = e.target.closest("[data-tab]"); if (t) { tab = +t.dataset.tab; renderTabs(); renderItems(); }
+  const inc = e.target.closest("[data-inc]"); if (inc) { const it = findItem(inc.dataset.inc); const c = cart.get(it.n) || { q:0, p:it.p }; c.q++; cart.set(it.n, c); renderItems(); renderCart(); }
+  const dec = e.target.closest("[data-dec]"); if (dec) { const c = cart.get(dec.dataset.dec); c.q--; if (c.q <= 0) cart.delete(dec.dataset.dec); renderItems(); renderCart(); if (!cart.size) $("#sheet-bg").hidden = true; }
+  const sp = e.target.closest("[data-spice]"); if (sp) { spice = sp.dataset.spice; renderCart(); }
+  const hw = e.target.closest("[data-how]"); if (hw) { how = hw.dataset.how; renderCart(); }
+  const dy = e.target.closest("[data-day]"); if (dy && !dy.disabled) { day = dy.dataset.day; renderBooking(); }
+  const st = e.target.closest("[data-seat]"); if (st) { seat = st.dataset.seat; renderBooking(); }
+});
+$("#open-cart").addEventListener("click", () => { fillWhen(); renderCart(); $("#sheet-bg").hidden = false; });
+$("#close-cart").addEventListener("click", () => $("#sheet-bg").hidden = true);
+$("#sheet-bg").addEventListener("click", e => { if (e.target.id === "sheet-bg") $("#sheet-bg").hidden = true; });
+document.addEventListener("keydown", e => { if (e.key === "Escape") $("#sheet-bg").hidden = true; });
+["#addr", "#when", "#c-name"].forEach(s => $(s).addEventListener("input", renderCart));
+$("#b-time").addEventListener("change", renderBooking); $("#b-name").addEventListener("input", renderBooking);
+$("#p-minus").addEventListener("click", () => { people = Math.max(1, people - 1); renderBooking(); });
+$("#p-plus").addEventListener("click", () => { people = Math.min(12, people + 1); renderBooking(); });
+$("#copy-phone").addEventListener("click", async e => { const b = e.currentTarget; try { await navigator.clipboard.writeText($("#phone").textContent); b.textContent = "Copied"; setTimeout(() => b.textContent = "Copy", 1500); } catch { const r = document.createRange(); r.selectNodeContents($("#phone")); const s = getSelection(); s.removeAllRanges(); s.addRange(r); } });
+
+renderStatus(); renderTabs(); renderItems(); renderCart(); fillWhen(); renderBooking();
+setInterval(renderStatus, 60_000);
+})();
+</script>
+
+</body>
+</html>

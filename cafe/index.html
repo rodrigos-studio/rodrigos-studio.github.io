@@ -1,0 +1,425 @@
+<!doctype html>
+<html lang="si">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="description" content="Demo garden café website with menu, WhatsApp orders and table booking. Made by Rodrigo&#x27;s Studio, Sri Lanka.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Rodrigo's Studio">
+<meta property="og:title" content="Nuga Sevana Garden Café · demo by Rodrigo&#x27;s Studio">
+<meta property="og:description" content="Demo garden café website with menu, WhatsApp orders and table booking. Made by Rodrigo&#x27;s Studio, Sri Lanka.">
+<meta property="og:url" content="https://rodrigos-studio.github.io/cafe/">
+<meta property="og:image" content="https://rodrigos-studio.github.io/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/png" href="https://rodrigos-studio.github.io/icon.png">
+<link rel="apple-touch-icon" href="https://rodrigos-studio.github.io/icon.png">
+<meta name="theme-color" content="#12202B">
+<style>:root{color-scheme:light;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0;font:14px system-ui,-apple-system,'Segoe UI',Roboto,sans-serif}img{max-width:100%}[hidden]{display:none!important}</style>
+</head>
+<body>
+<title>Nuga Sevana Garden Café</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..700;1,9..144,400..700&family=Karla:wght@400;500;700&family=Noto+Serif+Sinhala:wght@600;800&family=Noto+Sans+Sinhala:wght@400;600&display=swap">
+<style>
+/* Layout: dappled-shade hero with today's special on a leaf-shaped card, the menu you order from, a table booking card, the garden facts and the visit details. */
+:root{
+  --bg:#F2EEE3; --surface:#FBF8F1; --ink:#1F2A22; --muted:#5E6B5F; --line:#DAD5C5;
+  --forest:#2E4636; --forest-ink:#F2EEE3; --moss:#5F7F4F; --leaf:#A9BF8E; --clay:#B8643E; --sun:#E9C46A;
+  --display:"Fraunces",Georgia,serif;
+  --body:"Karla",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  --si-head:"Noto Serif Sinhala","Noto Sans Sinhala","Iskoola Pota",serif;
+  --si:"Noto Sans Sinhala","Iskoola Pota",sans-serif;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:16.5px;line-height:1.6;-webkit-font-smoothing:antialiased}
+button,input,select,textarea{font:inherit;color:inherit}
+.wrap{max-width:1080px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.si{font-family:var(--si)}
+.num{font-variant-numeric:tabular-nums}
+a{color:var(--clay)}
+:focus-visible{outline:3px solid var(--clay);outline-offset:2px;border-radius:6px}
+.ribbon{background:var(--forest);color:var(--forest-ink);font-size:13px;text-align:center;padding-block:7px}
+.ribbon a{color:var(--sun)}
+
+/* header */
+.top{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-block:16px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--forest)}
+.brand svg{width:34px;height:34px;flex:none}
+.brand b{font-family:var(--display);font-weight:600;font-size:22px;line-height:1.05;font-variation-settings:"SOFT" 100}
+.brand b small{display:block;font-family:var(--body);font-weight:500;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--moss)}
+.top nav{display:flex;gap:22px;align-items:center}
+.top nav a{color:var(--ink);text-decoration:none;font-weight:500;font-size:15px}
+.top nav a.btn-main{color:var(--forest-ink)}
+@media (max-width:720px){.top nav .hide-s{display:none}}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:46px;padding:10px 22px;border-radius:12px;font-weight:700;text-decoration:none;border:1.5px solid transparent;cursor:pointer;font-size:15.5px}
+.btn-main{background:var(--forest);color:var(--forest-ink)}
+.btn-line{border-color:var(--forest);color:var(--forest);background:transparent}
+.btn-sm{min-height:40px;padding:8px 16px;font-size:14.5px}
+
+/* hero */
+.hero{position:relative;border-radius:28px;overflow:hidden;background:var(--forest);color:var(--forest-ink);margin-top:4px}
+.hero::before{content:"";position:absolute;inset:0;background:
+  radial-gradient(60px 44px at 12% 18%,rgba(169,191,142,.22),transparent 70%),
+  radial-gradient(90px 60px at 30% 70%,rgba(233,196,106,.14),transparent 70%),
+  radial-gradient(70px 50px at 58% 22%,rgba(169,191,142,.18),transparent 70%),
+  radial-gradient(120px 80px at 82% 64%,rgba(233,196,106,.12),transparent 70%),
+  radial-gradient(50px 40px at 46% 88%,rgba(169,191,142,.2),transparent 70%)}
+.hero-in{position:relative;display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:32px;align-items:center;padding:48px clamp(20px,4vw,48px)}
+@media (max-width:820px){.hero-in{grid-template-columns:minmax(0,1fr);padding:32px 20px}}
+.status{display:inline-flex;align-items:center;gap:8px;font-size:14px;font-weight:500;padding:6px 14px;border-radius:999px;background:rgba(242,238,227,.12);border:1px solid rgba(242,238,227,.25)}
+.dot{width:8px;height:8px;border-radius:50%;background:#C9C4B3}
+.status.open .dot{background:#8FD18B;box-shadow:0 0 0 4px rgba(143,209,139,.2)}
+.status.closed .dot{background:var(--clay)}
+h1{font-family:var(--display);font-weight:500;font-size:clamp(40px,6.4vw,70px);line-height:1.04;margin:18px 0 0;font-variation-settings:"SOFT" 100,"opsz" 120;letter-spacing:-.01em}
+h1 em{font-style:italic;color:var(--sun)}
+.si-line{font-family:var(--si-head);font-weight:600;font-size:clamp(17px,2.1vw,20px);color:#CFD9C4;margin:14px 0 0}
+.lede{max-width:44ch;margin:10px 0 0;color:#E4E6DA}
+.cta{display:flex;flex-wrap:wrap;gap:10px;margin-top:24px}
+.hero .btn-main{background:var(--sun);color:var(--forest)}
+.hero .btn-line{border-color:rgba(242,238,227,.6);color:var(--forest-ink)}
+.special{background:var(--surface);color:var(--ink);border-radius:120px 14px 120px 14px;padding:36px 34px;box-shadow:0 24px 50px rgba(0,0,0,.18)}
+.special .lbl{font-family:var(--si-head);font-weight:600;font-size:15px;color:var(--moss);margin:0}
+.special .lbl small{display:block;font-family:var(--body);font-size:12.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.special h2{font-family:var(--display);font-weight:600;font-size:34px;line-height:1.1;margin:14px 0 4px;color:var(--forest)}
+.special p{margin:0;color:var(--muted)}
+.special .pr{font-family:var(--display);font-size:26px;color:var(--clay);margin-top:12px}
+.special .btn{margin-top:16px}
+
+/* sections */
+section{padding-block:48px}
+.sh{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:6px 24px;margin-bottom:22px}
+.sh h2{font-family:var(--si-head);font-weight:800;font-size:clamp(26px,3.6vw,34px);margin:0;line-height:1.3;color:var(--forest)}
+.sh h2 small{display:block;font-family:var(--display);font-style:italic;font-weight:500;font-size:22px;color:var(--clay);line-height:1.2}
+.sh p{margin:0;color:var(--muted);max-width:46ch}
+.cats{display:flex;gap:8px;overflow-x:auto;padding-bottom:6px;margin-bottom:10px}
+.cats a{flex:none;text-decoration:none;font-weight:500;font-size:14px;padding:8px 14px;border-radius:999px;background:var(--surface);border:1px solid var(--line);color:var(--ink)}
+.menu{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px 40px}
+@media (max-width:760px){.menu{grid-template-columns:minmax(0,1fr)}}
+.cat h3{font-family:var(--display);font-weight:600;font-size:26px;margin:0 0 2px;color:var(--forest);display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.cat h3 .si{font-size:15px;color:var(--moss);font-weight:600}
+.cat .when{margin:0 0 4px;color:var(--muted);font-size:14px}
+.item{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:2px 14px;padding:12px 0;border-bottom:1px dotted var(--line);align-items:center}
+.item .nm{font-weight:700}
+.item .nm .si{font-weight:400;font-size:14px;color:var(--muted);white-space:nowrap}
+.item .ds{grid-column:1;color:var(--muted);font-size:14.5px;line-height:1.4}
+.item .right{grid-row:1 / span 2;grid-column:2;display:flex;flex-direction:column;align-items:flex-end;gap:6px}
+.price{font-weight:700}
+.add{min-width:80px;min-height:36px;border-radius:10px;border:1.5px solid var(--forest);background:transparent;color:var(--forest);font-weight:700;cursor:pointer}
+.step{display:inline-flex;align-items:center;border-radius:10px;background:var(--forest);color:var(--forest-ink);overflow:hidden}
+.step button{width:34px;height:36px;border:0;background:transparent;color:inherit;font-size:20px;font-weight:700;cursor:pointer}
+.step span{min-width:22px;text-align:center;font-weight:700}
+
+/* booking + garden */
+.split{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:24px;align-items:start}
+@media (max-width:860px){.split{grid-template-columns:minmax(0,1fr)}}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:22px;padding:22px}
+.lab{font-weight:700;font-size:14px;margin:0 0 8px}
+.days{display:flex;gap:8px;overflow-x:auto;padding-bottom:6px;margin-bottom:14px}
+.chipb{flex:none;min-width:62px;border:1px solid var(--line);background:var(--bg);border-radius:12px;padding:8px 10px;cursor:pointer;font-size:14px;line-height:1.3;text-align:center}
+.chipb b{display:block;font-size:17px}
+.chipb[aria-pressed="true"]{background:var(--forest);border-color:var(--forest);color:var(--forest-ink)}
+.field{display:grid;gap:4px;margin-bottom:12px;font-weight:700;font-size:14px}
+.field input,.field select{width:100%;min-height:46px;padding:10px 12px;border:1px solid var(--line);border-radius:12px;background:var(--bg);font-weight:400;font-size:16px}
+.two{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:12px}
+.ppl{display:flex;align-items:center;gap:12px;margin-bottom:14px}
+.ppl button{width:42px;height:42px;border-radius:12px;border:1px solid var(--line);background:var(--bg);font-size:20px;font-weight:700;cursor:pointer}
+.ppl b{font-size:20px;min-width:2ch;text-align:center}
+.seg{display:flex;gap:8px;margin-bottom:14px;flex-wrap:wrap}
+.seg label{flex:1 1 90px;display:flex;align-items:center;justify-content:center;gap:6px;min-height:42px;border:1.5px solid var(--line);border-radius:12px;font-weight:500;cursor:pointer;background:var(--bg)}
+.seg input{accent-color:var(--forest)}
+.seg label:has(input:checked){border-color:var(--forest);color:var(--forest);font-weight:700}
+.msg{white-space:pre-wrap;background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:12px;font-size:14px;margin:6px 0 14px}
+.note{font-size:13px;color:var(--muted);margin:0 0 10px}
+.garden{display:grid;gap:14px}
+.garden p.story{margin:0;font-family:var(--si);font-size:16px}
+.facts{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:12px}
+@media (max-width:440px){.facts{grid-template-columns:minmax(0,1fr)}}
+.facts li{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:14px 16px}
+.facts b{display:block;font-family:var(--display);font-size:28px;font-weight:600;color:var(--forest);line-height:1.1}
+.facts span{font-size:14.5px;color:var(--muted)}
+
+/* visit */
+.visit{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+@media (max-width:760px){.visit{grid-template-columns:minmax(0,1fr)}}
+.visit h3{margin:0 0 6px;font-size:17px}
+.visit p{margin:0 0 8px;color:var(--muted)}
+.hours{width:100%;border-collapse:collapse;font-size:15px}
+.hours td{padding:2px 0}
+.hours td:last-child{text-align:right}
+.hours tr.today td{font-weight:700;color:var(--clay)}
+.copyrow{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.chip{border:1px solid var(--line);background:transparent;border-radius:999px;padding:4px 12px;font-weight:700;font-size:13px;cursor:pointer}
+footer{padding-block:30px 120px;color:var(--muted);font-size:14px;text-align:center}
+
+/* order bar + sheet */
+.bar{position:fixed;left:0;right:0;bottom:0;z-index:5;background:var(--forest);color:var(--forest-ink);padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-top:12px;padding-bottom:calc(12px + env(safe-area-inset-bottom,0px))}
+.bar-in{max-width:1080px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.bar b{font-size:18px}
+.bar .btn{background:var(--sun);color:var(--forest);min-height:44px}
+.sheet{position:fixed;inset:0;z-index:20;background:rgba(20,28,22,.55);display:flex;align-items:flex-end;justify-content:center}
+.panel{background:var(--bg);width:min(560px,100%);max-height:92%;overflow:auto;border-radius:22px 22px 0 0;padding:22px max(18px,env(safe-area-inset-left,0px)) calc(20px + env(safe-area-inset-bottom,0px)) max(18px,env(safe-area-inset-right,0px))}
+.panel h2{font-family:var(--display);font-weight:600;font-size:30px;margin:0 0 8px;color:var(--forest)}
+.lines{list-style:none;margin:0 0 12px;padding:0}
+.lines li{display:flex;justify-content:space-between;gap:12px;padding:6px 0;border-bottom:1px dotted var(--line)}
+.total{display:flex;justify-content:space-between;font-weight:700;font-size:18px;margin-bottom:14px}
+.row{display:flex;gap:10px;flex-wrap:wrap}
+.row .btn{flex:1 1 200px}
+</style>
+
+<div class="ribbon">Demo website · sample garden café made by <a href="https://rodrigos-studio.github.io/">Rodrigo's Studio</a> · not a real business</div>
+
+<div class="wrap">
+  <header class="top">
+    <a class="brand" href="#top" aria-label="Nuga Sevana Garden Café">
+      <svg viewBox="0 0 40 40" aria-hidden="true"><path d="M20 4c9 5 13 13 9 21-3 6-9 9-9 11 0-2-6-5-9-11C7 17 11 9 20 4z" fill="#5F7F4F"/><path d="M20 10v26" stroke="#F2EEE3" stroke-width="1.6" stroke-linecap="round"/><path d="M20 18l-5-4M20 24l6-5M20 30l-6-4" stroke="#F2EEE3" stroke-width="1.4" stroke-linecap="round"/></svg>
+      <b>Nuga Sevana<small>Garden café</small></b>
+    </a>
+    <nav aria-label="Sections">
+      <a class="hide-s" href="#menu">Menu</a>
+      <a class="hide-s" href="#table">Book a table</a>
+      <a class="hide-s" href="#visit">Visit</a>
+      <a class="btn btn-main btn-sm" href="#menu">Order</a>
+    </nav>
+  </header>
+
+  <main id="top">
+    <div class="hero">
+      <div class="hero-in">
+        <div>
+          <span class="status" id="status"><i class="dot"></i><span id="status-text">Checking hours…</span></span>
+          <h1>Coffee and rice &amp; curry under the old <em>nuga</em> tree</h1>
+          <p class="si-line">නුග සෙවණේ කෝපි, කෑම සහ නිදහස</p>
+          <p class="lede">A shady garden café on Talawatugoda Road. Order ahead on WhatsApp for pick-up, or book a table in the garden.</p>
+          <div class="cta">
+            <a class="btn btn-main" href="#menu">See the menu</a>
+            <a class="btn btn-line" href="#table">Book a table</a>
+          </div>
+        </div>
+        <aside class="special" aria-labelledby="sp-h">
+          <p class="lbl">අද දවසේ විශේෂය<small id="sp-day">Today's special</small></p>
+          <h2 id="sp-h">…</h2>
+          <p id="sp-d"></p>
+          <div class="pr num" id="sp-p"></div>
+          <button class="btn btn-main btn-sm" type="button" id="sp-add">Add to my order</button>
+        </aside>
+      </div>
+    </div>
+
+    <section id="menu" aria-labelledby="m-h">
+      <div class="sh"><h2 id="m-h">මෙනුව<small>The menu</small></h2><p>Prices in rupees. Tap Add, then send the order to our WhatsApp. Pick-up in 20 minutes.</p></div>
+      <nav class="cats" id="cats" aria-label="Menu sections"></nav>
+      <div class="menu" id="menu-list"></div>
+    </section>
+
+    <section id="table" aria-labelledby="t-h">
+      <div class="sh"><h2 id="t-h">මේසයක් වෙන් කරන්න<small>Book a table</small></h2><p>Garden tables go fast on weekend mornings. Send us the day, time and how many of you.</p></div>
+      <div class="split">
+        <div class="card">
+          <p class="lab"><span class="si">දවස</span> · Day</p>
+          <div class="days" id="days"></div>
+          <div class="two">
+            <label class="field" for="t-time">Time<select id="t-time"></select></label>
+            <label class="field" for="t-name">Your name<input id="t-name" autocomplete="name" placeholder="Tharindu"></label>
+          </div>
+          <p class="lab"><span class="si">කී දෙනාද</span> · People</p>
+          <div class="ppl"><button type="button" id="ppl-m" aria-label="Fewer people">−</button><b id="ppl" class="num">2</b><button type="button" id="ppl-p" aria-label="More people">+</button></div>
+          <p class="lab">Where would you like to sit?</p>
+          <div class="seg" role="radiogroup" aria-label="Seating">
+            <label><input type="radio" name="area" value="Garden" checked> Garden</label>
+            <label><input type="radio" name="area" value="Inside"> Inside</label>
+            <label><input type="radio" name="area" value="Either"> Either</label>
+          </div>
+          <p class="note">This is the message the café gets on WhatsApp:</p>
+          <div class="msg" id="t-msg"></div>
+          <a class="btn btn-main" id="t-wa" href="#table" target="_blank" rel="noopener" style="width:100%">Send booking on WhatsApp</a>
+        </div>
+        <div class="garden">
+          <p class="story">අවුරුදු හතළිහක් පරණ නුග ගහක් යට තියෙන අපේ ගෙවත්තේ, උදේට කිරිබත් සහ ඉඳිආප්ප, දවල්ට ගෙදර හදන බත් සහ කරි, හවසට හොඳ කෝපි කෝප්පයක්.</p>
+          <ul class="facts">
+            <li><b>18</b><span>tables under the trees, 6 inside with fans</span></li>
+            <li><b>10</b><span>cars free parking at the back</span></li>
+            <li><b>Kids</b><span>corner with a sandpit and swings</span></li>
+            <li><b>Pets</b><span>welcome in the garden, water bowls ready</span></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="visit" aria-labelledby="v-h">
+      <div class="sh"><h2 id="v-h">එන්න<small>Visit</small></h2></div>
+      <div class="visit">
+        <div class="card"><h3>Address</h3><p>Pitakotte–Talawatugoda Road, Pitakotte. Look for the big tree and the green gate.</p><p><a href="https://www.google.com/maps/search/?api=1&query=Pitakotte+Talawatugoda+Road" target="_blank" rel="noopener">Open in Google Maps</a></p></div>
+        <div class="card"><h3>Hours</h3><table class="hours num" id="hours"></table></div>
+        <div class="card"><h3>Call or WhatsApp</h3><div class="copyrow"><span class="num" id="phone">072 499 6667</span><button class="chip" type="button" id="copy-phone">Copy</button></div><p class="note" style="margin-top:10px">In this demo, orders and bookings go to Rodrigo's Studio.</p></div>
+      </div>
+    </section>
+  </main>
+</div>
+
+<footer class="wrap">Demo site designed and built by <a href="https://rodrigos-studio.github.io/" style="color:inherit;font-weight:700">Rodrigo's Studio</a>. Websites and video for Sri Lankan businesses.</footer>
+
+<div class="bar" id="bar" hidden>
+  <div class="bar-in">
+    <span><b class="num" id="bar-total">Rs 0</b><br><span id="bar-count" style="font-size:14px">0 items</span></span>
+    <button class="btn" type="button" id="open-order">Review order</button>
+  </div>
+</div>
+
+<div class="sheet" id="sheet" hidden>
+  <div class="panel" role="dialog" aria-modal="true" aria-labelledby="order-h">
+    <h2 id="order-h">Your order</h2>
+    <ul class="lines num" id="lines"></ul>
+    <div class="total num"><span>Total</span><span id="total">Rs 0</span></div>
+    <div class="seg" role="radiogroup" aria-label="Pick-up or delivery">
+      <label><input type="radio" name="how" id="how-pick" value="pick" checked> Pick-up</label>
+      <label><input type="radio" name="how" id="how-del" value="del"> Delivery</label>
+    </div>
+    <label class="field" for="o-name">Your name<input id="o-name" autocomplete="name" placeholder="Tharindu"></label>
+    <label class="field" for="o-addr" id="addr-wrap" hidden>Delivery address<input id="o-addr" autocomplete="street-address" placeholder="House no., road, nearby landmark"></label>
+    <p class="note">This is the message the café gets on WhatsApp:</p>
+    <div class="msg" id="msg"></div>
+    <div class="row">
+      <a class="btn btn-main" id="wa" href="#" target="_blank" rel="noopener">Send on WhatsApp</a>
+      <button class="btn btn-line" type="button" id="close-order">Keep ordering</button>
+    </div>
+  </div>
+</div>
+
+<script>
+(() => {
+const WA_NUMBER = "94724996667";   // demo orders go to Rodrigo's Studio; a real site uses the café's number
+const OPEN = "07:30", CLOSE = "21:30";
+const DAYN = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+const SPECIALS = [
+  ["Lamprais", "Rice, curries and frikkadel baked in a banana leaf.", 1450],
+  ["Kiribath & lunu miris", "Breakfast special until 11 am.", 450],
+  ["Polos rice & curry", "Young jackfruit curry with red rice and four vegetables.", 750],
+  ["Egg hoppers", "From 5 pm, with seeni sambol and lunu miris. Per hopper.", 120],
+  ["Kurakkan roti & katta sambol", "Finger millet roti, fresh off the pan.", 380],
+  ["Chicken biryani", "With raita, egg and mint sambol.", 1250],
+  ["Seafood fried rice", "Prawns, cuttlefish and fish, with chilli paste.", 1350]];
+const MENU = [
+  { id:"drinks", name:"Coffee & tea", si:"කෝපි සහ තේ", items:[
+    ["Ceylon tea (pot)","කහට","Two cups, sugar on the side",350],
+    ["Iced tea with lime","අයිස් තේ","Fresh lime and a little honey",450],
+    ["Flat white","","Double shot, Sri Lankan beans",750],
+    ["Cappuccino","","Double shot, cinnamon on top",750],
+    ["Iced coffee","අයිස් කෝපි","Cold brew with milk",850]]},
+  { id:"breakfast", name:"Breakfast", si:"උදේ කෑම", when:"Until 11 am", items:[
+    ["String hoppers","ඉඳිආප්ප","15 pieces with kiri hodi and pol sambol",650],
+    ["Kiribath","කිරිබත්","With lunu miris and a banana",450],
+    ["Egg & cheese toast","","Two slices, side salad",790]]},
+  { id:"mains", name:"Rice & bowls", si:"බත් සහ bowls", items:[
+    ["Garden rice & curry","බත් සහ කරි","Red rice with five curries and papadam",950],
+    ["Chicken kottu","චිකන් කොත්තු","With gravy on the side",1250],
+    ["Grilled chicken bowl","","Herb rice, grilled chicken, gotukola salad",1650],
+    ["Veg noodle bowl","","Stir-fried noodles with garden vegetables",1100]]},
+  { id:"juice", name:"Juices", si:"බීම", items:[
+    ["Wood apple juice","දිවුල්","Fresh, with jaggery",550],
+    ["King coconut","තැඹිලි","Cut at the table",300],
+    ["Passion fruit","පැෂන් ෆෲට්","Fresh, not from a bottle",550]]},
+  { id:"sweets", name:"Sweets", si:"අතුරුපස", items:[
+    ["Watalappan","වටලප්පන්","Jaggery and coconut custard",400],
+    ["Chocolate biscuit pudding","බිස්කට් පුඩිම","The one everyone's aunt makes",450],
+    ["Banana bread","","Thick slice, warm",380]]},
+];
+const $ = s => document.querySelector(s);
+const rs = n => "Rs " + n.toLocaleString("en-LK");
+const items = {}; MENU.forEach(c => c.items.forEach(([n, si, d, p]) => { items[n] = { n, si, d, p }; }));
+const qty = {};
+
+function lk(d = new Date()) {
+  const f = new Intl.DateTimeFormat("en-CA", { timeZone:"Asia/Colombo", year:"numeric", month:"2-digit", day:"2-digit", hour:"2-digit", minute:"2-digit", hourCycle:"h23" }).formatToParts(d);
+  const g = t => f.find(p => p.type === t).value; const iso = `${g("year")}-${g("month")}-${g("day")}`;
+  return { iso, mins: +g("hour") * 60 + +g("minute"), dow: new Date(iso + "T12:00:00Z").getUTCDay() };
+}
+const toMin = s => +s.slice(0, 2) * 60 + +s.slice(3);
+const hhmm = m => `${Math.floor(m / 60) % 12 || 12}:${String(m % 60).padStart(2, "0")} ${m < 720 ? "am" : "pm"}`;
+const addDays = (iso, n) => { const d = new Date(iso + "T12:00:00Z"); d.setUTCDate(d.getUTCDate() + n); return d.toISOString().slice(0, 10); };
+const dowOf = iso => new Date(iso + "T12:00:00Z").getUTCDay();
+const nice = iso => new Date(iso + "T12:00:00Z").toLocaleDateString("en-GB", { weekday:"short", day:"numeric", month:"short", timeZone:"UTC" });
+
+function renderStatus() {
+  const now = lk(); const open = now.mins >= toMin(OPEN) && now.mins < toMin(CLOSE);
+  $("#status").className = "status " + (open ? "open" : "closed");
+  $("#status-text").textContent = open ? `Open now · closes ${hhmm(toMin(CLOSE))}` : (now.mins < toMin(OPEN) ? `Closed · opens ${hhmm(toMin(OPEN))}` : `Closed · opens tomorrow ${hhmm(toMin(OPEN))}`);
+  $("#hours").innerHTML = [1,2,3,4,5,6,0].map(d => `<tr class="${d === now.dow ? "today" : ""}"><td>${DAYN[d]}</td><td>${hhmm(toMin(OPEN))} – ${hhmm(toMin(CLOSE))}</td></tr>`).join("") + `<tr><td colspan="2" style="color:var(--muted);font-size:13.5px;padding-top:6px">Open on Poya days</td></tr>`;
+  const [n, d, p] = SPECIALS[now.dow];
+  $("#sp-day").textContent = `${DAYN[now.dow]}'s special`; $("#sp-h").textContent = n; $("#sp-d").textContent = d; $("#sp-p").textContent = rs(p);
+  if (!items[n]) items[n] = { n, si:"", d, p };
+  $("#sp-add").dataset.plus = n;
+}
+
+/* menu + cart */
+function itemHTML(it) {
+  const q = qty[it.n] || 0;
+  const ctl = q ? `<span class="step" aria-label="${it.n} quantity"><button type="button" data-minus="${it.n}" aria-label="One less ${it.n}">−</button><span>${q}</span><button type="button" data-plus="${it.n}" aria-label="One more ${it.n}">+</button></span>` : `<button class="add" type="button" data-plus="${it.n}">Add</button>`;
+  return `<div class="item" data-item="${it.n}"><div class="nm">${it.n}${it.si ? ` <span class="si">${it.si}</span>` : ""}</div><div class="right"><span class="price num">${rs(it.p)}</span>${ctl}</div><div class="ds">${it.d}</div></div>`;
+}
+function renderMenu() {
+  $("#cats").innerHTML = MENU.map(c => `<a href="#cat-${c.id}">${c.name}</a>`).join("");
+  $("#menu-list").innerHTML = MENU.map(c => `<div class="cat" id="cat-${c.id}"><h3>${c.name} <span class="si">${c.si}</span></h3>${c.when ? `<p class="when">${c.when}</p>` : ""}${c.items.map(([n]) => itemHTML(items[n])).join("")}</div>`).join("");
+}
+function refreshItem(n) { const el = document.querySelector(`[data-item="${CSS.escape(n)}"]`); if (el) el.outerHTML = itemHTML(items[n]); }
+function totals() { let count = 0, sum = 0; for (const [n, q] of Object.entries(qty)) { count += q; sum += q * items[n].p; } return { count, sum }; }
+function renderBar() { const { count, sum } = totals(); $("#bar").hidden = count === 0; $("#bar-total").textContent = rs(sum); $("#bar-count").textContent = `${count} item${count === 1 ? "" : "s"}`; }
+function message() {
+  const lines = Object.entries(qty).map(([n, q]) => `${q} × ${n} · ${rs(q * items[n].p)}`);
+  const del = $("#how-del").checked, name = $("#o-name").value.trim(), addr = $("#o-addr").value.trim();
+  return ["Hello Nuga Sevana! I'd like to order:", ...lines, `Total: ${rs(totals().sum)}`, del ? `Delivery to: ${addr || "(address)"}` : "I'll pick it up.", name ? `Name: ${name}` : ""].filter(Boolean).join("\n");
+}
+function renderSheet() {
+  $("#lines").innerHTML = Object.entries(qty).map(([n, q]) => `<li><span>${q} × ${n}</span><span>${rs(q * items[n].p)}</span></li>`).join("");
+  $("#total").textContent = rs(totals().sum); $("#addr-wrap").hidden = !$("#how-del").checked;
+  const m = message(); $("#msg").textContent = m; $("#wa").href = `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(m)}`;
+}
+function closeSheet() { $("#sheet").hidden = true; $("#open-order").focus(); }
+document.addEventListener("click", e => {
+  const p = e.target.closest("[data-plus]"), m = e.target.closest("[data-minus]");
+  if (p) { const n = p.dataset.plus; qty[n] = (qty[n] || 0) + 1; refreshItem(n); renderBar(); renderSheet(); }
+  if (m) { const n = m.dataset.minus; qty[n] = Math.max(0, (qty[n] || 0) - 1); if (!qty[n]) delete qty[n]; refreshItem(n); renderBar(); renderSheet(); if (!totals().count) closeSheet(); }
+  const d = e.target.closest("[data-pickday]"); if (d) { tday = d.dataset.pickday; renderDays(); renderTimes(); renderTable(); }
+});
+$("#open-order").addEventListener("click", () => { renderSheet(); $("#sheet").hidden = false; $("#o-name").focus(); });
+$("#close-order").addEventListener("click", closeSheet);
+$("#sheet").addEventListener("click", e => { if (e.target.id === "sheet") closeSheet(); });
+document.addEventListener("keydown", e => { if (e.key === "Escape" && !$("#sheet").hidden) closeSheet(); });
+["#how-pick", "#how-del", "#o-name", "#o-addr"].forEach(s => $(s).addEventListener("input", renderSheet));
+
+/* table booking */
+let tday = lk().iso, ppl = 2;
+function renderDays() {
+  const now = lk(); let h = "";
+  for (let i = 0; i < 8; i++) { const iso = addDays(now.iso, i); const top = i === 0 ? "Today" : i === 1 ? "Tmrw" : DAYN[dowOf(iso)].slice(0, 3);
+    h += `<button type="button" class="chipb" data-pickday="${iso}" aria-pressed="${iso === tday}">${top}<b>${new Date(iso + "T12:00:00Z").getUTCDate()}</b></button>`; }
+  $("#days").innerHTML = h;
+}
+function renderTimes() {
+  const now = lk(); const keep = $("#t-time").value; let h = "";
+  for (let m = toMin(OPEN); m <= toMin(CLOSE) - 60; m += 30) { if (tday === now.iso && m <= now.mins + 30) continue; h += `<option value="${m}">${hhmm(m)}</option>`; }
+  $("#t-time").innerHTML = h || `<option value="">No more times today</option>`;
+  if (keep && [...$("#t-time").options].some(o => o.value === keep)) $("#t-time").value = keep;
+}
+function renderTable() {
+  const area = document.querySelector("input[name=area]:checked").value, name = $("#t-name").value.trim(), t = $("#t-time").value;
+  const m = ["Hello Nuga Sevana! I'd like to book a table.", `Day: ${nice(tday)}`, `Time: ${t ? hhmm(+t) : "(choose a time)"}`, `People: ${ppl}`, `Seating: ${area}`, name ? `Name: ${name}` : ""].filter(Boolean).join("\n");
+  $("#t-msg").textContent = m; $("#t-wa").href = `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(m)}`;
+}
+$("#ppl-m").addEventListener("click", () => { ppl = Math.max(1, ppl - 1); $("#ppl").textContent = ppl; renderTable(); });
+$("#ppl-p").addEventListener("click", () => { ppl = Math.min(20, ppl + 1); $("#ppl").textContent = ppl; renderTable(); });
+["#t-time", "#t-name"].forEach(s => $(s).addEventListener("input", renderTable));
+document.querySelectorAll("input[name=area]").forEach(r => r.addEventListener("change", renderTable));
+$("#copy-phone").addEventListener("click", async e => { const b = e.currentTarget; try { await navigator.clipboard.writeText($("#phone").textContent); b.textContent = "Copied"; setTimeout(() => b.textContent = "Copy", 1500); } catch { const r = document.createRange(); r.selectNodeContents($("#phone")); const s = getSelection(); s.removeAllRanges(); s.addRange(r); } });
+
+renderStatus(); renderMenu(); renderBar(); renderDays(); renderTimes(); renderTable();
+setInterval(renderStatus, 60_000);
+})();
+</script>
+
+</body>
+</html>
