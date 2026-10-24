@@ -339,8 +339,10 @@ function renderOrder() {
   const { c, base, extra, del, total } = calc();
   $("#est").innerHTML = `<li><span>${c.n} · ${size} kg <small style="color:var(--muted)">(feeds about ${FEEDS[size]})</small></span><span>${rs(base)}</span></li>${extra ? `<li><span>Heart shape</span><span>${rs(extra)}</span></li>` : ""}${del ? `<li><span>Delivery</span><span>${rs(del)}</span></li>` : ""}`;
   $("#o-total").textContent = rs(total);
-  $("#o-adv").textContent = `Advance to confirm: ${rs(total / 2)} by bank transfer.`;
-  const date = $("#o-date").value, name = $("#o-name").value.trim(), text = $("#o-text").value.trim();
+  const date = $("#o-date").value; const shut = date && !HOURS[new Date(date + "T12:00:00Z").getUTCDay()];
+  $("#o-adv").textContent = shut ? "We are closed on Mondays. Please pick another day." : `Advance to confirm: ${rs(total / 2)} by bank transfer.`;
+  $("#o-adv").style.color = shut ? "var(--berry)" : "";
+  const name = $("#o-name").value.trim(), text = $("#o-text").value.trim();
   const m = ["Hello Mihiri Cake House! I'd like to order a cake:", `${c.n}, ${size} kg, ${shape.toLowerCase()}`, `Message on top: ${text || "(none)"}`,
     `For: ${date ? nice(date) : "(choose a day)"}`, $("#o-how").value === "del" ? "Delivery, please" : "I'll pick it up", `Estimate: ${rs(total)}`, name ? `Name: ${name}` : ""].filter(Boolean).join("\n");
   $("#msg").textContent = m; $("#wa").href = `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(m)}`;
@@ -352,7 +354,9 @@ document.addEventListener("click", e => {
   const p = e.target.closest("[data-pick]"); if (p) { cake = p.dataset.pick; renderOpts(); renderOrder(); $("#order").scrollIntoView({ behavior:"smooth" }); }
 });
 ["#o-text", "#o-date", "#o-how", "#o-name"].forEach(s => $(s).addEventListener("input", renderOrder));
-const min = addDays(lk().iso, 2); $("#o-date").min = min; $("#o-date").value = min;
+const dowOf = iso => new Date(iso + "T12:00:00Z").getUTCDay();
+const min = addDays(lk().iso, 2); let first = min; while (!HOURS[dowOf(first)]) first = addDays(first, 1);
+$("#o-date").min = min; $("#o-date").value = first;
 $("#copy-phone").addEventListener("click", async e => { const b = e.currentTarget; try { await navigator.clipboard.writeText($("#phone").textContent); b.textContent = "Copied"; setTimeout(() => b.textContent = "Copy", 1500); } catch { const r = document.createRange(); r.selectNodeContents($("#phone")); const s = getSelection(); s.removeAllRanges(); s.addRange(r); } });
 
 $("#hero-art").innerHTML = slice(CAKES[1]);
