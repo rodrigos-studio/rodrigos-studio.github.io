@@ -3,11 +3,11 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="description" content="Demo salon website with price list and WhatsApp booking. Made by Rodrigo&#x27;s Studio, Sri Lanka.">
+<meta name="description" content="Demo ladies-only salon website with price list and WhatsApp booking. Made by Rodrigo&#x27;s Studio, Sri Lanka.">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Rodrigo's Studio">
-<meta property="og:title" content="Ruhi Salon &amp; Bridal · demo by Rodrigo&#x27;s Studio">
-<meta property="og:description" content="Demo salon website with price list and WhatsApp booking. Made by Rodrigo&#x27;s Studio, Sri Lanka.">
+<meta property="og:title" content="Ruhi Ladies Salon · demo by Rodrigo&#x27;s Studio">
+<meta property="og:description" content="Demo ladies-only salon website with price list and WhatsApp booking. Made by Rodrigo&#x27;s Studio, Sri Lanka.">
 <meta property="og:url" content="https://rodrigos-studio.github.io/salon/">
 <meta property="og:image" content="https://rodrigos-studio.github.io/og.png">
 <meta property="og:image:width" content="1200">
@@ -19,7 +19,7 @@
 <style>:root{color-scheme:light;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0;font:14px system-ui,-apple-system,'Segoe UI',Roboto,sans-serif}img{max-width:100%}[hidden]{display:none!important}</style>
 </head>
 <body>
-<title>Ruhi Salon & Bridal</title>
+<title>Ruhi Ladies Salon</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -71,6 +71,9 @@ h1{font-family:var(--display);font-weight:500;font-size:clamp(46px,7.4vw,84px);l
 h1 em{font-style:italic;color:var(--copper)}
 .si-line{font-family:var(--si-head);font-weight:600;font-size:clamp(17px,2.1vw,20px);color:var(--muted);margin:14px 0 0}
 .lede{max-width:44ch;margin:12px 0 0;font-size:17px}
+.pills{display:flex;flex-wrap:wrap;gap:8px}
+.lo{display:inline-flex;align-items:center;gap:6px;font-size:14px;font-weight:600;padding:6px 14px;border-radius:999px;background:var(--copper);color:var(--copper-ink)}
+.lo .si{font-weight:600}
 .cta{display:flex;flex-wrap:wrap;gap:10px;margin-top:24px}
 
 .mirror{justify-self:center;width:min(380px,100%);background:var(--surface);border:1.5px solid var(--blush);border-radius:190px 190px 22px 22px;padding:64px 28px 28px;text-align:center;box-shadow:0 30px 60px rgba(46,31,39,.08);position:relative}
@@ -156,11 +159,11 @@ section{padding-block:44px}
 footer{padding-block:30px 40px;color:var(--muted);font-size:14px;text-align:center}
 </style>
 
-<div class="ribbon">Demo website · sample salon made by <a href="https://rodrigos-studio.github.io/">Rodrigo's Studio</a> · not a real business</div>
+<div class="ribbon">Demo website · sample ladies salon made by <a href="https://rodrigos-studio.github.io/">Rodrigo's Studio</a> · not a real business</div>
 
 <div class="wrap">
   <header class="top">
-    <a class="brand" href="#top"><b>Ruhi</b><span>Salon &amp; Bridal</span></a>
+    <a class="brand" href="#top"><b>Ruhi</b><span>Ladies salon &amp; bridal</span></a>
     <nav aria-label="Sections">
       <a class="hide-s" href="#prices">Prices</a>
       <a class="hide-s" href="#team">Team</a>
@@ -172,10 +175,10 @@ footer{padding-block:30px 40px;color:var(--muted);font-size:14px;text-align:cent
   <main id="top">
     <section class="hero" style="padding-top:12px">
       <div>
-        <span class="status" id="status"><i class="dot"></i><span id="status-text">Checking hours…</span></span>
-        <h1>Hair, beauty &amp; <em>bridal</em> in Ethul&nbsp;Kotte</h1>
-        <p class="si-line">කොණ්ඩය, රූපලාවණ්‍ය සහ මනාලියන් සැරසීම</p>
-        <p class="lede">Pick your service, choose a free time and send it to us on WhatsApp. We confirm in a few minutes, so you don't wait at the salon.</p>
+        <div class="pills"><span class="lo">Ladies only · <span class="si">කාන්තාවන්ට පමණයි</span></span><span class="status" id="status"><i class="dot"></i><span id="status-text">Checking hours…</span></span></div>
+        <h1>Hair, beauty &amp; <em>bridal</em> for ladies in Ethul&nbsp;Kotte</h1>
+        <p class="si-line">කාන්තාවන් සඳහා පමණක් · කොණ්ඩය, රූපලාවණ්‍ය සහ මනාලියන් සැරසීම</p>
+        <p class="lede">A ladies-only salon with an all-women team. Pick your service, choose a free time and send it to us on WhatsApp. We confirm in a few minutes, so you don't wait at the salon.</p>
         <div class="cta">
           <a class="btn btn-main" href="#book">Book a time</a>
           <a class="btn btn-line" href="#prices">See prices</a>
@@ -212,7 +215,7 @@ footer{padding-block:30px 40px;color:var(--muted);font-size:14px;text-align:cent
           <div class="times" id="times"></div>
           <div class="two">
             <label class="field" for="b-who">Stylist
-              <select id="b-who"><option>Anyone free</option><option>Ruhi</option><option>Kasun</option><option>Dilini</option></select></label>
+              <select id="b-who"><option>Anyone free</option><option>Ruhi</option><option>Nethmi</option><option>Dilini</option></select></label>
             <label class="field" for="b-name">Your name<input id="b-name" autocomplete="name" placeholder="Sanduni"></label>
           </div>
           <label class="field" for="b-note">Anything we should know?<textarea id="b-note" rows="2" placeholder="Long hair, first time colouring…"></textarea></label>
@@ -230,10 +233,10 @@ footer{padding-block:30px 40px;color:var(--muted);font-size:14px;text-align:cent
     </section>
 
     <section id="team" aria-labelledby="t-h">
-      <div class="sh"><h2 id="t-h">අපේ කණ්ඩායම<small>The team</small></h2></div>
+      <div class="sh"><h2 id="t-h">අපේ කණ්ඩායම<small>The team</small></h2><p>Ladies only, and our whole team is women. <span class="si">අපේ කණ්ඩායමේ ඉන්නේ කාන්තාවෝ විතරයි.</span></p></div>
       <div class="team">
         <div class="person"><span class="ini">R</span><h3>Ruhi</h3><p>Owner · bridal dressing and colour · 14 years</p></div>
-        <div class="person"><span class="ini">K</span><h3>Kasun</h3><p>Gents cuts, fades and beard trims · 6 years</p></div>
+        <div class="person"><span class="ini">N</span><h3>Nethmi</h3><p>Cuts, colour and keratin · 6 years</p></div>
         <div class="person"><span class="ini">D</span><h3>Dilini</h3><p>Facials, threading, nails · 5 years</p></div>
       </div>
       <div class="bridal">
@@ -261,15 +264,12 @@ const WA_NUMBER = "94724996667";   // demo bookings go to Rodrigo's Studio; a re
 const HOURS = { 0:["09:00","18:00"], 1:null, 2:["09:00","19:30"], 3:["09:00","19:30"], 4:["09:00","19:30"], 5:["09:00","19:30"], 6:["08:30","19:30"] }; // Sun..Sat, Monday closed
 const DAYN = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
 const SERVICES = [
-  { tab:"Ladies", si:"කාන්තා", items:[
+  { tab:"Hair", si:"කොණ්ඩය", items:[
     ["Haircut & blow-dry","කොණ්ඩය කැපීම",45,2500],
     ["Root colour touch-up","කොණ්ඩයට පාට",90,4500,"from"],
     ["Hair spa","හෙයාර් ස්පා",60,3500],
-    ["Keratin treatment","කෙරටින්",180,18000,"from"]]},
-  { tab:"Gents", si:"පිරිමි", items:[
-    ["Haircut","කොණ්ඩය කැපීම",30,800],
-    ["Haircut & beard trim","කොණ්ඩය සහ රැවුල",45,1200],
-    ["Kids' haircut (under 10)","ළමයින්",20,600]]},
+    ["Keratin treatment","කෙරටින්",180,18000,"from"],
+    ["Girls' haircut (under 12)","දැරියන්",30,1200]]},
   { tab:"Beauty", si:"රූපලාවණ්‍ය", items:[
     ["Facial clean-up","ෆේෂල්",60,3000],
     ["Eyebrow threading","ඇහිබැම",15,400],
@@ -284,7 +284,7 @@ const $ = s => document.querySelector(s);
 const rs = n => "Rs " + n.toLocaleString("en-LK");
 const all = {}; SERVICES.forEach(c => c.items.forEach(([n, si, mins, p, kind]) => { all[n] = { n, si, mins, p, kind, tab:c.tab }; }));
 const picked = new Set();
-let tab = "Ladies", day = null, time = null;
+let tab = "Hair", day = null, time = null;
 
 /* Sri Lanka time */
 function lk(d = new Date()) {
