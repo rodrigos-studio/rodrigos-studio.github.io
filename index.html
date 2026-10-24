@@ -208,6 +208,11 @@ section{padding-block:52px}
 .line .val{display:flex;justify-content:space-between;align-items:center;gap:10px;font-weight:700;font-size:18px;flex-wrap:wrap}
 .chip{border:1px solid color-mix(in srgb,var(--band-ink) 35%,transparent);background:transparent;color:var(--band-ink);border-radius:8px;padding:4px 10px;font-size:13px;font-weight:700;cursor:pointer}
 .contact .btn-main{background:var(--label);color:var(--label-ink)}
+.soc{display:flex;flex-wrap:wrap;gap:8px}
+.soc a{color:var(--band-ink);text-decoration:none;font-size:15px;font-weight:700;border:1px solid color-mix(in srgb,var(--band-ink) 35%,transparent);border-radius:999px;padding:6px 14px}
+.soc a:hover{background:color-mix(in srgb,var(--band-ink) 12%,transparent)}
+footer .fl{display:inline-flex;gap:14px;margin-left:12px}
+footer .fl a{color:inherit}
 footer{padding-block:28px 36px;color:var(--ink-2);font-size:14px;font-family:var(--si)}
 </style>
 
@@ -434,6 +439,7 @@ footer{padding-block:28px 36px;color:var(--ink-2);font-size:14px;font-family:var
         <div class="lines">
           <div class="line"><span class="lbl">WhatsApp / phone</span><div class="val"><span id="phone">072 499 6667</span><button class="chip" type="button" data-copy="phone">Copy</button></div></div>
           <div class="line"><span class="lbl">Email</span><div class="val"><span id="email">alex789rodrigo@gmail.com</span><button class="chip" type="button" data-copy="email">Copy</button></div></div>
+          <div class="line"><span class="lbl">Social</span><div class="soc"><a href="https://www.facebook.com/profile.php?id=61595712033625" target="_blank" rel="noopener">Facebook</a><a href="https://www.instagram.com/rodrigos.studio.lk/" target="_blank" rel="noopener">Instagram</a><a href="https://www.tiktok.com/@rodrigoz.studio" target="_blank" rel="noopener">TikTok</a></div></div>
           <div class="line"><span class="lbl">සේවා ප්‍රදේශය</span><div class="val"><span class="si">දිවයින පුරා</span></div></div>
         </div>
       </div>
@@ -441,7 +447,7 @@ footer{padding-block:28px 36px;color:var(--ink-2);font-size:14px;font-family:var
   </section>
 </main>
 
-<footer class="wrap">© Rodrigo's Studio · කෝට්ටේ</footer>
+<footer class="wrap">© Rodrigo's Studio · කෝට්ටේ<span class="fl"><a href="https://www.facebook.com/profile.php?id=61595712033625" target="_blank" rel="noopener">Facebook</a><a href="https://www.instagram.com/rodrigos.studio.lk/" target="_blank" rel="noopener">Instagram</a><a href="https://www.tiktok.com/@rodrigoz.studio" target="_blank" rel="noopener">TikTok</a></span></footer>
 
 <script>
 (() => {
