@@ -3,11 +3,11 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="description" content="Websites, WhatsApp ordering and Google Maps listings for shops across Sri Lanka. WhatsApp 072 499 6667.">
+<meta name="description" content="Websites, WhatsApp ordering, Facebook and TikTok page care, and Google Maps listings for shops across Sri Lanka. WhatsApp 072 499 6667.">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Rodrigo's Studio">
 <meta property="og:title" content="Rodrigo&#x27;s Studio">
-<meta property="og:description" content="Websites, WhatsApp ordering and Google Maps listings for shops across Sri Lanka. WhatsApp 072 499 6667.">
+<meta property="og:description" content="Websites, WhatsApp ordering, Facebook and TikTok page care, and Google Maps listings for shops across Sri Lanka. WhatsApp 072 499 6667.">
 <meta property="og:url" content="https://rodrigos-studio.github.io/">
 <meta property="og:image" content="https://rodrigos-studio.github.io/og.png">
 <meta property="og:image:width" content="1200">
@@ -47,7 +47,7 @@
   --band:#172631; --band-ink:#E5ECEF;
 }
 *{box-sizing:border-box}
-html{scroll-behavior:smooth}
+html{scroll-behavior:smooth;scroll-padding-top:70px}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased}
 body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--paper)}
@@ -212,6 +212,39 @@ section{padding-block:52px}
 .soc a{color:var(--band-ink);text-decoration:none;font-size:15px;font-weight:700;border:1px solid color-mix(in srgb,var(--band-ink) 35%,transparent);border-radius:999px;padding:6px 14px}
 .soc a:hover{background:color-mix(in srgb,var(--band-ink) 12%,transparent)}
 footer .fl{display:inline-flex;gap:14px;margin-left:12px}
+/* the two services, side by side under the hero */
+.pick2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+@media (max-width:700px){.pick2{grid-template-columns:minmax(0,1fr)}}
+.pick2 a{display:flex;flex-direction:column;gap:6px;text-decoration:none;color:var(--ink);background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:22px 22px 20px;position:relative}
+.pick2 a:hover{border-color:var(--accent)}
+.pick2 .k{font-family:var(--display);font-weight:800;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent)}
+.pick2 h3{margin:0;font-family:var(--si);font-size:23px;font-weight:700;line-height:1.35}
+.pick2 p{margin:0;color:var(--ink-2);font-family:var(--si);font-size:15.5px}
+.pick2 .pr{margin-top:6px;font-family:var(--si);font-size:15px;color:var(--ink-2)}
+.pick2 .pr b{font-family:var(--display);font-weight:900;font-size:22px;color:var(--ink)}
+.pick2 .go{margin-top:10px;font-family:var(--si);font-weight:700;color:var(--accent)}
+/* page care block */
+.pc{background:var(--surface);border-block:1px solid var(--line);padding-block:8px}
+.pc-hero{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:40px;align-items:center}
+@media (max-width:860px){.pc-hero{grid-template-columns:minmax(0,1fr);gap:28px}}
+.pc .plan{background:var(--paper)}
+.pc .faq details{background:var(--paper)}
+.post{justify-self:center;width:300px;max-width:100%;background:var(--surface);border:1px solid var(--line);border-radius:18px;box-shadow:0 18px 40px rgba(0,0,0,.14);overflow:hidden;font-family:system-ui,sans-serif}
+.post .ph{display:flex;gap:10px;align-items:center;padding:12px 14px}
+.post .ph i{width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,#E2A24A,#9C4F3A);display:block}
+.post .ph b{font-size:14px;display:block;color:var(--ink)}
+.post .ph span{font-size:12px;color:var(--ink-2)}
+.post .art{height:190px;background:linear-gradient(135deg,#9C4F3A,#E2A24A);color:#fff;display:flex;flex-direction:column;justify-content:center;padding:0 20px}
+.post .art small{font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase}
+.post .art strong{font-family:var(--si);font-size:26px;line-height:1.25;margin-top:4px}
+.post .art em{font-style:normal;font-weight:800;font-size:22px;margin-top:4px}
+.post .lk{display:flex;justify-content:space-between;padding:10px 14px;font-size:12.5px;color:var(--ink-2);border-top:1px solid var(--line)}
+.post .cm{padding:10px 14px 14px;display:grid;gap:8px;font-family:var(--si);font-size:13.5px}
+.post .cm p{margin:0;padding:8px 12px;border-radius:14px;background:var(--soft);max-width:85%}
+.post .cm p.me{justify-self:end;background:var(--accent);color:var(--accent-ink)}
+.extras{margin-top:18px;font-family:var(--si);font-size:15.5px;color:var(--ink-2)}
+.extras b{color:var(--ink)}
+.faq h3{margin:14px 0 2px;font-family:var(--si);font-size:17px;color:var(--ink-2);font-weight:700}
 footer .fl a{color:inherit}
 footer{padding-block:28px 36px;color:var(--ink-2);font-size:14px;font-family:var(--si)}
 </style>
@@ -223,9 +256,9 @@ footer{padding-block:28px 36px;color:var(--ink-2);font-size:14px;font-family:var
       RODRIGO'S STUDIO
     </a>
     <nav class="nav" aria-label="Sections">
-      <a class="hide-s" href="#work">Demo</a>
+      <a class="hide-s" href="#work">Websites</a>
+      <a class="hide-s" href="#page-care">Page care</a>
       <a class="hide-s" href="#prices">ගණන්</a>
-      <a class="hide-s" href="#how">වැඩේ වෙන විදිය</a>
       <a class="btn btn-main btn-sm" href="#contact">WhatsApp<span class="hide-xs"> කරන්න</span></a>
     </nav>
   </div>
@@ -236,14 +269,14 @@ footer{padding-block:28px 36px;color:var(--ink-2);font-size:14px;font-family:var
     <div class="wrap">
       <div>
         <h1>ඔබේ shop එක <em>online</em> ගෙනියමු</h1>
-        <span class="en">Websites, WhatsApp orders and Google Maps for shops in Sri Lanka.</span>
-        <p class="lede">කඩ, කෑම කඩ, salon සහ tuition පන්ති වලට website, WhatsApp ඕඩර් සහ කෙටි video මම හදලා දෙනවා. ඔයා කතා කරන්නේ site එක හදන කෙනා එක්කමයි.</p>
+        <span class="en">Websites, WhatsApp orders, Facebook page care and Google Maps for shops in Sri Lanka.</span>
+        <p class="lede">කඩ, කෑම කඩ, salon සහ tuition පන්ති වලට website, WhatsApp ඕඩර් සහ කෙටි video මම හදලා දෙනවා. ඔයාගේ Facebook, TikTok page එකත් මාසෙ ගානේ බලාගන්නවා. ඔයා කතා කරන්නේ වැඩේ කරන කෙනා එක්කමයි.</p>
         <p class="lede-en">I'm Rodrigo, from Kotte. I build every site myself and I'm happy to come to your shop to talk.</p>
         <div class="cta">
-          <a class="btn btn-main" href="#work">Demo බලන්න</a>
-          <a class="btn btn-line" href="#prices">ගණන්</a>
+          <a class="btn btn-main" href="#work">Website demo බලන්න</a>
+          <a class="btn btn-line" href="#page-care">Facebook page care</a>
         </div>
-        <p class="from"><b>Rs 35,000</b> සිට · <b>දවස් 7න්</b> ready · domain එක ඔයාගේ නමින්</p>
+        <p class="from">Website <b>Rs 35,000</b> සිට · Page care <b>Rs 15,000</b> සිට මාසෙකට</p>
       </div>
       <div class="phone" aria-label="Athal Kade demo site on a phone">
         <div class="screen" aria-hidden="true">
@@ -262,6 +295,27 @@ footer{padding-block:28px 36px;color:var(--ink-2);font-size:14px;font-family:var
           </div>
           <div class="k-bar"><span>Rs 1,460 · 3 items</span><s>Order on WhatsApp</s></div>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <section aria-label="Services" style="padding-block:0 8px">
+    <div class="wrap">
+      <div class="pick2">
+        <a href="#work">
+          <span class="k">Website</span>
+          <h3>Shop එකට website එකක්</h3>
+          <p>Menu, ගණන්, WhatsApp ඕඩර් සහ booking, Google Maps. Phone එකට ගැලපෙන විදියට.</p>
+          <span class="pr"><b>Rs 35,000</b> සිට · එක පාරක් ගෙවන්නේ · දවස් 7න් ready</span>
+          <span class="go">Demo 6ක් බලන්න ↓</span>
+        </a>
+        <a href="#page-care">
+          <span class="k">Facebook + TikTok page care</span>
+          <h3>Page එක මම බලාගන්නම්</h3>
+          <p>Posts, videos, comments වලට reply, shop එකට ඇවිත් photos, මාසික report එක.</p>
+          <span class="pr"><b>Rs 15,000</b> සිට · මාසෙට ගෙවන්නේ · එක මාසයකින් පටන් ගන්න පුළුවන්</span>
+          <span class="go">Packages බලන්න ↓</span>
+        </a>
       </div>
     </div>
   </section>
@@ -344,7 +398,7 @@ footer{padding-block:28px 36px;color:var(--ink-2);font-size:14px;font-family:var
         <div><h3>Google Maps listing</h3><p>ඔයාගේ කඩේ වෙලාවල්, photos, call button එක්ක Map එකේ. ළඟ පාත අයට හොයාගන්න ලේසියි.</p></div>
         <div><h3>කෙටි video</h3><p>කඩේට ඇවිත් shoot කරලා, Facebook, Instagram, TikTok වලට edit කරලා දෙනවා.</p></div>
         <div><h3>Logo සහ menu board</h3><p>කඩේ board එකට, menu එකට, price list එකට සරල design.</p></div>
-        <div><h3>Facebook page care</h3><p>Posts, comments, shop එකට ඇවිත් photos, මාසික report. Rs 15,000 සිට මාසෙකට. <a href="page-care/">විස්තර බලන්න</a></p></div>
+        <div><h3>Facebook + TikTok page care</h3><p>Posts, comments, shop එකට ඇවිත් photos, මාසික report. Rs 15,000 සිට මාසෙකට. <a href="#page-care">විස්තර බලන්න</a></p></div>
       </div>
     </div>
   </section>
@@ -352,7 +406,7 @@ footer{padding-block:28px 36px;color:var(--ink-2);font-size:14px;font-family:var
   <section id="prices" aria-labelledby="price-h">
     <div class="wrap">
       <div class="sec-top">
-        <div><h2 id="price-h">ගණන්</h2><span class="en">Prices</span></div>
+        <div><h2 id="price-h">Website ගණන්</h2><span class="en">Website prices</span></div>
         <p>Site එකට එක පාරක් ගෙවනවා. මාසික plan එක ඕනේ නම් විතරයි.</p>
       </div>
       <div class="prices">
@@ -383,7 +437,7 @@ footer{padding-block:28px 36px;color:var(--ink-2);font-size:14px;font-family:var
 
   <section id="how" aria-labelledby="how-h">
     <div class="wrap">
-      <div class="sec-top"><div><h2 id="how-h">වැඩේ සිද්ධ වෙන විදිය</h2><span class="en">How it works</span></div></div>
+      <div class="sec-top"><div><h2 id="how-h">Website එක හැදෙන විදිය</h2><span class="en">How a website gets made</span></div></div>
       <ol class="steps">
         <li><h3>නොමිලේ sample එකක්</h3><p>ඔයාගේ කඩේ නමින්ම sample එකක් හදලා ගෙනත් පෙන්නනවා.</p></li>
         <li><h3>එකඟ වෙලා භාගය ගෙවනවා</h3><p>Package එක තෝරලා මුල් භාගය bank transfer කරනවා.</p></li>
@@ -393,6 +447,76 @@ footer{padding-block:28px 36px;color:var(--ink-2);font-size:14px;font-family:var
       </ol>
     </div>
   </section>
+
+  <div class="pc" id="page-care">
+  <section aria-labelledby="pc-h">
+    <div class="wrap pc-hero">
+      <div>
+        <h2 id="pc-h" style="font-size:clamp(30px,5vw,48px)">Facebook page එක <em style="font-style:normal;color:var(--accent)">මම</em> බලාගන්නම්</h2>
+        <span class="en">Monthly Facebook and TikTok page care for shops in Sri Lanka.</span>
+        <p class="lede">ඔයා කඩේ බලාගන්න. Posts design කරලා දාන එක, comments වලට reply කරන එක, shop එකට ඇවිත් photos ගන්න එක, මාසෙ අන්තිමට report එක මම බලාගන්නම්.</p>
+        <p class="lede-en">Designed posts, replies to comments, photos taken at your shop and a short report every month.</p>
+        <div class="cta"><a class="btn btn-main" href="#pc-packages">Packages බලන්න</a><a class="btn btn-line" href="#contact">WhatsApp කරන්න</a></div>
+        <p class="from"><b>Rs 15,000</b> සිට මාසෙකට · <b>එක මාසයකින්</b> පටන් ගන්න පුළුවන්</p>
+      </div>
+      <div class="post" aria-hidden="true">
+        <div class="ph"><i></i><div><b>Pahana Night Kitchen</b><span>Sample page · Just now</span></div></div>
+        <div class="art"><small>Tonight's special</small><strong>Chicken කොත්තු</strong><em>Rs 950</em></div>
+        <div class="lk"><span>128 likes</span><span>7 comments</span></div>
+        <div class="cm"><p>අද open ද?</p><p class="me">ඔව්! රෑ 12 වෙනකම් open</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section aria-labelledby="pcs-h" style="padding-top:8px">
+    <div class="wrap">
+      <div class="sec-top"><div><h2 id="pcs-h">මාසෙ ගානේ මම කරන දේවල්</h2><span class="en">What I do every month</span></div></div>
+      <div class="svc">
+        <div><h3>Posts design කරනවා</h3><p>කෑම, බඩු, ගණන්, offers. සිංහල + English කෙටි විස්තරයක් එක්ක.</p></div>
+        <div><h3>Shop එකට ඇවිත් photos</h3><p>මාසෙකට එක පාරක් ඇවිත් ඔයාගේම කෑම, බඩු photos ගන්නවා. Internet photos දාන්නේ නෑ.</p></div>
+        <div><h3>හොඳ වෙලාවට schedule</h3><p>Customers Facebook බලන වෙලාවට posts යනවා.</p></div>
+        <div><h3>Comments සහ auto-reply</h3><p>Comments වලට දිනපතා reply. Inbox එකට message එකක් ආවොත් වෙලාවල්, location, WhatsApp number auto යනවා.</p></div>
+        <div><h3>මාසික report එක</h3><p>කී දෙනෙක් දැක්කද, අලුත් followers කීයද, messages කීයක් ආවද, හොඳම post එක මොකක්ද.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="pc-packages" aria-labelledby="pcp-h">
+    <div class="wrap">
+      <div class="sec-top">
+        <div><h2 id="pcp-h">Page care ගණන්</h2><span class="en">Page care packages</span></div>
+        <p>මාසෙට ගෙවනවා. එක මාසයකින් පටන් අරන් බලන්න පුළුවන්.</p>
+      </div>
+      <div class="prices" style="grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr))">
+        <div class="plan">
+          <span class="kind">මාසෙට</span><h3>Page Care</h3>
+          <div class="price">Rs 15,000<small>මාසෙකට</small></div>
+          <ul><li>Posts 8ක් (සතියට 2ක්)</li><li>මාසෙකට photo shoot එකක්</li><li>හොඳ වෙලාවට schedule කිරීම</li><li>Comments + inbox auto-reply</li><li>මාසික report එක</li><li>Page setup Rs 5,000 (එක පාරයි)</li></ul>
+        </div>
+        <div class="plan pick">
+          <span class="kind">මාසෙට</span><h3>Page Growth</h3>
+          <div class="price">Rs 30,000<small>මාසෙකට</small></div>
+          <ul><li class="plus">Page Care එකේ ඔක්කොම, ඊට අමතරව:</li><li>Posts 12ක් (සතියට 3ක්)</li><li>කෙටි Reels 4ක් (තත්පර 15–30)</li><li>Boosts run කරනවා (shop එක වටේ අයට)</li><li>TikTok එකටත් ඒ posts</li><li>Report + ඊළඟ මාසේ plan</li><li>Page setup නොමිලේ</li></ul>
+        </div>
+      </div>
+      <p class="terms">Boost සල්ලි මගේ fee එකට අයිති නෑ. ඒවා ඔයාගේ card එකෙන් කෙලින්ම Meta (Facebook) ට යනවා, ඒ නිසා යන හැම රුපියලක්ම ඔයාට බලන්න පුළුවන්. Meta බිල් කරන්නේ USD වලින්, ඒ නිසා card එකේ international online payments on කරලා තියෙන්න ඕනේ.</p>
+      <p class="extras">අමතර දේවල්, ඕනේ නම් විතරයි: <b>තව Reel එකක් Rs 2,500</b> · <b>තව post එකක් Rs 1,000</b> · <b>Shoutout එකක් arrange කරන්න Rs 2,000</b> + ඒ page එකේ ගාණ</p>
+    </div>
+  </section>
+
+  <section id="pc-how" aria-labelledby="pch-h">
+    <div class="wrap">
+      <div class="sec-top"><div><h2 id="pch-h">Page care වැඩේ වෙන විදිය</h2><span class="en">How page care works</span></div></div>
+      <ol class="steps">
+        <li><h3>කතා කරමු</h3><p>WhatsApp එකෙන් හරි call එකකින් හරි. ඔයාගේ page එක බලලා මොනවද කරන්න පුළුවන් කියලා කියනවා.</p></li>
+        <li><h3>Page එක setup කරනවා</h3><p>Profile photo, cover, වෙලාවල්, location, WhatsApp button හරියට හදනවා. Shop එකට ඇවිත් photos ගන්නවා.</p></li>
+        <li><h3>හැම ඉරිදාම posts එවනවා</h3><p>ඊළඟ සතියේ posts WhatsApp එකට එවනවා. ඔයා OK කළාම විතරයි දාන්නේ.</p></li>
+        <li><h3>Posts යනවා, comments බලාගන්නවා</h3><p>හොඳ වෙලාවට posts යනවා. Comments වලට දිනපතා reply.</p></li>
+        <li><h3>මාසෙ අන්තිමට report එක</h3><p>මොකද වුණේ කියලා report එකක් සහ ඊළඟ මාසේ plan එක.</p></li>
+      </ol>
+    </div>
+  </section>
+  </div>
 
   <section aria-labelledby="about-h">
     <div class="wrap about">
@@ -419,12 +543,20 @@ footer{padding-block:28px 36px;color:var(--ink-2);font-size:14px;font-family:var
     <div class="wrap">
       <div class="sec-top"><div><h2 id="faq-h">අයිතිකාරයෝ අහන ප්‍රශ්න</h2><span class="en">Questions owners ask</span></div></div>
       <div class="faq">
+        <h3>Website</h3>
         <details><summary>Website එක අයිති කාටද?</summary><p>ඔයාට. Web ලිපිනය ඔයාගේ නමින්ම register කරනවා. මා එක්ක වැඩ නැවැත්තුවත් site එක ඔයාගේමයි.</p></details>
         <details><summary>මට computer පාවිච්චි කරන්න බෑ. ප්‍රශ්නයක්ද?</summary><p>නෑ. අලුත් ගාණක් හරි photo එකක් හරි WhatsApp කරන්න, මම site එක update කරනවා.</p></details>
         <details><summary>Customers ඕඩර් කරන්නේ කොහොමද?</summary><p>Site එකේ කෑම තෝරලා එක button එකක් ඔබුවාම, ඕඩර් එක නමයි ලිපිනයයි total එකයි එක්කම ඔයාගේ WhatsApp එකට එනවා. App එකක් ඕනේ නෑ, commission නෑ.</p></details>
         <details><summary>Site එක සිංහලෙන් කරන්න පුළුවන්ද?</summary><p>ඔව්. සිංහල, English හරි දෙකම.</p></details>
         <details><summary>Site එක hack වුණොත්?</summary><p>Site එකේ login එකක් නෑ, customers ලාගේ card විස්තර, සල්ලි කිසිවක් save වෙන්නේ නෑ. Account වලට two-step verification තියෙනවා, backup එකක් හැමතිස්සෙම මං ළඟ. මොකක් හරි වුණොත් ආපහු දානවා.</p></details>
         <details><summary>මට video විතරක් ඕනේ නම්?</summary><p>ප්‍රශ්නයක් නෑ. Website එකක් නැතුවත් Facebook, Instagram, TikTok වලට video shoot කරලා edit කරලා දෙන්නම්.</p></details>
+        <h3>Facebook page care</h3>
+        <details><summary>Page එක අයිති කාටද?</summary><p>ඔයාට, හැමදාම. මට දෙන්නේ Meta Business Suite එකෙන් සීමිත access එකක් විතරයි. Password ඕනේ නෑ, ඕනෑම වෙලාවක ඒ access එක අයින් කරන්න පුළුවන්.</p></details>
+        <details><summary>මගේ OK එක නැතුව මොනවා හරි post වෙනවද?</summary><p>නෑ. හැම ඉරිදාම ඊළඟ සතියේ posts WhatsApp කරනවා. ඔයා OK කරපු ඒවා විතරයි දාන්නේ. ගණන් සහ offers ඔයා කියන ඒවා විතරයි.</p></details>
+        <details><summary>Orders සහ inbox messages වලට reply කරන්නේ කවුද?</summary><p>Orders සහ customer messages වලට shop එකෙන්. Comments මම බලාගන්නවා. Inbox එකට message එකක් ආපු ගමන් වෙලාවල්, location, WhatsApp number auto යන්න setup කරනවා.</p></details>
+        <details><summary>Boost කරන්නම ඕනෙද?</summary><p>නෑ. Page Care එකේ boosts නෑ. Page Growth එකේ boost කරනවා, ඒත් boost සල්ලි කීයද කියලා තීරණය කරන්නේ ඔයා.</p></details>
+        <details><summary>කොච්චර කාලයකට ගන්න ඕනෙද?</summary><p>එක මාසයකින් පටන් ගන්න පුළුවන්. බලලා දිගටම කරගෙන යමු.</p></details>
+        <details><summary>Page care එකට website එකකුත් ගන්න ඕනෙද?</summary><p>නෑ. දෙක වෙන වෙනම ගන්න පුළුවන්. දෙකම ගත්තොත් page එකේ posts වලින් customers ලා කෙලින්ම website එකේ menu එකට එනවා.</p></details>
       </div>
     </div>
   </section>
@@ -434,7 +566,7 @@ footer{padding-block:28px 36px;color:var(--ink-2);font-size:14px;font-family:var
       <div class="contact">
         <div>
           <h2 id="c-h">කතා කරමු</h2><span class="en">Let's talk</span>
-          <p>ඔයාගේ කඩේ නමයි, විකුණන දේයි WhatsApp කරන්න. මම එදාම reply කරනවා. ඕනේ නම් කඩේට ඇවිත් කතා කරන්නම්.</p>
+          <p>ඔයාගේ කඩේ නමයි, විකුණන දේයි, Facebook page එක තියෙනවා නම් ඒ link එකයි WhatsApp කරන්න. මම එදාම reply කරනවා. ඕනේ නම් කඩේට ඇවිත් කතා කරන්නම්.</p>
           <div class="cta"><a class="btn btn-main" id="wa" href="#contact" target="_blank" rel="noopener">WhatsApp කරන්න</a></div>
         </div>
         <div class="lines">
@@ -448,12 +580,12 @@ footer{padding-block:28px 36px;color:var(--ink-2);font-size:14px;font-family:var
   </section>
 </main>
 
-<footer class="wrap">© Rodrigo's Studio · කෝට්ටේ<span class="fl"><a href="page-care/">Facebook page care</a><a href="https://www.facebook.com/profile.php?id=61595712033625" target="_blank" rel="noopener">Facebook</a><a href="https://www.instagram.com/rodrigos.studio.lk/" target="_blank" rel="noopener">Instagram</a><a href="https://www.tiktok.com/@rodrigoz.studio" target="_blank" rel="noopener">TikTok</a></span></footer>
+<footer class="wrap">© Rodrigo's Studio · කෝට්ටේ<span class="fl"><a href="#page-care">Facebook page care</a><a href="https://www.facebook.com/profile.php?id=61595712033625" target="_blank" rel="noopener">Facebook</a><a href="https://www.instagram.com/rodrigos.studio.lk/" target="_blank" rel="noopener">Instagram</a><a href="https://www.tiktok.com/@rodrigoz.studio" target="_blank" rel="noopener">TikTok</a></span></footer>
 
 <script>
 (() => {
 const WA_NUMBER = "94724996667";   // 072 499 6667
-const text = "ආයුබෝවන් Rodrigo, මම Rodrigo's Studio website එක බැලුවා.\nමගේ කඩේ: \nවිකුණන්නේ: \nමට ඕනේ: website / WhatsApp ඕඩර් / video";
+const text = "ආයුබෝවන් Rodrigo, මම Rodrigo's Studio website එක බැලුවා.\nමගේ කඩේ: \nවිකුණන්නේ: \nමට ඕනේ: website / Facebook page care / video";
 document.getElementById("wa").href = `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(text)}`;
 document.querySelectorAll("[data-copy]").forEach(btn => btn.addEventListener("click", async () => {
   const el = document.getElementById(btn.dataset.copy);
