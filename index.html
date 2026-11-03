@@ -247,6 +247,42 @@ footer .fl{display:inline-flex;gap:14px;margin-left:12px}
 .faq h3{margin:14px 0 2px;font-family:var(--si);font-size:17px;color:var(--ink-2);font-weight:700}
 footer .fl a{color:inherit}
 footer{padding-block:28px 36px;color:var(--ink-2);font-size:14px;font-family:var(--si)}
+
+/* hero v2: dark card with a moving wall of the demo sites */
+.hero2{padding-block:18px 26px}
+.hcard{position:relative;overflow:hidden;border-radius:28px;background:radial-gradient(700px 420px at 85% 15%,rgba(57,199,150,.16),transparent 60%),#0B1512;color:#EEF3F0;min-height:600px;display:flex;align-items:center;isolation:isolate}
+.hcard .htext{position:relative;z-index:2;max-width:560px;padding:56px 0 56px 52px}
+.hcard .kick{display:flex;align-items:center;gap:10px;margin:0 0 18px;font-family:var(--display);font-weight:700;font-size:13px;letter-spacing:.22em;color:#C8F06A}
+.hcard .kick i{width:8px;height:8px;border-radius:2px;background:#C8F06A}
+.hcard h1{color:#F4F7F5}
+.hcard h1 em{color:#8BE3B5}
+.hcard .en{color:#8FA59D;font-size:clamp(17px,2vw,20px);margin-top:10px}
+.hcard .lede{color:#C3CFCA}
+.hcard .lede-en{color:#8FA59D}
+.hcard .from{color:#AFBDB7}
+.hcard .from b{color:#F4F7F5}
+.btn-ghost{border-color:rgba(255,255,255,.55);color:#F4F7F5;background:transparent}
+.btn-ghost:hover{background:rgba(255,255,255,.08)}
+.hcard .cta{display:flex;flex-wrap:wrap;gap:12px;margin:22px 0 14px}
+.mosaic{position:absolute;top:0;right:0;bottom:0;width:58%;z-index:1;-webkit-mask-image:linear-gradient(90deg,transparent 0%,rgba(0,0,0,.3) 22%,#000 52%);mask-image:linear-gradient(90deg,transparent 0%,rgba(0,0,0,.3) 22%,#000 52%)}
+.mgrid{position:absolute;top:-28%;right:-10%;height:156%;display:flex;gap:16px;transform:rotate(-9deg);transform-origin:50% 50%}
+.mcol{width:210px;overflow:hidden}
+.mtrack{display:flex;flex-direction:column;gap:16px;animation:mscroll 70s linear infinite}
+.mcol.c2 .mtrack{animation-duration:82s;animation-direction:reverse}
+.mcol.c3 .mtrack{animation-duration:76s;margin-top:-120px}
+.mtrack img{display:block;width:100%;height:auto;aspect-ratio:9/16;object-fit:cover;object-position:top;border-radius:18px;box-shadow:0 10px 30px rgba(0,0,0,.35);opacity:.92}
+@keyframes mscroll{from{transform:translateY(0)}to{transform:translateY(-50%)}}
+@media (prefers-reduced-motion:reduce){.mtrack{animation:none}}
+@media (max-width:860px){
+  .hcard{display:block;min-height:0;border-radius:22px}
+  .hcard .htext{max-width:none;padding:30px 22px 8px}
+  .mosaic{position:relative;width:auto;height:300px;-webkit-mask-image:linear-gradient(180deg,#000 50%,transparent 100%);mask-image:linear-gradient(180deg,#000 50%,transparent 100%)}
+  .hcard .htext{padding-top:6px}
+  .mgrid{top:-10%;right:auto;left:50%;height:150%;transform:translateX(-50%) rotate(-9deg)}
+  .mcol{width:130px}
+  .mgrid,.mtrack{gap:10px}
+  .mtrack img{border-radius:12px}
+}
 </style>
 
 <header class="top">
@@ -265,35 +301,21 @@ footer{padding-block:28px 36px;color:var(--ink-2);font-size:14px;font-family:var
 </header>
 
 <main id="top">
-  <section class="hero" style="padding-block:0">
+  <section class="hero2">
     <div class="wrap">
-      <div>
-        <h1>ඔබේ shop එක <em>online</em> ගෙනියමු</h1>
-        <span class="en">Websites, WhatsApp orders, Facebook page care and Google Maps for shops in Sri Lanka.</span>
-        <p class="lede">කඩ, කෑම කඩ, salon සහ tuition පන්ති වලට website, WhatsApp ඕඩර් සහ කෙටි video මම හදලා දෙනවා. ඔයාගේ Facebook, TikTok page එකත් මාසෙ ගානේ බලාගන්නවා. ඔයා කතා කරන්නේ වැඩේ කරන කෙනා එක්කමයි.</p>
-        <p class="lede-en">I'm Rodrigo, from Kotte. I build every site myself and I'm happy to come to your shop to talk.</p>
-        <div class="cta">
-          <a class="btn btn-main" href="#work">Website demo බලන්න</a>
-          <a class="btn btn-line" href="#page-care">Facebook page care</a>
-        </div>
-        <p class="from">Website <b>Rs 35,000</b> සිට · Page care <b>Rs 15,000</b> සිට මාසෙකට</p>
-      </div>
-      <div class="phone" aria-label="Athal Kade demo site on a phone">
-        <div class="screen" aria-hidden="true">
-          <div class="k-rib">Athal Kade · Kotte</div>
-          <div class="k-body">
-            <span class="k-pill"><i></i>Open now · closes 9:30 pm</span>
-            <div><div class="k-title">Athal Kade</div><div class="k-sub">ආතල් කඩේ</div></div>
-            <div class="k-tiles"></div>
-            <div class="k-row"><span>Milk tea</span><span>Rs 180 <s>Add</s></span></div>
-            <div class="k-row"><span>Fish bun</span><span>Rs 120 <s>Add</s></span></div>
-            <div class="k-row"><span>Chicken kottu</span><span>Rs 1,100 <s>Add</s></span></div>
-            <div class="k-row"><span>Parippu vadai</span><span>Rs 90 <s>Add</s></span></div>
-            <div class="k-row"><span>Egg kottu</span><span>Rs 850 <s>Add</s></span></div>
-            <div class="k-row"><span>Love cake</span><span>Rs 280 <s>Add</s></span></div>
-            <div class="k-row"><span>Watalappan</span><span>Rs 300 <s>Add</s></span></div>
+      <div class="hcard">
+        <div class="mosaic" aria-hidden="true"><div class="mgrid"><div class="mcol c1"><div class="mtrack"><img src="assets/hero/athal-kade.webp" alt="" width="360" height="640"><img src="assets/hero/night_2.webp" alt="" width="360" height="640"><img src="assets/hero/salon.webp" alt="" width="360" height="640"><img src="assets/hero/cafe_2.webp" alt="" width="360" height="640"><img src="assets/hero/navo.webp" alt="" width="360" height="640"><img src="assets/hero/athal-kade.webp" alt="" width="360" height="640"><img src="assets/hero/night_2.webp" alt="" width="360" height="640"><img src="assets/hero/salon.webp" alt="" width="360" height="640"><img src="assets/hero/cafe_2.webp" alt="" width="360" height="640"><img src="assets/hero/navo.webp" alt="" width="360" height="640"></div></div><div class="mcol c2"><div class="mtrack"><img src="assets/hero/cakes.webp" alt="" width="360" height="640"><img src="assets/hero/tuition_2.webp" alt="" width="360" height="640"><img src="assets/hero/navo_2.webp" alt="" width="360" height="640"><img src="assets/hero/athal-kade_2.webp" alt="" width="360" height="640"><img src="assets/hero/night.webp" alt="" width="360" height="640"><img src="assets/hero/cakes.webp" alt="" width="360" height="640"><img src="assets/hero/tuition_2.webp" alt="" width="360" height="640"><img src="assets/hero/navo_2.webp" alt="" width="360" height="640"><img src="assets/hero/athal-kade_2.webp" alt="" width="360" height="640"><img src="assets/hero/night.webp" alt="" width="360" height="640"></div></div><div class="mcol c3"><div class="mtrack"><img src="assets/hero/salon_2.webp" alt="" width="360" height="640"><img src="assets/hero/cafe.webp" alt="" width="360" height="640"><img src="assets/hero/tuition.webp" alt="" width="360" height="640"><img src="assets/hero/cakes_2.webp" alt="" width="360" height="640"><img src="assets/hero/night_2.webp" alt="" width="360" height="640"><img src="assets/hero/salon_2.webp" alt="" width="360" height="640"><img src="assets/hero/cafe.webp" alt="" width="360" height="640"><img src="assets/hero/tuition.webp" alt="" width="360" height="640"><img src="assets/hero/cakes_2.webp" alt="" width="360" height="640"><img src="assets/hero/night_2.webp" alt="" width="360" height="640"></div></div></div></div>
+        <div class="htext">
+          <p class="kick"><i></i>RODRIGO'S STUDIO · KOTTE</p>
+          <h1>ඔබේ shop එක <em>online</em> ගෙනියමු</h1>
+          <span class="en">Websites, WhatsApp orders, Facebook page care and Google Maps for shops in Sri Lanka.</span>
+          <p class="lede">කඩ, කෑම කඩ, salon සහ tuition පන්ති වලට website, WhatsApp ඕඩර් සහ කෙටි video මම හදලා දෙනවා. ඔයාගේ Facebook, TikTok page එකත් මාසෙ ගානේ බලාගන්නවා. ඔයා කතා කරන්නේ වැඩේ කරන කෙනා එක්කමයි.</p>
+          <p class="lede-en">I'm Rodrigo, from Kotte. I build every site myself and I'm happy to come to your shop to talk.</p>
+          <div class="cta">
+            <a class="btn btn-main" href="#work">Website demo බලන්න</a>
+            <a class="btn btn-ghost" href="#page-care">Facebook page care</a>
           </div>
-          <div class="k-bar"><span>Rs 1,460 · 3 items</span><s>Order on WhatsApp</s></div>
+          <p class="from">Website <b>Rs 35,000</b> සිට · Page care <b>Rs 15,000</b> සිට මාසෙකට</p>
         </div>
       </div>
     </div>
