@@ -1,0 +1,238 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Navo Mobile · demo</title>
+<meta name="description" content="Demo website for a phone repair shop: check the repair price and book on WhatsApp in one tap. Made by Rodrigo's Studio.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Navo Mobile · demo by Rodrigo&#x27;s Studio">
+<meta property="og:description" content="Phone repair shop demo: check the repair price and book on WhatsApp in one tap.">
+<meta property="og:url" content="https://rodrigos-studio.github.io/phone-repair/">
+<meta property="og:image" content="https://rodrigos-studio.github.io/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/png" href="https://rodrigos-studio.github.io/icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,500..900&family=Source+Sans+3:wght@400;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap"><style>
+*{margin:0;box-sizing:border-box}
+:root{--ink:#16133A;--ind:#231E5C;--ind2:#2E2878;--lime:#C8F43A;--lime2:#E6FBA0;--paper:#F5F5FA;--card:#fff;--line:#E3E2EE;--mut:#6A6889;--ok:#1E9E62}
+.ribbon{background:var(--lime);color:var(--ink);font-size:13.5px;text-align:center;padding:7px 12px;font-weight:600;font-family:"Source Sans 3",sans-serif}
+.ribbon a{color:inherit}
+.chips span,.fix-list label{user-select:none}
+body{background:var(--paper);color:var(--ink);font-family:"Source Sans 3",system-ui,sans-serif;font-size:17px;line-height:1.5}
+.wrap{max-width:1200px;margin:0 auto;padding:0 36px}
+a{color:inherit;text-decoration:none}
+.btn{white-space:nowrap;display:inline-flex;align-items:center;justify-content:center;gap:10px;border-radius:14px;padding:14px 22px;font-family:"Archivo";font-weight:700;font-size:16px;border:2px solid transparent}
+.btn.l{background:var(--lime);color:var(--ink)}
+.btn.g{border-color:rgba(255,255,255,.28);color:#fff}
+.btn.w{background:#25D366;color:#fff}
+.btn.o{border-color:var(--line);color:var(--ink);background:#fff}
+header{background:var(--ind);color:#fff;position:sticky;top:0;z-index:10}
+header .wrap{height:72px;display:flex;align-items:center;gap:30px}
+.logo{display:flex;align-items:baseline;gap:8px}
+.logo b{font-family:"Archivo";font-weight:900;font-size:30px;letter-spacing:-.03em;line-height:1}
+.logo b i{font-style:normal;color:var(--lime)}
+.logo span{font-family:"IBM Plex Mono";font-weight:600;font-size:12px;letter-spacing:.24em;color:#B9B5E8}
+nav{margin-left:auto;display:flex;gap:26px;font-family:"Archivo";font-weight:600;font-size:15px;color:#D3D0F3}
+header .btn{padding:10px 16px}
+.burger{display:none;margin-left:auto;width:44px;height:44px;border-radius:12px;border:1px solid rgba(255,255,255,.22);align-items:center;justify-content:center}
+.hero{background:radial-gradient(700px 420px at 80% 30%,rgba(200,244,58,.18),transparent 60%),var(--ind);color:#fff;padding:56px 0 70px;overflow:hidden}
+.hero .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center}
+.pill{display:inline-flex;gap:10px;align-items:center;border:1px solid rgba(255,255,255,.2);border-radius:30px;padding:7px 14px;font-family:"Archivo";font-weight:600;font-size:14px;color:#E1DEFA}
+.pill i{width:9px;height:9px;border-radius:50%;background:#3DDC84;box-shadow:0 0 10px #3DDC84}
+.hero h1{font-family:"Archivo";font-weight:900;font-size:68px;line-height:1;letter-spacing:-.03em;margin:22px 0 18px}
+.hero h1 em{font-style:normal;color:var(--lime)}
+.hero p{font-size:20px;color:#CFCBF2;max-width:520px}
+.hero .cta{display:flex;gap:12px;margin:28px 0 30px;flex-wrap:wrap}
+.facts{display:flex;gap:26px;flex-wrap:wrap}
+.facts div b{display:block;font-family:"Archivo";font-weight:900;font-size:26px;color:var(--lime)}
+.facts div span{font-size:14px;color:#B9B5E8}
+/* hero phone art */
+.art{position:relative;height:430px}
+.dev{position:absolute;left:50%;top:10px;width:210px;height:410px;margin-left:-105px;border-radius:34px;background:#0D0B24;padding:10px;box-shadow:0 30px 60px rgba(0,0,0,.4);transform:rotate(-8deg)}
+.dev .s{width:100%;height:100%;border-radius:26px;background:linear-gradient(160deg,#4C43C9,#1A1650);position:relative;overflow:hidden}
+.dev .s svg{position:absolute;inset:0}
+.dev .fix{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);background:var(--lime);color:var(--ink);border-radius:30px;padding:10px 16px;font-family:"Archivo";font-weight:800;font-size:15px;white-space:nowrap}
+.tool{position:absolute;right:30px;bottom:40px;width:150px;height:150px;border-radius:50%;background:rgba(200,244,58,.12);display:flex;align-items:center;justify-content:center}
+.tag{position:absolute;left:10px;top:60px;background:#fff;color:var(--ink);border-radius:16px;padding:12px 14px;box-shadow:0 14px 30px rgba(0,0,0,.25);font-size:14px;line-height:1.3}
+.tag b{display:block;font-family:"Archivo";font-weight:800;font-size:16px}
+/* price checker */
+section{padding:72px 0}
+.kick{font-family:"IBM Plex Mono";font-weight:600;font-size:13px;letter-spacing:.2em;color:#6C63D9}
+h2{font-family:"Archivo";font-weight:900;font-size:42px;line-height:1.05;letter-spacing:-.02em;margin:8px 0 10px}
+.lead{color:var(--mut);max-width:560px}
+.chk{display:grid;grid-template-columns:1.2fr .8fr;gap:22px;margin-top:30px}
+.panel{background:#fff;border:1px solid var(--line);border-radius:22px;padding:24px}
+.lab{font-family:"IBM Plex Mono";font-weight:600;font-size:12px;letter-spacing:.16em;color:var(--mut);margin:0 0 10px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:20px}
+.chips span{border:2px solid var(--line);border-radius:12px;padding:9px 14px;font-family:"Archivo";font-weight:700;font-size:15px;cursor:pointer}
+.chips span.on{border-color:var(--ind2);background:var(--ind2);color:#fff}
+.sel{display:flex;justify-content:space-between;align-items:center;border:2px solid var(--line);border-radius:12px;padding:11px 14px;font-family:"Archivo";font-weight:700;font-size:15px;margin-bottom:20px}
+.fix-list{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.fix-list label{display:flex;align-items:center;gap:10px;border:2px solid var(--line);border-radius:14px;padding:11px 12px;cursor:pointer}
+.fix-list label.on{border-color:var(--ind2);background:#F1EFFF}
+.fix-list svg{width:24px;height:24px;flex:none;stroke:var(--ind2);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.fix-list b{font-family:"Archivo";font-weight:700;font-size:15px;display:block;line-height:1.2}
+.fix-list small{font-size:12px;color:var(--mut)}
+.quote{background:var(--ind);color:#fff;border-radius:22px;padding:26px;display:flex;flex-direction:column}
+.quote .q1{font-family:"IBM Plex Mono";font-weight:600;font-size:12px;letter-spacing:.18em;color:#B9B5E8}
+.quote .m{font-family:"Archivo";font-weight:800;font-size:20px;margin:10px 0 2px}
+.quote .pr{font-family:"Archivo";font-weight:900;font-size:56px;line-height:1.05;color:var(--lime);letter-spacing:-.02em}
+.quote ul{list-style:none;padding:0;margin:16px 0 22px;display:flex;flex-direction:column;gap:8px;font-size:15px;color:#DEDBF8}
+.quote li::before{content:"✓  ";color:var(--lime);font-weight:900}
+.quote .btn{margin-top:auto}
+.quote .note{font-size:12px;color:#9F9AD6;margin-top:10px;text-align:center}
+/* accessories */
+.acc{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:30px}
+.item{background:#fff;border:1px solid var(--line);border-radius:20px;overflow:hidden}
+.item .ph{height:150px;display:flex;align-items:center;justify-content:center;background:#EEEDF8}
+.item .ph svg{width:84px;height:84px;stroke:var(--ind2);fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.item .bd{padding:16px 18px;display:flex;justify-content:space-between;align-items:end;gap:10px}
+.item b{font-family:"Archivo";font-weight:800;font-size:17px;display:block;line-height:1.25}
+.item small{color:var(--mut);font-size:13px}
+.item em{font-style:normal;font-family:"Archivo";font-weight:900;font-size:19px;white-space:nowrap}
+.why{background:var(--ind);color:#fff}
+.why .lead{color:#B9B5E8}
+.wg{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:28px}
+.wg div{border:1px solid rgba(255,255,255,.12);border-radius:20px;padding:22px}
+.wg i{font-style:normal;display:inline-flex;width:46px;height:46px;border-radius:14px;background:var(--lime);color:var(--ink);align-items:center;justify-content:center;font-family:"Archivo";font-weight:900;font-size:20px;margin-bottom:14px}
+.wg b{display:block;font-family:"Archivo";font-weight:800;font-size:19px}
+.wg span{color:#B9B5E8;font-size:15px}
+.visit .wrap{display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:stretch}
+.hrs div{display:flex;justify-content:space-between;padding:11px 0;border-bottom:1px solid var(--line)}
+.hrs div b{font-family:"Archivo";font-weight:700}
+.hrs .t{color:#5A50D6}
+.map{border-radius:22px;background:#E4E3F0;position:relative;overflow:hidden;min-height:300px}
+.map i{position:absolute;background:#F6F6FB}
+.map .pin{position:absolute;left:50%;top:45%;width:44px;height:44px;margin:-22px 0 0 -22px;background:var(--ind2);border-radius:50% 50% 50% 0;transform:rotate(-45deg)}
+.map .pin::after{content:"";position:absolute;left:14px;top:14px;width:16px;height:16px;border-radius:50%;background:var(--lime)}
+.map .btn{position:absolute;left:18px;bottom:18px}
+footer{background:var(--ind);color:#B9B5E8;padding:26px 0;font-size:14px}
+footer .wrap{display:flex;justify-content:space-between}
+@media (max-width:760px){
+  .wrap{padding:0 18px}
+  nav,header .btn{display:none}.burger{display:flex}
+  header .wrap{height:64px}
+  .hero{padding:30px 0 40px}
+  .hero .wrap,.chk,.visit .wrap{grid-template-columns:1fr;gap:24px}
+  .hero h1{font-size:46px}
+  .hero p{font-size:17px}
+  .art{display:none}
+  .facts{gap:16px}.facts div b{font-size:20px}
+  h2{font-size:32px}
+  section{padding:48px 0}
+  .acc{grid-template-columns:1fr 1fr;gap:10px}
+  .item .ph{height:110px}.item .ph svg{width:60px;height:60px}
+  .item .bd{flex-direction:column;align-items:flex-start;padding:12px 14px}
+  .wg{grid-template-columns:1fr}
+  .fix-list{grid-template-columns:1fr 1fr}
+  .quote .pr{font-size:48px}
+}
+</style></head><body>
+<div class="ribbon">Demo website · sample phone shop made by <a href="https://rodrigos-studio.github.io/">Rodrigo's Studio</a> · not a real business</div>
+<header><div class="wrap">
+  <a class="logo" href="#"><b>navo<i>.</i></b><span>MOBILE</span></a>
+  <nav><a href="#repair">Repair prices</a><a href="#accessories">Accessories</a><a href="#visit">Visit us</a></nav>
+  <a class="btn w" id="wa-top" href="#" target="_blank" rel="noopener">WhatsApp us</a>
+  <div class="burger"><svg width="20" height="14"><path d="M0 1h20M0 7h20M0 13h20" stroke="#fff" stroke-width="2"/></svg></div>
+</div></header>
+
+<div class="hero" id="top"><div class="wrap">
+  <div>
+    <div class="pill"><i id="dot"></i><span id="status">Open now · closes 8:00 pm</span></div>
+    <h1>Phone repairs <em>while you wait.</em></h1>
+    <p>Broken screen, weak battery or a charging port that won't charge? Check the price here, book on WhatsApp, and most fixes are done in about an hour.</p>
+    <div class="cta"><a class="btn l" href="#repair">Check a repair price</a><a class="btn g" href="#accessories">Accessories</a></div>
+    <div class="facts"><div><b>1 hour</b><span>Most repairs</span></div><div><b>3 months</b><span>Repair warranty</span></div><div><b>Fixed price</b><span>Told before we start</span></div></div>
+  </div>
+  <div class="art">
+    <div class="dev"><div class="s"><svg viewBox="0 0 190 390"><path d="M40 70 L95 150 L70 210 L120 290 M95 150 L150 120 M70 210 L20 250" stroke="rgba(255,255,255,.55)" stroke-width="2" fill="none"/></svg><div class="fix">✓ Fixed in 55 min</div></div></div>
+    <div class="tag"><b>Galaxy A54 · Screen</b>Rs 24,500 · 1 hour</div>
+  </div>
+</div></div>
+
+<section id="repair"><div class="wrap">
+  <div class="kick">REPAIR PRICES</div>
+  <h2>Know the price before you come.</h2>
+  <p class="lead">Pick your phone and what's wrong. The price includes the part, the fitting and a 3-month warranty.</p>
+  <div class="chk">
+    <div class="panel">
+      <div class="lab">BRAND</div>
+      <div class="chips" id="brands"><span class="on">Samsung</span><span>Apple</span><span>Xiaomi</span><span>Huawei</span><span>Other</span></div>
+      <div class="lab">MODEL</div>
+      <div class="sel"><span id="model">Galaxy A54</span><span>▾</span></div>
+      <div class="lab">WHAT'S WRONG?</div>
+      <div class="fix-list" id="fixes">
+        <label class="on"><svg viewBox="0 0 24 24"><rect x="6" y="2" width="12" height="20" rx="2"/><path d="M9 7l3 4-2 3 3 4"/></svg><div><b>Screen</b><small>1 hour</small></div></label>
+        <label><svg viewBox="0 0 24 24"><rect x="3" y="7" width="16" height="10" rx="2"/><path d="M21 11v2M7 10v4M10 10v4"/></svg><div><b>Battery</b><small>40 min</small></div></label>
+        <label><svg viewBox="0 0 24 24"><path d="M8 3v5M16 3v5M6 8h12v4a6 6 0 0 1-12 0zM12 18v3"/></svg><div><b>Charging port</b><small>40 min</small></div></label>
+        <label><svg viewBox="0 0 24 24"><rect x="6" y="2" width="12" height="20" rx="2"/><circle cx="12" cy="7" r="2"/></svg><div><b>Back glass</b><small>1 hour</small></div></label>
+      </div>
+    </div>
+    <div class="quote">
+      <div class="q1">YOUR PRICE</div>
+      <div class="m" id="qm">Galaxy A54 · Screen</div>
+      <div class="pr" id="qp">Rs 24,500</div>
+      <ul><li>Original-grade screen</li><li>Fixed in about 1 hour</li><li>3-month warranty</li></ul>
+      <a class="btn w" id="wa" href="#" target="_blank" rel="noopener">Book this on WhatsApp</a>
+      <div class="note">We reply in a few minutes during opening hours.</div>
+    </div>
+  </div>
+</div></section>
+
+<section id="accessories" style="padding-top:0"><div class="wrap">
+  <div class="kick">ACCESSORIES</div>
+  <h2>Chargers, covers and more.</h2>
+  <div class="acc">
+    <div class="item"><div class="ph"><svg viewBox="0 0 64 64"><rect x="18" y="14" width="28" height="30" rx="6"/><path d="M26 6v8M38 6v8M32 44v14"/></svg></div><div class="bd"><div><b>25W fast charger</b><small>Type-C, original</small></div><em>Rs 4,500</em></div></div>
+    <div class="item"><div class="ph"><svg viewBox="0 0 64 64"><path d="M14 50c10 0 10-36 20-36s10 36 20 36"/><rect x="8" y="46" width="12" height="10" rx="2"/><rect x="44" y="46" width="12" height="10" rx="2"/></svg></div><div class="bd"><div><b>Type-C cable</b><small>1 m, braided</small></div><em>Rs 1,200</em></div></div>
+    <div class="item"><div class="ph"><svg viewBox="0 0 64 64"><rect x="18" y="6" width="28" height="52" rx="6"/><path d="M24 6l22 22M18 24l28 28"/></svg></div><div class="bd"><div><b>Tempered glass</b><small>Fitted free</small></div><em>Rs 900</em></div></div>
+    <div class="item"><div class="ph"><svg viewBox="0 0 64 64"><rect x="18" y="6" width="28" height="52" rx="8"/><circle cx="38" cy="16" r="4"/></svg></div><div class="bd"><div><b>Phone covers</b><small>All models</small></div><em>Rs 1,500</em></div></div>
+    <div class="item"><div class="ph"><svg viewBox="0 0 64 64"><path d="M18 30a14 14 0 0 1 28 0"/><rect x="12" y="30" width="10" height="18" rx="4"/><rect x="42" y="30" width="10" height="18" rx="4"/></svg></div><div class="bd"><div><b>Wireless earbuds</b><small>Bluetooth 5.3</small></div><em>Rs 6,900</em></div></div>
+    <div class="item"><div class="ph"><svg viewBox="0 0 64 64"><rect x="10" y="18" width="40" height="28" rx="6"/><path d="M50 28h4v8h-4M20 26l-4 6h8l-4 6"/></svg></div><div class="bd"><div><b>Power bank</b><small>10,000 mAh</small></div><em>Rs 7,500</em></div></div>
+  </div>
+</div></section>
+
+<section class="why"><div class="wrap">
+  <div class="kick" style="color:var(--lime)">WHY NAVO</div>
+  <h2>Fixed in front of you.</h2>
+  <p class="lead">No leaving your phone for days. Watch us fix it at the counter.</p>
+  <div class="wg"><div><i>1h</i><b>Most fixes in an hour</b><span>Screens, batteries and ports are kept in stock.</span></div><div><i>3m</i><b>3-month warranty</b><span>If the same part fails, we fix it again for free.</span></div><div><i>Rs</i><b>Price first</b><span>You know the full price before we open the phone.</span></div></div>
+</div></section>
+
+<section class="visit" id="visit"><div class="wrap">
+  <div><div class="kick">VISIT US</div><h2>Open every day.</h2>
+    <div class="hrs"><div class="t"><span>Mon – Sat · open now</span><b>9:00 am – 8:00 pm</b></div><div><span>Sunday</span><b>10:00 am – 4:00 pm</b></div><div><span>Poya days</span><b>Closed</b></div></div></div>
+  <div class="map" id="map"><div class="pin"></div><span class="btn l">Get directions</span></div>
+</div></section>
+<footer><div class="wrap"><span>Demo site by <a href="https://rodrigos-studio.github.io/" style="color:inherit">Rodrigo's Studio</a></span><span>In this demo, bookings go to Rodrigo's Studio</span></div></footer>
+<script>
+let m='';[[0,80,2000,14],[0,200,2000,22],[120,0,16,600],[380,0,24,600],[560,0,14,600],[0,280,600,10]].forEach(([l,t,w,h])=>m+=`<i style="left:${l}px;top:${t}px;width:${w}px;height:${h}px"></i>`);
+document.getElementById('map').insertAdjacentHTML('afterbegin',m);
+const WA_NUMBER="94724996667";
+const MODELS={Samsung:"Galaxy A54",Apple:"iPhone 13",Xiaomi:"Redmi Note 13",Huawei:"Nova 11",Other:"Other model"};
+const PRICES={Samsung:{Screen:24500,Battery:7500,"Charging port":3500,"Back glass":6000},Apple:{Screen:38000,Battery:14500,"Charging port":9500,"Back glass":16000},Xiaomi:{Screen:16500,Battery:6500,"Charging port":3000,"Back glass":4500},Huawei:{Screen:22000,Battery:7000,"Charging port":3500,"Back glass":5500}};
+const TIME={Screen:"about 1 hour",Battery:"about 40 min","Charging port":"about 40 min","Back glass":"about 1 hour"};
+const PART={Screen:"Original-grade screen",Battery:"Original-grade battery","Charging port":"New charging port","Back glass":"New back glass"};
+let brand="Samsung",fix="Screen";
+const rs=n=>"Rs "+n.toLocaleString("en-US");
+function waLink(msg){return "https://wa.me/"+WA_NUMBER+"?text="+encodeURIComponent(msg)}
+function render(){
+  document.querySelectorAll('#brands span').forEach(c=>c.classList.toggle('on',c.textContent===brand));
+  document.querySelectorAll('#fixes label').forEach(l=>l.classList.toggle('on',l.querySelector('b').textContent===fix));
+  document.getElementById('model').textContent=MODELS[brand];
+  const p=PRICES[brand]&&PRICES[brand][fix];
+  document.getElementById('qm').textContent=MODELS[brand]+' · '+fix;
+  document.getElementById('qp').textContent=p?rs(p):'Ask us';
+  document.querySelector('.quote ul').innerHTML=`<li>${PART[fix]}</li><li>Fixed in ${TIME[fix]}</li><li>3-month warranty</li>`;
+  const msg=p?`Hi Navo Mobile! I'd like to book: ${MODELS[brand]} · ${fix} · ${rs(p)}. When can I come?`:`Hi Navo Mobile! I need a ${fix.toLowerCase()} repair. My phone is: `;
+  document.getElementById('wa').href=waLink(msg);
+}
+document.querySelectorAll('#brands span').forEach(c=>c.addEventListener('click',()=>{brand=c.textContent;render()}));
+document.querySelectorAll('#fixes label').forEach(l=>l.addEventListener('click',()=>{fix=l.querySelector('b').textContent;render()}));
+document.getElementById('wa-top').href=waLink("Hi Navo Mobile! I have a question about a phone repair.");
+window.setQuote=f=>{fix=f;render()};
+render();
+(function(){const now=new Date(new Date().toLocaleString("en-US",{timeZone:"Asia/Colombo"}));const d=now.getDay(),m=now.getHours()*60+now.getMinutes();
+const h=d===0?[600,960]:[540,1200];const open=m>=h[0]&&m<h[1];const fmt=x=>{const H=Math.floor(x/60),M=x%60;return (H%12||12)+":"+String(M).padStart(2,"0")+(H<12?" am":" pm")};
+document.getElementById("status").textContent=open?"Open now · closes "+fmt(h[1]):"Closed now · book on WhatsApp any time";
+if(!open)document.getElementById("dot").style.cssText="background:#F2C230;box-shadow:0 0 10px #F2C230";})();
+document.fonts.ready.then(()=>{window.ready=true});
+</script>
+</body></html>
