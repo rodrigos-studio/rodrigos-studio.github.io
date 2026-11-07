@@ -154,6 +154,53 @@ form{background:var(--paper);border:1px solid var(--line);border-radius:14px;pad
 .rank{margin:14px 0 0;padding-top:12px;border-top:1px dashed var(--line);font-family:var(--si);font-weight:600}
 .rank small{display:block;font-family:var(--body);font-weight:400;color:var(--muted);font-size:13.5px}
 footer{padding-block:36px 40px;color:var(--muted);font-size:14px;text-align:center}
+
+
+
+/* ---------- RS demo effects: slanted banners, words that fill in, floating dots, back to top ---------- */
+.fx-tick{position:relative;height:150px;overflow:hidden;overflow:clip}
+.fx-band{position:absolute;left:-700px;right:-700px;height:54px;display:flex;align-items:center}
+.fx-band.b1{top:48px;background:var(--fx-b1);color:var(--fx-b1-ink);transform:rotate(-3deg);z-index:2;box-shadow:0 10px 24px rgba(0,0,0,.14)}
+.fx-band.b2{top:44px;background:var(--fx-b2);color:var(--fx-b2-ink);transform:rotate(2.4deg)}
+.fx-shift{will-change:transform}
+.fx-run,.fx-set{display:flex}
+.fx-run{width:max-content;animation:fx-mx 60s linear infinite}
+.b2 .fx-run{animation-direction:reverse;animation-duration:70s}
+@keyframes fx-mx{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.fx-run span{display:inline-flex;align-items:center;white-space:nowrap;padding-left:20px;font-family:var(--fx-font);font-weight:var(--fx-weight);font-size:var(--fx-size,22px);letter-spacing:var(--fx-track,.05em);text-transform:var(--fx-case,uppercase);line-height:1.1}
+.fx-run span.s{font-family:var(--fx-si);font-weight:var(--fx-si-weight,700);letter-spacing:0;text-transform:none;font-size:20px}
+.fx-run i{font-style:normal;padding-left:20px;font-size:20px;font-weight:900;line-height:1}
+.b1 .fx-run i{color:var(--fx-b1-sep)}
+.b2 .fx-run i{color:var(--fx-b2-sep)}
+.b1 .fx-run span,.b1 .fx-run i{background:var(--fx-b1)}
+.b2 .fx-run span,.b2 .fx-run i{background:var(--fx-b2)}
+@media (max-width:640px){
+  .fx-tick{height:130px}.fx-band{height:44px}.fx-band.b1{top:28px;transform:rotate(-4deg)}.fx-band.b2{top:54px;transform:rotate(3deg)}
+  .fx-run span{font-size:calc(var(--fx-size,22px) * .8);padding-left:16px}.fx-run span.s{font-size:16.5px}.fx-run i{font-size:16px;padding-left:16px}
+}
+.fx-say{padding-block:26px 6px}
+.fx-wrap{max-width:var(--fx-max,1080px);margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.fx-fill{margin:0;font-family:var(--fx-say-font);font-weight:var(--fx-say-weight,700);font-size:clamp(24px,3.4vw,40px);line-height:1.5;max-width:26em;color:var(--fx-ink);text-wrap:pretty}
+.fx-fill b{font-weight:inherit;color:var(--fx-accent)}
+.fx-fill.on .w{color:color-mix(in srgb,var(--fx-ink) 52%,var(--fx-bg));transition:color .35s ease}
+.fx-fill.on .w.lit{color:var(--fx-ink)}
+.fx-fill.on b .w.lit{color:var(--fx-accent)}
+.fx-dots{position:fixed;inset:0;z-index:3;pointer-events:none;overflow:hidden}
+.fx-dots .d{position:absolute;will-change:transform}
+.fx-dots .d i{display:block;border-radius:50%;animation:fx-drift var(--t,16s) ease-in-out infinite alternate}
+@keyframes fx-drift{0%{transform:translate(0,0)}50%{transform:translate(var(--dx,14px),calc(var(--dy,10px) * -1))}100%{transform:translate(calc(var(--dx,14px) * -.6),var(--dy,10px))}}
+.fx-top{position:fixed;z-index:4;right:max(16px,env(safe-area-inset-right,0px));bottom:max(calc(16px + env(safe-area-inset-bottom,0px)),calc(var(--fx-lift,0px) + 12px));width:54px;height:54px;border-radius:50%;border:0;padding:0;margin:0;background:var(--fx-top-bg);color:var(--fx-top-ink);cursor:pointer;display:grid;place-items:center;box-shadow:0 10px 24px rgba(0,0,0,.25);opacity:0;transform:translateY(14px) scale(.9);pointer-events:none;transition:opacity .25s,transform .25s,bottom .2s}
+.fx-top.show{opacity:1;transform:none;pointer-events:auto}
+.fx-top svg{grid-area:1/1}
+.fx-top .ring{width:54px;height:54px;transform:rotate(-90deg)}
+.fx-top .ring circle{fill:none;stroke-width:3}
+.fx-top .ring .bg{stroke:color-mix(in srgb,var(--fx-top-ink) 22%,transparent)}
+.fx-top .ring .fg{stroke:var(--fx-top-ring);stroke-linecap:round}
+.fx-top .arr{width:20px;height:20px}
+.fx-top:focus-visible{outline:3px solid var(--fx-top-ring);outline-offset:3px}
+@media (prefers-reduced-motion:reduce){.fx-run{animation:none}.fx-dots{display:none}.fx-top,.fx-fill.on .w{transition:none}}
+:root{--fx-b1:#2B7A4C;--fx-b1-ink:#FFFFFF;--fx-b1-sep:#F0B37E;--fx-b2:#E7EEE6;--fx-b2-ink:#13271F;--fx-b2-sep:#B4672A;--fx-font:var(--display);--fx-weight:700;--fx-track:.02em;--fx-case:none;--fx-si:var(--si);--fx-si-weight:600;--fx-say-font:var(--si-head);--fx-say-weight:600;--fx-ink:var(--ink);--fx-bg:var(--bg);--fx-accent:var(--contour);--fx-top-bg:var(--ink);--fx-top-ink:var(--bg);--fx-top-ring:var(--forest);--fx-max:1080px}
+/* ---------- end RS demo effects ---------- */
 </style>
 
 <div class="ribbon">Demo website · sample tuition class made by <b><a href="https://rodrigos-studio.github.io/" style="color:inherit;text-decoration:underline;text-underline-offset:2px">Rodrigo's Studio</a></b> · not a real class</div>
@@ -181,7 +228,8 @@ footer{padding-block:36px 40px;color:var(--muted);font-size:14px;text-align:cent
 </header>
 
 <main>
-  <section class="wrap" id="timetable" aria-labelledby="tt-h">
+  <!-- rs-demo-fx --><div class="fx-tick" aria-hidden="true"><div class="fx-band b2"><div class="fx-shift"><div class="fx-run"><div class="fx-set"><span class="s">කෝට්ටේ</span><i>✱</i><span>Zoom</span><i>✱</i><span class="s">පළමු පන්තිය නොමිලේ</span><i>✱</i><span class="s">2027 සහ 2028 කණ්ඩායම්</span><i>✱</i><span class="s">කෝට්ටේ</span><i>✱</i><span>Zoom</span><i>✱</i><span class="s">පළමු පන්තිය නොමිලේ</span><i>✱</i><span class="s">2027 සහ 2028 කණ්ඩායම්</span><i>✱</i></div></div></div></div><div class="fx-band b1"><div class="fx-shift"><div class="fx-run"><div class="fx-set"><span class="s">භූගෝල විද්‍යාව</span><i>✱</i><span>A/L Geography</span><i>✱</i><span class="s">න්‍යාය</span><i>✱</i><span class="s">පුනරීක්ෂණ</span><i>✱</i><span class="s">ප්‍රශ්න පත්‍ර</span><i>✱</i><span class="s">භූගෝල විද්‍යාව</span><i>✱</i><span>A/L Geography</span><i>✱</i><span class="s">න්‍යාය</span><i>✱</i><span class="s">පුනරීක්ෂණ</span><i>✱</i><span class="s">ප්‍රශ්න පත්‍ර</span><i>✱</i></div></div></div></div></div><!-- /rs-demo-fx -->
+<section class="wrap" id="timetable" aria-labelledby="tt-h">
     <div class="sh"><h2 id="tt-h">පන්ති කාලසටහන සහ ගාස්තු</h2><span class="en2">Timetable &amp; fees</span></div>
     <div class="tt" id="tt"></div>
   </section>
@@ -214,7 +262,8 @@ footer{padding-block:36px 40px;color:var(--muted);font-size:14px;text-align:cent
     </div>
   </section>
 
-  <section class="wrap" aria-labelledby="u-h">
+  <!-- rs-demo-fx --><div class="fx-say"><div class="fx-wrap"><p class="fx-fill">2025 උසස් පෙළ: <b>A සාමාර්ථ 14ක්</b>, 96% සමත්. කොළඹ දිස්ත්‍රික්කයේ <b>3 වෙනියා</b> අපේ පන්තියෙන්.</p></div></div><!-- /rs-demo-fx -->
+<section class="wrap" aria-labelledby="u-h">
     <div class="sh"><h2 id="u-h">විෂය නිර්දේශය</h2><span class="en2">What we cover</span></div>
     <div class="units">
       <div class="unit"><h3>භෞතික භූගෝල විද්‍යාව</h3><p class="en3">Physical geography</p>
@@ -390,5 +439,100 @@ render(); setInterval(render, 60_000);
 })();
 </script>
 
+<!-- rs-demo-fx -->
+<script>
+/* RS demo effects: banners, words that fill in, floating dots, back to top */
+(() => {
+const FX = {"dots": ["#2B7A4C", "#B4672A", "#2C73B0", "ring:#2B7A4C"], "bar": null};
+const RM = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const clamp = (x, a, b) => Math.min(b, Math.max(a, x));
+document.querySelectorAll('.fx-run').forEach(r => r.appendChild(r.firstElementChild.cloneNode(true)));
+const tick = document.querySelector('.fx-tick'), shifts = [...document.querySelectorAll('.fx-tick .fx-shift')];
+// banners run edge to edge even when the page content sits in a narrower column
+const bleed = () => {
+  if (!tick) return;
+  tick.style.marginLeft = '0px'; tick.style.width = 'auto';
+  const left = tick.getBoundingClientRect().left;
+  tick.style.width = document.documentElement.clientWidth + 'px'; tick.style.marginLeft = (-left) + 'px';
+};
+bleed(); addEventListener('resize', bleed);
+const fills = [...document.querySelectorAll('.fx-fill')];
+fills.forEach(p => {
+  const wrap = node => [...node.childNodes].forEach(n => {
+    if (n.nodeType === 3) {
+      const f = document.createDocumentFragment();
+      n.textContent.split(/(\s+)/).forEach(t => {
+        if (!t) return;
+        if (/^\s+$/.test(t)) { f.appendChild(document.createTextNode(t)); return; }
+        const s = document.createElement('span'); s.className = 'w'; s.textContent = t; f.appendChild(s);
+      });
+      n.replaceWith(f);
+    } else if (n.nodeType === 1) wrap(n);
+  });
+  wrap(p); p._w = [...p.querySelectorAll('.w')];
+  if (!RM) p.classList.add('on');
+});
+const dots = [];
+if (!RM) {
+  const layer = document.createElement('div'); layer.className = 'fx-dots'; layer.setAttribute('aria-hidden', 'true');
+  const spec = [[5,18,9],[90,12,7],[13,47,6],[94,40,10],[54,7,5],[74,66,8],[3,80,7],[41,90,6],[97,88,6],[29,29,5],[63,37,6],[83,94,8]];
+  spec.slice(0, innerWidth < 700 ? 7 : spec.length).forEach(([x, y, sz], i) => {
+    const d = document.createElement('span'), dot = document.createElement('i'), c = FX.dots[i % FX.dots.length];
+    d.className = 'd'; d.style.left = x + '%'; d.style.top = y + '%';
+    dot.style.width = dot.style.height = sz + 'px';
+    if (c.startsWith('ring:')) dot.style.border = '1.5px solid ' + c.slice(5); else dot.style.background = c;
+    dot.style.setProperty('--t', (12 + (i * 7) % 11) + 's');
+    dot.style.setProperty('--dx', ((i % 2 ? 1 : -1) * (10 + (i % 5) * 4)) + 'px');
+    dot.style.setProperty('--dy', (8 + (i % 4) * 5) + 'px');
+    dot.style.animationDelay = (-i * 1.7) + 's';
+    d.appendChild(dot); layer.appendChild(d);
+    dots.push({ el: d, y: y / 100, depth: .1 + (i % 5) * .06 });
+  });
+  document.body.appendChild(layer);
+}
+const top = document.createElement('button');
+top.type = 'button'; top.className = 'fx-top'; top.setAttribute('aria-label', 'Back to top');
+top.innerHTML = '<svg class="ring" viewBox="0 0 54 54" aria-hidden="true"><circle class="bg" cx="27" cy="27" r="24.5"/><circle class="fg" cx="27" cy="27" r="24.5" pathLength="100" stroke-dasharray="100" stroke-dashoffset="100"/></svg><svg class="arr" viewBox="0 0 20 20" aria-hidden="true"><path d="M10 16V4M4.5 9.5L10 4l5.5 5.5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+document.body.appendChild(top);
+const ring = top.querySelector('.fg'), bar = FX.bar ? document.querySelector(FX.bar) : null;
+top.addEventListener('click', () => window.scrollTo({ top: 0, behavior: RM ? 'auto' : 'smooth' }));
+let queued = false;
+function update() {
+  queued = false;
+  const y = scrollY, vh = innerHeight, max = Math.max(1, document.documentElement.scrollHeight - vh);
+  top.classList.toggle('show', y > vh * .9);
+  ring.style.strokeDashoffset = (100 - clamp(y / max, 0, 1) * 100).toFixed(1);
+  let lift = 0;
+  if (bar && !bar.hidden) { const r = bar.getBoundingClientRect(); if (r.height && r.top < vh) lift = vh - r.top; }
+  top.style.setProperty('--fx-lift', lift + 'px');
+  if (RM) return;
+  fills.forEach(p => {
+    const r = p.getBoundingClientRect();
+    if (r.bottom < -vh || r.top > vh * 2) return;
+    const lit = Math.round(clamp((vh * .9 - r.top) / (r.height + vh * .4), 0, 1) * p._w.length * 1.05);
+    p._w.forEach((w, i) => w.classList.toggle('lit', i < lit));
+  });
+  if (tick) {
+    const r = tick.getBoundingClientRect();
+    if (r.bottom > -60 && r.top < vh + 60) {
+      const o = (r.top - vh / 2) * .32;
+      shifts[0].style.transform = `translate3d(${o.toFixed(1)}px,0,0)`;
+      shifts[1].style.transform = `translate3d(${(-o).toFixed(1)}px,0,0)`;
+    }
+  }
+  const H = vh + 30;
+  dots.forEach(d => {
+    const y0 = d.y * vh, yy = ((y0 - y * d.depth + 15) % H + H) % H - 15;
+    d.el.style.transform = `translate3d(0,${(yy - y0).toFixed(1)}px,0)`;
+  });
+}
+const ask = () => { if (!queued) { queued = true; requestAnimationFrame(update); } };
+addEventListener('scroll', ask, { passive: true });
+addEventListener('resize', ask);
+if (bar) new MutationObserver(ask).observe(bar, { attributes: true });
+update();
+})();
+</script>
+<!-- /rs-demo-fx -->
 </body>
 </html>
