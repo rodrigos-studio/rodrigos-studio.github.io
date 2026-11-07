@@ -105,6 +105,14 @@ h2.big{font-family:var(--display);font-weight:400;font-size:clamp(32px,5vw,44px)
 .item .right{grid-row:1 / span 2;grid-column:2;display:flex;flex-direction:column;align-items:flex-end;gap:6px}
 .price{font-weight:800}
 .add{min-width:84px;min-height:36px;border-radius:10px;border:2px solid var(--teal);background:transparent;color:var(--teal);font-weight:800;cursor:pointer}
+.item.has-ph{grid-template-columns:64px minmax(0,1fr) auto}
+.item .ph{grid-row:1 / span 2;grid-column:1;width:64px;height:64px;border-radius:12px;object-fit:cover;background:var(--line)}
+.item.has-ph .nm,.item.has-ph .ds{grid-column:2}
+.item.has-ph .right{grid-column:3}
+.item.sold .nm,.item.sold .ds,.item.sold .price,.item.sold .ph{opacity:.5}
+.item.sold .price{text-decoration:line-through}
+.sold-lbl{display:inline-flex;flex-direction:column;align-items:center;font-weight:800;font-size:13px;color:var(--chili);border:2px dashed var(--chili);border-radius:10px;padding:4px 10px;line-height:1.2}
+.sold-lbl .si{font-family:var(--sinhala);font-size:12px;font-weight:700}
 .step{display:inline-flex;align-items:center;border-radius:10px;background:var(--teal);color:var(--teal-ink);overflow:hidden}
 .step button{width:34px;height:36px;border:0;background:transparent;color:inherit;font-size:20px;font-weight:800;cursor:pointer}
 .step span{min-width:22px;text-align:center;font-weight:800}
@@ -143,6 +151,7 @@ footer{padding-block:28px 120px;color:var(--muted);font-size:14px;text-align:cen
 .row{display:flex;gap:10px;flex-wrap:wrap}
 .row .btn{flex:1 1 220px}
 @media (prefers-reduced-motion:no-preference){.panel{animation:up .22s ease-out}@keyframes up{from{transform:translateY(24px);opacity:.6}to{transform:none;opacity:1}}}
+
 
 
 
@@ -187,6 +196,7 @@ footer{padding-block:28px 120px;color:var(--muted);font-size:14px;text-align:cen
 .fx-top .ring .fg{stroke:var(--fx-top-ring);stroke-linecap:round}
 .fx-top .arr{width:20px;height:20px}
 .fx-top:focus-visible{outline:3px solid var(--fx-top-ring);outline-offset:3px}
+.fx-top.left{right:auto;left:max(16px,env(safe-area-inset-left,0px))}
 @media (prefers-reduced-motion:reduce){.fx-run{animation:none}.fx-dots{display:none}.fx-top,.fx-fill.on .w{transition:none}}
 :root{--fx-b1:#F4B52C;--fx-b1-ink:#1D1A16;--fx-b1-sep:#C93A27;--fx-b2:#0A7F7B;--fx-b2-ink:#FFFFFF;--fx-b2-sep:#F4B52C;--fx-font:var(--display);--fx-weight:400;--fx-si:var(--sinhala);--fx-si-weight:700;--fx-say-font:var(--sinhala);--fx-ink:var(--ink);--fx-bg:var(--bg);--fx-accent:var(--chili);--fx-top-bg:var(--ink);--fx-top-ink:var(--bg);--fx-top-ring:var(--mango);--fx-max:1040px}
 /* ---------- end RS demo effects ---------- */
@@ -279,45 +289,19 @@ footer{padding-block:28px 120px;color:var(--muted);font-size:14px;text-align:cen
   </div>
 </div>
 
+<script src="menu-data.js"></script>
 <script>
 (() => {
 const WA_NUMBER = "94724996667";   // demo orders go to Rodrigo's Studio; a real site uses the café's number
 const HOURS = [         // Sunday first, 24h "HH:MM"
   ["Sunday", "08:00", "14:00"], ["Monday", "07:00", "21:30"], ["Tuesday", "07:00", "21:30"],
   ["Wednesday", "07:00", "21:30"], ["Thursday", "07:00", "21:30"], ["Friday", "07:00", "21:30"], ["Saturday", "07:00", "21:30"]];
-const MENU = [
-  { id: "tea", name: "Tea & coffee", si: "තේ සහ කෝපි", items: [
-    ["Plain tea", "Strong Ceylon tea, sugar on the side", 80],
-    ["Milk tea", "Pulled tea with full cream milk", 180, "Popular"],
-    ["Ginger tea", "Plain tea with fresh ginger", 150],
-    ["Kopi", "Filter coffee with jaggery", 250],
-    ["Iced coffee", "Cold coffee with milk", 550]]},
-  { id: "short", name: "Short eats", si: "කෙටි කෑම", items: [
-    ["Fish bun", "Soft bun with spicy fish and potato", 120, "Popular"],
-    ["Parippu vadai", "Crispy dhal fritter with green chilli", 90],
-    ["Chicken roll", "Crumbed roll with curried chicken", 150],
-    ["Egg patty", "Flaky patty with egg and vegetables", 130],
-    ["Vegetable roti", "Folded roti with potato and leek", 110]]},
-  { id: "kottu", name: "Kottu & rice", si: "කොත්තු සහ බත්", items: [
-    ["Chicken kottu", "Chopped godamba roti, chicken, egg and gravy", 1100, "Popular"],
-    ["Egg kottu", "Two eggs, leeks and carrot", 850],
-    ["Cheese kottu", "Chicken kottu finished with melted cheese", 1450],
-    ["Rice & curry", "Red rice with four vegetable curries and papadam", 650]]},
-  { id: "sweets", name: "Sweets", si: "රසකැවිලි", items: [
-    ["Watalappan", "Jaggery and coconut custard, spiced with cardamom", 300],
-    ["Love cake", "Semolina and cashew cake, one slice", 280],
-    ["Curd & treacle", "Buffalo curd with kithul treacle", 450]]},
-];
-const SI = {            // Sinhala name shown next to each item
-  "Plain tea": "කහට", "Milk tea": "කිරි තේ", "Ginger tea": "ඉඟුරු තේ", "Kopi": "කෝපි", "Iced coffee": "අයිස් කෝපි",
-  "Fish bun": "මාළු පාන්", "Parippu vadai": "පරිප්පු වඩේ", "Chicken roll": "චිකන් රෝල්", "Egg patty": "බිත්තර පැටිස්", "Vegetable roti": "එළවළු රොටී",
-  "Chicken kottu": "චිකන් කොත්තු", "Egg kottu": "බිත්තර කොත්තු", "Cheese kottu": "චීස් කොත්තු", "Rice & curry": "බත් සහ කරි",
-  "Watalappan": "වටලප්පන්", "Love cake": "ලව් කේක්", "Curd & treacle": "මී කිරි සහ පැණි" };
+let MENU = [];           // comes from menu-data.js (the owner edits it on /athal-kade/edit/)
 const $ = s => document.querySelector(s);
 const rs = n => "Rs " + n.toLocaleString("en-LK");
-const qty = {};
-const items = {};
-MENU.forEach(c => c.items.forEach(([n, d, p, tag]) => { items[n] = { n, d, p, tag }; }));
+const esc = s => String(s == null ? "" : s).replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]);
+const qty = {};         // item id -> how many
+const items = {};       // item id -> item
 
 /* open now (Sri Lanka time) */
 function lkNow() {
@@ -344,24 +328,31 @@ function renderHours() {
 }
 
 /* menu */
+function useMenu(m) {
+  MENU = m.cats.filter(c => c.items.length);
+  for (const k in items) delete items[k];
+  MENU.forEach(c => c.items.forEach(it => { items[it.id] = it; }));
+  for (const id in qty) if (!items[id] || items[id].sold) delete qty[id];
+}
 function renderMenu() {
-  $("#cats").innerHTML = MENU.map(c => `<a href="#cat-${c.id}">${c.name}</a>`).join("");
+  $("#cats").innerHTML = MENU.map(c => `<a href="#cat-${esc(c.id)}">${esc(c.name)}</a>`).join("");
   $("#menu-list").innerHTML = MENU.map(c => `
-    <div class="cat" id="cat-${c.id}">
-      <h3>${c.name} <span class="si">${c.si}</span></h3>
-      ${c.items.map(([n]) => itemHTML(items[n])).join("")}
+    <div class="cat" id="cat-${esc(c.id)}">
+      <h3>${esc(c.name)} <span class="si">${esc(c.si)}</span></h3>
+      ${c.items.map(it => itemHTML(it)).join("")}
     </div>`).join("");
 }
 function itemHTML(it) {
-  const q = qty[it.n] || 0;
-  const ctl = q ? `<span class="step" aria-label="${it.n} quantity"><button type="button" data-minus="${it.n}" aria-label="One less ${it.n}">−</button><span>${q}</span><button type="button" data-plus="${it.n}" aria-label="One more ${it.n}">+</button></span>`
-                : `<button class="add" type="button" data-plus="${it.n}">Add</button>`;
-  return `<div class="item" data-item="${it.n}"><div class="nm">${it.n}${it.tag ? `<span class="tag">${it.tag}</span>` : ""}${SI[it.n] ? ` <span class="si">${SI[it.n]}</span>` : ""}</div>
-    <div class="right"><span class="price num">${rs(it.p)}</span>${ctl}</div><div class="ds">${it.d}</div></div>`;
+  const q = qty[it.id] || 0, id = esc(it.id), n = esc(it.n);
+  const ctl = it.sold ? `<span class="sold-lbl">Sold out<span class="si">ඉවරයි</span></span>`
+    : q ? `<span class="step" aria-label="${n} quantity"><button type="button" data-minus="${id}" aria-label="One less ${n}">−</button><span>${q}</span><button type="button" data-plus="${id}" aria-label="One more ${n}">+</button></span>`
+    : `<button class="add" type="button" data-plus="${id}">Add</button>`;
+  return `<div class="item${it.img ? " has-ph" : ""}${it.sold ? " sold" : ""}" data-item="${id}">${it.img ? `<img class="ph" src="${esc(it.img)}" alt="" loading="lazy">` : ""}<div class="nm">${n}${it.tag ? `<span class="tag">${esc(it.tag)}</span>` : ""}${it.si ? ` <span class="si">${esc(it.si)}</span>` : ""}</div>
+    <div class="right"><span class="price num">${rs(it.p)}</span>${ctl}</div><div class="ds">${esc(it.d)}</div></div>`;
 }
-function refreshItem(n) {
-  const el = document.querySelector(`[data-item="${CSS.escape(n)}"]`);
-  if (el) el.outerHTML = itemHTML(items[n]);
+function refreshItem(id) {
+  const el = document.querySelector(`[data-item="${CSS.escape(id)}"]`);
+  if (el) el.outerHTML = itemHTML(items[id]);
 }
 function totals() {
   let count = 0, sum = 0;
@@ -376,13 +367,13 @@ function renderBar() {
 }
 document.addEventListener("click", e => {
   const p = e.target.closest("[data-plus]"), m = e.target.closest("[data-minus]");
-  if (p) { const n = p.dataset.plus; qty[n] = (qty[n] || 0) + 1; refreshItem(n); renderBar(); renderSheet(); }
+  if (p) { const n = p.dataset.plus; if (!items[n] || items[n].sold) return; qty[n] = (qty[n] || 0) + 1; refreshItem(n); renderBar(); renderSheet(); }
   if (m) { const n = m.dataset.minus; qty[n] = Math.max(0, (qty[n] || 0) - 1); if (!qty[n]) delete qty[n]; refreshItem(n); renderBar(); renderSheet(); if (!totals().count) closeSheet(); }
 });
 
 /* order sheet */
 function message() {
-  const lines = Object.entries(qty).map(([n, q]) => `${q} × ${n} — ${rs(q * items[n].p)}`);
+  const lines = Object.entries(qty).map(([id, q]) => `${q} × ${items[id].n} — ${rs(q * items[id].p)}`);
   const { sum } = totals();
   const del = $("#how-del").checked;
   const name = $("#o-name").value.trim(), addr = $("#o-addr").value.trim(), note = $("#o-note").value.trim();
@@ -391,7 +382,7 @@ function message() {
     name ? `Name: ${name}` : "", note ? `Note: ${note}` : ""].filter(Boolean).join("\n");
 }
 function renderSheet() {
-  $("#lines").innerHTML = Object.entries(qty).map(([n, q]) => `<li><span>${q} × ${n}</span><span>${rs(q * items[n].p)}</span></li>`).join("");
+  $("#lines").innerHTML = Object.entries(qty).map(([id, q]) => `<li><span>${q} × ${esc(items[id].n)}</span><span>${rs(q * items[id].p)}</span></li>`).join("");
   $("#total").textContent = rs(totals().sum);
   $("#addr-wrap").hidden = !$("#how-del").checked;
   const msg = message();
@@ -412,7 +403,12 @@ async function copy(text, btn, el) {
 $("#copy-msg").addEventListener("click", e => copy(message(), e.currentTarget, $("#msg")));
 $("#copy-phone").addEventListener("click", e => copy($("#phone").textContent, e.currentTarget, $("#phone")));
 
-renderHours(); renderMenu(); renderBar();
+renderHours(); renderBar();
+const fresh = () => RSMenu.load().then(m => { useMenu(m); renderMenu(); renderBar(); }).catch(() => { useMenu(RSMenu.DEFAULT()); renderMenu(); });
+fresh();
+// demo: when the owner saves on the edit page in another tab, the menu updates here too
+addEventListener("storage", e => { if (e.key === RSMenu.KEY) fresh(); });
+addEventListener("pageshow", e => { if (e.persisted) fresh(); });
 setInterval(renderHours, 60_000);
 })();
 </script>
@@ -421,7 +417,7 @@ setInterval(renderHours, 60_000);
 <script>
 /* RS demo effects: banners, words that fill in, floating dots, back to top */
 (() => {
-const FX = {"dots": ["#0A7F7B", "#C93A27", "#F4B52C", "ring:#0A7F7B"], "bar": "#bar"};
+const FX = {"dots": ["#0A7F7B", "#C93A27", "#F4B52C", "ring:#0A7F7B"], "bar": "#bar", "left": true};
 const RM = matchMedia('(prefers-reduced-motion: reduce)').matches;
 const clamp = (x, a, b) => Math.min(b, Math.max(a, x));
 document.querySelectorAll('.fx-run').forEach(r => r.appendChild(r.firstElementChild.cloneNode(true)));
@@ -469,7 +465,7 @@ if (!RM) {
   document.body.appendChild(layer);
 }
 const top = document.createElement('button');
-top.type = 'button'; top.className = 'fx-top'; top.setAttribute('aria-label', 'Back to top');
+top.type = 'button'; top.className = 'fx-top' + (FX.left ? ' left' : ''); top.setAttribute('aria-label', 'Back to top');
 top.innerHTML = '<svg class="ring" viewBox="0 0 54 54" aria-hidden="true"><circle class="bg" cx="27" cy="27" r="24.5"/><circle class="fg" cx="27" cy="27" r="24.5" pathLength="100" stroke-dasharray="100" stroke-dashoffset="100"/></svg><svg class="arr" viewBox="0 0 20 20" aria-hidden="true"><path d="M10 16V4M4.5 9.5L10 4l5.5 5.5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>';
 document.body.appendChild(top);
 const ring = top.querySelector('.fg'), bar = FX.bar ? document.querySelector(FX.bar) : null;

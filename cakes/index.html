@@ -147,6 +147,7 @@ footer{padding-block:30px 40px;color:var(--muted);font-size:14px;text-align:cent
 
 
 
+
 /* ---------- RS demo effects: slanted banners, words that fill in, floating dots, back to top ---------- */
 .fx-tick{position:relative;height:150px;overflow:hidden;overflow:clip}
 .fx-band{position:absolute;left:-700px;right:-700px;height:54px;display:flex;align-items:center}
@@ -188,6 +189,7 @@ footer{padding-block:30px 40px;color:var(--muted);font-size:14px;text-align:cent
 .fx-top .ring .fg{stroke:var(--fx-top-ring);stroke-linecap:round}
 .fx-top .arr{width:20px;height:20px}
 .fx-top:focus-visible{outline:3px solid var(--fx-top-ring);outline-offset:3px}
+.fx-top.left{right:auto;left:max(16px,env(safe-area-inset-left,0px))}
 @media (prefers-reduced-motion:reduce){.fx-run{animation:none}.fx-dots{display:none}.fx-top,.fx-fill.on .w{transition:none}}
 :root{--fx-b1:#C8374F;--fx-b1-ink:#FFFFFF;--fx-b1-sep:#F2A7B5;--fx-b2:#F2A7B5;--fx-b2-ink:#3A241C;--fx-b2-sep:#C8374F;--fx-font:var(--display);--fx-weight:400;--fx-case:none;--fx-track:0;--fx-size:24px;--fx-si:var(--si);--fx-si-weight:600;--fx-say-font:var(--si-head);--fx-say-weight:600;--fx-ink:var(--ink);--fx-bg:var(--bg);--fx-accent:var(--berry);--fx-top-bg:var(--ink);--fx-top-ink:var(--cream);--fx-top-ring:var(--pink);--fx-max:1080px}
 /* ---------- end RS demo effects ---------- */
@@ -418,7 +420,7 @@ setInterval(renderStatus, 60_000);
 <script>
 /* RS demo effects: banners, words that fill in, floating dots, back to top */
 (() => {
-const FX = {"dots": ["#C8374F", "#F2A7B5", "#B9D39A", "#C98B4E"], "bar": null};
+const FX = {"dots": ["#C8374F", "#F2A7B5", "#B9D39A", "#C98B4E"], "bar": null, "left": false};
 const RM = matchMedia('(prefers-reduced-motion: reduce)').matches;
 const clamp = (x, a, b) => Math.min(b, Math.max(a, x));
 document.querySelectorAll('.fx-run').forEach(r => r.appendChild(r.firstElementChild.cloneNode(true)));
@@ -466,7 +468,7 @@ if (!RM) {
   document.body.appendChild(layer);
 }
 const top = document.createElement('button');
-top.type = 'button'; top.className = 'fx-top'; top.setAttribute('aria-label', 'Back to top');
+top.type = 'button'; top.className = 'fx-top' + (FX.left ? ' left' : ''); top.setAttribute('aria-label', 'Back to top');
 top.innerHTML = '<svg class="ring" viewBox="0 0 54 54" aria-hidden="true"><circle class="bg" cx="27" cy="27" r="24.5"/><circle class="fg" cx="27" cy="27" r="24.5" pathLength="100" stroke-dasharray="100" stroke-dashoffset="100"/></svg><svg class="arr" viewBox="0 0 20 20" aria-hidden="true"><path d="M10 16V4M4.5 9.5L10 4l5.5 5.5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>';
 document.body.appendChild(top);
 const ring = top.querySelector('.fg'), bar = FX.bar ? document.querySelector(FX.bar) : null;
