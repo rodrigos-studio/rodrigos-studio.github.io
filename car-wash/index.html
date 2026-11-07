@@ -80,6 +80,15 @@ h2{font-family:"Barlow Condensed";font-weight:800;font-size:54px;line-height:.98
 .step{background:#fff;border:1px solid var(--line);border-radius:22px;padding:22px 24px}
 .step h3{display:flex;align-items:center;gap:12px;font-family:"Barlow Condensed";font-weight:700;font-size:24px;line-height:1.1;margin-bottom:14px}
 .step h3 i{font-style:normal;width:30px;height:30px;border-radius:50%;background:var(--ink);color:#fff;display:grid;place-items:center;font-size:16px;flex:none}
+.stage{position:relative;height:210px;margin-bottom:14px;border-radius:16px;overflow:hidden;background:linear-gradient(#F7FCFE 0 62%,#DCEBF1 62% 100%)}
+.stage::after{content:"";position:absolute;left:0;right:0;top:62%;height:2px;background:#C9DDE5}
+.stage svg{position:absolute;left:50%;bottom:6px;width:min(440px,92%);height:auto;transform:translateX(-50%);z-index:1}
+.stage svg.go{animation:drive .55s cubic-bezier(.2,.8,.25,1)}
+@keyframes drive{from{transform:translateX(-50%) translateX(55%);opacity:0}60%{opacity:1}to{transform:translateX(-50%)}}
+.stage-cap{position:absolute;left:16px;top:12px;z-index:2;line-height:1.15}
+.stage-cap b{display:block;font-family:"Barlow Condensed";font-weight:800;font-size:26px}
+.stage-cap span{font-size:14px;color:var(--mut);font-weight:600}
+@media (prefers-reduced-motion:reduce){.stage svg.go{animation:none}}
 .veh{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}
 .veh button{border:2px solid var(--line);background:#fff;border-radius:14px;padding:10px 4px 9px;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:4px;font-weight:700;font-size:14px;line-height:1.15;text-align:center}
 .veh svg{width:58px;height:30px;fill:none;stroke:var(--ink);stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
@@ -228,6 +237,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
   .step{padding:18px 16px}
   .veh{grid-template-columns:repeat(5,minmax(0,1fr));gap:6px}
   .veh button{font-size:12.5px;padding:8px 2px}
+  .stage{height:170px}.stage svg{width:78%}.stage-cap b{font-size:22px}.stage-cap span{font-size:13px}
   .veh svg{width:44px;height:24px}
   .pk,.adds{grid-template-columns:1fr}
   .slots{grid-template-columns:repeat(4,1fr)}
@@ -295,13 +305,26 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
     <linearGradient id="glassD" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#A39A86"/><stop offset="1" stop-color="#4E5452"/></linearGradient>
     <linearGradient id="dust" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#8A6E4E" stop-opacity="0"/><stop offset=".45" stop-color="#8A6E4E" stop-opacity=".25"/><stop offset="1" stop-color="#6E5236" stop-opacity=".75"/></linearGradient>
     <radialGradient id="rim" cx=".4" cy=".35" r=".7"><stop offset="0" stop-color="#F4F7F9"/><stop offset=".7" stop-color="#AEB9C0"/><stop offset="1" stop-color="#6F7B83"/></radialGradient>
-    <symbol id="wheel" viewBox="-46 -46 92 92"><circle r="44" fill="#16191D"/><circle r="38" fill="none" stroke="#2A2F35" stroke-width="3"/><circle r="28" fill="url(#rim)"/><g stroke="#7C878F" stroke-width="5" stroke-linecap="round"><path d="M0-6V-24M5.7-1.9L22.8-7.4M3.5 4.9L14.1 19.4M-3.5 4.9L-14.1 19.4M-5.7-1.9L-22.8-7.4"/></g><circle r="7" fill="#5C676F"/><circle r="2.5" fill="#D9E0E4"/></symbol>
-    <symbol id="car" viewBox="0 0 640 250">
-      <ellipse cx="330" cy="226" rx="300" ry="16" fill="rgba(0,0,0,.28)"/>
-      <path d="M58 186 C50 172 48 156 54 146 C58 134 66 124 80 118 L150 108 C170 96 196 76 222 66 C258 54 300 50 344 50 C372 50 394 54 412 62 C432 72 452 88 474 104 L566 116 C590 120 606 128 612 142 C618 156 618 172 612 186 L556 192 A56 56 0 0 0 440 192 L210 192 A56 56 0 0 0 94 192 Z" class="cp"/>
+    <symbol id="wheel" viewBox="-46 -46 92 92">
+      <circle r="44" fill="url(#tyreG)"/><circle r="42.5" fill="none" stroke="#3B4148" stroke-width="1.2" opacity=".7"/>
+      <path d="M-33 -27 A43 43 0 0 1 14 -40" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" opacity=".18"/>
+      <circle r="30.5" fill="url(#wellG)"/>
+      <circle r="22" fill="url(#discG)"/><circle r="22" fill="none" stroke="#6B747A" stroke-width="1" stroke-dasharray="2 4" opacity=".7"/>
+      <path d="M-10 -25 A27 27 0 0 1 13 -24 L10 -17 A19 19 0 0 0 -7 -18 Z" fill="#C8352E"/>
+      <g fill="url(#spokeG)" stroke="#55606A" stroke-width=".6">
+        <path id="spk" d="M-2.6 -7 L-6.5 -28.5 L-2 -29.5 L0 -7 Z M2.6 -7 L6.5 -28.5 L2 -29.5 L0 -7 Z"/>
+        <use href="#spk" transform="rotate(72)"/><use href="#spk" transform="rotate(144)"/><use href="#spk" transform="rotate(216)"/><use href="#spk" transform="rotate(288)"/>
+      </g>
+      <circle r="29.5" fill="none" stroke="url(#lipG)" stroke-width="3.2"/>
+      <circle r="8.5" fill="url(#spokeG)" stroke="#55606A" stroke-width=".8"/><circle r="3.4" fill="#2B3137"/>
+      <circle r="44" fill="url(#wheelShade)"/>
+    </symbol>
+    <symbol id="car" viewBox="0 0 640 250"><clipPath id="clip-car"><path d="M58 186 C50 172 48 156 54 146 C58 134 66 124 80 118 L150 108 C170 96 196 76 222 66 C258 54 300 50 344 50 C372 50 394 54 412 62 C432 72 452 88 474 104 L566 116 C590 120 606 128 612 142 C618 156 618 172 612 186 L556 192 A56 56 0 0 0 440 192 L210 192 A56 56 0 0 0 94 192 Z"/></clipPath>
+      <ellipse cx="330" cy="226" rx="300" ry="16" fill="#000" opacity=".42" filter="url(#soft)"/>
+      <ellipse cx="152" cy="235" rx="39" ry="6" fill="#000" opacity=".6" filter="url(#soft2)"/><ellipse cx="498" cy="235" rx="39" ry="6" fill="#000" opacity=".6" filter="url(#soft2)"/><circle cx="152" cy="192" r="58" fill="#0B0E11"/><circle cx="498" cy="192" r="58" fill="#0B0E11"/><path d="M58 186 C50 172 48 156 54 146 C58 134 66 124 80 118 L150 108 C170 96 196 76 222 66 C258 54 300 50 344 50 C372 50 394 54 412 62 C432 72 452 88 474 104 L566 116 C590 120 606 128 612 142 C618 156 618 172 612 186 L556 192 A56 56 0 0 0 440 192 L210 192 A56 56 0 0 0 94 192 Z" class="cp"/><g clip-path="url(#clip-car)"><rect x="0" y="0" width="640" height="250" fill="url(#refl-car)"/><rect x="30" y="0" width="600" height="250" fill="url(#roundG)"/></g>
       <path d="M80 118 L150 108 C170 96 196 76 222 66 C258 54 300 50 344 50 C372 50 394 54 412 62 C432 72 452 88 474 104 L566 116" fill="none" class="cl" stroke-width="2" opacity=".5"/>
-      <path d="M206 106 C214 90 226 76 240 70 C262 62 290 60 314 60 L316 106 Z" class="cg"/>
-      <path d="M330 106 L328 60 C356 60 380 62 396 68 C412 76 428 90 446 106 Z" class="cg"/>
+      <path d="M206 106 C214 90 226 76 240 70 C262 62 290 60 314 60 L316 106 Z" class="cg"/><path d="M206 106 C214 90 226 76 240 70 C262 62 290 60 314 60 L316 106 Z" fill="url(#glassShine)"/>
+      <path d="M330 106 L328 60 C356 60 380 62 396 68 C412 76 428 90 446 106 Z" class="cg"/><path d="M330 106 L328 60 C356 60 380 62 396 68 C412 76 428 90 446 106 Z" fill="url(#glassShine)"/>
       <path d="M244 72 L264 66 L238 104 L222 104 Z M346 62 L364 63 L346 104 L332 104 Z" fill="#fff" opacity=".28"/>
       <path d="M202 108 L452 108" class="cl" stroke-width="3" opacity=".7"/>
       <path d="M322 108 L322 186 M212 112 C210 140 212 166 216 186 M452 110 C460 134 464 160 462 184" fill="none" class="cl" stroke-width="2.4" opacity=".75"/>
@@ -324,6 +347,115 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
       <path d="M210 102 C260 96 300 96 316 98 L316 106 L206 106 Z M330 98 C370 96 410 98 440 102 L446 106 L330 106 Z" fill="#B9A386" opacity=".75"/>
       <path d="M90 126 C200 112 420 110 590 126 L596 150 C420 140 200 140 86 150 Z" fill="#9C8C78" opacity=".32"/>
     </symbol>
+    <linearGradient id="paintW" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FAFBFC"/><stop offset=".5" stop-color="#D3DAE0"/><stop offset="1" stop-color="#8B969E"/></linearGradient>
+    <linearGradient id="paintK" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#5B6670"/><stop offset=".5" stop-color="#2F3840"/><stop offset="1" stop-color="#161B20"/></linearGradient>
+    <linearGradient id="paintM" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#B0343A"/><stop offset=".5" stop-color="#86202A"/><stop offset="1" stop-color="#50121A"/></linearGradient>
+    <linearGradient id="chrome" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#F5F8FA"/><stop offset=".5" stop-color="#A9B4BB"/><stop offset="1" stop-color="#6A757C"/></linearGradient>
+    <linearGradient id="canopy" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3A3F45"/><stop offset="1" stop-color="#15181B"/></linearGradient>
+    <symbol id="v-suv" viewBox="0 0 640 250"><clipPath id="clip-v-suv"><path d="M62 198 C54 182 50 150 52 126 C54 96 60 72 76 60 C86 52 100 48 120 46 L400 44 C418 44 430 50 444 62 L478 98 L580 110 C600 113 610 122 614 136 C618 152 618 176 614 194 L556 200 A60 60 0 0 0 436 200 L214 200 A60 60 0 0 0 94 200 Z"/></clipPath>
+      <ellipse cx="330" cy="232" rx="300" ry="15" fill="#000" opacity=".42" filter="url(#soft)"/>
+      <ellipse cx="152" cy="243" rx="42" ry="6" fill="#000" opacity=".6" filter="url(#soft2)"/><ellipse cx="496" cy="243" rx="42" ry="6" fill="#000" opacity=".6" filter="url(#soft2)"/><circle cx="152" cy="196" r="62" fill="#0B0E11"/><circle cx="496" cy="196" r="62" fill="#0B0E11"/><path d="M62 198 C54 182 50 150 52 126 C54 96 60 72 76 60 C86 52 100 48 120 46 L400 44 C418 44 430 50 444 62 L478 98 L580 110 C600 113 610 122 614 136 C618 152 618 176 614 194 L556 200 A60 60 0 0 0 436 200 L214 200 A60 60 0 0 0 94 200 Z" class="cp"/><g clip-path="url(#clip-v-suv)"><rect x="0" y="0" width="640" height="250" fill="url(#refl-v-suv)"/><rect x="30" y="0" width="600" height="250" fill="url(#roundG)"/></g>
+      <path d="M52 168 L100 168 A60 60 0 0 1 208 168 L440 168 A60 60 0 0 1 550 168 L616 166 L614 194 L556 200 A60 60 0 0 0 436 200 L214 200 A60 60 0 0 0 94 200 L62 198 C56 190 53 180 52 168 Z" fill="#2B3137" opacity=".85"/>
+      <path d="M118 40 L388 38" stroke="#2B3137" stroke-width="6" stroke-linecap="round"/><path d="M132 40 L132 48 M372 38 L372 46" stroke="#2B3137" stroke-width="7"/>
+      <path d="M80 104 L84 66 C88 60 96 58 108 58 L150 58 L150 104 Z" class="cg"/><path d="M80 104 L84 66 C88 60 96 58 108 58 L150 58 L150 104 Z" fill="url(#glassShine)"/>
+      <path d="M162 104 L162 58 L292 56 L292 104 Z" class="cg"/><path d="M162 104 L162 58 L292 56 L292 104 Z" fill="url(#glassShine)"/>
+      <path d="M304 104 L304 56 L398 56 C410 56 418 60 426 68 L460 104 Z" class="cg"/><path d="M304 104 L304 56 L398 56 C410 56 418 60 426 68 L460 104 Z" fill="url(#glassShine)"/>
+      <path d="M176 62 L196 60 L176 100 L164 100 Z M318 60 L338 60 L318 100 L306 100 Z" fill="#fff" opacity=".25"/>
+      <path d="M156 106 L156 166 M298 106 L298 166 M462 104 C466 128 468 148 466 166" fill="none" class="cl" stroke-width="2.4" opacity=".75"/>
+      <path d="M70 106 L470 104" class="cl" stroke-width="3" opacity=".5"/>
+      <rect x="250" y="118" width="26" height="6" rx="3" class="cf" opacity=".8"/><rect x="396" y="118" width="26" height="6" rx="3" class="cf" opacity=".8"/>
+      <path d="M576 116 C594 118 606 124 610 136 L584 138 C578 134 576 126 576 116 Z" fill="#FFF4C8"/>
+      <path d="M52 112 L62 110 L64 146 L52 146 Z" fill="#FF5A4E"/>
+      <path class="hl" d="M80 132 C220 122 420 120 590 134" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round"/>
+      <use href="#wheel" x="102" y="146" width="100" height="100"/>
+      <use href="#wheel" x="446" y="146" width="100" height="100"/>
+    </symbol>
+    <symbol id="v-cab" viewBox="0 0 640 250"><clipPath id="clip-v-cab"><path d="M50 196 L48 116 L228 114 C230 92 236 70 248 60 C256 54 268 52 282 52 L392 50 C410 50 420 56 432 66 L474 104 L584 114 C602 116 612 124 615 138 C618 154 618 176 614 192 L560 198 A60 60 0 0 0 440 198 L210 198 A60 60 0 0 0 90 198 Z"/></clipPath>
+      <ellipse cx="330" cy="232" rx="300" ry="15" fill="#000" opacity=".42" filter="url(#soft)"/>
+      <ellipse cx="150" cy="241" rx="42" ry="6" fill="#000" opacity=".6" filter="url(#soft2)"/><ellipse cx="500" cy="241" rx="42" ry="6" fill="#000" opacity=".6" filter="url(#soft2)"/><circle cx="150" cy="194" r="62" fill="#0B0E11"/><circle cx="500" cy="194" r="62" fill="#0B0E11"/><path d="M50 196 L48 116 L228 114 C230 92 236 70 248 60 C256 54 268 52 282 52 L392 50 C410 50 420 56 432 66 L474 104 L584 114 C602 116 612 124 615 138 C618 154 618 176 614 192 L560 198 A60 60 0 0 0 440 198 L210 198 A60 60 0 0 0 90 198 Z" class="cp"/><g clip-path="url(#clip-v-cab)"><rect x="0" y="0" width="640" height="250" fill="url(#refl-v-cab)"/><rect x="30" y="0" width="600" height="250" fill="url(#roundG)"/></g>
+      <path d="M58 118 L222 118 L222 128 L58 128 Z" fill="#1B2026" opacity=".75"/>
+      <path d="M48 170 L94 170 A60 60 0 0 1 206 170 L444 170 A60 60 0 0 1 556 170 L616 168 L614 192 L560 198 A60 60 0 0 0 440 198 L210 198 A60 60 0 0 0 90 198 L50 196 Z" fill="#2B3137" opacity=".8"/>
+      <path d="M244 104 C246 84 250 70 260 64 C266 60 274 60 284 60 L338 58 L338 104 Z" class="cg"/><path d="M244 104 C246 84 250 70 260 64 C266 60 274 60 284 60 L338 58 L338 104 Z" fill="url(#glassShine)"/>
+      <path d="M350 104 L350 58 L392 58 C404 58 412 62 420 70 L458 104 Z" class="cg"/><path d="M350 104 L350 58 L392 58 C404 58 412 62 420 70 L458 104 Z" fill="url(#glassShine)"/>
+      <path d="M264 66 L284 64 L262 100 L250 100 Z M362 60 L380 60 L362 100 L352 100 Z" fill="#fff" opacity=".25"/>
+      <path d="M234 108 L234 166 M344 106 L344 166 M462 106 C468 128 470 148 468 166 M228 114 L228 166" fill="none" class="cl" stroke-width="2.4" opacity=".75"/>
+      <path d="M48 116 L228 114" class="cl" stroke-width="3" opacity=".6"/>
+      <rect x="298" y="118" width="24" height="6" rx="3" class="cf" opacity=".8"/><rect x="408" y="118" width="24" height="6" rx="3" class="cf" opacity=".8"/>
+      <path d="M580 118 C596 120 608 126 611 138 L586 140 C582 136 580 128 580 118 Z" fill="#FFF4C8"/>
+      <path d="M48 124 L58 124 L58 152 L48 152 Z" fill="#FF5A4E"/>
+      <path class="hl" d="M60 138 C200 130 420 128 592 138" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round"/>
+      <use href="#wheel" x="100" y="144" width="100" height="100"/>
+      <use href="#wheel" x="450" y="144" width="100" height="100"/>
+    </symbol>
+    <symbol id="v-tuk" viewBox="0 0 640 250"><clipPath id="clip-v-tuk"><path d="M 201.5 214 L 200.0 168 C 200.0 146 207.2 134 221.5 132 L 308.6 128 C 320.0 128 325.8 138 328.6 152 L 332.9 186 L 367.1 188 L 368.6 206 L 272.9 206 A 28.6 40 0 0 0 217.2 206 L 208.6 214 Z"/><path d="M 417.1 120 L 435.7 118 C 447.1 120 454.3 130 455.6 148 C 456.4 164 452.8 178 445.7 188 L 424.3 190 C 418.6 178 415.7 160 415.7 140 C 415.7 130 415.7 124 417.1 120 Z"/><path d="M 425.7 202 C 430.0 186 457.1 186 462.8 200 L 458.5 203 C 452.8 192 435.7 192 430.0 204 Z"/></clipPath>
+      <ellipse cx="330.0" cy="236" rx="142.8" ry="11" fill="#000" opacity=".42" filter="url(#soft)"/>
+      <path d="M 205.7 150 C 198.6 104 198.6 62 212.9 46 C 220.0 38 230.0 36 241.4 36 L 424.3 33 C 435.7 33 441.4 38 442.8 46 L 443.6 54 L 430.0 55 L 430.0 50 L 247.2 52 C 234.3 52 227.2 60 224.3 76 L 222.9 150 Z" fill="url(#canopy)"/>
+      <path d="M 332.9 52 L 332.9 150" stroke="#1B1F24" stroke-width="5"/>
+      <path d="M 430.0 54 L 434.2 54 C 435.7 78 437.1 100 438.5 120 L 432.9 121 C 431.4 100 430.6 78 430.0 54 Z" class="cg"/><path d="M 430.0 54 L 434.2 54 C 435.7 78 437.1 100 438.5 120 L 432.9 121 C 431.4 100 430.6 78 430.0 54 Z" fill="url(#glassShine)"/>
+      <path d="M 430.0 54 L 430.0 120" stroke="#1B1F24" stroke-width="3"/>
+      <path d="M 432.9 60 L 433.5 110" stroke="#fff" stroke-width="2" opacity=".5"/>
+      <path d="M 230.0 132 C 230.0 124 232.9 118 238.6 118 L 301.4 118 C 307.1 120 310.0 124 310.0 132 L 310.0 142 L 230.0 142 Z" fill="#23272C"/>
+      <path d="M 227.2 140 L 227.2 70 C 227.2 62 231.5 60 235.7 60 L 241.4 60 C 245.8 60 247.2 64 247.2 70 L 247.2 140 Z" fill="#2B3036"/>
+      <path d="M 368.6 140 C 368.6 134 371.4 130 375.7 130 L 394.3 130 C 398.5 130 400.0 134 400.0 140 L 400.0 148 L 368.6 148 Z" fill="#23272C"/>
+      <path d="M 377.1 148 L 377.1 188 L 390.0 188 L 390.0 148 Z" fill="#3A4047"/>
+      <path d="M 408.5 124 L 417.1 108 L 431.4 104" fill="none" stroke="#1B1F24" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M 214.3 214 A 30.0 42 0 0 1 274.3 214 Z" fill="#0B0E11"/>
+      <ellipse cx="244" cy="237" rx="20" ry="6" fill="#000" opacity=".6" filter="url(#soft2)"/><ellipse cx="444" cy="237" rx="18" ry="6" fill="#000" opacity=".6" filter="url(#soft2)"/><path d="M 201.5 214 L 200.0 168 C 200.0 146 207.2 134 221.5 132 L 308.6 128 C 320.0 128 325.8 138 328.6 152 L 332.9 186 L 367.1 188 L 368.6 206 L 272.9 206 A 28.6 40 0 0 0 217.2 206 L 208.6 214 Z" class="cp"/>
+      <path d="M 365.7 186 L 418.6 186 L 418.6 196 L 365.7 196 Z" fill="#2B3036"/>
+      <path d="M 417.1 120 L 435.7 118 C 447.1 120 454.3 130 455.6 148 C 456.4 164 452.8 178 445.7 188 L 424.3 190 C 418.6 178 415.7 160 415.7 140 C 415.7 130 415.7 124 417.1 120 Z" class="cp"/>
+      <path d="M 425.7 202 C 430.0 186 457.1 186 462.8 200 L 458.5 203 C 452.8 192 435.7 192 430.0 204 Z" class="cp"/><g clip-path="url(#clip-v-tuk)"><rect x="0" y="0" width="640" height="250" fill="url(#refl-v-tuk)"/><rect x="30" y="0" width="600" height="250" fill="url(#roundG)"/></g>
+      <path d="M 440.0 186 L 444.2 214" stroke="#7C878F" stroke-width="6" stroke-linecap="round"/>
+      <ellipse cx="454.3" cy="140" rx="5.0" ry="11" fill="#FFF4C8" stroke="#C9D1D7" stroke-width="3"/>
+      <path d="M 205.7 172 C 237.2 164 280.0 162 308.6 160 C 321.4 160 327.1 166 330.0 178" fill="none" stroke="#fff" stroke-width="3" opacity=".55"/>
+      <path d="M 205.7 182 C 237.2 174 280.0 172 308.6 170" fill="none" stroke="#FFD23F" stroke-width="3" opacity=".85"/>
+      <path d="M 281.5 74 C 284.3 100 288.6 124 292.9 132" fill="none" stroke="#C9D1D7" stroke-width="4" stroke-linecap="round"/>
+      <path d="M 198.6 162 L 204.4 162 L 204.4 178 L 198.6 178 Z" fill="#FF5A4E"/>
+      <path class="hl" d="M 208.6 150 C 230.0 138 272.9 134 308.6 134" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round"/>
+      <path class="hl" d="M 419.9 132 C 430.0 124 444.2 124 451.4 130" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round"/>
+      <path d="M 427.1 110 L 434.2 104" stroke="#1B1F24" stroke-width="3"/><circle cx="435.7" cy="102" r="5" fill="#1B1F24"/>
+      <use href="#wheel" x="220.3" y="190" width="48" height="48"/>
+      <use href="#wheel" x="421.6" y="194" width="44" height="44"/>
+    </symbol>
+    <symbol id="v-bike" viewBox="0 0 640 250"><clipPath id="clip-v-bike"><path d="M298 132 C304 106 338 96 378 96 C410 98 430 108 436 122 L420 140 L308 146 C298 146 296 140 298 132 Z"/><path d="M150 132 C170 118 196 116 214 120 L218 142 C192 148 166 148 150 142 Z"/><path d="M438 84 L476 96 L470 128 L444 120 Z"/></clipPath>
+      <ellipse cx="330" cy="236" rx="210" ry="12" fill="#000" opacity=".42" filter="url(#soft)"/>
+      <g fill="none" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M190 196 L304 176" stroke="#2B3137" stroke-width="13"/>
+        <path d="M336 192 C286 202 236 196 206 178 L172 166" stroke="url(#chrome)" stroke-width="13"/>
+        <path d="M444 96 L384 146" stroke="#2B3137" stroke-width="11"/>
+        <path d="M444 92 L472 196" stroke="url(#chrome)" stroke-width="12"/>
+        <path d="M424 78 L452 86" stroke="#2B3137" stroke-width="8"/>
+        <path d="M440 168 C454 146 492 146 506 168" stroke="#2B3137" stroke-width="9"/>
+      </g>
+      <path d="M162 158 L186 154 L190 176 L166 178 Z" fill="#7C878F"/>
+      <path d="M290 142 L380 136 C390 136 396 144 394 156 L374 196 L302 196 C292 196 286 188 286 178 Z" fill="#5C676F"/>
+      <path d="M298 152 L382 148 M296 166 L378 162 M298 180 L370 178" stroke="#8E99A1" stroke-width="3"/>
+      <ellipse cx="190" cy="239" rx="39" ry="6" fill="#000" opacity=".6" filter="url(#soft2)"/><ellipse cx="472" cy="239" rx="39" ry="6" fill="#000" opacity=".6" filter="url(#soft2)"/><path d="M298 132 C304 106 338 96 378 96 C410 98 430 108 436 122 L420 140 L308 146 C298 146 296 140 298 132 Z" class="cp"/>
+      <path d="M316 112 C340 104 372 102 404 106" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round" class="hl"/>
+      <path d="M204 124 C232 116 270 116 304 122 L306 140 L216 142 C202 142 196 132 204 124 Z" fill="#1B1F24"/>
+      <path d="M150 132 C170 118 196 116 214 120 L218 142 C192 148 166 148 150 142 Z" class="cp"/>
+      <path d="M144 132 L152 130 L154 142 L146 144 Z" fill="#FF5A4E"/>
+      <path d="M438 84 L476 96 L470 128 L444 120 Z" class="cp"/><g clip-path="url(#clip-v-bike)"><rect x="0" y="0" width="640" height="250" fill="url(#refl-v-bike)"/><rect x="30" y="0" width="600" height="250" fill="url(#roundG)"/></g>
+      <circle cx="466" cy="108" r="9" fill="#FFF4C8"/>
+      <use href="#wheel" x="144" y="150" width="92" height="92"/>
+      <use href="#wheel" x="426" y="150" width="92" height="92"/>
+    </symbol>
+    <!-- 3d -->
+    <filter id="soft" x="-20%" y="-200%" width="140%" height="500%"><feGaussianBlur stdDeviation="7"/></filter>
+    <filter id="soft2" x="-20%" y="-200%" width="140%" height="500%"><feGaussianBlur stdDeviation="2.5"/></filter>
+    <radialGradient id="tyreG" cx=".5" cy=".5" r=".5"><stop offset=".62" stop-color="#2E3339"/><stop offset=".8" stop-color="#1A1D21"/><stop offset="1" stop-color="#08090B"/></radialGradient>
+    <radialGradient id="wellG" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#2A2F35"/><stop offset="1" stop-color="#0C0E11"/></radialGradient>
+    <radialGradient id="discG" cx=".45" cy=".4" r=".6"><stop offset="0" stop-color="#C3CBD1"/><stop offset=".7" stop-color="#8A949B"/><stop offset="1" stop-color="#5D666C"/></radialGradient>
+    <linearGradient id="spokeG" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FBFCFD"/><stop offset=".5" stop-color="#BAC4CB"/><stop offset="1" stop-color="#7B868E"/></linearGradient>
+    <linearGradient id="lipG" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FFFFFF"/><stop offset=".45" stop-color="#A7B1B8"/><stop offset="1" stop-color="#4E575D"/></linearGradient>
+    <radialGradient id="wheelShade" cx=".35" cy=".3" r=".8"><stop offset=".5" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".45"/></radialGradient>
+    <linearGradient id="roundG" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#000" stop-opacity=".42"/><stop offset=".07" stop-color="#000" stop-opacity=".08"/><stop offset=".5" stop-color="#000" stop-opacity="0"/><stop offset=".9" stop-color="#000" stop-opacity=".06"/><stop offset="1" stop-color="#000" stop-opacity=".38"/></linearGradient>
+    <linearGradient id="glassShine" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".35"/><stop offset=".45" stop-color="#fff" stop-opacity=".05"/><stop offset=".5" stop-color="#000" stop-opacity=".15"/><stop offset="1" stop-color="#000" stop-opacity=".35"/></linearGradient>
+    <linearGradient id="refl-car" gradientUnits="userSpaceOnUse" x1="0" y1="50" x2="0" y2="192"><stop offset="0.000" stop-color="#fff" stop-opacity="0.55"/><stop offset="0.449" stop-color="#fff" stop-opacity="0.12"/><stop offset="0.537" stop-color="#fff" stop-opacity="0.62"/><stop offset="0.555" stop-color="#000" stop-opacity="0.02"/><stop offset="0.609" stop-color="#000" stop-opacity="0.24"/><stop offset="0.840" stop-color="#000" stop-opacity="0.06"/><stop offset="1.000" stop-color="#000" stop-opacity="0.42"/></linearGradient>
+    <linearGradient id="refl-v-suv" gradientUnits="userSpaceOnUse" x1="0" y1="44" x2="0" y2="200"><stop offset="0.000" stop-color="#fff" stop-opacity="0.55"/><stop offset="0.464" stop-color="#fff" stop-opacity="0.12"/><stop offset="0.552" stop-color="#fff" stop-opacity="0.62"/><stop offset="0.570" stop-color="#000" stop-opacity="0.02"/><stop offset="0.624" stop-color="#000" stop-opacity="0.24"/><stop offset="0.840" stop-color="#000" stop-opacity="0.06"/><stop offset="1.000" stop-color="#000" stop-opacity="0.42"/></linearGradient>
+    <linearGradient id="refl-v-cab" gradientUnits="userSpaceOnUse" x1="0" y1="50" x2="0" y2="198"><stop offset="0.000" stop-color="#fff" stop-opacity="0.55"/><stop offset="0.468" stop-color="#fff" stop-opacity="0.12"/><stop offset="0.556" stop-color="#fff" stop-opacity="0.62"/><stop offset="0.574" stop-color="#000" stop-opacity="0.02"/><stop offset="0.628" stop-color="#000" stop-opacity="0.24"/><stop offset="0.840" stop-color="#000" stop-opacity="0.06"/><stop offset="1.000" stop-color="#000" stop-opacity="0.42"/></linearGradient>
+    <linearGradient id="refl-v-tuk" gradientUnits="userSpaceOnUse" x1="0" y1="118" x2="0" y2="210"><stop offset="0.000" stop-color="#fff" stop-opacity="0.55"/><stop offset="0.248" stop-color="#fff" stop-opacity="0.12"/><stop offset="0.336" stop-color="#fff" stop-opacity="0.62"/><stop offset="0.354" stop-color="#000" stop-opacity="0.02"/><stop offset="0.408" stop-color="#000" stop-opacity="0.24"/><stop offset="0.840" stop-color="#000" stop-opacity="0.06"/><stop offset="1.000" stop-color="#000" stop-opacity="0.42"/></linearGradient>
+    <linearGradient id="refl-v-bike" gradientUnits="userSpaceOnUse" x1="0" y1="94" x2="0" y2="148"><stop offset="0.000" stop-color="#fff" stop-opacity="0.55"/><stop offset="0.307" stop-color="#fff" stop-opacity="0.12"/><stop offset="0.395" stop-color="#fff" stop-opacity="0.62"/><stop offset="0.413" stop-color="#000" stop-opacity="0.02"/><stop offset="0.467" stop-color="#000" stop-opacity="0.24"/><stop offset="0.840" stop-color="#000" stop-opacity="0.06"/><stop offset="1.000" stop-color="#000" stop-opacity="0.42"/></linearGradient>
+    <!-- /3d -->
   </defs>
 </svg>
 
@@ -360,11 +492,12 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
   <div class="book">
     <div class="steps">
       <div class="step"><h3><i>1</i>Your vehicle</h3>
+        <div class="stage" aria-hidden="true"><svg viewBox="0 0 640 250" id="stage-car"><use href="#car"/></svg><div class="stage-cap"><b id="st-n">Car</b><span id="st-p">from Rs 1,200</span></div></div>
         <div class="veh" id="veh">
           <button type="button" data-v="car" class="on"><svg viewBox="0 0 60 30"><path d="M4 22v-5l6-2 8-7h20l8 7 9 2v5z"/><circle cx="16" cy="23" r="4"/><circle cx="46" cy="23" r="4"/></svg>Car</button>
           <button type="button" data-v="suv"><svg viewBox="0 0 60 30"><path d="M4 23V13l4-1 6-7h28l8 7 6 1v10z"/><circle cx="16" cy="24" r="4"/><circle cx="46" cy="24" r="4"/></svg>SUV / Van</button>
           <button type="button" data-v="cab"><svg viewBox="0 0 60 30"><path d="M3 23v-9h4l5-7h18l4 7h22v9z"/><path d="M34 14v9"/><circle cx="15" cy="24" r="4"/><circle cx="46" cy="24" r="4"/></svg>Double cab</button>
-          <button type="button" data-v="tuk"><svg viewBox="0 0 60 30"><path d="M14 23V9c0-3 4-5 10-5h14c4 0 6 3 6 6v13zM44 13h8l2 10H44"/><circle cx="20" cy="24" r="3.5"/><circle cx="50" cy="24" r="3.5"/></svg>Three-wheeler</button>
+          <button type="button" data-v="tuk"><svg viewBox="0 0 60 30"><path d="M12 21V10c0-4 3-6 8-6h18c3 0 5 2 6 5l6 12H12zM12 14h26M38 6v15"/><circle cx="19" cy="24" r="3.5"/><circle cx="46" cy="24" r="3.5"/></svg>Three-wheeler</button>
           <button type="button" data-v="bike"><svg viewBox="0 0 60 30"><circle cx="13" cy="21" r="6"/><circle cx="47" cy="21" r="6"/><path d="M13 21l9-10h10l6 10M32 11l4-5h6M22 11h-6"/></svg>Motorbike</button>
         </div>
       </div>
@@ -496,10 +629,17 @@ function drawSlots(){
 }
 function total(){const p=PK.find(x=>x.id===pk);let t=p.p[veh]||0;adds.forEach(a=>{const v=ADD.find(x=>x.id===a).p[veh];if(v!=null)t+=v});if(pickup)t+=500;return t}
 function whenText(){if(slot==null)return null;const d=dateOf(day);return (day===0?'Today':day===1?'Tomorrow':DN[d.getDay()])+' '+d.getDate()+' '+MN[d.getMonth()]+', '+fmt(slot)}
+const STAGE={car:["car","url(#paint)","#7E1C18"],suv:["v-suv","url(#paintW)","#5E6A72"],cab:["v-cab","url(#paintK)","#0E1216"],tuk:["v-tuk","url(#paintM)","#3A0C12"],bike:["v-bike","url(#paintB)","#0E3F69"]};
+let shown="car";
+function drawStage(){const sv=$('stage-car'),[sym,pf,pd]=STAGE[veh];
+  sv.querySelector('use').setAttribute('href','#'+sym);sv.style.setProperty('--pf',pf);sv.style.setProperty('--pd',pd);
+  $('st-n').textContent=VEH[veh];$('st-p').textContent='from '+rs(Math.min(...PK.map(p=>p.p[veh]).filter(x=>x!=null)));
+  if(shown!==veh){shown=veh;sv.classList.remove('go');void sv.getBoundingClientRect();sv.classList.add('go')}}
 function render(){
   if(PK.find(x=>x.id===pk).p[veh]==null)pk="quick";
   ADD.forEach(a=>{if(a.p[veh]==null)adds.delete(a.id)});
   document.querySelectorAll('#veh button').forEach(b=>b.classList.toggle('on',b.dataset.v===veh));
+  drawStage();
   drawPk();drawAdds();drawDays();drawSlots();
   $('pickup').setAttribute('aria-checked',pickup);
   const p=PK.find(x=>x.id===pk),t=total(),w=whenText();
