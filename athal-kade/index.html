@@ -113,6 +113,7 @@ h2.big{font-family:var(--display);font-weight:400;font-size:clamp(32px,5vw,44px)
 .item.sold .price{text-decoration:line-through}
 .sold-lbl{display:inline-flex;flex-direction:column;align-items:center;font-weight:800;font-size:13px;color:var(--chili);border:2px dashed var(--chili);border-radius:10px;padding:4px 10px;line-height:1.2}
 .sold-lbl .si{font-family:var(--sinhala);font-size:12px;font-weight:700}
+.owner-back{position:fixed;z-index:30;top:calc(10px + env(safe-area-inset-top,0px));left:max(12px,env(safe-area-inset-left,0px));background:var(--teal);color:var(--teal-ink);text-decoration:none;font-weight:800;font-size:15px;padding:10px 16px;border-radius:999px;box-shadow:0 6px 16px rgba(0,0,0,.2)}
 .step{display:inline-flex;align-items:center;border-radius:10px;background:var(--teal);color:var(--teal-ink);overflow:hidden}
 .step button{width:34px;height:36px;border:0;background:transparent;color:inherit;font-size:20px;font-weight:800;cursor:pointer}
 .step span{min-width:22px;text-align:center;font-weight:800}
@@ -290,6 +291,11 @@ footer{padding-block:28px 120px;color:var(--muted);font-size:14px;text-align:cen
 </div>
 
 <script src="menu-data.js"></script>
+<a class="owner-back" id="owner-back" href="edit/index.html" hidden>← Menu edit</a>
+<script>
+/* the owner came here from the edit page: show a way back (customers never see this) */
+if (location.hash === "#owner") document.getElementById("owner-back").hidden = false;
+</script>
 <script>
 (() => {
 const WA_NUMBER = "94724996667";   // demo orders go to Rodrigo's Studio; a real site uses the café's number
