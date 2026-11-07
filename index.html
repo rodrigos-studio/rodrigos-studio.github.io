@@ -23,7 +23,10 @@
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=Noto+Sans+Sinhala:wght@500;700&family=Lilita+One&family=Cormorant+Garamond:ital,wght@1,600&family=Fraunces:opsz,wght@9..144,600&family=DM+Serif+Display:ital@0;1&display=swap">
+<!-- fonts load without holding up the first paint; the demo-card fonts come last -->
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=Noto+Sans+Sinhala:wght@500;700&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lilita+One&family=Cormorant+Garamond:ital,wght@1,600&family=Fraunces:opsz,wght@9..144,600&family=DM+Serif+Display:ital@0;1&display=swap" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=Noto+Sans+Sinhala:wght@500;700&display=swap"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lilita+One&family=Cormorant+Garamond:ital,wght@1,600&family=Fraunces:opsz,wght@9..144,600&family=DM+Serif+Display:ital@0;1&display=swap"></noscript>
 <style>
 /* Layout: Sinhala-first one-page site for a local web studio. Plain paper background, demo phone, demos, services, prices, steps, about, questions, contact. */
 :root{
@@ -218,7 +221,7 @@ footer .fl{display:inline-flex;gap:14px;margin-left:12px}
 .pick2 a{display:flex;flex-direction:column;gap:6px;text-decoration:none;color:var(--ink);background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:22px 22px 20px;position:relative}
 .pick2 a:hover{border-color:var(--accent)}
 .pick2 .k{font-family:var(--display);font-weight:800;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent)}
-.pick2 h3{margin:0;font-family:var(--si);font-size:23px;font-weight:700;line-height:1.35}
+.pick2 h2{margin:0;font-family:var(--si);font-size:23px;font-weight:700;line-height:1.35}
 .pick2 p{margin:0;color:var(--ink-2);font-family:var(--si);font-size:15.5px}
 .pick2 .pr{margin-top:6px;font-family:var(--si);font-size:15px;color:var(--ink-2)}
 .pick2 .pr b{font-family:var(--display);font-weight:900;font-size:22px;color:var(--ink)}
@@ -327,6 +330,120 @@ footer{padding-block:28px 36px;color:var(--ink-2);font-size:14px;font-family:var
   .subnav a.hl{border-color:var(--accent);color:var(--accent)}
   html{scroll-padding-top:118px}
 }
+
+/* ---------- Navo Mobile: the newest demo, one wide card ---------- */
+.shot.navo{background:radial-gradient(420px 260px at 85% 0%,rgba(200,244,58,.2),transparent 60%),#231E5C;color:#F5F5FA;padding:22px}
+.shot.navo .nv{position:relative;z-index:1;max-width:58%}
+.shot.navo .t{font-family:"Archivo",sans-serif;font-weight:900;font-size:42px;line-height:1;letter-spacing:-.01em}
+.shot.navo .t b{color:#C8F43A}
+.shot.navo .t small{display:block;margin-top:4px;font-family:ui-monospace,"IBM Plex Mono",Menlo,monospace;font-size:12.5px;font-weight:600;letter-spacing:.24em}
+.shot.navo .s{font-weight:700;font-size:15px;margin-top:10px;color:#E6FBA0;line-height:1.35}
+.shot.navo .ok{display:inline-block;margin-top:12px;background:#C8F43A;color:#16133A;font-weight:800;font-size:12.5px;border-radius:99px;padding:4px 10px}
+.shot.navo .ph2{position:absolute;width:112px;aspect-ratio:9/16;border-radius:14px;overflow:hidden;box-shadow:0 14px 30px rgba(0,0,0,.4);border:3px solid #0F0C2E;background:#0F0C2E}
+.shot.navo .ph2 img{display:block;width:100%;height:100%;object-fit:cover;object-position:top}
+.shot.navo .p1{display:none}
+.shot.navo .p2{right:16px;top:26px;transform:rotate(5deg)}
+.case .new{align-self:flex-start;font-family:var(--si);font-size:13px;font-weight:700;background:var(--label);color:var(--label-ink);border-radius:6px;padding:2px 10px}
+@media (min-width:641px){
+  .case.wide{grid-column:1 / -1;display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr)}
+  .case.wide .shot{height:auto;min-height:310px;border-bottom:0;border-right:1px solid var(--line);padding:30px}
+  .case.wide .shot .t{font-size:52px}
+  .shot.navo .ph2{width:150px}
+  .shot.navo .p1{display:block;right:150px;top:44px;transform:rotate(-6deg)}
+  .shot.navo .p2{right:22px;top:70px}
+  .case.wide .txt{padding:28px 30px;justify-content:center}
+}
+@media (min-width:641px) and (max-width:1000px){.shot.navo .p1{display:none}.shot.navo .nv{max-width:62%}}
+
+/* ---------- slanted moving banners ---------- */
+.tick{position:relative;height:150px;overflow:hidden;overflow:clip;padding-block:0;margin-top:10px}
+.band{position:absolute;left:-700px;right:-700px;height:56px;display:flex;align-items:center}
+.band.b1{top:50px;background:var(--label);color:var(--label-ink);transform:rotate(-3deg);z-index:2;box-shadow:0 10px 24px rgba(18,32,43,.16)}
+.band.b2{top:46px;background:#12202B;color:#C8F06A;transform:rotate(2.4deg);box-shadow:inset 0 0 0 1px rgba(255,255,255,.06)}
+.shift{will-change:transform}
+.run,.set{display:flex}
+.run{width:max-content;animation:mx 60s linear infinite}
+.b2 .run{animation-direction:reverse;animation-duration:70s}
+.run span{display:inline-flex;align-items:center;white-space:nowrap;padding-inline:20px 0;font-family:var(--display);font-weight:900;font-stretch:112%;font-size:23px;letter-spacing:.05em;text-transform:uppercase;line-height:1}
+.run span.s{font-family:var(--si);font-weight:700;letter-spacing:0;text-transform:none;font-size:21px}
+.run i{font-style:normal;font-family:var(--display);font-weight:900;font-size:22px;padding-left:20px;line-height:1}
+.b1 .run i{color:#0C7558}
+.b1 .run span,.b1 .run i{background:#F2C230}
+.b2 .run span,.b2 .run i{background:#12202B}
+.b2 .run i{color:#F2C230}
+@media (max-width:640px){.tick{height:132px}.band{height:44px}.band.b1{top:30px;transform:rotate(-4deg)}.band.b2{top:56px;transform:rotate(3deg)}.run span{font-size:18px;padding-left:16px}.run span.s{font-size:17px}.run i{font-size:17px;padding-left:16px}}
+
+/* ---------- words that fill in as you scroll ---------- */
+.fill{font-family:var(--si);font-weight:700;font-size:clamp(25px,3.7vw,44px);line-height:1.5;margin:22px 0 36px;max-width:28em;text-wrap:pretty}
+.fill b{font-weight:700;color:var(--accent)}
+.fill.on .w{color:color-mix(in srgb,var(--ink) 52%,var(--paper));transition:color .35s ease}
+.fill.on .w.lit{color:var(--ink)}
+.fill.on b .w.lit{color:var(--accent)}
+
+/* ---------- floating dots ---------- */
+.dots{position:fixed;inset:0;z-index:6;pointer-events:none;overflow:hidden}
+.dots .d{position:absolute;will-change:transform}
+.dots .d i{display:block;border-radius:50%;animation:drift var(--t,16s) ease-in-out infinite alternate}
+@keyframes drift{0%{transform:translate(0,0)}50%{transform:translate(var(--dx,14px),calc(var(--dy,10px) * -1))}100%{transform:translate(calc(var(--dx,14px) * -.6),var(--dy,10px))}}
+
+/* ---------- RS bird in the hero ---------- */
+.bird{position:absolute;z-index:3;right:4%;bottom:6px;width:min(36%,370px);aspect-ratio:650/715}
+.bird::before{content:"";position:absolute;inset:6% -8% -2%;border-radius:50%;background:radial-gradient(closest-side,rgba(11,21,18,.92),rgba(11,21,18,.7) 55%,rgba(11,21,18,0));z-index:-1}
+.bird::after{content:"";position:absolute;left:24%;right:24%;bottom:2.5%;height:6%;border-radius:50%;background:radial-gradient(closest-side,rgba(0,0,0,.55),rgba(0,0,0,0));z-index:-1}
+.bird-btn{all:unset;display:block;width:100%;height:100%;cursor:pointer;-webkit-tap-highlight-color:transparent;touch-action:manipulation;border-radius:40%}
+.bird-btn:focus-visible{outline:3px solid var(--label);outline-offset:-10px}
+.bird canvas{display:block;width:100%;height:100%;opacity:0;transition:opacity .2s}
+.bird.ready canvas{opacity:1}
+.bubble{position:absolute;right:76%;top:3%;width:max-content;max-width:230px;margin:0;background:#FFFFFF;color:#12202B;font-family:var(--si);font-weight:700;font-size:15.5px;line-height:1.45;padding:10px 14px;border-radius:16px 16px 4px 16px;box-shadow:0 12px 28px rgba(0,0,0,.35);transform-origin:100% 100%;animation:pop .28s cubic-bezier(.3,1.6,.5,1)}
+@keyframes pop{from{transform:scale(.6);opacity:0}to{transform:scale(1);opacity:1}}
+.bird-hint{position:absolute;right:80%;top:36%;display:flex;align-items:center;gap:8px;white-space:nowrap;font-family:var(--si);font-weight:700;font-size:13.5px;color:#12202B;background:#C8F06A;border-radius:99px;padding:5px 12px 5px 10px;box-shadow:0 8px 20px rgba(0,0,0,.3);opacity:0;transition:opacity .3s}
+.bird.ready .bird-hint{opacity:1}
+.bird.tapped .bird-hint{opacity:0;pointer-events:none}
+.bird-hint i{width:8px;height:8px;border-radius:50%;background:#12202B;animation:ping 1.4s ease-out infinite}
+@keyframes ping{0%{box-shadow:0 0 0 0 rgba(18,32,43,.5)}100%{box-shadow:0 0 0 9px rgba(18,32,43,0)}}
+.fx{position:absolute;inset:0;width:100%;height:100%;z-index:4;pointer-events:none}
+@media (max-width:860px){
+  .bird{right:0;top:58px;bottom:auto;width:212px}
+  .bird::before{inset:4% -6% 0}
+  .bubble{right:72%;top:2%;max-width:180px;font-size:14.5px}
+  .bird-hint{right:90%;top:74%;font-size:13px}
+}
+@media (max-width:380px){.bird{width:184px;top:80px}.bubble{max-width:160px}}
+
+/* ---------- speed score ---------- */
+.speed{margin-top:28px;background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:22px}
+.speed h3{margin:0;font-family:var(--si);font-size:19px;font-weight:700;line-height:1.4}
+.speed .src{display:block;margin-top:2px;color:var(--ink-2);font-size:14px;font-weight:600}
+.meters{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px 22px;margin-top:18px}
+@media (max-width:760px){.meters{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.meter{display:flex;flex-direction:column;gap:8px;padding-top:14px;border-top:2px solid var(--ink)}
+.meter .num{font-family:var(--display);font-weight:900;font-stretch:115%;font-size:clamp(44px,6vw,64px);line-height:.9;font-variant-numeric:tabular-nums}
+.meter .num sup{font-size:.36em;color:var(--accent);margin-left:2px;vertical-align:.95em}
+.meter .bars{display:flex;gap:3px}
+.meter .bars i{flex:1;max-width:12px;aspect-ratio:1;border:1.5px solid var(--ink);border-radius:2px}
+.meter .bars i.on{background:var(--ink)}
+.meter .lbl{font-family:var(--display);font-weight:700;font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-2)}
+.meter .lbl span{display:block;font-family:var(--si);font-weight:500;letter-spacing:0;text-transform:none;font-size:14px;margin-top:2px}
+.speed .note{margin:16px 0 0;color:var(--ink-2);font-family:var(--si);font-size:15px}
+
+/* ---------- back to top ---------- */
+.totop{position:fixed;z-index:8;right:max(16px,env(safe-area-inset-right,0px));bottom:calc(16px + env(safe-area-inset-bottom,0px));width:56px;height:56px;border-radius:50%;border:0;padding:0;background:var(--ink);color:var(--paper);cursor:pointer;display:grid;place-items:center;box-shadow:0 10px 24px rgba(0,0,0,.25);opacity:0;transform:translateY(14px) scale(.9);pointer-events:none;transition:opacity .25s,transform .25s}
+.totop.show{opacity:1;transform:none;pointer-events:auto}
+.totop svg{grid-area:1/1}
+.totop .ring{width:56px;height:56px;transform:rotate(-90deg)}
+.totop .ring circle{fill:none;stroke-width:3}
+.totop .ring .bg{stroke:color-mix(in srgb,var(--paper) 22%,transparent)}
+.totop .ring .fg{stroke:var(--label);stroke-linecap:round}
+.totop .arr{width:20px;height:20px}
+.totop:hover{transform:translateY(-2px)}
+
+@media (prefers-reduced-motion:reduce){
+  .run{animation:none}
+  .dots{display:none}
+  .bubble{animation:none}
+  .bird-hint i{animation:none}
+  .totop,.fill.on .w{transition:none}
+}
 </style>
 
 <header class="top">
@@ -363,6 +480,12 @@ footer{padding-block:28px 36px;color:var(--ink-2);font-size:14px;font-family:var
           </div>
           <p class="from">Website <b>Rs 35,000</b> සිට · Page care <b>Rs 15,000</b> සිට මාසෙකට</p>
         </div>
+        <div class="bird" id="bird">
+          <button class="bird-btn" type="button" aria-label="RS කුරුල්ලා. Tap කරලා බලන්න."><canvas width="1" height="1"></canvas></button>
+          <p class="bubble" aria-live="polite" hidden></p>
+          <span class="bird-hint" aria-hidden="true"><i></i>මට tap කරන්න</span>
+        </div>
+        <canvas class="fx" aria-hidden="true"></canvas>
       </div>
     </div>
   </section>
@@ -372,20 +495,25 @@ footer{padding-block:28px 36px;color:var(--ink-2);font-size:14px;font-family:var
       <div class="pick2">
         <a href="#work">
           <span class="k">Website</span>
-          <h3>Shop එකට website එකක්</h3>
+          <h2>Shop එකට website එකක්</h2>
           <p>Menu, ගණන්, WhatsApp ඕඩර් සහ booking, Google Maps. Phone එකට ගැලපෙන විදියට.</p>
           <span class="pr"><b>Rs 35,000</b> සිට · එක පාරක් ගෙවන්නේ · දවස් 7න් ready</span>
-          <span class="go">Demo 6ක් බලන්න ↓</span>
+          <span class="go">Demo 7ක් බලන්න ↓</span>
         </a>
         <a href="#page-care">
           <span class="k">Facebook + TikTok page care</span>
-          <h3>Page එක මම බලාගන්නම්</h3>
+          <h2>Page එක මම බලාගන්නම්</h2>
           <p>Posts, videos, comments වලට reply, shop එකට ඇවිත් photos, මාසික report එක.</p>
           <span class="pr"><b>Rs 15,000</b> සිට · මාසෙට ගෙවන්නේ · එක මාසයකින් පටන් ගන්න පුළුවන්</span>
           <span class="go">Packages බලන්න ↓</span>
         </a>
       </div>
     </div>
+  </section>
+
+  <section class="tick" aria-hidden="true">
+    <div class="band b2"><div class="shift"><div class="run"><div class="set"><span class="s">කෝට්ටේ</span><i>✱</i><span>Kotte</span><i>✱</i><span class="s">දවස් 7න් ready</span><i>✱</i><span class="s">නොමිලේ sample එකක්</span><i>✱</i><span class="s">Rs 35,000 සිට</span><i>✱</i><span class="s">සිංහල + English</span><i>✱</i><span class="s">කඩේටම එනවා</span><i>✱</i><span class="s">කෝට්ටේ</span><i>✱</i><span>Kotte</span><i>✱</i><span class="s">දවස් 7න් ready</span><i>✱</i><span class="s">නොමිලේ sample එකක්</span><i>✱</i><span class="s">Rs 35,000 සිට</span><i>✱</i><span class="s">සිංහල + English</span><i>✱</i><span class="s">කඩේටම එනවා</span><i>✱</i></div></div></div></div>
+    <div class="band b1"><div class="shift"><div class="run"><div class="set"><span>Websites</span><i>✱</i><span class="s">WhatsApp ඕඩර්</span><i>✱</i><span>Google Maps</span><i>✱</i><span>Facebook page care</span><i>✱</i><span class="s">කෙටි video</span><i>✱</i><span>TikTok</span><i>✱</i><span>Logo + menu board</span><i>✱</i><span>Websites</span><i>✱</i><span class="s">WhatsApp ඕඩර්</span><i>✱</i><span>Google Maps</span><i>✱</i><span>Facebook page care</span><i>✱</i><span class="s">කෙටි video</span><i>✱</i><span>TikTok</span><i>✱</i><span>Logo + menu board</span><i>✱</i></div></div></div></div>
   </section>
 
   <section id="work" aria-labelledby="work-h">
@@ -395,11 +523,25 @@ footer{padding-block:28px 36px;color:var(--ink-2);font-size:14px;font-family:var
         <div class="mosaic" aria-hidden="true"><div class="mgrid"><div class="mcol c1"><div class="mtrack"><img src="assets/hero/cafe.webp" alt="" width="360" height="640" loading="lazy"><img src="assets/hero/salon.webp" alt="" width="360" height="640" loading="lazy"><img src="assets/hero/athal-kade.webp" alt="" width="360" height="640" loading="lazy"><img src="assets/hero/tuition_2.webp" alt="" width="360" height="640" loading="lazy"><img src="assets/hero/night.webp" alt="" width="360" height="640" loading="lazy"><img src="assets/hero/cafe.webp" alt="" width="360" height="640" loading="lazy"><img src="assets/hero/salon.webp" alt="" width="360" height="640" loading="lazy"><img src="assets/hero/athal-kade.webp" alt="" width="360" height="640" loading="lazy"><img src="assets/hero/tuition_2.webp" alt="" width="360" height="640" loading="lazy"><img src="assets/hero/night.webp" alt="" width="360" height="640" loading="lazy"></div></div><div class="mcol c2"><div class="mtrack"><img src="assets/hero/navo.webp" alt="" width="360" height="640" loading="lazy"><img src="assets/hero/cakes_2.webp" alt="" width="360" height="640" loading="lazy"><img src="assets/hero/night_2.webp" alt="" width="360" height="640" loading="lazy"><img src="assets/hero/salon_2.webp" alt="" width="360" height="640" loading="lazy"><img src="assets/hero/cafe_2.webp" alt="" width="360" height="640" loading="lazy"><img src="assets/hero/navo.webp" alt="" width="360" height="640" loading="lazy"><img src="assets/hero/cakes_2.webp" alt="" width="360" height="640" loading="lazy"><img src="assets/hero/night_2.webp" alt="" width="360" height="640" loading="lazy"><img src="assets/hero/salon_2.webp" alt="" width="360" height="640" loading="lazy"><img src="assets/hero/cafe_2.webp" alt="" width="360" height="640" loading="lazy"></div></div><div class="mcol c3"><div class="mtrack"><img src="assets/hero/tuition.webp" alt="" width="360" height="640" loading="lazy"><img src="assets/hero/athal-kade_2.webp" alt="" width="360" height="640" loading="lazy"><img src="assets/hero/navo_2.webp" alt="" width="360" height="640" loading="lazy"><img src="assets/hero/cakes.webp" alt="" width="360" height="640" loading="lazy"><img src="assets/hero/salon.webp" alt="" width="360" height="640" loading="lazy"><img src="assets/hero/tuition.webp" alt="" width="360" height="640" loading="lazy"><img src="assets/hero/athal-kade_2.webp" alt="" width="360" height="640" loading="lazy"><img src="assets/hero/navo_2.webp" alt="" width="360" height="640" loading="lazy"><img src="assets/hero/cakes.webp" alt="" width="360" height="640" loading="lazy"><img src="assets/hero/salon.webp" alt="" width="360" height="640" loading="lazy"></div></div></div></div>
         <div class="ttext">
           <p class="kick"><i></i>WEBSITES</p>
-          <h2 id="work-h">Demo sites 6ක්</h2><span class="en">Six demo sites you can try</span>
+          <h2 id="work-h">Demo sites 7ක්</h2><span class="en">Seven demo sites you can try</span>
           <p class="tp">හැම එකම වැඩ කරන demo. Phone එකෙන් open කරලා ඕඩර් එකක් හරි booking එකක් හරි දාලා බලන්න. ඔබේ කඩේට ගැලපෙන style එක තෝරන්න.</p>
         </div>
       </div>
       <div class="work">
+        <article class="case wide">
+          <div class="shot navo" aria-hidden="true">
+            <div class="nv"><div class="t">navo<b>.</b><small>MOBILE</small></div><div class="s">Phone repairs<br>while you wait</div><span class="ok">✓ Fixed in 55 min</span></div>
+            <div class="ph2 p1"><img src="assets/hero/navo.webp" alt="" width="360" height="640" loading="lazy"></div>
+            <div class="ph2 p2"><img src="assets/hero/navo_2.webp" alt="" width="360" height="640" loading="lazy"></div>
+          </div>
+          <div class="txt">
+            <span class="new">අලුත්ම demo එක</span>
+            <h3>Navo Mobile · phone repair කඩයක්</h3>
+            <p>Customer phone එකයි, වෙලා තියෙන දේයි තෝරපු ගමන් repair ගාණ, ගතවෙන වෙලාව සහ warranty එක පේනවා. එතනින්ම WhatsApp එකෙන් book කරනවා. Accessories ගණන් සහ කඩේ දැන් open ද කියලත් පෙන්නනවා.</p>
+            <ul><li>Repair ගණන්</li><li>Phone model තෝරන්න</li><li>WhatsApp booking</li><li>Accessories</li><li>Open ද කියලා</li></ul>
+            <a class="btn btn-line" href="phone-repair/" target="_blank" rel="noopener">Phone repair demo එක</a>
+          </div>
+        </article>
         <article class="case">
           <div class="shot kopi" aria-hidden="true"><div><div class="t">Athal Kade</div><div class="s">ආතල් කඩේ</div></div><div class="tile"></div></div>
           <div class="txt">
@@ -597,10 +739,12 @@ footer{padding-block:28px 36px;color:var(--ink-2);font-size:14px;font-family:var
   </div>
 
   <section aria-labelledby="about-h">
+    <div class="wrap">
+      <h2 id="about-h">මම ගැන</h2><span class="en">About me</span>
+      <p class="fill">මම Rodrigo, කෝට්ටේ. හැම site එකක්ම <b>මම තනියම</b> හදනවා. ඔයා කතා කරන්නේ මා එක්කමයි, ඕනේ නම් මම <b>කඩේටම එනවා.</b></p>
+    </div>
     <div class="wrap about">
       <div>
-        <h2 id="about-h">මම ගැන</h2><span class="en">About me</span>
-        <p class="si-p" style="margin-top:18px">මම Rodrigo, කෝට්ටේ. හැම site එකක්ම මම තනියම හදනවා. ඔයා කතා කරන්නේ මා එක්කමයි, ඕනේ නම් මම කඩේටම එනවා.</p>
         <p class="si-p">මගේ රැකියාවේ හැම දෙයක්ම හරියට check කරලා තමයි අවසන් කරන්නේ. Website හදද්දීත් මම ඒ විදියමයි.</p>
         <p class="en-p">I'm Rodrigo, from Kotte. I build every site myself, so you always deal with me. In my day job nothing is signed off until it has been checked, and I build websites the same way.</p>
       </div>
@@ -613,6 +757,19 @@ footer{padding-block:28px 36px;color:var(--ink-2);font-size:14px;font-family:var
           <li><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10.5l4 4 8-9" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg><span>WhatsApp සහ call buttons වැඩ කරනවා</span></li>
           <li><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10.5l4 4 8-9" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Google Maps එකේ කඩේ පේනවා</span></li>
         </ul>
+      </div>
+    </div>
+    <div class="wrap">
+      <div class="speed" id="speed" role="group" aria-labelledby="speed-h">
+        <h3 id="speed-h">මේ site එකේ speed score එක</h3>
+        <span class="src">Google Lighthouse · phone test · 7 Nov 2026</span>
+        <div class="meters">
+          <div class="meter" data-to="98"><b class="num">98</b><span class="bars" aria-hidden="true"></span><span class="lbl">Performance<span>වේගය</span></span></div>
+          <div class="meter" data-to="100"><b class="num">100</b><span class="bars" aria-hidden="true"></span><span class="lbl">Accessibility<span>හැමෝටම පාවිච්චියට ලේසි</span></span></div>
+          <div class="meter" data-to="100"><b class="num">100</b><span class="bars" aria-hidden="true"></span><span class="lbl">Best practices<span>හරි ක්‍රමයට හදලා</span></span></div>
+          <div class="meter" data-to="100"><b class="num">100</b><span class="bars" aria-hidden="true"></span><span class="lbl">SEO<span>Google එකේ හොයාගන්න</span></span></div>
+        </div>
+        <p class="note">ලකුණු 100න්. Google එකේ Lighthouse tool එකෙන් phone එකකට වගේ test කළා.</p>
       </div>
     </div>
   </section>
@@ -659,6 +816,8 @@ footer{padding-block:28px 36px;color:var(--ink-2);font-size:14px;font-family:var
   </section>
 </main>
 
+<button class="totop" type="button" aria-label="Back to top · උඩට යන්න"><svg class="ring" viewBox="0 0 56 56" aria-hidden="true"><circle class="bg" cx="28" cy="28" r="25.5"/><circle class="fg" cx="28" cy="28" r="25.5" pathLength="100" stroke-dasharray="100" stroke-dashoffset="100"/></svg><svg class="arr" viewBox="0 0 20 20" aria-hidden="true"><path d="M10 16V4M4.5 9.5L10 4l5.5 5.5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+
 <footer class="wrap">© Rodrigo's Studio · කෝට්ටේ<span class="fl"><a href="#page-care">Facebook page care</a><a href="https://www.facebook.com/profile.php?id=61595712033625" target="_blank" rel="noopener">Facebook</a><a href="https://www.instagram.com/rodrigos.studio.lk/" target="_blank" rel="noopener">Instagram</a><a href="https://www.tiktok.com/@rodrigoz.studio" target="_blank" rel="noopener">TikTok</a></span></footer>
 
 <script>
@@ -671,6 +830,374 @@ document.querySelectorAll("[data-copy]").forEach(btn => btn.addEventListener("cl
   try { await navigator.clipboard.writeText(el.textContent); btn.textContent = "Copied"; setTimeout(() => btn.textContent = "Copy", 1500); }
   catch { const r = document.createRange(); r.selectNodeContents(el); const s = getSelection(); s.removeAllRanges(); s.addRange(r); }
 }));
+})();
+</script>
+
+<script>
+/* moving parts: banners, words that fill in, floating dots, speed score counters, back to top, the RS bird */
+(() => {
+const RM = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const $ = (s, r = document) => r.querySelector(s), $$ = (s, r = document) => [...r.querySelectorAll(s)];
+const clamp = (x, a, b) => Math.min(b, Math.max(a, x));
+const PI2 = Math.PI * 2;
+
+/* banners: a second copy for a seamless loop; scrolling pushes them sideways */
+$$('.run').forEach(r => r.appendChild(r.firstElementChild.cloneNode(true)));
+const tick = $('.tick'), shifts = $$('.tick .shift');
+
+/* words that fill in as you scroll */
+const fills = $$('.fill');
+fills.forEach(p => {
+  const wrap = node => [...node.childNodes].forEach(n => {
+    if (n.nodeType === 3) {
+      const f = document.createDocumentFragment();
+      n.textContent.split(/(\s+)/).forEach(t => {
+        if (!t) return;
+        if (/^\s+$/.test(t)) { f.appendChild(document.createTextNode(t)); return; }
+        const s = document.createElement('span'); s.className = 'w'; s.textContent = t; f.appendChild(s);
+      });
+      n.replaceWith(f);
+    } else if (n.nodeType === 1) wrap(n);
+  });
+  wrap(p); p._w = $$('.w', p);
+  if (!RM) p.classList.add('on');
+});
+
+/* floating dots */
+const dots = [];
+if (!RM) {
+  const layer = document.createElement('div'); layer.className = 'dots'; layer.setAttribute('aria-hidden', 'true');
+  const C = ['#F2C230', '#0C7558', '#39C796', '#C8F06A', ''];
+  const spec = [[5,18,9,0],[90,12,7,1],[13,47,6,3],[94,40,10,0],[54,7,5,2],[74,66,8,4],[3,80,7,1],[41,90,6,0],[97,88,6,3],[29,29,5,4],[63,37,6,1],[83,94,8,2],[21,67,6,0],[49,57,5,3]];
+  spec.slice(0, innerWidth < 700 ? 8 : spec.length).forEach(([x, y, sz, c], i) => {
+    const d = document.createElement('span'), dot = document.createElement('i');
+    d.className = 'd'; d.style.left = x + '%'; d.style.top = y + '%';
+    dot.style.width = dot.style.height = sz + 'px';
+    if (C[c]) dot.style.background = C[c]; else dot.style.border = '1.5px solid var(--ink-2)';
+    dot.style.setProperty('--t', (12 + (i * 7) % 11) + 's');
+    dot.style.setProperty('--dx', ((i % 2 ? 1 : -1) * (10 + (i % 5) * 4)) + 'px');
+    dot.style.setProperty('--dy', (8 + (i % 4) * 5) + 'px');
+    dot.style.animationDelay = (-i * 1.7) + 's';
+    d.appendChild(dot); layer.appendChild(d);
+    dots.push({ el: d, y: y / 100, depth: .1 + (i % 5) * .06 });
+  });
+  document.body.appendChild(layer);
+}
+
+/* back to top */
+const toTop = $('.totop'), ring = $('.totop .fg');
+toTop.addEventListener('click', () => {
+  window.scrollTo({ top: 0, behavior: RM ? 'auto' : 'smooth' });
+  $('.logo').focus({ preventScroll: true });
+});
+
+let queued = false;
+function onScroll() {
+  queued = false;
+  const y = scrollY, vh = innerHeight, max = Math.max(1, document.documentElement.scrollHeight - vh);
+  toTop.classList.toggle('show', y > vh * .9);
+  ring.style.strokeDashoffset = (100 - clamp(y / max, 0, 1) * 100).toFixed(1);
+  if (RM) return;
+  fills.forEach(p => {
+    const r = p.getBoundingClientRect();
+    if (r.bottom < -vh || r.top > vh * 2) return;
+    const lit = Math.round(clamp((vh * .9 - r.top) / (r.height + vh * .4), 0, 1) * p._w.length * 1.05);
+    p._w.forEach((w, i) => w.classList.toggle('lit', i < lit));
+  });
+  if (tick) {
+    const r = tick.getBoundingClientRect();
+    if (r.bottom > -60 && r.top < vh + 60) {
+      const o = (r.top - vh / 2) * .32;
+      shifts[0].style.transform = `translate3d(${o.toFixed(1)}px,0,0)`;
+      shifts[1].style.transform = `translate3d(${(-o).toFixed(1)}px,0,0)`;
+    }
+  }
+  const H = vh + 30;
+  dots.forEach(d => {
+    const y0 = d.y * vh, yy = ((y0 - y * d.depth + 15) % H + H) % H - 15;
+    d.el.style.transform = `translate3d(0,${(yy - y0).toFixed(1)}px,0)`;
+  });
+}
+addEventListener('scroll', () => { if (!queued) { queued = true; requestAnimationFrame(onScroll); } }, { passive: true });
+addEventListener('resize', onScroll);
+onScroll();
+
+/* speed score: count up once it comes into view */
+const meters = $$('.meter');
+meters.forEach(m => { const b = $('.bars', m); for (let i = 0; i < 10; i++) b.appendChild(document.createElement('i')); });
+const setMeter = (m, v) => {
+  $('.num', m).textContent = Math.round(v);
+  $$('.bars i', m).forEach((b, i) => b.classList.toggle('on', i < Math.round(v / 10)));
+};
+if (RM || !('IntersectionObserver' in window)) meters.forEach(m => setMeter(m, +m.dataset.to));
+else {
+  meters.forEach(m => setMeter(m, 0));
+  const io = new IntersectionObserver(es => es.forEach(e => {
+    if (!e.isIntersecting) return;
+    io.disconnect();
+    const t0 = performance.now();
+    const step = now => {
+      const u = clamp((now - t0) / 1200, 0, 1), k = 1 - Math.pow(1 - u, 3);
+      meters.forEach((m, i) => setMeter(m, +m.dataset.to * clamp(k * 1.1 - i * .03, 0, 1)));
+      if (u < 1) requestAnimationFrame(step);
+    };
+    requestAnimationFrame(step);
+  }), { threshold: .4 });
+  io.observe($('#speed'));
+}
+
+/* ---------- the RS bird: tap him ---------- */
+const box = $('#bird');
+if (!box) return;
+const RIG = {"layers":{"base":[146,9,370,602],"head":[151,7,337,340],"wingL":[29,147,192,252],"wingR":[429,332,132,152],"shoulder":[146,263,74,114]},
+  "patches":{"blink1":[206,124,240,130],"blink2":[206,124,240,130],"beak1":[270,237,96,71],"beak2":[270,237,96,71]},
+  "pivots":{"p_head":[320,340],"p_wl":[186,352.5],"p_wr":[442.5,352.5],"feet":[317.5,597.5]}};
+const VB = [-20, -90, 650, 715];
+const NAMES = ['base', 'head', 'wingL', 'wingR', 'shoulder', 'blink1', 'blink2', 'beak1', 'beak2'];
+
+function makeBird(canvas, imgs) {
+  const ctx = canvas.getContext('2d'), off = document.createElement('canvas'), octx = off.getContext('2d');
+  const L = RIG.layers, P = RIG.pivots, PT = RIG.patches;
+  const hc = document.createElement('canvas'), hctx = hc.getContext('2d');
+  hc.width = L.head[2]; hc.height = L.head[3];
+  let headKey = '', k = 1;
+  const head = (blink, beak) => {
+    const key = blink + '/' + beak;
+    if (key !== headKey) {
+      headKey = key; hctx.clearRect(0, 0, hc.width, hc.height); hctx.drawImage(imgs.head, 0, 0);
+      for (const n of [blink && 'blink' + blink, beak && 'beak' + beak]) {
+        if (!n) continue;
+        const p = PT[n], x = p[0] - L.head[0], y = p[1] - L.head[1];
+        hctx.clearRect(x, y, p[2], p[3]); hctx.drawImage(imgs[n], x, y, p[2], p[3]);
+      }
+    }
+    return hc;
+  };
+  const about = (c, p, a) => { c.translate(p[0], p[1]); c.rotate(a); c.translate(-p[0], -p[1]); };
+  const put = (c, img, l) => c.drawImage(img, l[0], l[1], l[2], l[3]);
+  return {
+    size(cssW) {
+      k = cssW * Math.min(window.devicePixelRatio || 1, 2) / VB[2];
+      canvas.width = off.width = Math.round(VB[2] * k); canvas.height = off.height = Math.round(VB[3] * k);
+    },
+    draw(G) {
+      const D = Math.PI / 180, F = P.feet, sq = G.sq, view = [k, 0, 0, k, -VB[0] * k, -VB[1] * k];
+      ctx.setTransform(1, 0, 0, 1, 0, 0); ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.setTransform(...view); ctx.translate(G.tx, G.ty);
+      ctx.translate(F[0], F[1]); ctx.rotate(G.sway * D); ctx.scale(1 / Math.sqrt(sq), sq); ctx.translate(-F[0], -F[1]);
+      put(ctx, imgs.base, L.base);
+      // the raised wing melts into the shoulder, which stays with the body
+      octx.setTransform(1, 0, 0, 1, 0, 0); octx.clearRect(0, 0, off.width, off.height); octx.setTransform(...view);
+      octx.save(); about(octx, P.p_wl, G.wl * D); put(octx, imgs.wingL, L.wingL); octx.restore();
+      octx.globalCompositeOperation = 'destination-out'; put(octx, imgs.shoulder, L.shoulder); octx.globalCompositeOperation = 'source-over';
+      ctx.drawImage(off, VB[0], VB[1], VB[2], VB[3]);
+      ctx.save(); about(ctx, P.p_wr, G.wr * D); put(ctx, imgs.wingR, L.wingR); ctx.restore();
+      ctx.save(); about(ctx, P.p_head, G.head * D); put(ctx, head(G.blink, G.beak), L.head); ctx.restore();
+    }
+  };
+}
+
+const LINES = [
+  ['හායි! මම RS කුරුල්ලා.', 'wave'],
+  ['ඔයාගේ කඩේටත් website එකක් හදමුද?', 'hop'],
+  ['පහළට scroll කරන්න. Demo 7ක් තියෙනවා.', 'wiggle'],
+  ['WhatsApp ඕඩර් කෙලින්ම ඔයාගේ phone එකට.', 'wave'],
+  ['අයියෝ! හෙමින්, පිහාටු ගැලවෙනවා.', 'feathers'],
+  ['Rodrigo කඩේටම ඇවිත් කතා කරනවා.', 'hop']
+];
+const DIZZY = ['අනේ මගේ ඔලුව කැරකෙනවා!', 'dizzy'];
+// each move: length (s) and the chirps (start, length) the beak opens on
+const MOVES = {
+  wave: { dur: 1.6, syl: [[.05, .13], [.3, .11], [.52, .2]] },
+  hop: { dur: 1.0, syl: [[0, .1], [.24, .18]] },
+  wiggle: { dur: 1.15, syl: [[0, .09], [.15, .09], [.3, .15]] },
+  feathers: { dur: 1.1, syl: [[.02, .32, 'squeak']] },
+  dizzy: { dur: 2.3, syl: [[.1, .12], [.5, .12], [.95, .28]] }
+};
+
+const start = () => {
+  const imgs = {};
+  Promise.all(NAMES.map(n => new Promise((ok, bad) => {
+    const i = new Image(); i.decoding = 'async'; i.onload = () => (i.decode ? i.decode().catch(() => {}) : Promise.resolve()).then(ok); i.onerror = bad;
+    i.src = 'assets/bird/' + n + '.webp'; imgs[n] = i;
+  }))).then(() => run(imgs)).catch(() => {});
+};
+const later = cb => ('requestIdleCallback' in window ? requestIdleCallback(cb, { timeout: 2000 }) : setTimeout(cb, 400));
+if (document.readyState === 'complete') later(start); else addEventListener('load', () => later(start), { once: true });
+
+function run(imgs) {
+  const canvas = $('canvas', box), btn = $('.bird-btn', box), bubble = $('.bubble', box);
+  const card = box.closest('.hcard'), fx = $('.fx', card), fctx = fx.getContext('2d');
+  const B = makeBird(canvas, imgs);
+  let cssW = 0, dpr = 1;
+  const t0 = performance.now(), now = () => (performance.now() - t0) / 1000;
+  let act = null, nextBlink = 2.2, blinkAt = -9, aim = 0, aimCur = 0, raf = 0, last = 0, visible = true;
+  const enter = RM ? -99 : 0;
+
+  function pose(t) {
+    const G = { sq: 1, sway: 0, head: 0, wl: 0, wr: 0, tx: 0, ty: 0, blink: 0, beak: 0 };
+    if (RM) return G;
+    G.sq = 1 + .012 * Math.sin(PI2 * .5 * t); G.sway = 1.2 * Math.sin(PI2 * .45 * t); G.head = 1.6 * Math.sin(PI2 * .4 * t);
+    G.wl = 1.5 + 1.5 * Math.sin(PI2 * .9 * t); G.wr = 3 * Math.sin(PI2 * .8 * t + 1);
+    aimCur += (aim - aimCur) * .06; G.head += aimCur;
+    // hop in when he first appears
+    const e = t - enter;
+    if (e < .55) { const u = e / .55; G.ty = -170 * (1 - u) * (1 - u); G.sq = 1.05; }
+    else if (e < .9) G.sq = 1 - .13 * Math.sin(Math.PI * (e - .55) / .35);
+    if (act) {
+      const M = MOVES[act.kind], s = t - act.t, u = s / M.dur;
+      if (u >= 1) act = null;
+      else {
+        if (act.kind === 'wave') { const k = Math.min(1, s / .25, (M.dur - s) / .25); G.wl += k * (8 + 8 * Math.sin(PI2 * 2.3 * s)); G.head += 2 * k; }
+        if (act.kind === 'hop') {
+          if (u < .15) G.sq = 1 - .12 * Math.sin(Math.PI / 2 * u / .15);
+          else if (u < .62) { const a = (u - .15) / .47; G.ty = -75 * Math.sin(Math.PI * a); G.sq = 1 + .06 * Math.sin(Math.PI * a); G.wl += 9 + 7 * Math.sin(PI2 * 7 * s); G.wr += 7 * Math.sin(PI2 * 7 * s); }
+          else if (u < .82) G.sq = 1 - .11 * Math.sin(Math.PI * (u - .62) / .2);
+        }
+        if (act.kind === 'wiggle') { const k = 1 - u; G.sway += 4.5 * Math.sin(PI2 * 3 * s) * k; G.head -= 5 * Math.sin(PI2 * 3 * s + 1) * k; G.wr += 6 * Math.sin(PI2 * 3 * s) * k; }
+        if (act.kind === 'feathers') {
+          G.ty = -18 * Math.sin(Math.PI * Math.min(1, u / .35)); G.head -= 4 * Math.sin(Math.PI * u);
+          G.wl += 12 * Math.sin(Math.PI * Math.min(1, u / .6)); if (s > .05 && s < .5) G.blink = 2;
+        }
+        if (act.kind === 'dizzy') { const k = Math.min(1, (1 - u) * 3); G.head += 6 * Math.sin(PI2 * 1.4 * s) * k; G.sway += 3 * Math.cos(PI2 * 1.4 * s) * k; if (s > .3 && s < 1.8) G.blink = 1; }
+        // beak: shut between chirps, open on each chirp
+        G.beak = 2;
+        for (const [a, d] of M.syl) if (s >= a && s < a + d) { const x = (s - a) / d; G.beak = x > .2 && x < .8 ? 0 : 1; }
+        if (s < .04) G.beak = 1;
+      }
+    }
+    G.wl = Math.max(G.wl, 0);   // near rest the wing only moves toward the head, so no gap opens at the cheek
+    // blinks
+    if (t > nextBlink) { blinkAt = t; nextBlink = t + 2.4 + Math.random() * 3.2; }
+    const b = t - blinkAt;
+    if (!G.blink && b < .17) G.blink = b < .045 || b > .125 ? 1 : 2;
+    return G;
+  }
+
+  function resize() {
+    const w = box.clientWidth;
+    if (w && w !== cssW) { cssW = w; B.size(w); }
+    dpr = Math.min(window.devicePixelRatio || 1, 2);
+    fx.width = Math.round(card.clientWidth * dpr); fx.height = Math.round(card.clientHeight * dpr);
+    B.draw(pose(now()));
+  }
+  resize();
+  'ResizeObserver' in window ? new ResizeObserver(resize).observe(card) : addEventListener('resize', resize);
+  box.classList.add('ready');
+
+  function loop(ts) {
+    raf = 0;
+    if (!visible || document.hidden || RM) return;
+    const t = now(), busy = act || t - enter < 1 || t - blinkAt < .2 || Math.abs(aim - aimCur) > .05;
+    if (busy || ts - last > 32) { B.draw(pose(t)); last = ts; }
+    raf = requestAnimationFrame(loop);
+  }
+  const wake = () => { if (!raf && !RM) raf = requestAnimationFrame(loop); };
+  if ('IntersectionObserver' in window) new IntersectionObserver(es => { visible = es[0].isIntersecting; wake(); }).observe(card);
+  document.addEventListener('visibilitychange', wake);
+  wake();
+
+  /* he looks toward the pointer */
+  if (matchMedia('(hover: hover)').matches) {
+    card.addEventListener('pointermove', e => {
+      const r = box.getBoundingClientRect();
+      aim = clamp((e.clientX - (r.left + r.width / 2)) / 90, -4, 4); wake();
+    });
+    card.addEventListener('pointerleave', () => { aim = 0; wake(); });
+  }
+
+  /* chirps (made in the browser, no sound file) */
+  let ac = null, master = null;
+  function chirp(at, d, kind) {
+    const n = Math.max(8, Math.round(d * 200)), f = new Float32Array(n), f2 = new Float32Array(n), f0 = 2700 + Math.random() * 600;
+    for (let i = 0; i < n; i++) {
+      const u = i / (n - 1);
+      let v = kind === 'peep' ? f0 * (1.22 - .3 * u) : kind === 'tweet' ? f0 * (.86 + .34 * Math.pow(u, 1.4))
+        : kind === 'squeak' ? f0 * .85 * (.8 + .75 * Math.pow(u, .8)) * (1 + .035 * Math.sin(PI2 * 22 * u * d))
+        : f0 * (.92 + .36 * Math.pow(Math.sin(Math.PI * u), 1.2) - .1 * u);
+      f[i] = v; f2[i] = v * 2;
+    }
+    const t = ac.currentTime + at, g = ac.createGain();
+    g.gain.setValueAtTime(0, t); g.gain.linearRampToValueAtTime(1, t + .006);
+    g.gain.setValueAtTime(1, t + Math.max(.01, d - .045)); g.gain.linearRampToValueAtTime(0, t + d);
+    g.connect(master);
+    [[f, 1], [f2, .28]].forEach(([curve, vol]) => {
+      const o = ac.createOscillator(), og = ac.createGain();
+      o.frequency.setValueCurveAtTime(curve, t, d); og.gain.value = vol;
+      o.connect(og); og.connect(g); o.start(t); o.stop(t + d + .02);
+    });
+  }
+  function sing(kind) {
+    try {
+      if (!ac) {
+        ac = new (window.AudioContext || window.webkitAudioContext)();
+        master = ac.createGain(); master.gain.value = .11;
+        const lp = ac.createBiquadFilter(); lp.type = 'lowpass'; lp.frequency.value = 7500;
+        master.connect(lp); lp.connect(ac.destination);
+      }
+      if (ac.state === 'suspended') ac.resume();
+      const kinds = ['peep', 'tweet', 'arch'];
+      MOVES[kind].syl.forEach(([a, d, k]) => chirp(a + .02, d, k || kinds[Math.floor(Math.random() * 3)]));
+    } catch (e) {}
+  }
+
+  /* little bursts: brand coloured dots, and feathers when he gets a fright */
+  let parts = [], fxRaf = 0, fxLast = 0;
+  function burst(x, y, feathers) {
+    const C = ['#F2C230', '#C8F06A', '#39C796', '#FFFFFF', '#8BE3B5'];
+    for (let i = 0; i < 16; i++) {
+      const a = -Math.PI / 2 + (Math.random() - .5) * Math.PI * 1.6, v = 140 + Math.random() * 220;
+      parts.push({ x, y, vx: Math.cos(a) * v, vy: Math.sin(a) * v, g: 420, r: 2.5 + Math.random() * 3.5, c: C[i % C.length], life: .8 + Math.random() * .5, age: 0 });
+    }
+    if (feathers) {
+      const r = box.getBoundingClientRect(), cr = card.getBoundingClientRect();
+      for (let i = 0; i < 9; i++) {
+        parts.push({ f: 1, x: r.left - cr.left + r.width * (.3 + Math.random() * .4), y: r.top - cr.top + r.height * (.45 + Math.random() * .2),
+          vx: (Math.random() - .5) * 160, vy: -60 - Math.random() * 120, g: 70, rot: Math.random() * 6, vr: (Math.random() - .5) * 4,
+          c: i % 3 ? '#43C463' : '#F2D33A', life: 2 + Math.random() * .6, age: 0, ph: Math.random() * 6 });
+      }
+    }
+    if (!fxRaf) { fxLast = performance.now(); fxRaf = requestAnimationFrame(fxLoop); }
+  }
+  function fxLoop(ts) {
+    const dt = Math.min(.05, (ts - fxLast) / 1000); fxLast = ts;
+    fctx.setTransform(1, 0, 0, 1, 0, 0); fctx.clearRect(0, 0, fx.width, fx.height); fctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    parts = parts.filter(p => (p.age += dt) < p.life);
+    for (const p of parts) {
+      p.vy += p.g * dt; p.x += p.vx * dt; p.y += p.vy * dt;
+      fctx.globalAlpha = clamp(1.4 - p.age / p.life * 1.4, 0, 1);
+      if (p.f) {
+        p.vx *= .985; p.x += Math.sin(p.age * 3 + p.ph) * 26 * dt; p.vy = Math.min(p.vy, 55); p.rot += p.vr * dt;
+        fctx.save(); fctx.translate(p.x, p.y); fctx.rotate(p.rot + Math.sin(p.age * 3 + p.ph) * .5);
+        fctx.fillStyle = p.c; fctx.beginPath(); fctx.ellipse(0, 0, 11, 4.2, 0, 0, PI2); fctx.fill();
+        fctx.strokeStyle = 'rgba(255,255,255,.55)'; fctx.lineWidth = 1; fctx.beginPath(); fctx.moveTo(-11, 0); fctx.lineTo(10, 0); fctx.stroke();
+        fctx.restore();
+      } else { fctx.fillStyle = p.c; fctx.beginPath(); fctx.arc(p.x, p.y, p.r, 0, PI2); fctx.fill(); }
+    }
+    fctx.globalAlpha = 1;
+    fxRaf = parts.length ? requestAnimationFrame(fxLoop) : 0;
+    if (!parts.length) fctx.clearRect(0, 0, fx.width, fx.height);
+  }
+
+  /* tap */
+  let n = 0, streak = 0, lastTap = 0, hideT = 0;
+  btn.addEventListener('click', e => {
+    const t = now();
+    streak = t - lastTap < 2.2 ? streak + 1 : 1; lastTap = t;
+    const [line, kind] = streak >= 6 ? (streak = 0, DIZZY) : LINES[n++ % LINES.length];
+    box.classList.add('tapped');
+    bubble.hidden = false; bubble.textContent = line;
+    bubble.style.animation = 'none'; void bubble.offsetWidth; bubble.style.animation = '';
+    clearTimeout(hideT); hideT = setTimeout(() => { bubble.hidden = true; }, 3200);
+    sing(kind);
+    if (RM) return;
+    act = { kind, t };
+    const cr = card.getBoundingClientRect(), r = box.getBoundingClientRect();
+    const x = e.detail ? e.clientX - cr.left : r.left - cr.left + r.width * .52, y = e.detail ? e.clientY - cr.top : r.top - cr.top + r.height * .35;
+    burst(x, y, kind === 'feathers');
+    wake();
+  });
+}
 })();
 </script>
 
