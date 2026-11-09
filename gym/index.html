@@ -1,0 +1,729 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Wiru Fitness · demo</title>
+<meta name="description" content="Demo website for a gym: see how busy it is right now, compare membership plans, book a class and a free trial day on WhatsApp. Made by Rodrigo's Studio.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Wiru Fitness · demo by Rodrigo&#x27;s Studio">
+<meta property="og:description" content="Gym demo: live crowd meter, membership prices, class timetable and a free trial day booked on WhatsApp.">
+<meta property="og:url" content="https://rodrigos-studio.github.io/gym/">
+<meta property="og:image" content="https://rodrigos-studio.github.io/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/png" href="https://rodrigos-studio.github.io/icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Jost:wght@600;700;800;900&family=DM+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&family=Noto+Sans+Sinhala:wght@400;500;600;700;800&display=swap"><style>
+*{margin:0;box-sizing:border-box}
+:root{--ink:#121411;--ink2:#1C1F1B;--ink3:#2A2E28;--chalk:#F3F1EA;--paper:#FBFAF6;--line:#E1DED3;--mut:#6A6E64;--volt:#C9F03D;--volt2:#E9FAB0;--voltd:#7E9C10;--hot:#FF5B37;--ok:#22A866;--wa:#25D366;--pr:#D7262E;--pb:#1F5FBF;--py:#F2C230;--pg:#2E9B4F}
+body{background:var(--chalk);color:var(--ink);font-family:"DM Sans","Noto Sans Sinhala",system-ui,sans-serif;font-size:17px;line-height:1.55}
+.si{font-family:"Noto Sans Sinhala","DM Sans",sans-serif}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+input,select{font:inherit;color:inherit}
+.wrap{max-width:1180px;margin:0 auto;padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px))}
+.ribbon{background:var(--volt);color:var(--ink);font-size:13.5px;text-align:center;padding:7px 12px;font-weight:600}
+.ribbon a{text-decoration:underline}
+.btn{white-space:nowrap;display:inline-flex;align-items:center;justify-content:center;gap:10px;border-radius:999px;padding:14px 24px;font-family:"Jost","Noto Sans Sinhala";font-weight:700;font-size:17px;border:2px solid transparent;cursor:pointer;transition:transform .15s}
+.btn:active{transform:scale(.97)}
+.btn.v{background:var(--volt);color:var(--ink)}
+.btn.k{background:var(--ink);color:#fff}
+.btn.o{border-color:rgba(255,255,255,.28);color:#fff}
+.btn.ol{border-color:var(--ink);color:var(--ink)}
+.btn.w{background:var(--wa);color:#fff}
+.btn svg{width:20px;height:20px;flex:none}
+.en{display:block;font-size:14px;color:var(--mut);font-weight:500;margin-top:2px}
+.kick{font-family:"IBM Plex Mono";font-weight:600;font-size:12.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--voltd);display:flex;align-items:center;gap:10px}
+.kick::before{content:"";width:22px;height:3px;background:currentColor;border-radius:3px}
+h2{font-family:"Jost","Noto Sans Sinhala";font-weight:800;font-size:clamp(30px,4.4vw,46px);line-height:1.08;margin:10px 0 2px;text-wrap:balance}
+.sec{padding:76px 0}
+.lead{max-width:620px;color:#41453E;margin-top:12px}
+
+/* header */
+header{background:var(--ink);color:#fff;position:sticky;top:0;z-index:20;border-bottom:1px solid #262a24}
+header .wrap{height:68px;display:flex;align-items:center;gap:26px}
+.logo{display:flex;align-items:center;gap:11px}
+.logo svg{width:38px;height:38px;flex:none}
+.logo b{display:block;font-family:"Jost";font-weight:900;font-size:24px;line-height:.9;letter-spacing:.04em}
+.logo small{display:block;font-family:"IBM Plex Mono";font-weight:600;font-size:10px;letter-spacing:.34em;color:var(--volt);margin-top:3px}
+nav{margin-left:auto;display:flex;gap:24px;font-weight:600;font-size:15px;color:#C8CCC2}
+nav a:hover{color:#fff}
+header .btn{padding:9px 18px;font-size:15.5px}
+
+/* hero */
+.hero{position:relative;background:#0B0C0A;color:#fff;overflow:hidden;isolation:isolate}
+.scene{position:absolute;inset:0;z-index:-1;overflow:hidden}
+.scene .wall{position:absolute;inset:0;background:radial-gradient(800px 560px at 74% 34%,#3E4632 0%,#1C2018 50%,#0B0C0A 100%)}
+.scene .wall::after{content:"";position:absolute;inset:0;opacity:.35;mix-blend-mode:overlay;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.55'/%3E%3C/svg%3E")}
+.scene .ceil{position:absolute;left:-10%;right:-10%;top:-40px;height:260px;perspective:600px}
+.scene .ceil div{position:absolute;inset:0;transform:rotateX(62deg);transform-origin:50% 0}
+.scene .ceil i{position:absolute;height:9px;border-radius:9px;background:#F4F7EA;box-shadow:0 0 18px 4px rgba(240,255,210,.55),0 0 60px 18px rgba(201,240,61,.12)}
+.scene svg.eq{position:absolute;left:0;bottom:0;width:100%;height:100%;filter:blur(1.6px)}
+.scene .beam{position:absolute;top:-10%;width:220px;height:130%;background:linear-gradient(180deg,rgba(240,255,210,.16),rgba(240,255,210,0) 80%);filter:blur(14px);transform-origin:50% 0;mix-blend-mode:screen}
+.scene .floor{position:absolute;left:0;right:0;bottom:0;height:24%;background:linear-gradient(180deg,rgba(10,11,9,.0),#0A0B09 30%),repeating-linear-gradient(90deg,rgba(255,255,255,.035) 0 2px,transparent 2px 140px);border-top:1px solid rgba(255,255,255,.06)}
+.scene .floor::before{content:"";position:absolute;left:40%;right:5%;top:10%;height:60%;background:radial-gradient(closest-side,rgba(201,240,61,.10),transparent);filter:blur(10px)}
+.scene canvas{position:absolute;inset:0;width:100%;height:100%}
+.scene .shade{position:absolute;inset:0;background:linear-gradient(90deg,rgba(9,10,8,.88) 0%,rgba(9,10,8,.6) 34%,rgba(9,10,8,0) 60%),radial-gradient(140% 100% at 50% 40%,transparent 60%,rgba(0,0,0,.55) 100%)}
+.scene .spot{position:absolute;left:52%;right:-6%;top:-12%;bottom:8%;background:conic-gradient(from 180deg at 62% 0%,transparent 0deg 158deg,rgba(236,255,190,.17) 170deg,rgba(236,255,190,.24) 180deg,rgba(236,255,190,.17) 190deg,transparent 202deg 360deg);filter:blur(10px);mix-blend-mode:screen}
+.scene .pool{position:absolute;left:50%;right:4%;bottom:6%;height:22%;background:radial-gradient(closest-side,rgba(236,255,190,.20),rgba(201,240,61,.06) 60%,transparent);filter:blur(4px)}
+.band{position:relative;z-index:2;background:var(--volt);color:var(--ink);transform:rotate(-1.6deg);margin:0 -40px -10px;padding:12px 0;overflow:hidden;box-shadow:0 10px 30px rgba(0,0,0,.4)}
+.band .run{display:flex;width:max-content;animation:run 32s linear infinite}
+.band span{font-family:"Jost";font-weight:900;font-size:20px;letter-spacing:.06em;text-transform:uppercase;white-space:nowrap;padding:0 22px;display:flex;align-items:center;gap:22px}
+.band span::after{content:"✱";font-size:18px}
+@keyframes run{to{transform:translateX(-50%)}}
+.prop{position:absolute;z-index:1;filter:drop-shadow(0 22px 18px rgba(0,0,0,.6))}
+.prop.db{width:min(200px,36%);left:-2%;bottom:-2%;transform:rotate(-8deg)}
+.prop.kb{width:min(104px,20%);left:40%;bottom:2%}
+.hero .grain{position:absolute;inset:0;z-index:3;pointer-events:none;opacity:.10;mix-blend-mode:overlay;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.3' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E")}
+.hero .wrap{position:relative;display:grid;grid-template-columns:1.05fr 1fr;gap:30px;align-items:center;padding-top:56px;padding-bottom:48px}
+.pill{display:inline-flex;gap:10px;align-items:center;border:1px solid rgba(255,255,255,.18);border-radius:30px;padding:7px 15px;font-weight:600;font-size:14.5px;color:#DDE1D6;background:rgba(255,255,255,.04)}
+.pill i{width:9px;height:9px;border-radius:50%;background:#3DDC84;box-shadow:0 0 10px #3DDC84}
+.pill.closed i{background:var(--hot);box-shadow:0 0 10px var(--hot)}
+.hero h1{font-family:"Jost","Noto Sans Sinhala";font-weight:900;font-size:clamp(46px,7.4vw,92px);line-height:.92;letter-spacing:-.01em;text-transform:uppercase;margin:22px 0 6px}
+.hero h1 em{font-style:normal;color:var(--volt)}
+.hero .si-h{font-family:"Noto Sans Sinhala";font-weight:800;font-size:clamp(25px,3vw,34px);text-wrap:balance;line-height:1.25;color:#fff;margin-bottom:14px}
+.hero p{font-size:18.5px;color:#B9BEB2;max-width:520px}
+.hero .cta{display:flex;gap:12px;margin:28px 0 30px;flex-wrap:wrap}
+.facts{display:flex;gap:34px;flex-wrap:wrap}
+.facts b{display:block;font-family:"Jost";font-weight:800;font-size:30px;line-height:1.05;color:var(--volt)}
+.facts span{font-size:14px;color:#9EA497}
+.rack{position:relative;min-height:440px;min-width:0}
+.rack svg.bar{position:absolute;left:50%;top:46%;width:min(600px,118%);transform:translate(-50%,-50%) rotate(-4deg);filter:drop-shadow(0 30px 30px rgba(0,0,0,.55))}
+.rack .chalk{position:absolute;left:8%;right:8%;bottom:6%;height:60px;background:radial-gradient(closest-side,rgba(0,0,0,.55),transparent);filter:blur(6px)}
+.mini{position:absolute;z-index:2;background:rgba(28,31,27,.92);border:1px solid #33372f;border-radius:18px;padding:14px 16px;backdrop-filter:blur(6px);box-shadow:0 18px 40px rgba(0,0,0,.4);min-width:210px}
+.mini small{display:block;font-family:"IBM Plex Mono";font-size:11px;letter-spacing:.18em;color:#9EA497;text-transform:uppercase}
+.mini b{display:block;font-family:"Jost","Noto Sans Sinhala";font-weight:800;font-size:21px;line-height:1.2;margin-top:4px}
+.mini .meter{display:flex;gap:4px;margin-top:9px}
+.mini .meter i{flex:1;height:8px;border-radius:4px;background:#3a3f36}
+.mini .meter i.on{background:var(--volt)}
+.mini .meter.busy i.on{background:var(--hot)}
+.mini.m1{left:0;top:30px}
+.mini.m2{right:0;bottom:24px}
+.mini .tag{display:inline-block;margin-top:6px;font-size:13px;color:#CDD2C6}
+
+/* crowd */
+.crowd{background:var(--paper);border-bottom:1px solid var(--line)}
+.cgrid{display:grid;grid-template-columns:.9fr 1.3fr;gap:46px;align-items:center}
+.now{display:flex;align-items:center;gap:16px;margin-top:24px;background:#fff;border:1px solid var(--line);border-radius:18px;padding:16px 18px}
+.now .dot{width:54px;height:54px;border-radius:50%;flex:none;display:grid;place-items:center;font-family:"Jost";font-weight:800;font-size:18px;color:var(--ink)}
+.now b{display:block;font-family:"Jost","Noto Sans Sinhala";font-weight:800;font-size:21px;line-height:1.2}
+.now span{font-size:14.5px;color:var(--mut)}
+.chips{display:flex;gap:8px;flex-wrap:wrap}
+.chip{border:1.5px solid var(--line);background:#fff;border-radius:999px;padding:8px 15px;font-weight:600;font-size:14.5px;white-space:nowrap}
+.chip.on{background:var(--ink);border-color:var(--ink);color:#fff}
+.chart{background:#fff;border:1px solid var(--line);border-radius:22px;padding:22px 22px 16px}
+.chart .top{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:34px}
+.chart .top b{font-family:"Jost";font-weight:700;font-size:18px}
+.bars{display:flex;align-items:flex-end;gap:5px;height:190px;border-bottom:2px solid var(--ink);position:relative}
+.bars .b{flex:1;position:relative;height:100%;display:flex;align-items:flex-end}
+.bars .b i{display:block;width:100%;border-radius:6px 6px 0 0;background:#D9DDCF;transition:height .4s ease}
+.bars .b.mid i{background:#B8C79A}
+.bars .b.hi i{background:#E9A28F}
+.bars .b.cur i{background:var(--volt);outline:2px solid var(--ink);outline-offset:-2px}
+.bars .b.cur.hi i{background:var(--hot)}
+.bars .b.cur::after{content:"දැන්";position:absolute;top:-24px;left:50%;transform:translateX(-50%);font-size:12px;font-weight:700;background:var(--ink);color:#fff;border-radius:6px;padding:1px 6px;white-space:nowrap}
+.bars .b .tip{position:absolute;bottom:calc(100% + 6px);left:50%;transform:translateX(-50%);background:var(--ink);color:#fff;font-size:12px;border-radius:6px;padding:3px 7px;white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .15s;z-index:2}
+.bars .b:hover .tip{opacity:1}
+.bars .b:nth-child(-n+3) .tip{left:0;transform:none}.bars .b:nth-last-child(-n+3) .tip{left:auto;right:0;transform:none}
+.hrs{display:flex;gap:5px;margin-top:7px}
+.hrs span{flex:1;text-align:center;font-family:"IBM Plex Mono";font-size:11px;color:var(--mut)}
+.legend{display:flex;gap:18px;flex-wrap:wrap;margin-top:14px;font-size:13.5px;color:var(--mut)}
+.legend i{display:inline-block;width:12px;height:12px;border-radius:3px;margin-right:6px;vertical-align:-1px}
+
+/* plans */
+.dur{display:inline-flex;background:#fff;border:1.5px solid var(--line);border-radius:999px;padding:5px;gap:4px;margin-top:26px;flex-wrap:wrap}
+.dur button{border-radius:999px;padding:9px 16px;font-weight:700;font-size:15px;white-space:nowrap}
+.dur button.on{background:var(--ink);color:#fff}
+.dur button em{font-style:normal;font-size:12px;color:var(--voltd);margin-left:5px}
+.dur button.on em{color:var(--volt)}
+.plans{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:26px}
+.plan{position:relative;background:#fff;border:2px solid var(--line);border-radius:24px;padding:26px 24px 22px;display:flex;flex-direction:column;transition:border-color .2s,transform .2s}
+.plan:hover{transform:translateY(-3px)}
+.plan.sel{border-color:var(--ink);box-shadow:0 0 0 4px var(--volt)}
+.plan .pop{position:absolute;top:-13px;left:22px;background:var(--volt);color:var(--ink);font-weight:700;font-size:12.5px;border-radius:999px;padding:4px 12px;letter-spacing:.02em}
+.plan .plates{display:flex;gap:4px;margin-bottom:14px}
+.plan .plates i{width:12px;height:30px;border-radius:3px}
+.plan h3{font-family:"Jost";font-weight:800;font-size:24px;line-height:1.1}
+.plan .h3s{font-size:15px;color:var(--mut);font-weight:600}
+.plan .price{margin:18px 0 4px;display:flex;align-items:baseline;gap:6px;flex-wrap:wrap}
+.plan .price b{font-family:"Jost";font-weight:800;font-size:40px;line-height:1}
+.plan .price span{color:var(--mut);font-size:15px}
+.plan .was{font-size:14px;color:var(--mut);min-height:22px}
+.plan .was s{opacity:.8}
+.plan .was em{font-style:normal;color:var(--ok);font-weight:700}
+.plan ul{list-style:none;padding:0;margin:16px 0 20px;display:grid;gap:9px;font-size:15.5px}
+.plan li{display:flex;gap:10px;align-items:flex-start}
+.plan li::before{content:"";flex:none;width:18px;height:18px;margin-top:3px;border-radius:50%;background:var(--volt) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 18 18'%3E%3Cpath d='M5 9.5l2.6 2.5L13 6.5' fill='none' stroke='%23121411' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/18px no-repeat}
+.plan .btn{margin-top:auto;width:100%}
+.plan.sel .btn{background:var(--ink);color:#fff}
+.fine{font-size:14px;color:var(--mut);margin-top:16px}
+
+/* goal */
+.goal{background:var(--ink);color:#fff}
+.goal .lead{color:#B9BEB2}
+.goal .kick{color:var(--volt)}
+.gbtns{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:28px}
+.gbtn{background:var(--ink2);border:1.5px solid #343830;border-radius:20px;padding:18px;text-align:left;display:flex;flex-direction:column;gap:8px;transition:border-color .2s,background .2s}
+.gbtn svg{width:34px;height:34px}
+.gbtn b{font-family:"Noto Sans Sinhala";font-weight:700;font-size:18px;line-height:1.3}
+.gbtn span{font-size:14px;color:#9EA497}
+.gbtn.on{border-color:var(--volt);background:#262b1c}
+.grec{margin-top:18px;background:var(--ink2);border:1.5px solid #343830;border-radius:22px;padding:22px 24px;display:grid;grid-template-columns:1fr auto;gap:18px;align-items:center}
+.grec small{font-family:"IBM Plex Mono";font-size:11.5px;letter-spacing:.18em;color:var(--volt);text-transform:uppercase}
+.grec h3{font-family:"Jost","Noto Sans Sinhala";font-weight:800;font-size:25px;margin:4px 0 6px}
+.grec p{color:#C5CABD;font-size:16px}
+.grec .tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+.grec .tags span{background:#30352a;border-radius:999px;padding:5px 12px;font-size:13.5px;color:#E3E7DC}
+
+/* timetable */
+.ttop{display:flex;justify-content:space-between;align-items:flex-end;gap:20px;flex-wrap:wrap}
+.classes{display:grid;gap:12px}
+.cls{display:grid;grid-template-columns:96px 1fr auto;gap:18px;align-items:center;background:#fff;border:1px solid var(--line);border-radius:20px;padding:16px 18px;border-left:7px solid var(--c,#999)}
+.cls .tm b{display:block;font-family:"Jost";font-weight:800;font-size:22px;line-height:1}
+.cls .tm span{font-size:13px;color:var(--mut)}
+.cls h4{font-family:"Jost";font-weight:700;font-size:20px;line-height:1.2}
+.cls .meta{font-size:14.5px;color:var(--mut);display:flex;gap:6px 14px;flex-wrap:wrap;margin-top:3px}
+.cls .lvl{font-weight:700;color:var(--ink)}
+.cls .spots{font-size:13.5px;font-weight:700;color:var(--ok)}
+.cls .spots.low{color:var(--hot)}
+.cls .btn{padding:10px 18px;font-size:15px}
+.cls.done{opacity:.45}
+.cls.done .btn{pointer-events:none;background:#E7E5DD;color:var(--mut)}
+.tgrid2{display:grid;grid-template-columns:380px minmax(0,1fr);gap:26px;margin-top:26px;align-items:start}
+.cal{background:#fff;border:1px solid var(--line);border-radius:22px;padding:16px}
+.cal .mh{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
+.cal .mh b{font-family:"Noto Sans Sinhala","Jost";font-weight:800;font-size:18px}
+.cal .mh button{width:38px;height:38px;border-radius:50%;border:1.5px solid var(--line);font-family:"Jost";font-weight:700;font-size:18px;display:grid;place-items:center}
+.cal .mh button:disabled{opacity:.3;cursor:default}
+.cal .wd,.cal .gd{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:4px}
+.cal .wd span{text-align:center;font-size:12px;font-weight:700;color:var(--mut);padding:4px 0}
+.cal .gd button{aspect-ratio:1;border-radius:12px;font-family:"Jost";font-weight:700;font-size:16px;display:flex;flex-direction:column;align-items:center;justify-content:center;line-height:1;background:var(--paper);min-width:0}
+.cal .gd button i{display:flex;gap:2px;margin-top:4px;height:4px}
+.cal .gd button i em{width:4px;height:4px;border-radius:50%;background:var(--voltd)}
+.cal .gd button:disabled{background:none;color:#C4C1B6;cursor:default}
+.cal .gd button.today{box-shadow:inset 0 0 0 2px var(--volt)}
+.cal .gd button.on{background:var(--ink);color:#fff}
+.cal .gd button.on i em{background:var(--volt)}
+.cal .gd button.poya,.cal .gd button.poya:disabled{background:#FDECEA;color:#B3261E}
+.cal .gd button.poya small{font-family:"Noto Sans Sinhala";font-size:9.5px;font-weight:700;margin-top:3px}
+.cal .key{display:flex;gap:14px;flex-wrap:wrap;font-size:12.5px;color:var(--mut);margin-top:12px}
+.cal .key i{display:inline-block;width:11px;height:11px;border-radius:3px;margin-right:5px;vertical-align:-1px}
+.cal.sm{padding:10px 10px 6px;border-radius:16px;background:var(--paper)}
+.cal.sm .gd button{font-size:14px;border-radius:10px;background:#fff}
+.cal.sm .gd button:disabled{background:none}
+.dayhead{font-family:"Jost","Noto Sans Sinhala";font-weight:800;font-size:21px;margin-bottom:12px}
+.hours tr.poya td{color:#B3261E;font-weight:700}
+.lady{display:inline-block;background:#FCE3EC;color:#A3214E;font-size:12px;font-weight:700;border-radius:999px;padding:2px 9px;margin-left:6px;vertical-align:3px}
+
+/* trial */
+.trial{background:var(--volt)}
+.tgrid{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start}
+.tgrid>*,.cgrid>*,.info>*,.hero .wrap>*{min-width:0}
+.trial .kick{color:var(--ink)}
+.trial .lead{color:#2c3320}
+.steps{list-style:none;padding:0;margin:24px 0 0;display:grid;gap:12px}
+.steps li{display:flex;gap:14px;align-items:center;font-weight:600}
+.steps li b{width:36px;height:36px;flex:none;border-radius:50%;background:var(--ink);color:var(--volt);display:grid;place-items:center;font-family:"Jost";font-weight:800}
+.form{background:#fff;border-radius:26px;padding:24px;box-shadow:0 24px 50px rgba(48,60,10,.25)}
+.form label{display:block;font-weight:700;font-size:15px;margin:14px 0 8px}
+.form label:first-child{margin-top:0}
+.form input[type=text]{width:100%;border:1.5px solid var(--line);border-radius:14px;padding:12px 14px;font-size:16px;background:var(--paper)}
+.form input[type=text]:focus{outline:2px solid var(--ink);outline-offset:1px}
+.slots{display:flex;gap:8px;flex-wrap:wrap}
+.slot{border:1.5px solid var(--line);border-radius:12px;padding:8px 13px;font-weight:600;font-size:14.5px;background:#fff}
+.slot.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+.slot:disabled{opacity:.35;text-decoration:line-through;cursor:not-allowed}
+.check{display:flex;gap:10px;align-items:center;margin-top:14px;font-weight:600;font-size:15px;cursor:pointer}
+.check input{width:20px;height:20px;accent-color:var(--ink)}
+.msg{margin-top:16px;background:#E7F7EC;border-radius:14px;padding:12px 14px;font-size:14.5px;white-space:pre-line;color:#1F3B28;border:1px solid #CBEBD5}
+.msg small{display:block;font-family:"IBM Plex Mono";font-size:11px;letter-spacing:.16em;color:#4E7A5C;margin-bottom:4px}
+.form .btn{width:100%;margin-top:16px}
+.err{color:var(--hot);font-weight:600;font-size:14px;margin-top:8px;min-height:20px}
+
+/* coaches */
+.coaches{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:30px}
+.coach{background:#fff;border:1px solid var(--line);border-radius:24px;padding:22px;display:flex;gap:16px;align-items:flex-start}
+.av{width:66px;height:66px;border-radius:50%;flex:none;display:grid;place-items:center;font-family:"Jost";font-weight:800;font-size:24px;color:#fff;border:5px solid var(--ring);background:var(--ink)}
+.coach h4{font-family:"Jost";font-weight:800;font-size:20px}
+.coach .rl{font-size:14px;color:var(--voltd);font-weight:700}
+.coach p{font-size:15px;color:#4A4E45;margin-top:6px}
+
+/* facilities + info */
+.fac{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:28px}
+.f{display:flex;gap:14px;align-items:center;background:#fff;border:1px solid var(--line);border-radius:18px;padding:16px}
+.f svg{width:40px;height:40px;flex:none}
+.f b{display:block;font-weight:700;font-size:16px;line-height:1.3}
+.f span{font-size:14px;color:var(--mut)}
+.info{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:40px}
+.card{background:#fff;border:1px solid var(--line);border-radius:24px;padding:24px}
+.card h3{font-family:"Jost";font-weight:800;font-size:22px;margin-bottom:12px}
+.hours{width:100%;border-collapse:collapse;font-size:15.5px}
+.hours td{padding:9px 0;border-bottom:1px dashed var(--line)}
+.hours td:last-child{text-align:right;font-family:"IBM Plex Mono";font-weight:600;font-size:14.5px}
+.hours tr.today td{font-weight:700}
+.hours tr.today td:first-child::after{content:" · අද";color:var(--voltd)}
+.map{position:relative;height:170px;border-radius:16px;overflow:hidden;background:#E9E6DC;margin:4px 0 14px}
+.map i{position:absolute;background:#fff}
+.map .pin{position:absolute;left:54%;top:40%;transform:translate(-50%,-100%)}
+.faq details{border-bottom:1px solid var(--line);padding:14px 0}
+.faq summary{font-weight:700;cursor:pointer;list-style:none;display:flex;justify-content:space-between;gap:16px}
+.faq summary::after{content:"+";font-family:"Jost";font-weight:700;font-size:22px;line-height:1}
+.faq details[open] summary::after{content:"–"}
+.faq p{margin-top:8px;color:#4A4E45;font-size:15.5px}
+
+footer{background:var(--ink);color:#9EA497;font-size:14px;padding:28px 0 100px}
+footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.mbar{position:fixed;left:0;right:0;bottom:0;z-index:30;background:var(--ink);color:#fff;display:flex;align-items:center;gap:12px;padding:12px max(16px,env(safe-area-inset-right,0px)) calc(12px + env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px));border-top:1px solid #30342d;transform:translateY(110%);transition:transform .3s}
+.mbar.show{transform:none}
+.mbar div{flex:1;min-width:0}
+.mbar b{display:block;font-family:"Jost";font-weight:800;font-size:19px;line-height:1.1;white-space:nowrap}
+.mbar b span{font-size:13px;font-weight:600;color:#B9BEB2;margin-left:3px}
+.mbar small{display:block;font-size:13px;color:#B9BEB2;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.mbar .btn{padding:11px 18px;font-size:15px}
+
+
+/* calendar fixes */
+.cal.sm .gd button.on{background:var(--ink);color:#fff}
+.cal.sm .gd button.poya,.cal.sm .gd button.poya:disabled{background:#FDECEA;color:#B3261E}
+/* section backgrounds */
+.sec{position:relative;overflow:hidden;isolation:isolate}
+.sec>.wrap{position:relative;z-index:1}
+.deco{position:absolute;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+.deco .nz{position:absolute;inset:0;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");opacity:.16;mix-blend-mode:multiply}
+.deco .glow{position:absolute;border-radius:50%;filter:blur(60px)}
+.deco svg{position:absolute}
+.deco .word{position:absolute;font-family:"Jost";font-weight:900;line-height:.8;color:transparent;-webkit-text-stroke:2px rgba(18,20,17,.07);letter-spacing:.02em;white-space:nowrap}
+.deco .tiles{position:absolute;inset:0;background:repeating-linear-gradient(90deg,rgba(18,20,17,.045) 0 1px,transparent 1px 120px),repeating-linear-gradient(0deg,rgba(18,20,17,.045) 0 1px,transparent 1px 120px);-webkit-mask-image:linear-gradient(180deg,transparent,#000 40%,#000 70%,transparent);mask-image:linear-gradient(180deg,transparent,#000 40%,#000 70%,transparent)}
+.deco .dots{position:absolute;inset:0;background-image:radial-gradient(rgba(18,20,17,.13) 1.6px,transparent 1.8px);background-size:18px 18px;-webkit-mask-image:radial-gradient(70% 90% at 100% 0%,#000,transparent 70%);mask-image:radial-gradient(70% 90% at 100% 0%,#000,transparent 70%)}
+.deco .beam{position:absolute;top:-20%;width:260px;height:150%;background:linear-gradient(180deg,rgba(236,255,190,.13),transparent 75%);filter:blur(16px);mix-blend-mode:screen}
+.deco canvas{position:absolute;inset:0;width:100%;height:100%}
+.goal .deco .nz{mix-blend-mode:overlay;opacity:.22}
+footer{position:relative;background:radial-gradient(600px 200px at 80% 0%,rgba(201,240,61,.10),transparent 70%),var(--ink)}
+@media (max-width:980px){
+  nav{display:none}
+  header .btn{margin-left:auto}
+  .hero .wrap,.cgrid,.tgrid,.info{grid-template-columns:1fr}
+  .rack{min-height:330px;order:2}
+  .plans,.coaches,.tgrid2{grid-template-columns:1fr}
+  .gbtns{grid-template-columns:1fr 1fr}
+  .fac{grid-template-columns:1fr 1fr}
+  .grec{grid-template-columns:1fr}
+}
+@media (max-width:560px){
+  body{font-size:16px}
+  .sec{padding:58px 0}
+  .hero .wrap{padding-top:36px;padding-bottom:44px}
+  .facts{gap:22px}
+  .mini{min-width:0;padding:11px 13px}
+  .mini b{font-size:17px}
+  .mini.m1{top:6px}
+  .mini.m2{bottom:6px}
+  .fac{grid-template-columns:1fr}
+  .prop.kb{display:none}
+  .cls{grid-template-columns:70px 1fr;gap:12px}
+  .cls .btn{grid-column:1/-1}
+  .bars{gap:3px;height:160px}
+  .hrs{gap:3px}
+  .hrs span{font-size:9.5px}
+  .chart{padding:18px 14px 14px}
+  .dur{display:grid;grid-template-columns:repeat(4,1fr);width:100%}
+  .dur button{padding:8px 4px;font-size:14px;line-height:1.25}
+  .dur button em{display:block;margin:0}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style></head><body>
+<div class="ribbon">Demo website · sample gym made by <a href="https://rodrigos-studio.github.io/">Rodrigo's Studio</a> · not a real business</div>
+
+<header><div class="wrap">
+  <a class="logo" href="#top" aria-label="Wiru Fitness home"><svg viewBox="0 0 40 40" aria-hidden="true"><rect x="1" y="1" width="38" height="38" rx="11" fill="#C9F03D"/><path d="M8 13l5 15 4-10 3 10 3-10 4 10 5-15" fill="none" stroke="#121411" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg><div><b>WIRU</b><small>FITNESS</small></div></a>
+  <nav><a href="#crowd">සෙනඟ</a><a href="#plans">Plans</a><a href="#classes">Classes</a><a href="#coaches">Coaches</a><a href="#visit">Visit</a></nav>
+  <a class="btn v" href="#trial">Free trial</a>
+</div></header>
+
+<main id="top">
+<section class="hero">
+  <div class="scene" aria-hidden="true">
+    <div class="wall"></div>
+    <div class="ceil"><div><i style="left:8%;top:30%;width:22%"></i><i style="left:38%;top:30%;width:22%"></i><i style="left:68%;top:30%;width:22%"></i><i style="left:8%;top:62%;width:22%;opacity:.8"></i><i style="left:38%;top:62%;width:22%;opacity:.8"></i><i style="left:68%;top:62%;width:22%;opacity:.8"></i></div></div>
+    <div class="beam" style="left:58%;transform:rotate(14deg)"></div><div class="beam" style="left:80%;transform:rotate(-10deg);opacity:.8"></div>
+    <svg class="eq" viewBox="0 0 1440 700" preserveAspectRatio="xMidYMax slice">
+      <defs><linearGradient id="eqm" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3A4034"/><stop offset="1" stop-color="#1A1D17"/></linearGradient>
+      <linearGradient id="mir" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".07"/><stop offset=".5" stop-color="#fff" stop-opacity=".02"/><stop offset="1" stop-color="#fff" stop-opacity=".06"/></linearGradient></defs>
+      <g opacity=".9"><rect x="560" y="120" width="250" height="440" fill="url(#mir)" stroke="#2C3229" stroke-width="4"/><rect x="820" y="120" width="250" height="440" fill="url(#mir)" stroke="#2C3229" stroke-width="4"/><rect x="1080" y="120" width="250" height="440" fill="url(#mir)" stroke="#2C3229" stroke-width="4"/></g>
+      <text x="1270" y="108" text-anchor="end" font-family="Jost,sans-serif" font-weight="900" font-size="64" fill="#C9F03D" opacity=".18" letter-spacing="10">WIRU</text>
+      <g fill="url(#eqm)" stroke="#C9F03D" stroke-opacity=".38" stroke-width="2.5">
+        <rect x="980" y="170" width="22" height="420" rx="3"/><rect x="1160" y="170" width="22" height="420" rx="3"/><rect x="980" y="170" width="202" height="18" rx="3"/><rect x="990" y="330" width="182" height="10" rx="3"/>
+        <rect x="1230" y="150" width="26" height="440" rx="4"/><rect x="1400" y="150" width="26" height="440" rx="4"/><rect x="1230" y="150" width="196" height="22" rx="4"/>
+        <circle cx="1243" cy="200" r="13"/><circle cx="1413" cy="200" r="13"/><path d="M1243 213 L1243 470 M1413 213 L1413 470" stroke="#5A6153" stroke-width="3"/>
+        <rect x="560" y="470" width="380" height="16" rx="6"/><rect x="560" y="520" width="380" height="16" rx="6"/><rect x="574" y="470" width="14" height="120" rx="4"/><rect x="912" y="470" width="14" height="120" rx="4"/>
+      </g>
+      <g fill="#141612" stroke="#6E7666" stroke-opacity=".5" stroke-width="2"><rect x="592" y="446" width="16" height="26" rx="4"/><rect x="612" y="446" width="16" height="26" rx="4"/><rect x="636" y="446" width="16" height="26" rx="4"/><rect x="656" y="446" width="16" height="26" rx="4"/><rect x="680" y="446" width="16" height="26" rx="4"/><rect x="700" y="446" width="16" height="26" rx="4"/><rect x="724" y="446" width="16" height="26" rx="4"/><rect x="744" y="446" width="16" height="26" rx="4"/><rect x="768" y="446" width="16" height="26" rx="4"/><rect x="788" y="446" width="16" height="26" rx="4"/><rect x="812" y="446" width="16" height="26" rx="4"/><rect x="832" y="446" width="16" height="26" rx="4"/><rect x="856" y="446" width="16" height="26" rx="4"/><rect x="876" y="446" width="16" height="26" rx="4"/><rect x="900" y="446" width="16" height="26" rx="4"/><rect x="920" y="446" width="16" height="26" rx="4"/><rect x="592" y="494" width="18" height="30" rx="4"/><rect x="612" y="494" width="18" height="30" rx="4"/><rect x="636" y="494" width="18" height="30" rx="4"/><rect x="656" y="494" width="18" height="30" rx="4"/><rect x="680" y="494" width="18" height="30" rx="4"/><rect x="700" y="494" width="18" height="30" rx="4"/><rect x="724" y="494" width="18" height="30" rx="4"/><rect x="744" y="494" width="18" height="30" rx="4"/><rect x="768" y="494" width="18" height="30" rx="4"/><rect x="788" y="494" width="18" height="30" rx="4"/><rect x="812" y="494" width="18" height="30" rx="4"/><rect x="832" y="494" width="18" height="30" rx="4"/><rect x="856" y="494" width="18" height="30" rx="4"/><rect x="876" y="494" width="18" height="30" rx="4"/><rect x="900" y="494" width="18" height="30" rx="4"/><rect x="920" y="494" width="18" height="30" rx="4"/></g>
+      <g fill="url(#eqm)" stroke="#fff" stroke-opacity=".07" stroke-width="2">
+        <path d="M20 590 L60 430 L80 430 L70 470 L230 470 L250 590Z"/><path d="M260 590 L300 430 L320 430 L310 470 L470 470 L490 590Z"/>
+        <rect x="46" y="400" width="60" height="38" rx="6" fill="#0E100C"/><rect x="286" y="400" width="60" height="38" rx="6" fill="#0E100C"/>
+      </g>
+      <g fill="#C9F03D" opacity=".55"><rect x="56" y="410" width="40" height="6" rx="3"/><rect x="296" y="410" width="40" height="6" rx="3"/></g>
+    </svg>
+    <div class="floor"></div>
+    <div class="spot"></div><div class="pool"></div>
+    <canvas id="fxc"></canvas>
+    <div class="shade"></div>
+  </div>
+  <div class="grain" aria-hidden="true"></div>
+  <div class="wrap">
+    <div>
+      <span class="pill" id="openPill"><i></i><span id="openTxt">Open now</span></span>
+      <h1>Lift. Sweat.<br><em>Repeat.</em></h1>
+      <div class="si-h">ශක්තිය හදන්න, අදම පටන් ගමු.</div>
+      <p>A friendly neighbourhood gym in Ethul Kotte. Coaches on the floor all day, classes every evening and ladies-only mornings twice a week.</p>
+      <div class="cta">
+        <a class="btn v" href="#trial">Free trial day එකක් ගන්න <svg viewBox="0 0 20 20"><path d="M4 10h11m-4-4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        <a class="btn o" href="#plans">Plans &amp; ගණන්</a>
+      </div>
+      <div class="facts">
+        <div><b>5 AM</b><span>සතියේ දවස්වල open</span></div>
+        <div><b>120+</b><span>Machines &amp; free weights</span></div>
+        <div><b>18</b><span>Classes / week</span></div>
+      </div>
+    </div>
+    <div class="rack" aria-hidden="true">
+      <div class="chalk"></div>
+      <svg class="bar" viewBox="0 0 600 260">
+        <defs>
+          <linearGradient id="steel" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#F4F6F2"/><stop offset=".45" stop-color="#9FA59B"/><stop offset="1" stop-color="#4B5047"/></linearGradient>
+          <linearGradient id="pshade" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".22"/><stop offset=".18" stop-color="#fff" stop-opacity="0"/><stop offset=".75" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".4"/></linearGradient>
+          <linearGradient id="sh" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#000" stop-opacity=".35"/><stop offset=".5" stop-color="#fff" stop-opacity=".18"/><stop offset="1" stop-color="#000" stop-opacity=".35"/></linearGradient>
+        </defs>
+        <rect x="18" y="122" width="564" height="16" rx="8" fill="url(#steel)"/>
+        <g opacity=".5"><rect x="230" y="124" width="140" height="12" fill="url(#sh)"/></g>
+        <g stroke="#2a2e28" stroke-width=".6" opacity=".55">
+          <path d="M232 124v12M238 124v12M244 124v12M250 124v12M256 124v12M262 124v12M338 124v12M344 124v12M350 124v12M356 124v12M362 124v12M368 124v12"/></g>
+        <rect x="150" y="110" width="12" height="40" rx="3" fill="url(#steel)"/><rect x="438" y="110" width="12" height="40" rx="3" fill="url(#steel)"/>
+        <g id="plL">
+          <rect x="88" y="20" width="30" height="220" rx="8" fill="#D7262E"/><rect x="92" y="24" width="4" height="212" rx="2" fill="#fff" opacity=".18"/>
+          <rect x="118" y="36" width="24" height="188" rx="7" fill="#1F5FBF"/><rect x="121" y="40" width="3" height="180" rx="2" fill="#fff" opacity=".18"/>
+          <rect x="142" y="58" width="16" height="144" rx="6" fill="#F2C230"/><rect x="88" y="20" width="70" height="220" rx="8" fill="url(#pshade)"/>
+          <rect x="66" y="112" width="22" height="36" rx="5" fill="#C9CEC4"/><rect x="66" y="112" width="22" height="8" rx="4" fill="#fff" opacity=".35"/>
+          <text x="103" y="134" fill="#fff" font-family="Jost,sans-serif" font-weight="800" font-size="13" text-anchor="middle" transform="rotate(-90 103 130)">25 KG</text>
+        </g>
+        <g transform="translate(600 0) scale(-1 1)">
+          <rect x="88" y="20" width="30" height="220" rx="8" fill="#D7262E"/><rect x="92" y="24" width="4" height="212" rx="2" fill="#fff" opacity=".18"/>
+          <rect x="118" y="36" width="24" height="188" rx="7" fill="#1F5FBF"/><rect x="121" y="40" width="3" height="180" rx="2" fill="#fff" opacity=".18"/>
+          <rect x="142" y="58" width="16" height="144" rx="6" fill="#F2C230"/><rect x="88" y="20" width="70" height="220" rx="8" fill="url(#pshade)"/>
+          <rect x="66" y="112" width="22" height="36" rx="5" fill="#C9CEC4"/><rect x="66" y="112" width="22" height="8" rx="4" fill="#fff" opacity=".35"/>
+        </g>
+        <text x="300" y="104" fill="#C9F03D" font-family="IBM Plex Mono,monospace" font-weight="600" font-size="13" text-anchor="middle" letter-spacing="3">140 KG</text>
+      </svg>
+      <svg class="prop db" viewBox="0 0 260 120"><defs><linearGradient id="chr" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#F5F7F2"/><stop offset=".5" stop-color="#8C9288"/><stop offset="1" stop-color="#3E423B"/></linearGradient><linearGradient id="hex" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3A3E37"/><stop offset=".35" stop-color="#1B1D19"/><stop offset="1" stop-color="#0A0B09"/></linearGradient></defs>
+        <rect x="70" y="52" width="120" height="16" rx="8" fill="url(#chr)"/><g stroke="#2a2e28" stroke-width=".8" opacity=".6"><path d="M100 53v14M106 53v14M112 53v14M118 53v14M124 53v14M130 53v14M136 53v14M142 53v14M148 53v14M154 53v14M160 53v14"/></g>
+        <path d="M18 20 L58 8 L80 26 L80 94 L58 112 L18 100 L4 60Z" fill="url(#hex)" stroke="#000" stroke-width="2"/><path d="M58 8 L80 26 L80 94 L58 112Z" fill="#2B2F28"/><text x="40" y="66" fill="#C9F03D" font-family="Jost,sans-serif" font-weight="900" font-size="20" text-anchor="middle">20</text>
+        <path d="M242 20 L202 8 L180 26 L180 94 L202 112 L242 100 L256 60Z" fill="url(#hex)" stroke="#000" stroke-width="2"/><path d="M202 8 L180 26 L180 94 L202 112Z" fill="#2B2F28"/><text x="222" y="66" fill="#C9F03D" font-family="Jost,sans-serif" font-weight="900" font-size="20" text-anchor="middle">20</text></svg>
+      <svg class="prop kb" viewBox="0 0 120 130"><defs><radialGradient id="kbg" cx=".35" cy=".35" r=".8"><stop offset="0" stop-color="#4A5045"/><stop offset=".45" stop-color="#1D201B"/><stop offset="1" stop-color="#070806"/></radialGradient></defs>
+        <path d="M34 50 Q30 8 60 8 Q90 8 86 50" fill="none" stroke="#1D201B" stroke-width="13" stroke-linecap="round"/><path d="M34 50 Q30 8 60 8 Q90 8 86 50" fill="none" stroke="#5A6155" stroke-width="3" stroke-linecap="round" opacity=".6"/>
+        <ellipse cx="60" cy="84" rx="48" ry="44" fill="url(#kbg)"/><rect x="31" y="77" width="58" height="22" rx="6" fill="#C9F03D"/><text x="60" y="94" font-family="Jost,sans-serif" font-weight="900" font-size="15" text-anchor="middle" fill="#121411">16 KG</text></svg>
+      <div class="mini m1"><small>Gym එකේ දැන්</small><b id="miniCrowd">ටිකක් සෙනඟ</b><div class="meter" id="miniMeter"><i></i><i></i><i></i><i></i><i></i></div></div>
+      <div class="mini m2"><small>ඊළඟ class එක</small><b id="miniNext">Zumba · 6:30 PM</b><span class="tag" id="miniNextSub">Coach Nethmi · seats 6ක්</span></div>
+    </div>
+  </div>
+  <div class="band" aria-hidden="true"><div class="run"><span>Free trial day</span><span>18 classes a week</span><span>Ladies-only mornings</span><span>Open 5 AM</span><span>Coaches on the floor</span><span>Free trial day</span><span>18 classes a week</span><span>Ladies-only mornings</span><span>Open 5 AM</span><span>Coaches on the floor</span></div></div>
+</section>
+
+<section class="sec crowd" id="crowd">
+  <div class="deco" aria-hidden="true"><div class="nz"></div><div class="tiles"></div><div class="glow" style="width:520px;height:420px;right:-80px;top:20%;background:rgba(201,240,61,.28)"></div><svg viewBox="0 0 200 200" style="width:560px;right:-180px;top:-120px"><g fill="none" stroke="#121411" stroke-opacity="0.07"><circle cx="100" cy="100" r="96" stroke-width="3"/><circle cx="100" cy="100" r="78" stroke-width="2"/><circle cx="100" cy="100" r="40" stroke-width="3"/><circle cx="100" cy="100" r="14" stroke-width="3"/><circle cx="100" cy="100" r="60" stroke-width="1" stroke-dasharray="3 6"/></g></svg></div>
+  <div class="wrap cgrid">
+    <div>
+      <p class="kick">Crowd meter</p>
+      <h2 class="si">දැන් gym එකේ සෙනඟ කොහොමද?</h2>
+      <span class="en">See how busy it is before you leave home</span>
+      <p class="lead">Machine එකකට පෝලිමේ ඉන්න ඕන නෑ. සෙනඟ අඩු වෙලාවක් බලලා එන්න. මේ bars වලින් පෙන්නන්නේ හැම පැයකම සාමාන්‍යයෙන් කොච්චර සෙනඟ ඉන්නවද කියලා.</p>
+      <div class="now"><div class="dot" id="nowDot">—</div><div><b id="nowTxt">—</b><span id="nowSub">—</span></div></div>
+    </div>
+    <div class="chart">
+      <div class="top"><b id="chartTitle">අද · Tuesday</b><div class="chips" id="cdays"></div></div>
+      <div class="bars" id="bars"></div>
+      <div class="hrs" id="hrs"></div>
+      <div class="legend"><span><i style="background:#D9DDCF"></i>සෙනඟ අඩුයි</span><span><i style="background:#B8C79A"></i>ටිකක් සෙනඟ</span><span><i style="background:#E9A28F"></i>සෙනඟ වැඩියි</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="plans">
+  <div class="deco" aria-hidden="true"><div class="nz"></div><div class="dots"></div><div class="glow" style="width:560px;height:380px;left:30%;top:38%;background:rgba(201,240,61,.30)"></div><div class="word" style="font-size:300px;right:-30px;bottom:-30px">WIRU</div><svg viewBox="0 0 200 200" style="width:300px;left:-140px;top:60px"><g fill="none" stroke="#121411" stroke-opacity="0.06"><circle cx="100" cy="100" r="96" stroke-width="3"/><circle cx="100" cy="100" r="78" stroke-width="2"/><circle cx="100" cy="100" r="40" stroke-width="3"/><circle cx="100" cy="100" r="14" stroke-width="3"/><circle cx="100" cy="100" r="60" stroke-width="1" stroke-dasharray="3 6"/></g></svg></div>
+  <div class="wrap">
+    <p class="kick">Membership</p>
+    <h2 class="si">ඔයාට ගැලපෙන plan එක</h2>
+    <span class="en">Pick a plan, pick how long. The price updates as you go.</span>
+    <div class="dur" id="dur" role="tablist"></div>
+    <div class="plans" id="planGrid"></div>
+    <p class="fine" id="fine">Admission fee Rs 2,500 (එක පාරයි). මාස 6 සහ අවුරුද්දේ plans වලට admission fee නෑ.</p>
+  </div>
+</section>
+
+<section class="sec goal" id="goal">
+  <div class="deco" aria-hidden="true"><div class="glow" style="width:620px;height:420px;right:-120px;top:-80px;background:rgba(201,240,61,.14)"></div><div class="beam" style="left:62%;transform:rotate(16deg)"></div><div class="beam" style="left:84%;transform:rotate(-8deg)"></div><svg viewBox="0 0 1440 200" preserveAspectRatio="xMidYMax slice" style="left:0;right:0;bottom:0;width:100%;height:200px;filter:blur(2px);opacity:.55"><g fill="#2A2F25" stroke="#C9F03D" stroke-opacity=".3" stroke-width="2"><rect x="760" y="70" width="560" height="14" rx="6"/><rect x="760" y="130" width="560" height="14" rx="6"/><rect x="780" y="70" width="14" height="130" rx="4"/><rect x="1290" y="70" width="14" height="130" rx="4"/></g><g fill="#151713" stroke="#6E7666" stroke-opacity=".5" stroke-width="2"><rect x="800" y="44" width="14" height="28" rx="4"/><rect x="818" y="44" width="14" height="28" rx="4"/><rect x="800" y="100" width="16" height="32" rx="4"/><rect x="818" y="100" width="16" height="32" rx="4"/><rect x="840" y="44" width="14" height="28" rx="4"/><rect x="858" y="44" width="14" height="28" rx="4"/><rect x="840" y="100" width="16" height="32" rx="4"/><rect x="858" y="100" width="16" height="32" rx="4"/><rect x="880" y="44" width="14" height="28" rx="4"/><rect x="898" y="44" width="14" height="28" rx="4"/><rect x="880" y="100" width="16" height="32" rx="4"/><rect x="898" y="100" width="16" height="32" rx="4"/><rect x="920" y="44" width="14" height="28" rx="4"/><rect x="938" y="44" width="14" height="28" rx="4"/><rect x="920" y="100" width="16" height="32" rx="4"/><rect x="938" y="100" width="16" height="32" rx="4"/><rect x="960" y="44" width="14" height="28" rx="4"/><rect x="978" y="44" width="14" height="28" rx="4"/><rect x="960" y="100" width="16" height="32" rx="4"/><rect x="978" y="100" width="16" height="32" rx="4"/><rect x="1000" y="44" width="14" height="28" rx="4"/><rect x="1018" y="44" width="14" height="28" rx="4"/><rect x="1000" y="100" width="16" height="32" rx="4"/><rect x="1018" y="100" width="16" height="32" rx="4"/><rect x="1040" y="44" width="14" height="28" rx="4"/><rect x="1058" y="44" width="14" height="28" rx="4"/><rect x="1040" y="100" width="16" height="32" rx="4"/><rect x="1058" y="100" width="16" height="32" rx="4"/><rect x="1080" y="44" width="14" height="28" rx="4"/><rect x="1098" y="44" width="14" height="28" rx="4"/><rect x="1080" y="100" width="16" height="32" rx="4"/><rect x="1098" y="100" width="16" height="32" rx="4"/><rect x="1120" y="44" width="14" height="28" rx="4"/><rect x="1138" y="44" width="14" height="28" rx="4"/><rect x="1120" y="100" width="16" height="32" rx="4"/><rect x="1138" y="100" width="16" height="32" rx="4"/><rect x="1160" y="44" width="14" height="28" rx="4"/><rect x="1178" y="44" width="14" height="28" rx="4"/><rect x="1160" y="100" width="16" height="32" rx="4"/><rect x="1178" y="100" width="16" height="32" rx="4"/><rect x="1200" y="44" width="14" height="28" rx="4"/><rect x="1218" y="44" width="14" height="28" rx="4"/><rect x="1200" y="100" width="16" height="32" rx="4"/><rect x="1218" y="100" width="16" height="32" rx="4"/><rect x="1240" y="44" width="14" height="28" rx="4"/><rect x="1258" y="44" width="14" height="28" rx="4"/><rect x="1240" y="100" width="16" height="32" rx="4"/><rect x="1258" y="100" width="16" height="32" rx="4"/></g></svg><canvas class="fx"></canvas><div class="nz"></div></div>
+  <div class="wrap">
+    <p class="kick">Not sure?</p>
+    <h2 class="si">ඔයාගේ goal එක මොකක්ද?</h2>
+    <span class="en" style="color:#9EA497">Tap one and we'll suggest a plan and classes</span>
+    <div class="gbtns" id="gbtns"></div>
+    <div class="grec" id="grec"></div>
+  </div>
+</section>
+
+<section class="sec" id="classes">
+  <div class="deco" aria-hidden="true"><div class="nz"></div><div class="dots" style="-webkit-mask-image:radial-gradient(60% 80% at 0% 100%,#000,transparent 70%);mask-image:radial-gradient(60% 80% at 0% 100%,#000,transparent 70%)"></div><div class="glow" style="width:460px;height:360px;left:-120px;top:30%;background:rgba(201,240,61,.26)"></div><svg viewBox="0 0 200 220" style="width:340px;right:-60px;top:-30px;opacity:.07"><g fill="none" stroke="#121411" stroke-width="8" stroke-linecap="round"><circle cx="100" cy="125" r="85"/><path d="M85 22h30M100 22v18M168 58l14-14M100 125V75M100 125l32 22"/></g></svg></div>
+  <div class="wrap">
+    <div class="ttop"><div>
+      <p class="kick">Timetable</p>
+      <h2 class="si">Class timetable</h2>
+      <span class="en">Pick a date to see the classes. Members join free, others Rs 800 per class.</span>
+    </div></div>
+    <div class="tgrid2"><div class="cal" id="tcal"></div><div><div class="dayhead" id="dayhead"></div><div class="classes" id="clist"></div></div></div>
+  </div>
+</section>
+
+<section class="sec trial" id="trial">
+  <div class="deco" aria-hidden="true"><div class="dots" style="background-image:radial-gradient(rgba(18,20,17,.16) 2px,transparent 2.2px);background-size:16px 16px"></div><div class="glow" style="width:620px;height:460px;right:-100px;top:-60px;background:rgba(255,255,255,.55)"></div><div class="beam" style="left:20%;transform:rotate(18deg);background:linear-gradient(180deg,rgba(255,255,255,.35),transparent 75%)"></div><svg viewBox="0 0 120 130" style="width:330px;left:-60px;bottom:-60px;opacity:.10"><path d="M34 50 Q30 8 60 8 Q90 8 86 50" fill="none" stroke="#121411" stroke-width="13" stroke-linecap="round"/><ellipse cx="60" cy="84" rx="48" ry="44" fill="#121411"/></svg><div class="word" style="font-size:210px;left:-10px;top:-40px;-webkit-text-stroke:2px rgba(18,20,17,.08)">FREE</div></div>
+  <div class="wrap tgrid">
+    <div>
+      <p class="kick">Free trial day</p>
+      <h2 class="si">එක දවසක් නොමිලේ try කරන්න</h2>
+      <span class="en" style="color:#3b4426">One free day. No card, no sign-up.</span>
+      <p class="lead">Gym එක, machines, coaches ඔක්කොම බලලා ඔයාට හරියනවා නම් විතරක් join වෙන්න.</p>
+      <ol class="steps">
+        <li><b>1</b>දවසයි වෙලාවයි තෝරන්න</li>
+        <li><b>2</b>WhatsApp message එක යවන්න</li>
+        <li><b>3</b>Towel එකකුයි වතුර බෝතලයකුයි අරන් එන්න</li>
+      </ol>
+    </div>
+    <form class="form" id="tform" novalidate>
+      <label for="tname">ඔයාගේ නම</label>
+      <input type="text" id="tname" placeholder="e.g. Sachini" autocomplete="given-name">
+      <label>දවස</label>
+      <div class="cal sm" id="trcal"></div>
+      <label>වෙලාව</label>
+      <div class="slots" id="ttimes"></div>
+      <label class="check"><input type="checkbox" id="tcoach" checked> Coach කෙනෙක් machines පෙන්නලා දෙන්න ඕනේ</label>
+      <div class="msg" id="tmsg"></div>
+      <div class="err" id="terr"></div>
+      <button class="btn w" type="submit"><svg viewBox="0 0 24 24"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7-2.8-1.1-4.5-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.9s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.3 0 .5l-.4.6-.4.4c-.1.1-.3.3-.1.6.2.3.8 1.3 1.6 2.1 1.1 1 2 1.3 2.3 1.4.3.1.4.1.6-.1l.9-1c.2-.3.4-.2.6-.1l1.9.9c.3.1.5.2.5.3.1.2.1.8-.1 1.4z"/></svg>WhatsApp එකෙන් book කරන්න</button>
+    </form>
+  </div>
+</section>
+
+<section class="sec" id="coaches">
+  <div class="deco" aria-hidden="true"><div class="nz"></div><div class="glow" style="width:520px;height:380px;right:-140px;top:10%;background:rgba(201,240,61,.22)"></div><svg viewBox="0 0 200 200" style="width:340px;left:-150px;top:-60px"><g fill="none" stroke="#121411" stroke-opacity="0.06"><circle cx="100" cy="100" r="96" stroke-width="3"/><circle cx="100" cy="100" r="78" stroke-width="2"/><circle cx="100" cy="100" r="40" stroke-width="3"/><circle cx="100" cy="100" r="14" stroke-width="3"/><circle cx="100" cy="100" r="60" stroke-width="1" stroke-dasharray="3 6"/></g></svg></div>
+  <div class="wrap">
+    <p class="kick">Coaches</p>
+    <h2 class="si">අපේ coaches ලා</h2>
+    <span class="en">Every member gets a first-week plan from one of them</span>
+    <div class="coaches">
+      <div class="coach"><div class="av" style="--ring:#D7262E">KP</div><div><h4>Kasun Perera</h4><span class="rl">Strength · Personal training</span><p>Barbell basics, form checks and step-by-step strength plans. Ten years on the gym floor.</p></div></div>
+      <div class="coach"><div class="av" style="--ring:#F2C230">NS</div><div><h4>Nethmi Silva</h4><span class="rl">Ladies classes · Zumba · Yoga</span><p>Runs the ladies-only mornings and the Zumba and stretch classes. Great if you're just starting.</p></div></div>
+      <div class="coach"><div class="av" style="--ring:#1F5FBF">DF</div><div><h4>Dilan Fernando</h4><span class="rl">HIIT · Boxing fit · Bootcamp</span><p>Fast, sweaty classes that burn a lot in 45 minutes. Also helps with weight-loss plans.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="visit" style="padding-top:0">
+  <div class="deco" aria-hidden="true"><div class="nz"></div><div class="tiles"></div><div class="glow" style="width:540px;height:400px;left:-140px;bottom:-60px;background:rgba(201,240,61,.22)"></div><svg viewBox="0 0 200 200" style="width:420px;right:-160px;bottom:-140px"><g fill="none" stroke="#121411" stroke-opacity="0.06"><circle cx="100" cy="100" r="96" stroke-width="3"/><circle cx="100" cy="100" r="78" stroke-width="2"/><circle cx="100" cy="100" r="40" stroke-width="3"/><circle cx="100" cy="100" r="14" stroke-width="3"/><circle cx="100" cy="100" r="60" stroke-width="1" stroke-dasharray="3 6"/></g></svg></div>
+  <div class="wrap">
+    <p class="kick">Inside the gym</p>
+    <h2 class="si">Gym එක ඇතුළේ</h2>
+    <div class="fac">
+      <div class="f"><svg viewBox="0 0 40 40"><rect width="40" height="40" rx="12" fill="#E9FAB0"/><path d="M10 16h20M12 21h16M15 26h10" stroke="#121411" stroke-width="2.4" stroke-linecap="round"/><path d="M20 9v3" stroke="#121411" stroke-width="2.4" stroke-linecap="round"/></svg><div><b>Full A/C floor</b><span>Cardio + weights area</span></div></div>
+      <div class="f"><svg viewBox="0 0 40 40"><rect width="40" height="40" rx="12" fill="#E9FAB0"/><rect x="12" y="10" width="7" height="20" rx="1.5" fill="none" stroke="#121411" stroke-width="2.2"/><rect x="21" y="10" width="7" height="20" rx="1.5" fill="none" stroke="#121411" stroke-width="2.2"/><circle cx="17" cy="20" r="1.3" fill="#121411"/><circle cx="23" cy="20" r="1.3" fill="#121411"/></svg><div><b>Lockers &amp; showers</b><span>Hot water, separate for ladies</span></div></div>
+      <div class="f"><svg viewBox="0 0 40 40"><rect width="40" height="40" rx="12" fill="#E9FAB0"/><path d="M14 29V11h7a5 5 0 0 1 0 10h-7" fill="none" stroke="#121411" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg><div><b>Free parking</b><span>Cars and bikes</span></div></div>
+      <div class="f"><svg viewBox="0 0 40 40"><rect width="40" height="40" rx="12" fill="#FCE3EC"/><circle cx="20" cy="16" r="6" fill="none" stroke="#A3214E" stroke-width="2.4"/><path d="M20 22v9M16 27h8" stroke="#A3214E" stroke-width="2.4" stroke-linecap="round"/></svg><div><b>Ladies-only mornings</b><span>Tue &amp; Thu · 8:30 – 11:00 AM</span></div></div>
+      <div class="f"><svg viewBox="0 0 40 40"><rect width="40" height="40" rx="12" fill="#E9FAB0"/><path d="M11 25l5-6 4 4 4-7 5 9" fill="none" stroke="#121411" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/><path d="M11 29h18" stroke="#121411" stroke-width="2.4" stroke-linecap="round"/></svg><div><b>Monthly body check</b><span>Weight, fat % and progress</span></div></div>
+      <div class="f"><svg viewBox="0 0 40 40"><rect width="40" height="40" rx="12" fill="#E9FAB0"/><path d="M20 10c4 5 7 8.5 7 12a7 7 0 0 1-14 0c0-3.5 3-7 7-12z" fill="none" stroke="#121411" stroke-width="2.4" stroke-linejoin="round"/></svg><div><b>Filtered water</b><span>Free refills, bring a bottle</span></div></div>
+    </div>
+    <div class="info">
+      <div class="card">
+        <h3>Open hours</h3>
+        <table class="hours" id="hours"></table>
+        <p class="fine" style="margin-top:12px" id="nextPoya"></p>
+      </div>
+      <div class="card">
+        <h3>Find us</h3>
+        <div class="map" id="map"><svg class="pin" width="44" height="54" viewBox="0 0 44 54"><path d="M22 2C11 2 3 10 3 21c0 14 19 31 19 31s19-17 19-31C41 10 33 2 22 2z" fill="#121411"/><circle cx="22" cy="21" r="8" fill="#C9F03D"/></svg></div>
+        <p style="font-weight:600">Ethul Kotte, Sri Jayawardenepura Kotte</p>
+        <p class="fine" style="margin-top:4px">Demo address · above the bank, opposite the bus stop</p>
+        <div class="faq" style="margin-top:12px">
+          <details><summary>මම කලින් gym ගිහින් නෑ. කමක් නැද්ද?</summary><p>කිසි ප්‍රශ්නයක් නෑ. පළවෙනි සතියේ coach කෙනෙක් machines පෙන්නලා, ඔයාට ගැලපෙන plan එකක් හදලා දෙනවා.</p></details>
+          <details><summary>Membership එක hold කරන්න පුළුවන්ද?</summary><p>මාස 6 සහ අවුරුද්දේ plans සති 2ක් දක්වා hold කරන්න පුළුවන්. Travel, exams වගේ දේවල් වලට.</p></details>
+          <details><summary>ගෙවන්නේ කොහොමද?</summary><p>Cash, card හරි bank transfer හරි. මාසෙන් මාසෙ හරි එකපාරට හරි ගෙවන්න පුළුවන්.</p></details>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer><div class="wrap"><span>Demo site by <a href="https://rodrigos-studio.github.io/" style="text-decoration:underline">Rodrigo's Studio</a></span><span>In this demo, bookings go to Rodrigo's Studio</span></div></footer>
+
+<div class="mbar" id="mbar"><div><b id="m-tot">Rs 6,500<span>/ month</span></b><small id="m-sub">Gym + Classes · 1 month</small></div><a class="btn v" id="m-btn" href="#">Join on WhatsApp</a></div>
+
+<script>
+const WA_NUMBER="94724996667", SHOP="Wiru Fitness";
+const $=id=>document.getElementById(id);
+const rs=n=>"Rs "+Math.round(n).toLocaleString("en-US");
+const waLink=msg=>"https://wa.me/"+WA_NUMBER+"?text="+encodeURIComponent(msg);
+const now=()=>new Date(new Date().toLocaleString("en-US",{timeZone:"Asia/Colombo"}));
+const DN=["Sun","Mon","Tue","Wed","Thu","Fri","Sat"],DL=["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],MN=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+const fmtT=m=>{const h=Math.floor(m/60),mi=m%60,ap=h>=12?"PM":"AM",h12=((h+11)%12)+1;return h12+":"+String(mi).padStart(2,"0")+" "+ap};
+const fmtD=d=>DN[d.getDay()]+" "+d.getDate()+" "+MN[d.getMonth()];
+
+/* hours: [open,close] minutes; weekday index */
+const HRS={0:[360,720],1:[300,1320],2:[300,1320],3:[300,1320],4:[300,1320],5:[300,1320],6:[360,1260]};
+/* Poya days: gym closed */
+const POYA={"2026-11-24":"Il Poya","2026-12-23":"Unduvap Poya"};
+const ymd=d=>d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0");
+const isPoya=d=>!!POYA[ymd(d)];
+const today0=()=>{const d=now();d.setHours(0,0,0,0);return d};
+const addD=(d,n)=>{const x=new Date(d);x.setDate(x.getDate()+n);return x};
+const hoursFor=d=>isPoya(d)?null:HRS[d.getDay()];
+function openState(){const n=now(),m=n.getHours()*60+n.getMinutes(),t0=today0(),H=hoursFor(t0);
+  if(H&&m>=H[0]&&m<H[1])return{open:true,txt:"දැන් open · "+fmtT(H[1])+" දක්වා"};
+  for(let o=0;o<8;o++){const d=addD(t0,o),h=hoursFor(d);if(!h||(o===0&&m>=h[0]))continue;
+    return{open:false,txt:(isPoya(t0)?"අද පෝය දවස · ":"දැන් වහලා · ")+(o===0?"අද ":o===1?"හෙට ":DN[d.getDay()]+" ")+fmtT(h[0])+" ට open"}}
+  return{open:false,txt:"දැන් වහලා"}}
+(function(){const s=openState();$("openTxt").textContent=s.txt;if(!s.open)$("openPill").classList.add("closed");
+  const d=now().getDay(),order=[1,2,3,4,5,6,0];let h="";
+  const tp=isPoya(today0());order.forEach(i=>{const [o,c]=HRS[i];h+=`<tr class="${i===d&&!tp?"today":""}"><td>${DL[i]}</td><td>${fmtT(o)} – ${fmtT(c)}</td></tr>`});
+  h+=`<tr class="poya"><td>පෝය දවස්${tp?" · අද":""}</td><td>CLOSED</td></tr>`;$("hours").innerHTML=h;
+  const np=Object.keys(POYA).map(k=>new Date(k+"T00:00:00")).find(x=>x>=today0());$("nextPoya").textContent=np?"ඊළඟ පෝය දවස: "+fmtD(np)+" · gym එක වහලා":"";
+  let mm="";[[0,60,900,12],[0,128,900,18],[120,0,14,300],[300,0,22,300],[470,0,12,300]].forEach(([l,t,w,hh])=>mm+=`<i style="left:${l}px;top:${t}px;width:${w}px;height:${hh}px"></i>`);$("map").insertAdjacentHTML("afterbegin",mm)})();
+
+/* crowd: value 0-100 per hour, by weekday */
+const WK={5:30,6:62,7:70,8:45,9:28,10:20,11:18,12:22,13:20,14:16,15:22,16:40,17:72,18:95,19:92,20:70,21:38};
+const CROWD={1:WK,2:{...WK,9:40,10:34},3:WK,4:{...WK,9:40,10:34},5:{...WK,18:82,19:74,20:52},6:{6:40,7:60,8:78,9:85,10:70,11:52,12:35,13:25,14:22,15:30,16:48,17:62,18:66,19:50,20:30},0:{6:35,7:55,8:72,9:80,10:58,11:30}};
+const lvl=v=>v<35?0:v<68?1:2,LV=["සෙනඟ අඩුයි","ටිකක් සෙනඟ","සෙනඟ වැඩියි"],LVC=["#D9DDCF","#B8C79A","#E9A28F"];
+let cday=now().getDay();
+function drawCrowd(){
+  const n=now(),today=n.getDay(),h=n.getHours(),c=CROWD[cday],keys=Object.keys(c).map(Number);
+  let ch="";[["අද",today],["හෙට",(today+1)%7],["Sat",6],["Sun",0]].forEach(([l,d],i)=>{if(i>1&&(d===today||d===(today+1)%7))return;ch+=`<button class="chip ${d===cday?"on":""}" data-d="${d}">${l}</button>`});$("cdays").innerHTML=ch;
+  $("chartTitle").textContent=(cday===today?"අද · ":cday===(today+1)%7?"හෙට · ":"")+DL[cday];
+  let b="",hr="";keys.forEach(k=>{const v=c[k],L=lvl(v),cur=cday===today&&k===h;b+=`<div class="b ${["","mid","hi"][L]} ${cur?"cur":""}"><i style="height:${Math.max(6,v)}%"></i><span class="tip">${fmtT(k*60)} · ${LV[L]}</span></div>`;hr+=`<span>${k%2===(keys[0]%2)?((k+11)%12+1)+(k<12?"a":"p"):""}</span>`});
+  $("bars").innerHTML=b;$("hrs").innerHTML=hr;
+  document.querySelectorAll("#cdays .chip").forEach(x=>x.onclick=()=>{cday=+x.dataset.d;drawCrowd()});
+}
+function drawNow(){const n=now(),d=n.getDay(),h=n.getHours(),s=openState(),v=(CROWD[d]||{})[h];
+  let L,txt,sub;
+  if(!s.open||v===undefined){txt="දැන් gym එක වහලා";sub=s.txt;L=-1}
+  else{L=lvl(v);txt="දැන් "+LV[L];const c=CROWD[d],k=Object.keys(c).map(Number).find(x=>x>h&&lvl(c[x])<L);
+    sub=L===2?(k!==undefined?fmtT(k*60)+" න් පස්සේ සෙනඟ අඩු වෙනවා":"අද හවස ගොඩක් සෙනඟ ඉන්නවා"):L===1?"එන්න හොඳ වෙලාවක්":"එන්න හොඳම වෙලාව"}
+  $("nowTxt").textContent=txt;$("nowSub").textContent=sub;
+  const dot=$("nowDot");dot.style.background=L<0?"#E7E5DD":LVC[L];dot.textContent=L<0?"—":["අඩු","ටිකක්","වැඩි"][L];dot.style.fontFamily="'Noto Sans Sinhala'";dot.style.fontSize="15px";
+  $("miniCrowd").textContent=L<0?"වහලා":LV[L];const on=L<0?0:[1,3,5][L];const mt=$("miniMeter");mt.className="meter"+(L===2?" busy":"");[...mt.children].forEach((i,k)=>i.classList.toggle("on",k<on))}
+drawCrowd();drawNow();
+
+/* plans */
+const DUR=[{m:1,off:0,l:"මාසයක්"},{m:3,off:.05,l:"මාස 3"},{m:6,off:.10,l:"මාස 6"},{m:12,off:.20,l:"අවුරුද්දක්"}];
+const PLANS=[
+  {id:"floor",n:"Gym Floor",s:"Weights + cardio",p:4500,pl:["#2E9B4F"],f:["Full gym floor, 5 AM – 10 PM","Coach help on the floor","First-week starter plan","Lockers & showers"]},
+  {id:"classes",n:"Gym + Classes",s:"Most people pick this",p:6500,pop:1,pl:["#F2C230","#2E9B4F"],f:["Everything in Gym Floor","All 18 classes a week, free","Book classes on WhatsApp","Monthly body check"]},
+  {id:"pt",n:"Personal Training",s:"One coach, your plan",p:14000,pl:["#D7262E","#1F5FBF","#F2C230"],f:["Everything in Gym + Classes","8 one-to-one sessions a month","Food guide made for you","WhatsApp check-ins every week"]}
+];
+let dur=1,plan="classes";
+const round50=n=>Math.round(n/50)*50;
+function priceOf(p,d){const D=DUR.find(x=>x.m===d);const per=round50(p.p*(1-D.off));return{per,total:per*d,full:p.p*d,save:p.p*d-per*d,adm:d>=6?0:2500}}
+function drawPlans(){
+  $("dur").innerHTML=DUR.map(d=>`<button class="${d.m===dur?"on":""}" data-m="${d.m}">${d.l}${d.off?`<em>-${Math.round(d.off*100)}%</em>`:""}</button>`).join("");
+  $("planGrid").innerHTML=PLANS.map(p=>{const x=priceOf(p,dur);return`<article class="plan ${p.id===plan?"sel":""}" data-id="${p.id}">${p.pop?'<span class="pop">ජනප්‍රියම plan එක</span>':""}
+    <div class="plates">${p.pl.map(c=>`<i style="background:${c}"></i>`).join("")}</div>
+    <h3>${p.n}</h3><div class="h3s">${p.s}</div>
+    <div class="price"><b>${rs(x.per)}</b><span>/ මාසයට</span></div>
+    <div class="was">${dur>1?`මාස ${dur}ට ${rs(x.total)} · <em>${rs(x.save)} ඉතුරුයි</em>`:"මාසෙන් මාසෙ ගෙවන්න"}</div>
+    <ul>${p.f.map(f=>`<li>${f}</li>`).join("")}</ul>
+    <button class="btn ol" data-pick="${p.id}">${p.id===plan?"✓ තෝරලා":"මේක තෝරන්න"}</button></article>`}).join("");
+  $("dur").querySelectorAll("button").forEach(b=>b.onclick=()=>{dur=+b.dataset.m;drawPlans()});
+  $("planGrid").querySelectorAll("[data-pick]").forEach(b=>b.onclick=()=>{plan=b.dataset.pick;drawPlans();showBar(true)});
+  drawBar();
+}
+function joinMsg(){const p=PLANS.find(x=>x.id===plan),x=priceOf(p,dur),D=DUR.find(d=>d.m===dur);
+  return`Hi ${SHOP}! Membership එකක් ගන්න කැමතියි 💪\n\nPlan: ${p.n}\nකාලය: ${D.l}\nගාණ: ${rs(x.per)} / මාසයට${dur>1?` (මුළු ගාණ ${rs(x.total)})`:""}\nAdmission fee: ${x.adm?rs(x.adm):"නෑ"}\n\nනම: `}
+function drawBar(){const p=PLANS.find(x=>x.id===plan),x=priceOf(p,dur),D=DUR.find(d=>d.m===dur);
+  $("m-tot").innerHTML=rs(x.per)+"<span>/ month</span>";$("m-sub").textContent=p.n+" · "+D.l+(dur>1?" · "+rs(x.total):"");
+  $("m-btn").href=waLink(joinMsg());$("m-btn").target="_blank"}
+let barOn=false;function showBar(v){barOn=v;$("mbar").classList.toggle("show",v)}
+drawPlans();
+
+/* goals */
+const GOALS=[
+  {id:"lose",b:"බර අඩු කරන්න",s:"Lose weight",ic:'<circle cx="17" cy="17" r="15" fill="#D7262E"/><path d="M10 14h14M12 19h10" stroke="#fff" stroke-width="2.6" stroke-linecap="round"/>',plan:"classes",h:"Gym + Classes",p:"සතියට දවස් 4ක්: classes 2ක් සහ cardio දවස් 2ක්. Dilan coach ඔයාගේ progress එක මාසෙන් මාසෙ බලනවා.",t:["HIIT 45","Zumba","Spin","Body check"]},
+  {id:"muscle",b:"Muscle හදන්න",s:"Build muscle",ic:'<circle cx="17" cy="17" r="15" fill="#1F5FBF"/><rect x="7" y="15" width="20" height="4" rx="2" fill="#fff"/><rect x="9" y="11" width="4" height="12" rx="1.5" fill="#fff"/><rect x="21" y="11" width="4" height="12" rx="1.5" fill="#fff"/>',plan:"pt",h:"Personal Training",p:"Kasun coach එක්ක සතියට දවස් 2ක් one-to-one. Form එක හරියට ඉගෙනගෙන, බර ටිකෙන් ටික වැඩි කරනවා.",t:["Strength basics","8 PT sessions","Food guide"]},
+  {id:"fit",b:"Fit වෙන්න",s:"Get fit & feel good",ic:'<circle cx="17" cy="17" r="15" fill="#2E9B4F"/><path d="M9 18l5 5 11-12" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>',plan:"classes",h:"Gym + Classes",p:"වැඩට කලින් හරි පස්සේ හරි පැයක්. Bootcamp සහ Boxing fit classes වලින් ශක්තියයි stamina එකයි දෙකම.",t:["Bootcamp","Boxing fit","Core & abs"]},
+  {id:"ladies",b:"Ladies only",s:"Ladies-only mornings",ic:'<circle cx="17" cy="17" r="15" fill="#E25D8E"/><circle cx="17" cy="14" r="5" fill="none" stroke="#fff" stroke-width="2.4"/><path d="M17 19v8M13.5 24h7" stroke="#fff" stroke-width="2.4" stroke-linecap="round"/>',plan:"classes",h:"Gym + Classes",p:"අඟහරුවාදා සහ බ්‍රහස්පතින්දා උදේ 8:30 – 11:00 gym එක ladies ලට විතරයි. Nethmi coach Ladies circuit class එක කරනවා.",t:["Ladies circuit","Yoga stretch","Zumba"]}
+];
+let goal="lose";
+function drawGoals(){
+  $("gbtns").innerHTML=GOALS.map(g=>`<button class="gbtn ${g.id===goal?"on":""}" data-g="${g.id}"><svg viewBox="0 0 34 34">${g.ic}</svg><b>${g.b}</b><span>${g.s}</span></button>`).join("");
+  const g=GOALS.find(x=>x.id===goal);
+  $("grec").innerHTML=`<div><small>අපි යෝජනා කරන්නේ</small><h3>${g.h}</h3><p>${g.p}</p><div class="tags">${g.t.map(t=>`<span>${t}</span>`).join("")}</div></div><a class="btn v" href="#plans" id="gpick">මේ plan එක බලන්න</a>`;
+  $("gbtns").querySelectorAll(".gbtn").forEach(b=>b.onclick=()=>{goal=b.dataset.g;drawGoals()});
+  $("gpick").onclick=()=>{plan=g.plan;drawPlans();showBar(true)}
+}
+drawGoals();
+
+/* timetable */
+const CL={hiit:{n:"HIIT 45",c:"#D7262E",co:"Dilan",d:45,l:"All levels"},zumba:{n:"Zumba",c:"#F2C230",co:"Nethmi",d:60,l:"Beginner"},str:{n:"Strength basics",c:"#1F5FBF",co:"Kasun",d:60,l:"Beginner"},spin:{n:"Spin",c:"#2E9B4F",co:"Dilan",d:45,l:"All levels"},core:{n:"Core & abs",c:"#7A4FD0",co:"Kasun",d:30,l:"All levels"},box:{n:"Boxing fit",c:"#121411",co:"Dilan",d:60,l:"Intermediate"},yoga:{n:"Yoga stretch",c:"#E25D8E",co:"Nethmi",d:60,l:"Beginner"},lady:{n:"Ladies circuit",c:"#E25D8E",co:"Nethmi",d:60,l:"Beginner",lady:1},boot:{n:"Bootcamp",c:"#FF8A1F",co:"Kasun",d:60,l:"All levels"},fam:{n:"Family bootcamp",c:"#FF8A1F",co:"Kasun",d:45,l:"Ages 12+"}};
+const TT={1:[[360,"hiit"],[1110,"zumba"],[1170,"str"]],2:[[540,"lady"],[1110,"spin"],[1170,"core"]],3:[[360,"hiit"],[1110,"zumba"],[1170,"box"]],4:[[540,"lady"],[1110,"spin"],[1170,"str"]],5:[[360,"hiit"],[1110,"yoga"],[1170,"box"]],6:[[480,"boot"],[600,"zumba"],[1020,"spin"]],0:[[480,"yoga"],[570,"fam"]]};
+const CAP=16,spots=(d,i)=>{const v=(d.getDate()*7+i*5+d.getMonth()*3)%13;return Math.max(1,v-1)};
+const MS=["ජනවාරි","පෙබරවාරි","මාර්තු","අප්‍රේල්","මැයි","ජූනි","ජූලි","අගෝස්තු","සැප්තැම්බර්","ඔක්තෝබර්","නොවැම්බර්","දෙසැම්බර්"],WDS=["සඳු","අඟ","බදා","බ්‍රහ","සිකු","සෙන","ඉරි"];
+function dayDate(off){return addD(today0(),off)}
+const maxDay=()=>{const t=today0();return new Date(t.getFullYear(),t.getMonth()+2,0)};
+function drawCal(id,st,opt,onPick){const el=$(id),first=new Date(st.y,st.m,1),lead=(first.getDay()+6)%7,days=new Date(st.y,st.m+1,0).getDate(),mn=opt.min,mx=maxDay(),t0=ymd(today0());
+  const canPrev=new Date(st.y,st.m,1)>new Date(mn.getFullYear(),mn.getMonth(),1),canNext=new Date(st.y,st.m+1,1)<=mx;
+  let g="";for(let i=0;i<lead;i++)g+="<span></span>";
+  for(let k=1;k<=days;k++){const d=new Date(st.y,st.m,k),py=isPoya(d),dis=d<mn||d>mx||py,key=ymd(d),n=opt.dots?opt.dots(d):0;
+    g+=`<button type="button" class="${key===t0?"today ":""}${opt.sel&&key===ymd(opt.sel)?"on ":""}${py?"poya":""}" data-k="${k}" ${dis?"disabled":""}>${k}${py?"<small>පෝය</small>":n&&!dis?`<i>${"<em></em>".repeat(n)}</i>`:""}</button>`}
+  el.innerHTML=`<div class="mh"><button type="button" data-n="-1" ${canPrev?"":"disabled"} aria-label="Previous month">‹</button><b>${MS[st.m]} ${st.y}</b><button type="button" data-n="1" ${canNext?"":"disabled"} aria-label="Next month">›</button></div><div class="wd">${WDS.map(w=>`<span>${w}</span>`).join("")}</div><div class="gd">${g}</div>`+(opt.key?`<div class="key"><span><i style="background:var(--ink)"></i>තෝරපු දවස</span><span><i style="background:#FDECEA;border:1px solid #F5C6C0"></i>පෝය · gym එක වහලා</span></div>`:"");
+  el.querySelectorAll(".mh button").forEach(b=>b.onclick=()=>{let m=st.m+ +b.dataset.n,y=st.y;if(m<0){m=11;y--}if(m>11){m=0;y++}st.m=m;st.y=y;drawCal(id,st,opt,onPick)});
+  el.querySelectorAll(".gd button").forEach(b=>b.onclick=()=>onPick(new Date(st.y,st.m,+b.dataset.k)))}
+let tsel=today0();if(isPoya(tsel))tsel=addD(tsel,1);const tcal={y:tsel.getFullYear(),m:tsel.getMonth()};
+function drawTT(){
+  drawCal("tcal",tcal,{min:today0(),sel:tsel,key:1,dots:d=>(TT[d.getDay()]||[]).length},d=>{tsel=d;drawTT()});
+  const d=tsel,n=now(),nm=n.getHours()*60+n.getMinutes(),isT=ymd(d)===ymd(today0()),list=TT[d.getDay()]||[];
+  $("dayhead").textContent=(isT?"අද · ":ymd(d)===ymd(addD(today0(),1))?"හෙට · ":"")+fmtD(d)+" · classes "+list.length+"ක්";
+  $("clist").innerHTML=list.map(([t,k],i)=>{const c=CL[k],sp=spots(d,i),done=isT&&t+c.d<=nm;
+    const msg=`Hi ${SHOP}! ${c.n} class එකට seat එකක් book කරන්න ඕනේ 🙋\n\nදවස: ${fmtD(d)}\nවෙලාව: ${fmtT(t)}\nCoach: ${c.co}\n\nනම: `;
+    return`<div class="cls ${done?"done":""}" style="--c:${c.c}"><div class="tm"><b>${fmtT(t).replace(/ (AM|PM)/,"")}</b><span>${fmtT(t).slice(-2)} · ${c.d} min</span></div>
+    <div><h4>${c.n}${c.lady?'<span class="lady">Ladies only</span>':""}</h4><div class="meta"><span>Coach ${c.co}</span><span class="lvl">${c.l}</span><span class="spots ${sp<=3?"low":""}">${done?"ඉවරයි":"Seats "+sp+"ක් ඉතුරුයි"}</span></div></div>
+    <a class="btn k" href="${waLink(msg)}" target="_blank" rel="noopener">${done?"ඉවරයි":"Seat එක book කරන්න"}</a></div>`}).join("");
+  /* next class mini */
+  for(let o=0;o<10;o++){const dd=dayDate(o);if(isPoya(dd))continue;const list2=(TT[dd.getDay()]||[]).filter(([t])=>o>0||t>nm);if(list2.length){const [t,k]=list2[0],c=CL[k];$("miniNext").textContent=c.n+" · "+fmtT(t);$("miniNextSub").textContent=(o===0?"අද":o===1?"හෙට":DN[dd.getDay()])+" · Coach "+c.co+" · seats "+spots(dd,(TT[dd.getDay()]).indexOf(list2[0]))+"ක්";break}}
+}
+drawTT();
+
+/* trial */
+const TSL=[[360,"6:00 AM"],[420,"7:00 AM"],[600,"10:00 AM"],[960,"4:00 PM"],[1050,"5:30 PM"],[1170,"7:30 PM"]];
+let trDate=null,trT=null;const trcal={y:addD(today0(),1).getFullYear(),m:addD(today0(),1).getMonth()};
+function drawTrial(){
+  drawCal("trcal",trcal,{min:addD(today0(),1),sel:trDate},d=>{trDate=d;drawTrial()});
+  const dd=trDate,[o,c]=dd?HRS[dd.getDay()]:[0,1440];
+  $("ttimes").innerHTML=TSL.map(([m,l])=>{const ok=m>=o&&m+60<=c;if(!ok&&trT===m)trT=null;return`<button type="button" class="slot ${trT===m?"on":""}" data-m="${m}" ${ok?"":"disabled"}>${l}</button>`}).join("");
+  $("ttimes").querySelectorAll(".slot").forEach(b=>b.onclick=()=>{trT=+b.dataset.m;drawTrial()});
+  $("tmsg").innerHTML="<small>WHATSAPP MESSAGE</small>"+trialMsg().replace(/</g,"&lt;");
+}
+function trialMsg(){const nm=$("tname").value.trim()||"…",d=trDate===null?"…":fmtD(trDate),t=trT===null?"…":fmtT(trT);
+  return`Hi ${SHOP}! Free trial day එකක් book කරන්න කැමතියි 🙂\nනම: ${nm}\nදවස: ${d}\nවෙලාව: ${t}${$("tcoach").checked?"\nCoach කෙනෙක් machines පෙන්නලා දෙනවා නම් හොඳයි.":""}`}
+$("tname").oninput=drawTrial;$("tcoach").onchange=drawTrial;
+$("tform").onsubmit=e=>{e.preventDefault();const miss=[];if(!$("tname").value.trim())miss.push("නම");if(trDate===null)miss.push("දවස");if(trT===null)miss.push("වෙලාව");
+  if(miss.length){$("terr").textContent=miss.join(", ")+" දාන්න ඕනේ";return}$("terr").textContent="";location.href=waLink(trialMsg())};
+drawTrial();
+
+/* hero: floating chalk dust + soft bokeh */
+[$("fxc"),...document.querySelectorAll("canvas.fx")].forEach(c=>{if(!c)return;const x=c.getContext("2d");let W=0,H=0;const dpr=Math.min(2,window.devicePixelRatio||1);
+  function size(){W=c.clientWidth;H=c.clientHeight;c.width=W*dpr;c.height=H*dpr;x.setTransform(dpr,0,0,dpr,0,0)}size();addEventListener("resize",size);
+  let seed=7;const R=(a,b)=>{seed=(seed*16807)%2147483647;return a+(seed/2147483647)*(b-a)};
+  const B=[...Array(30)].map(()=>({x:R(.3,1),y:R(0,.85),r:R(8,36),a:R(.08,.24),c:R(0,1)<.5?"201,240,61":"255,238,205",vx:R(-.006,.006),vy:R(-.004,.004)}));
+  const P=[...Array(110)].map(()=>({x:R(.45,1),y:R(0,1),r:R(.6,2.4),a:R(.25,.8),vx:R(-.008,.008),vy:R(-.025,-.006),ph:R(0,6)}));
+  const still=matchMedia("(prefers-reduced-motion: reduce)").matches;let last=performance.now();
+  function frame(t){const dt=Math.min(.05,(t-last)/1000);last=t;x.clearRect(0,0,W,H);x.globalCompositeOperation="lighter";
+    for(const b of B){b.x+=b.vx*dt;b.y+=b.vy*dt;const X=b.x*W,Y=b.y*H,g=x.createRadialGradient(X,Y,0,X,Y,b.r);g.addColorStop(0,`rgba(${b.c},${b.a})`);g.addColorStop(.75,`rgba(${b.c},${b.a*.55})`);g.addColorStop(1,`rgba(${b.c},0)`);x.fillStyle=g;x.beginPath();x.arc(X,Y,b.r,0,7);x.fill()}
+    for(const p of P){p.x+=p.vx*dt+Math.sin(t/1400+p.ph)*.0003;p.y+=p.vy*dt;if(p.y<-.02){p.y=1.02;p.x=R(.2,1)}const tw=.6+.4*Math.sin(t/600+p.ph);x.fillStyle=`rgba(255,255,240,${(p.a*tw).toFixed(3)})`;x.beginPath();x.arc(p.x*W,p.y*H,p.r,0,7);x.fill()}
+    x.globalCompositeOperation="source-over";if(!still)requestAnimationFrame(frame)}
+  requestAnimationFrame(frame)});
+
+/* show join bar after plans scrolled into view (phones) */
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)showBar(true)}),{threshold:.25});io.observe($("plans"));
+setInterval(()=>{drawNow()},60000);
+</script>
+</body></html>
