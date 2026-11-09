@@ -277,6 +277,24 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
 .mbar small{display:block;font-size:13px;color:#B9BEB2;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .mbar .btn{padding:11px 18px;font-size:15px}
 
+
+/* calendar fixes */
+.cal.sm .gd button.on{background:var(--ink);color:#fff}
+.cal.sm .gd button.poya,.cal.sm .gd button.poya:disabled{background:#FDECEA;color:#B3261E}
+/* section backgrounds */
+.sec{position:relative;overflow:hidden;isolation:isolate}
+.sec>.wrap{position:relative;z-index:1}
+.deco{position:absolute;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+.deco .nz{position:absolute;inset:0;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");opacity:.16;mix-blend-mode:multiply}
+.deco .glow{position:absolute;border-radius:50%;filter:blur(60px)}
+.deco svg{position:absolute}
+.deco .word{position:absolute;font-family:"Jost";font-weight:900;line-height:.8;color:transparent;-webkit-text-stroke:2px rgba(18,20,17,.07);letter-spacing:.02em;white-space:nowrap}
+.deco .tiles{position:absolute;inset:0;background:repeating-linear-gradient(90deg,rgba(18,20,17,.045) 0 1px,transparent 1px 120px),repeating-linear-gradient(0deg,rgba(18,20,17,.045) 0 1px,transparent 1px 120px);-webkit-mask-image:linear-gradient(180deg,transparent,#000 40%,#000 70%,transparent);mask-image:linear-gradient(180deg,transparent,#000 40%,#000 70%,transparent)}
+.deco .dots{position:absolute;inset:0;background-image:radial-gradient(rgba(18,20,17,.13) 1.6px,transparent 1.8px);background-size:18px 18px;-webkit-mask-image:radial-gradient(70% 90% at 100% 0%,#000,transparent 70%);mask-image:radial-gradient(70% 90% at 100% 0%,#000,transparent 70%)}
+.deco .beam{position:absolute;top:-20%;width:260px;height:150%;background:linear-gradient(180deg,rgba(236,255,190,.13),transparent 75%);filter:blur(16px);mix-blend-mode:screen}
+.deco canvas{position:absolute;inset:0;width:100%;height:100%}
+.goal .deco .nz{mix-blend-mode:overlay;opacity:.22}
+footer{position:relative;background:radial-gradient(600px 200px at 80% 0%,rgba(201,240,61,.10),transparent 70%),var(--ink)}
 @media (max-width:980px){
   nav{display:none}
   header .btn{margin-left:auto}
@@ -407,6 +425,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
 </section>
 
 <section class="sec crowd" id="crowd">
+  <div class="deco" aria-hidden="true"><div class="nz"></div><div class="tiles"></div><div class="glow" style="width:520px;height:420px;right:-80px;top:20%;background:rgba(201,240,61,.28)"></div><svg viewBox="0 0 200 200" style="width:560px;right:-180px;top:-120px"><g fill="none" stroke="#121411" stroke-opacity="0.07"><circle cx="100" cy="100" r="96" stroke-width="3"/><circle cx="100" cy="100" r="78" stroke-width="2"/><circle cx="100" cy="100" r="40" stroke-width="3"/><circle cx="100" cy="100" r="14" stroke-width="3"/><circle cx="100" cy="100" r="60" stroke-width="1" stroke-dasharray="3 6"/></g></svg></div>
   <div class="wrap cgrid">
     <div>
       <p class="kick">Crowd meter</p>
@@ -425,6 +444,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
 </section>
 
 <section class="sec" id="plans">
+  <div class="deco" aria-hidden="true"><div class="nz"></div><div class="dots"></div><div class="glow" style="width:560px;height:380px;left:30%;top:38%;background:rgba(201,240,61,.30)"></div><div class="word" style="font-size:300px;right:-30px;bottom:-30px">WIRU</div><svg viewBox="0 0 200 200" style="width:300px;left:-140px;top:60px"><g fill="none" stroke="#121411" stroke-opacity="0.06"><circle cx="100" cy="100" r="96" stroke-width="3"/><circle cx="100" cy="100" r="78" stroke-width="2"/><circle cx="100" cy="100" r="40" stroke-width="3"/><circle cx="100" cy="100" r="14" stroke-width="3"/><circle cx="100" cy="100" r="60" stroke-width="1" stroke-dasharray="3 6"/></g></svg></div>
   <div class="wrap">
     <p class="kick">Membership</p>
     <h2 class="si">ඔයාට ගැලපෙන plan එක</h2>
@@ -436,6 +456,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
 </section>
 
 <section class="sec goal" id="goal">
+  <div class="deco" aria-hidden="true"><div class="glow" style="width:620px;height:420px;right:-120px;top:-80px;background:rgba(201,240,61,.14)"></div><div class="beam" style="left:62%;transform:rotate(16deg)"></div><div class="beam" style="left:84%;transform:rotate(-8deg)"></div><svg viewBox="0 0 1440 200" preserveAspectRatio="xMidYMax slice" style="left:0;right:0;bottom:0;width:100%;height:200px;filter:blur(2px);opacity:.55"><g fill="#2A2F25" stroke="#C9F03D" stroke-opacity=".3" stroke-width="2"><rect x="760" y="70" width="560" height="14" rx="6"/><rect x="760" y="130" width="560" height="14" rx="6"/><rect x="780" y="70" width="14" height="130" rx="4"/><rect x="1290" y="70" width="14" height="130" rx="4"/></g><g fill="#151713" stroke="#6E7666" stroke-opacity=".5" stroke-width="2"><rect x="800" y="44" width="14" height="28" rx="4"/><rect x="818" y="44" width="14" height="28" rx="4"/><rect x="800" y="100" width="16" height="32" rx="4"/><rect x="818" y="100" width="16" height="32" rx="4"/><rect x="840" y="44" width="14" height="28" rx="4"/><rect x="858" y="44" width="14" height="28" rx="4"/><rect x="840" y="100" width="16" height="32" rx="4"/><rect x="858" y="100" width="16" height="32" rx="4"/><rect x="880" y="44" width="14" height="28" rx="4"/><rect x="898" y="44" width="14" height="28" rx="4"/><rect x="880" y="100" width="16" height="32" rx="4"/><rect x="898" y="100" width="16" height="32" rx="4"/><rect x="920" y="44" width="14" height="28" rx="4"/><rect x="938" y="44" width="14" height="28" rx="4"/><rect x="920" y="100" width="16" height="32" rx="4"/><rect x="938" y="100" width="16" height="32" rx="4"/><rect x="960" y="44" width="14" height="28" rx="4"/><rect x="978" y="44" width="14" height="28" rx="4"/><rect x="960" y="100" width="16" height="32" rx="4"/><rect x="978" y="100" width="16" height="32" rx="4"/><rect x="1000" y="44" width="14" height="28" rx="4"/><rect x="1018" y="44" width="14" height="28" rx="4"/><rect x="1000" y="100" width="16" height="32" rx="4"/><rect x="1018" y="100" width="16" height="32" rx="4"/><rect x="1040" y="44" width="14" height="28" rx="4"/><rect x="1058" y="44" width="14" height="28" rx="4"/><rect x="1040" y="100" width="16" height="32" rx="4"/><rect x="1058" y="100" width="16" height="32" rx="4"/><rect x="1080" y="44" width="14" height="28" rx="4"/><rect x="1098" y="44" width="14" height="28" rx="4"/><rect x="1080" y="100" width="16" height="32" rx="4"/><rect x="1098" y="100" width="16" height="32" rx="4"/><rect x="1120" y="44" width="14" height="28" rx="4"/><rect x="1138" y="44" width="14" height="28" rx="4"/><rect x="1120" y="100" width="16" height="32" rx="4"/><rect x="1138" y="100" width="16" height="32" rx="4"/><rect x="1160" y="44" width="14" height="28" rx="4"/><rect x="1178" y="44" width="14" height="28" rx="4"/><rect x="1160" y="100" width="16" height="32" rx="4"/><rect x="1178" y="100" width="16" height="32" rx="4"/><rect x="1200" y="44" width="14" height="28" rx="4"/><rect x="1218" y="44" width="14" height="28" rx="4"/><rect x="1200" y="100" width="16" height="32" rx="4"/><rect x="1218" y="100" width="16" height="32" rx="4"/><rect x="1240" y="44" width="14" height="28" rx="4"/><rect x="1258" y="44" width="14" height="28" rx="4"/><rect x="1240" y="100" width="16" height="32" rx="4"/><rect x="1258" y="100" width="16" height="32" rx="4"/></g></svg><canvas class="fx"></canvas><div class="nz"></div></div>
   <div class="wrap">
     <p class="kick">Not sure?</p>
     <h2 class="si">ඔයාගේ goal එක මොකක්ද?</h2>
@@ -446,6 +467,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
 </section>
 
 <section class="sec" id="classes">
+  <div class="deco" aria-hidden="true"><div class="nz"></div><div class="dots" style="-webkit-mask-image:radial-gradient(60% 80% at 0% 100%,#000,transparent 70%);mask-image:radial-gradient(60% 80% at 0% 100%,#000,transparent 70%)"></div><div class="glow" style="width:460px;height:360px;left:-120px;top:30%;background:rgba(201,240,61,.26)"></div><svg viewBox="0 0 200 220" style="width:340px;right:-60px;top:-30px;opacity:.07"><g fill="none" stroke="#121411" stroke-width="8" stroke-linecap="round"><circle cx="100" cy="125" r="85"/><path d="M85 22h30M100 22v18M168 58l14-14M100 125V75M100 125l32 22"/></g></svg></div>
   <div class="wrap">
     <div class="ttop"><div>
       <p class="kick">Timetable</p>
@@ -457,6 +479,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
 </section>
 
 <section class="sec trial" id="trial">
+  <div class="deco" aria-hidden="true"><div class="dots" style="background-image:radial-gradient(rgba(18,20,17,.16) 2px,transparent 2.2px);background-size:16px 16px"></div><div class="glow" style="width:620px;height:460px;right:-100px;top:-60px;background:rgba(255,255,255,.55)"></div><div class="beam" style="left:20%;transform:rotate(18deg);background:linear-gradient(180deg,rgba(255,255,255,.35),transparent 75%)"></div><svg viewBox="0 0 120 130" style="width:330px;left:-60px;bottom:-60px;opacity:.10"><path d="M34 50 Q30 8 60 8 Q90 8 86 50" fill="none" stroke="#121411" stroke-width="13" stroke-linecap="round"/><ellipse cx="60" cy="84" rx="48" ry="44" fill="#121411"/></svg><div class="word" style="font-size:210px;left:-10px;top:-40px;-webkit-text-stroke:2px rgba(18,20,17,.08)">FREE</div></div>
   <div class="wrap tgrid">
     <div>
       <p class="kick">Free trial day</p>
@@ -485,6 +508,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
 </section>
 
 <section class="sec" id="coaches">
+  <div class="deco" aria-hidden="true"><div class="nz"></div><div class="glow" style="width:520px;height:380px;right:-140px;top:10%;background:rgba(201,240,61,.22)"></div><svg viewBox="0 0 200 200" style="width:340px;left:-150px;top:-60px"><g fill="none" stroke="#121411" stroke-opacity="0.06"><circle cx="100" cy="100" r="96" stroke-width="3"/><circle cx="100" cy="100" r="78" stroke-width="2"/><circle cx="100" cy="100" r="40" stroke-width="3"/><circle cx="100" cy="100" r="14" stroke-width="3"/><circle cx="100" cy="100" r="60" stroke-width="1" stroke-dasharray="3 6"/></g></svg></div>
   <div class="wrap">
     <p class="kick">Coaches</p>
     <h2 class="si">අපේ coaches ලා</h2>
@@ -498,6 +522,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
 </section>
 
 <section class="sec" id="visit" style="padding-top:0">
+  <div class="deco" aria-hidden="true"><div class="nz"></div><div class="tiles"></div><div class="glow" style="width:540px;height:400px;left:-140px;bottom:-60px;background:rgba(201,240,61,.22)"></div><svg viewBox="0 0 200 200" style="width:420px;right:-160px;bottom:-140px"><g fill="none" stroke="#121411" stroke-opacity="0.06"><circle cx="100" cy="100" r="96" stroke-width="3"/><circle cx="100" cy="100" r="78" stroke-width="2"/><circle cx="100" cy="100" r="40" stroke-width="3"/><circle cx="100" cy="100" r="14" stroke-width="3"/><circle cx="100" cy="100" r="60" stroke-width="1" stroke-dasharray="3 6"/></g></svg></div>
   <div class="wrap">
     <p class="kick">Inside the gym</p>
     <h2 class="si">Gym එක ඇතුළේ</h2>
@@ -685,7 +710,7 @@ $("tform").onsubmit=e=>{e.preventDefault();const miss=[];if(!$("tname").value.tr
 drawTrial();
 
 /* hero: floating chalk dust + soft bokeh */
-(function(){const c=$("fxc");if(!c)return;const x=c.getContext("2d");let W=0,H=0;const dpr=Math.min(2,window.devicePixelRatio||1);
+[$("fxc"),...document.querySelectorAll("canvas.fx")].forEach(c=>{if(!c)return;const x=c.getContext("2d");let W=0,H=0;const dpr=Math.min(2,window.devicePixelRatio||1);
   function size(){W=c.clientWidth;H=c.clientHeight;c.width=W*dpr;c.height=H*dpr;x.setTransform(dpr,0,0,dpr,0,0)}size();addEventListener("resize",size);
   let seed=7;const R=(a,b)=>{seed=(seed*16807)%2147483647;return a+(seed/2147483647)*(b-a)};
   const B=[...Array(30)].map(()=>({x:R(.3,1),y:R(0,.85),r:R(8,36),a:R(.08,.24),c:R(0,1)<.5?"201,240,61":"255,238,205",vx:R(-.006,.006),vy:R(-.004,.004)}));
@@ -695,7 +720,7 @@ drawTrial();
     for(const b of B){b.x+=b.vx*dt;b.y+=b.vy*dt;const X=b.x*W,Y=b.y*H,g=x.createRadialGradient(X,Y,0,X,Y,b.r);g.addColorStop(0,`rgba(${b.c},${b.a})`);g.addColorStop(.75,`rgba(${b.c},${b.a*.55})`);g.addColorStop(1,`rgba(${b.c},0)`);x.fillStyle=g;x.beginPath();x.arc(X,Y,b.r,0,7);x.fill()}
     for(const p of P){p.x+=p.vx*dt+Math.sin(t/1400+p.ph)*.0003;p.y+=p.vy*dt;if(p.y<-.02){p.y=1.02;p.x=R(.2,1)}const tw=.6+.4*Math.sin(t/600+p.ph);x.fillStyle=`rgba(255,255,240,${(p.a*tw).toFixed(3)})`;x.beginPath();x.arc(p.x*W,p.y*H,p.r,0,7);x.fill()}
     x.globalCompositeOperation="source-over";if(!still)requestAnimationFrame(frame)}
-  requestAnimationFrame(frame)})();
+  requestAnimationFrame(frame)});
 
 /* show join bar after plans scrolled into view (phones) */
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)showBar(true)}),{threshold:.25});io.observe($("plans"));
