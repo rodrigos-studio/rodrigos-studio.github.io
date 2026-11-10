@@ -1,0 +1,479 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Lemongrass Kotte · sample website</title>
+<meta name="robots" content="noindex,nofollow">
+<meta name="description" content="Sample website made by Rodrigo's Studio to show Lemongrass, Kotte how online ordering and table booking could work. Not the official Lemongrass website.">
+<link rel="icon" type="image/png" href="https://rodrigos-studio.github.io/icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@400;500;600;700&family=Kaushan+Script&family=IBM+Plex+Mono:wght@500;600&family=Noto+Sans+Sinhala:wght@400;500;600;700;800&display=swap">
+<style>
+*{margin:0;box-sizing:border-box}
+:root{--bg:#0C0D0A;--bg2:#13150F;--card:#1A1C15;--card2:#22251C;--line:#2D3125;--tx:#F3F1E7;--mut:#A7AA9C;--lime:#B9E631;--lime2:#DDF58A;--red:#E5493C;--pur:#A066E6;--gold:#EBBE52;--wa:#25D366;--steel1:#F3F4F1;--steel2:#9EA39A}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--tx);font-family:"DM Sans","Noto Sans Sinhala",system-ui,sans-serif;font-size:16.5px;line-height:1.55}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+input,select,textarea{font:inherit;color:inherit}
+.wrap{max-width:1180px;margin:0 auto;padding-left:max(18px,env(safe-area-inset-left,0px));padding-right:max(18px,env(safe-area-inset-right,0px))}
+.si{font-family:"Noto Sans Sinhala","DM Sans",sans-serif}
+.script{font-family:"Kaushan Script",cursive;font-weight:400}
+.ribbon{background:var(--lime);color:#111;font-size:13.5px;text-align:center;padding:7px 12px;font-weight:600}
+.ribbon a{text-decoration:underline}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;border-radius:999px;padding:13px 22px;font-weight:700;font-size:16px;white-space:nowrap;transition:transform .15s}
+.btn:active{transform:scale(.97)}
+.btn.l{background:var(--lime);color:#121410}
+.btn.o{border:1.5px solid rgba(255,255,255,.28)}
+.btn.w{background:var(--wa);color:#fff}
+.btn svg{width:20px;height:20px;flex:none}
+.kick{font-family:"IBM Plex Mono";font-weight:600;font-size:12.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--lime);display:flex;align-items:center;gap:10px}
+.kick::before{content:"";width:22px;height:2px;background:currentColor}
+h2{font-family:"DM Serif Display","Noto Sans Sinhala",serif;font-weight:400;font-size:clamp(32px,4.6vw,50px);line-height:1.08;margin:10px 0 4px;text-wrap:balance}
+h2.si{font-family:"Noto Sans Sinhala";font-weight:800;font-size:clamp(28px,4vw,42px)}
+.en{display:block;color:var(--mut);font-size:14.5px}
+.sec{position:relative;padding:72px 0;overflow:hidden;isolation:isolate}
+.sec>.wrap{position:relative;z-index:1}
+.deco{position:absolute;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+.deco .glow{position:absolute;border-radius:50%;filter:blur(70px)}
+.deco svg{position:absolute}
+.nz{position:absolute;inset:0;opacity:.14;mix-blend-mode:overlay;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+
+/* header */
+header{position:sticky;top:0;z-index:40;background:rgba(12,13,10,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+header .wrap{height:66px;display:flex;align-items:center;gap:18px}
+.logo img{height:42px;width:auto;display:block;border-radius:6px}
+nav{display:flex;gap:22px;margin-left:auto;font-weight:600;font-size:15px;color:#CFD2C4}
+nav a:hover{color:#fff}
+.brsel{display:flex;align-items:center;gap:8px;border:1.5px solid var(--line);border-radius:999px;padding:6px 8px 6px 14px;font-weight:600;font-size:14.5px;background:var(--card)}
+.brsel select{background:none;border:0;font-weight:700;color:var(--lime);font-size:14.5px;cursor:pointer}
+.brsel select option{background:#1A1C15;color:#fff}
+
+/* hero */
+.hero{position:relative;overflow:hidden;isolation:isolate;background:radial-gradient(800px 520px at 75% 40%,#262A1D,#11130D 60%,#0C0D0A)}
+.hero .slate{position:absolute;inset:0;z-index:-2;opacity:.5;mix-blend-mode:overlay;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='s'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.012 .04' numOctaves='4' seed='3'/%3E%3CfeColorMatrix values='0 0 0 0 .5  0 0 0 0 .5  0 0 0 0 .5  0 0 0 .9 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23s)'/%3E%3C/svg%3E")}
+.hero canvas{position:absolute;inset:0;width:100%;height:100%;z-index:-1;pointer-events:none}
+.hero .wrap{display:grid;grid-template-columns:1fr 1.05fr;gap:30px;align-items:center;padding-top:54px;padding-bottom:64px}
+.hero .wrap>*{min-width:0}
+.pill{display:inline-flex;gap:10px;align-items:center;border:1px solid rgba(255,255,255,.16);border-radius:30px;padding:6px 14px;font-weight:600;font-size:14px;color:#DADDCF;background:rgba(255,255,255,.04)}
+.pill i{width:9px;height:9px;border-radius:50%;background:#3DDC84;box-shadow:0 0 10px #3DDC84}
+.pill.closed i{background:var(--red);box-shadow:0 0 10px var(--red)}
+.hero h1{font-family:"DM Serif Display",serif;font-weight:400;font-size:clamp(44px,6.6vw,82px);line-height:.98;margin:20px 0 10px;text-wrap:balance}
+.hero h1 .r{color:var(--red)}.hero h1 .p{color:var(--pur)}
+.hero h1 .script{display:block;color:var(--lime);font-size:.62em;line-height:1.25;margin-bottom:4px}
+.hero .sih{font-family:"Noto Sans Sinhala";font-weight:700;font-size:clamp(19px,2.2vw,24px);line-height:1.5;color:#E8EADF;margin-bottom:24px;text-wrap:balance}
+.hero .cta{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:28px}
+.facts{display:flex;gap:30px;flex-wrap:wrap}
+.facts b{display:block;font-family:"DM Serif Display",serif;font-weight:400;font-size:32px;line-height:1.05;color:var(--lime2)}
+.facts span{font-size:13.5px;color:var(--mut)}
+.plates{position:relative;aspect-ratio:1/1;max-width:560px;width:100%;margin-left:auto}
+.thali{position:absolute;border-radius:50%;background:radial-gradient(circle at 35% 30%,var(--steel1),var(--steel2) 55%,#5D6259 100%);box-shadow:0 30px 50px rgba(0,0,0,.6),inset 0 0 0 3px rgba(255,255,255,.35)}
+.thali::after{content:"";position:absolute;inset:6%;border-radius:50%;box-shadow:inset 0 6px 16px rgba(0,0,0,.45);pointer-events:none}
+.thali img{position:absolute;inset:7%;width:86%;height:86%;border-radius:50%;object-fit:cover}
+.thali .gl{position:absolute;inset:0;border-radius:50%;background:linear-gradient(135deg,rgba(255,255,255,.35),transparent 40%);pointer-events:none}
+.leaf{position:absolute;pointer-events:none}
+.tag{position:absolute;z-index:5;background:rgba(18,20,15,.92);border:1px solid #3a3f31;border-radius:16px;padding:10px 14px;box-shadow:0 16px 30px rgba(0,0,0,.45)}
+.tag small{display:block;font-family:"IBM Plex Mono";font-size:10.5px;letter-spacing:.16em;color:var(--mut)}
+.tag b{display:block;font-weight:700;font-size:16px;line-height:1.25}
+.tag em{font-style:normal;color:var(--lime);font-weight:700}
+
+/* lunch strip */
+.lunch{position:relative;z-index:2;margin-top:-28px}
+.lunch .in{display:grid;grid-template-columns:auto 1fr auto;gap:18px;align-items:center;background:linear-gradient(100deg,#1E2216,#151810);border:1px solid #3A4030;border-radius:24px;padding:14px 18px 14px 14px;box-shadow:0 20px 40px rgba(0,0,0,.4)}
+.lunch img{width:94px;height:94px;border-radius:18px;object-fit:cover}
+.lunch small{font-family:"IBM Plex Mono";font-size:11.5px;letter-spacing:.18em;color:var(--gold)}
+.lunch h3{font-family:"DM Serif Display",serif;font-weight:400;font-size:26px;line-height:1.1;margin:2px 0}
+.lunch p{color:var(--mut);font-size:14.5px}
+.lunch .pr{font-family:"DM Serif Display",serif;font-size:30px;color:var(--lime2);line-height:1;display:flex;flex-direction:column;align-items:flex-end;gap:8px}
+.lunch .pr span{display:block;font-family:"DM Sans";font-size:12px;color:var(--mut);margin-top:4px}
+
+/* menu */
+.mhead{display:flex;justify-content:space-between;align-items:flex-end;gap:18px;flex-wrap:wrap}
+.tabs{display:flex;gap:8px;margin-top:26px;flex-wrap:wrap}
+.tab{display:flex;align-items:center;gap:9px;border:1.5px solid var(--line);background:var(--card);border-radius:999px;padding:10px 18px;font-weight:700;font-size:15.5px}
+.tab i{width:10px;height:10px;border-radius:50%}
+.tab.on{background:var(--tx);color:#111;border-color:var(--tx)}
+.search{display:flex;align-items:center;gap:10px;background:var(--card);border:1.5px solid var(--line);border-radius:16px;padding:0 14px;min-width:min(340px,100%);flex:1;max-width:420px}
+.search svg{width:20px;height:20px;flex:none;color:var(--mut)}
+.search input{flex:1;min-width:0;background:none;border:0;padding:13px 0;font-size:16px;outline:none}
+.chips{position:sticky;top:66px;z-index:30;background:linear-gradient(var(--bg) 80%,rgba(12,13,10,0));padding:14px 0 12px;margin-top:10px}
+.chips .row{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;padding-bottom:2px}
+.chips .row::-webkit-scrollbar{display:none}
+.chip{flex:none;border:1.5px solid var(--line);background:var(--card);border-radius:999px;padding:7px 14px;font-weight:600;font-size:14px;white-space:nowrap;color:#D5D8CA}
+.chip.on{border-color:var(--lime);color:var(--lime)}
+.cat{padding-top:20px;scroll-margin-top:130px}
+.cat h3{display:flex;align-items:center;gap:14px;font-family:"DM Serif Display",serif;font-weight:400;font-size:28px;margin-bottom:4px}
+.cat h3 .ic{width:58px;height:58px;flex:none;position:relative}
+.cat h3 small{font-family:"DM Sans";font-size:13.5px;color:var(--mut);margin-left:auto;white-space:nowrap}
+.cat .note{color:var(--mut);font-size:14.5px;margin-bottom:6px}
+.items{display:grid;grid-template-columns:1fr 1fr;gap:0 34px}
+.it{display:flex;align-items:center;gap:14px;padding:14px 0;border-bottom:1px dashed var(--line);min-width:0}
+.it .ph{width:76px;height:76px;flex:none;border-radius:16px;object-fit:cover}
+.it .tx{flex:1;min-width:0}
+.it .nm{font-weight:600;font-size:16.5px;line-height:1.3}
+.it .ds{font-size:13.5px;color:var(--mut);margin-top:2px}
+.it .pr{font-weight:700;color:var(--lime2);font-size:15.5px;margin-top:3px;display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.bdg{display:inline-block;font-size:11.5px;font-weight:700;border-radius:999px;padding:2px 9px;background:#2C3520;color:var(--lime)}
+.bdg.top{background:var(--gold);color:#221a05}
+.add{width:40px;height:40px;flex:none;border-radius:50%;background:var(--lime);color:#121410;font-size:24px;font-weight:700;line-height:1;display:grid;place-items:center;box-shadow:0 6px 14px rgba(185,230,49,.25)}
+.qty{display:flex;align-items:center;gap:6px;background:var(--card2);border-radius:999px;padding:3px;flex:none}
+.qty button{width:34px;height:34px;border-radius:50%;background:#2F3426;font-size:20px;font-weight:700;display:grid;place-items:center}
+.qty button.p{background:var(--lime);color:#111}
+.qty b{min-width:20px;text-align:center}
+.sz{display:flex;gap:6px;flex:none}
+.sz button{border-radius:12px;background:var(--card2);border:1.5px solid var(--line);padding:6px 10px;font-weight:700;font-size:13px;line-height:1.2;text-align:center}
+.sz button span{display:block;font-size:11px;color:var(--mut);font-weight:600}
+.sz button.has{border-color:var(--lime);color:var(--lime)}
+.empty{padding:30px 0;color:var(--mut)}
+.more{margin-top:12px;border:1.5px solid var(--line);border-radius:999px;padding:9px 18px;font-weight:700;font-size:14.5px;color:var(--lime)}
+.pnote{margin-top:22px;font-size:13.5px;color:var(--mut)}
+
+/* booking */
+.book .grid{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start}
+.form{background:var(--card);border:1px solid var(--line);border-radius:26px;padding:22px}
+.form label{display:block;font-weight:700;font-size:14.5px;margin:16px 0 8px;color:#DDE0D3}
+.form label:first-child{margin-top:0}
+.form input[type=text],.form textarea{width:100%;background:var(--bg2);border:1.5px solid var(--line);border-radius:14px;padding:12px 14px;font-size:16px;resize:vertical}
+.form input:focus,.form textarea:focus{outline:2px solid var(--lime);outline-offset:1px}
+.opts{display:flex;gap:8px;flex-wrap:wrap}
+.opt{border:1.5px solid var(--line);background:var(--bg2);border-radius:12px;padding:8px 13px;font-weight:600;font-size:14.5px}
+.opt.on{background:var(--lime);border-color:var(--lime);color:#111}
+.opt:disabled{opacity:.3;text-decoration:line-through;cursor:not-allowed}
+.step{display:flex;align-items:center;gap:14px}
+.step button{width:42px;height:42px;border-radius:50%;background:var(--bg2);border:1.5px solid var(--line);font-size:22px;font-weight:700}
+.step b{font-family:"DM Serif Display",serif;font-size:30px;min-width:40px;text-align:center}
+.msg{margin-top:16px;background:#12261A;border:1px solid #1F4A2E;border-radius:14px;padding:12px 14px;font-size:14.5px;white-space:pre-line;color:#CFF0DA}
+.msg small{display:block;font-family:"IBM Plex Mono";font-size:10.5px;letter-spacing:.16em;color:#79B98E;margin-bottom:4px}
+.form .btn{width:100%;margin-top:16px}
+.err{color:#FF8A7D;font-weight:600;font-size:14px;min-height:20px;margin-top:8px}
+.points{list-style:none;padding:0;margin-top:22px;display:grid;gap:12px}
+.points li{display:flex;gap:12px;align-items:flex-start;color:#DDE0D3}
+.points li b{width:30px;height:30px;flex:none;border-radius:50%;background:var(--lime);color:#111;display:grid;place-items:center;font-weight:800;font-size:14px}
+
+/* gallery */
+.gal{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:190px;gap:12px;margin-top:28px}
+.gal figure{position:relative;border-radius:20px;overflow:hidden;margin:0}
+.gal figure.big{grid-column:span 2;grid-row:span 2}
+.gal img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s}
+.gal figure:hover img{transform:scale(1.05)}
+.gal figcaption{position:absolute;left:10px;bottom:10px;background:rgba(10,11,8,.8);border-radius:999px;padding:4px 12px;font-size:13px;font-weight:600}
+
+/* branches */
+.brs{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:28px}
+.br{background:var(--card);border:1.5px solid var(--line);border-radius:22px;padding:20px;display:flex;flex-direction:column;gap:8px}
+.br.on{border-color:var(--lime)}
+.br h3{font-family:"DM Serif Display",serif;font-weight:400;font-size:26px}
+.br .row{display:flex;gap:10px;align-items:flex-start;color:#D9DCCF;font-size:15px}
+.br .row svg{width:18px;height:18px;flex:none;margin-top:3px;color:var(--lime)}
+.br .num{font-family:"IBM Plex Mono";font-weight:600;font-size:17px;color:#fff;user-select:all}
+.br .acts{display:flex;gap:8px;margin-top:auto;padding-top:10px;flex-wrap:wrap}
+.br .acts .btn{padding:9px 16px;font-size:14px}
+.apps{display:flex;gap:12px;flex-wrap:wrap;margin-top:22px;align-items:center;color:var(--mut);font-size:14.5px}
+.apps span.b{background:#fff;color:#111;border-radius:12px;padding:8px 14px;font-weight:800}
+.apps span.b.u{background:#06C167;color:#fff}
+
+footer{border-top:1px solid var(--line);color:var(--mut);font-size:14px;padding:26px 0 110px}
+footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+
+/* cart */
+.cbar{position:fixed;left:50%;bottom:calc(14px + env(safe-area-inset-bottom,0px));transform:translate(-50%,140%);z-index:50;width:min(560px,calc(100% - 28px));background:var(--lime);color:#121410;border-radius:20px;display:flex;align-items:center;gap:12px;padding:12px 14px 12px 18px;box-shadow:0 20px 40px rgba(0,0,0,.5);transition:transform .3s}
+.cbar{visibility:hidden}.cbar.show{transform:translate(-50%,0);visibility:visible}
+.cbar .n{width:34px;height:34px;border-radius:50%;background:#121410;color:var(--lime);display:grid;place-items:center;font-weight:800}
+.cbar div{flex:1;min-width:0}
+.cbar b{display:block;font-weight:800;font-size:17px}
+.cbar small{display:block;font-size:13px;font-weight:600;opacity:.75}
+.cbar .go{background:#121410;color:#fff;border-radius:14px;padding:11px 16px;font-weight:700;white-space:nowrap}
+.sheet{position:fixed;inset:0;z-index:60;display:none}
+.sheet.open{display:block}
+.sheet .bgc{position:absolute;inset:0;background:rgba(0,0,0,.6)}
+.sheet .pan{position:absolute;left:50%;bottom:0;transform:translateX(-50%);width:min(620px,100%);max-height:92vh;overflow:auto;background:#14160F;border:1px solid var(--line);border-radius:26px 26px 0 0;padding:20px max(18px,env(safe-area-inset-right,0px)) calc(24px + env(safe-area-inset-bottom,0px)) max(18px,env(safe-area-inset-left,0px))}
+.pan .top{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+.pan h3{font-family:"DM Serif Display",serif;font-weight:400;font-size:28px}
+.pan .x{width:40px;height:40px;border-radius:50%;background:var(--card2);font-size:20px}
+.cl{border-bottom:1px dashed var(--line);padding:12px 0;display:flex;align-items:center;gap:12px}
+.cl .tx{flex:1;min-width:0}
+.cl .tx b{display:block;font-weight:600}
+.cl .tx span{font-size:13.5px;color:var(--mut)}
+.tot{display:flex;justify-content:space-between;font-weight:800;font-size:19px;padding:14px 0 4px}
+.pan .form{background:none;border:0;padding:0;margin-top:8px}
+
+@media (max-width:980px){
+  nav{display:none}
+  .brsel{margin-left:auto}
+  .hero .wrap,.book .grid{grid-template-columns:1fr}
+  .plates{max-width:460px;margin:0 auto}
+  .items{grid-template-columns:1fr}
+  .brs{grid-template-columns:1fr}
+  .gal{grid-template-columns:1fr 1fr;grid-auto-rows:150px}
+}
+@media (max-width:560px){
+  body{font-size:16px}
+  header .wrap{gap:10px}
+  .logo img{height:34px}
+  .brsel{padding:5px 6px 5px 10px;font-size:13px}
+  .brsel span{display:none}
+  .sec{padding:56px 0}
+  .hero .wrap{padding-top:34px;padding-bottom:56px}
+  .facts{gap:20px}
+  .facts b{font-size:26px}
+  .lunch .in{grid-template-columns:auto 1fr;gap:12px}
+  .lunch img{width:74px;height:74px}
+  .lunch .pr{grid-column:1/-1;flex-direction:row;align-items:center;justify-content:space-between;font-size:26px}
+  .lunch h3{font-size:21px}
+  .it .ph{width:64px;height:64px}
+  .cat h3{font-size:24px}
+  .cat h3 .ic{width:48px;height:48px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}html{scroll-behavior:auto}}
+</style></head><body>
+<div class="ribbon">Sample website made by <a href="https://rodrigos-studio.github.io/">Rodrigo's Studio</a> to show Lemongrass · not the official site</div>
+
+<header><div class="wrap">
+  <a class="logo" href="#top" aria-label="Lemongrass home"><img src="img/logo.webp" alt="Lemongrass – Authentic Indian &amp; Thai Restaurant" width="592" height="234"></a>
+  <nav><a href="#menu">Menu</a><a href="#book">Table booking</a><a href="#gallery">Gallery</a><a href="#branches">Branches</a></nav>
+  <label class="brsel"><span>Branch</span><select id="branch" aria-label="Choose branch"><option value="kotte">Kotte</option><option value="pelawatta">Pelawatta</option><option value="malabe">Malabe</option></select></label>
+</div></header>
+
+<main id="top">
+<section class="hero">
+  <div class="slate"></div><canvas id="steam"></canvas>
+  <div class="wrap">
+    <div>
+      <span class="pill" id="openPill"><i></i><span id="openTxt">Open now</span></span>
+      <h1><span class="script">Lemongrass, Ethul Kotte</span>Authentic <span class="r">Indian</span> &amp; <span class="p">Thai</span></h1>
+      <div class="sih">Dosa, biriyani, tandoori සිට Tom Yum දක්වා. Menu එක බලලා phone එකෙන්ම order කරන්න.</div>
+      <div class="cta">
+        <a class="btn l" href="#menu">Menu බලලා order කරන්න <svg viewBox="0 0 20 20"><path d="M4 10h11m-4-4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        <a class="btn o" href="#book">Table එකක් book කරන්න</a>
+      </div>
+      <div class="facts">
+        <div><b>4.5 ★</b><span>Uber Eats · 3,000+ ratings</span></div>
+        <div><b>250+</b><span>Indian &amp; Thai dishes</span></div>
+        <div><b>3</b><span>Branches</span></div>
+      </div>
+    </div>
+    <div class="plates" aria-hidden="true">
+      <svg class="leaf" viewBox="0 0 400 400" style="left:-6%;top:-4%;width:60%;opacity:.9"><g fill="none" stroke-linecap="round"><path d="M20 380 Q140 220 330 40" stroke="#7FB52A" stroke-width="7"/><path d="M40 390 Q170 260 380 120" stroke="#A4D63A" stroke-width="5"/><path d="M10 360 Q90 200 200 20" stroke="#5E8F1E" stroke-width="6"/></g></svg>
+      <div class="thali" style="left:20%;top:16%;width:62%;aspect-ratio:1"><img src="img/ghee-dosai.webp" alt=""><i class="gl"></i></div>
+      <div class="thali" style="left:-2%;top:56%;width:38%;aspect-ratio:1"><img src="img/biriyani.webp" alt=""><i class="gl"></i></div>
+      <div class="thali" style="left:64%;top:2%;width:34%;aspect-ratio:1"><img src="img/chicken-tikka-masala.webp" alt=""><i class="gl"></i></div>
+      <div class="thali" style="left:66%;top:62%;width:32%;aspect-ratio:1"><img src="img/paper-dosai.webp" alt=""><i class="gl"></i></div>
+      <svg class="leaf" viewBox="0 0 120 60" style="left:44%;top:84%;width:16%"><path d="M5 50 C40 0 90 0 115 10 C80 30 50 55 5 50Z" fill="#4E8A22"/><path d="M8 48 C45 30 80 18 112 11" stroke="#9BCF4A" stroke-width="2" fill="none"/></svg>
+      <svg class="leaf" viewBox="0 0 60 120" style="left:54%;top:-2%;width:7%;transform:rotate(30deg)"><path d="M30 5 C55 40 50 90 30 115 C10 90 5 40 30 5Z" fill="#C8372C"/><path d="M30 5 C34 -2 40 -6 46 -4" stroke="#3E7A1E" stroke-width="5" fill="none" stroke-linecap="round"/></svg>
+      <div class="tag" style="left:2%;top:30%"><small>#1 MOST LIKED</small><b>Butter Chicken Masala</b><em>Rs 2,688</em></div>
+      <div class="tag" style="right:0;top:44%"><small>POPULAR</small><b>Masala Dosai</b><em>Rs 1,032</em></div>
+    </div>
+  </div>
+</section>
+
+<div class="lunch wrap"><div class="in">
+  <img src="img/biriyani.webp" alt="Chicken biriyani">
+  <div><small>EXECUTIVE LUNCH · 11 AM–4 PM</small><h3>Chicken Biriyani + Watalappam</h3><p>Dine in, pickup or delivery</p></div>
+  <div class="pr">Rs 1,650<button class="btn l" id="addLunch" style="padding:9px 16px;font-size:14px">+ Add</button></div>
+</div></div>
+
+<section class="sec" id="menu">
+  <div class="deco"><div class="glow" style="width:520px;height:420px;right:-160px;top:6%;background:rgba(185,230,49,.10)"></div><div class="glow" style="width:420px;height:420px;left:-180px;top:40%;background:rgba(160,102,230,.08)"></div><div class="nz"></div></div>
+  <div class="wrap">
+    <div class="mhead"><div>
+      <p class="kick">Menu</p>
+      <h2 class="si">මොනවද අද කන්නේ?</h2>
+      <span class="en">Tap + to add. Your order goes on WhatsApp.</span>
+    </div>
+    <label class="search"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="M20 20l-4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><input id="q" type="search" placeholder="Search: dosa, biriyani, tom yum…" aria-label="Search the menu"></label></div>
+    <div class="tabs" id="tabs"></div>
+    <div class="chips"><div class="row" id="chips"></div></div>
+    <div id="cats"></div>
+    <p class="pnote">Prices from the Lemongrass Kotte menu on Uber Eats (LKR). Dine-in may have a service charge.</p>
+  </div>
+</section>
+
+<section class="sec book" id="book" style="background:var(--bg2)">
+  <div class="deco"><div class="glow" style="width:560px;height:420px;left:-200px;top:-80px;background:rgba(185,230,49,.12)"></div><svg viewBox="0 0 400 400" style="right:-60px;bottom:-60px;width:380px;opacity:.25"><g fill="none" stroke-linecap="round"><path d="M20 380 Q140 220 330 40" stroke="#7FB52A" stroke-width="5"/><path d="M60 395 Q190 250 390 140" stroke="#A4D63A" stroke-width="4"/></g></svg><div class="nz"></div></div>
+  <div class="wrap grid">
+    <div>
+      <p class="kick">Dine in</p>
+      <h2 class="si">Table එකක් book කරන්න</h2>
+      <span class="en">Family dinner, birthday or office lunch</span>
+      <ul class="points">
+        <li><b>1</b>දවස, වෙලාව, කී දෙනෙක්ද කියලා තෝරන්න</li>
+        <li><b>2</b>WhatsApp message එක යවන්න</li>
+        <li><b>3</b>Lemongrass එකෙන් table එක confirm කරනවා</li>
+      </ul>
+    </div>
+    <form class="form" id="bform" novalidate>
+      <label>දවස</label><div class="opts" id="bdays"></div>
+      <label>වෙලාව</label><div class="opts" id="btimes"></div>
+      <label>කී දෙනෙක්ද?</label><div class="step"><button type="button" id="gm" aria-label="Fewer people">–</button><b id="gn">4</b><button type="button" id="gp" aria-label="More people">+</button></div>
+      <label>විශේෂ දෙයක්ද? (optional)</label><div class="opts" id="bocc"></div>
+      <label for="bname">ඔයාගේ නම</label><input type="text" id="bname" placeholder="e.g. Nimal" autocomplete="given-name">
+      <div class="msg" id="bmsg"></div><div class="err" id="berr"></div>
+      <button class="btn w" type="submit"><svg viewBox="0 0 24 24"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7-2.8-1.1-4.5-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.9s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.3 0 .5l-.4.6-.4.4c-.1.1-.3.3-.1.6.2.3.8 1.3 1.6 2.1 1.1 1 2 1.3 2.3 1.4.3.1.4.1.6-.1l.9-1c.2-.3.4-.2.6-.1l1.9.9c.3.1.5.2.5.3.1.2.1.8-.1 1.4z"/></svg>WhatsApp එකෙන් book කරන්න</button>
+    </form>
+  </div>
+</section>
+
+<section class="sec" id="gallery">
+  <div class="deco"><div class="glow" style="width:520px;height:380px;right:-140px;top:10%;background:rgba(229,73,60,.10)"></div><div class="nz"></div></div>
+  <div class="wrap">
+    <p class="kick">From the kitchen</p>
+    <h2>Fresh off the tawa</h2>
+    <div class="gal">
+      <figure class="big"><img src="img/chilli-paratha.webp" alt="Chilli paratha with raitha" loading="lazy"><figcaption>Chilli Paratha</figcaption></figure>
+      <figure><img src="img/veg-pakora.webp" alt="Vegetable pakora" loading="lazy"><figcaption>Vegetable Pakora</figcaption></figure>
+      <figure><img src="img/cheese-naan.webp" alt="Cheese naan" loading="lazy"><figcaption>Cheese Naan</figcaption></figure>
+      <figure><img src="img/chop-suey.webp" alt="Chicken chop suey rice" loading="lazy"><figcaption>Chop Suey Rice</figcaption></figure>
+      <figure><img src="img/interior.webp" alt="Lemongrass Kotte dining area" loading="lazy"><figcaption>Dining area, Kotte</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="branches" style="background:var(--bg2)">
+  <div class="deco"><div class="glow" style="width:520px;height:380px;left:-160px;bottom:-80px;background:rgba(185,230,49,.10)"></div><div class="nz"></div></div>
+  <div class="wrap">
+    <p class="kick">Find us</p>
+    <h2 class="si">අපේ branches</h2>
+    <div class="brs" id="brs"></div>
+    <div class="apps">Also on <span class="b u">Uber Eats</span><span class="b">PickMe Food</span></div>
+  </div>
+</section>
+</main>
+
+<footer><div class="wrap"><span>Sample site by <a href="https://rodrigos-studio.github.io/" style="text-decoration:underline">Rodrigo's Studio</a> for Lemongrass · not the official website</span><span>In this sample, WhatsApp messages go to Rodrigo's Studio</span></div></footer>
+
+<div class="cbar" id="cbar"><span class="n" id="cn">0</span><div><b id="ct">Rs 0</b><small id="cs">Kotte · items</small></div><button class="go" id="copen">View order</button></div>
+<div class="sheet" id="sheet" role="dialog" aria-modal="true" aria-label="Your order"><div class="bgc" id="sbg"></div><div class="pan">
+  <div class="top"><h3>Your order</h3><button class="x" id="sx" aria-label="Close">✕</button></div>
+  <div id="clist"></div><div class="tot"><span>Total</span><span id="ctot">Rs 0</span></div>
+  <form class="form" id="oform" novalidate>
+    <label>Delivery ද Pickup ද?</label><div class="opts" id="otype"></div>
+    <label>Branch</label><div class="opts" id="obr"></div>
+    <label>වෙලාව</label><div class="opts" id="otime"></div>
+    <label for="oname">නම</label><input type="text" id="oname" placeholder="e.g. Sachini" autocomplete="name">
+    <div id="oaddrw"><label for="oaddr">Delivery address</label><textarea id="oaddr" rows="2" placeholder="House no, road, area"></textarea></div>
+    <label for="onote">Note (optional)</label><input type="text" id="onote" placeholder="e.g. less spicy">
+    <div class="msg" id="omsg"></div><div class="err" id="oerr"></div>
+    <button class="btn w" type="submit"><svg viewBox="0 0 24 24"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7-2.8-1.1-4.5-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.9s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.3 0 .5l-.4.6-.4.4c-.1.1-.3.3-.1.6.2.3.8 1.3 1.6 2.1 1.1 1 2 1.3 2.3 1.4.3.1.4.1.6-.1l.9-1c.2-.3.4-.2.6-.1l1.9.9c.3.1.5.2.5.3.1.2.1.8-.1 1.4z"/></svg>WhatsApp එකෙන් order කරන්න</button>
+  </form>
+</div></div>
+
+<script src="menu.js"></script>
+<script>
+const WA="94724996667";
+const $=id=>document.getElementById(id);
+const rs=n=>"Rs "+Math.round(n).toLocaleString("en-US");
+const wa=m=>"https://wa.me/"+WA+"?text="+encodeURIComponent(m);
+const now=()=>new Date(new Date().toLocaleString("en-US",{timeZone:"Asia/Colombo"}));
+const DN=["Sun","Mon","Tue","Wed","Thu","Fri","Sat"],MN=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+const fmtT=m=>{const h=Math.floor(m/60),mi=m%60;return((h+11)%12+1)+":"+String(mi).padStart(2,"0")+" "+(h>=12?"PM":"AM")};
+const fmtD=d=>DN[d.getDay()]+" "+d.getDate()+" "+MN[d.getMonth()];
+const today0=()=>{const d=now();d.setHours(0,0,0,0);return d};
+const addD=(d,n)=>{const x=new Date(d);x.setDate(x.getDate()+n);return x};
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+
+const BR={kotte:{n:"Kotte",tel:"0112 888 081",addr:"No 748, Ethul Kotte, Kotte 10100",hrs:"Every day · 11:00 AM – 10:00 PM",q:"Lemongrass Restaurant Kotte"},
+  pelawatta:{n:"Pelawatta",tel:"0112 077 660",addr:"Pelawatta",hrs:"Call for opening hours",q:"Lemongrass Restaurant Pelawatta"},
+  malabe:{n:"Malabe",tel:"0112 156 366",addr:"Malabe",hrs:"Call for opening hours",q:"Lemongrass Restaurant Malabe"}};
+let branch="kotte";
+const OPEN=[660,1320];
+function openState(){const n=now(),m=n.getHours()*60+n.getMinutes();if(m>=OPEN[0]&&m<OPEN[1])return{o:1,t:"දැන් open · 10:00 PM දක්වා"};return{o:0,t:"දැන් වහලා · "+(m<OPEN[0]?"අද":"හෙට")+" 11:00 AM ට open"}}
+(function(){const s=openState();$("openTxt").textContent=s.t;if(!s.o)$("openPill").classList.add("closed")})();
+
+/* ---------- menu ---------- */
+let tab="indian";const cart=new Map();const openCats=new Set();const SHOW=6;
+const key=(n,s)=>n+(s?"|"+s:"");
+function itemHTML(it){const[n,p,b,img,ds]=it;const big=Array.isArray(p);
+  const bd=b==="pop"?'<span class="bdg">Popular</span>':b?`<span class="bdg top">#${b} most liked</span>`:"";
+  let ctl;
+  if(big){ctl=`<div class="sz">${["Small","Large"].map((s,i)=>{const c=cart.get(key(n,s));return`<button type="button" class="${c?"has":""}" data-add="${esc(n)}" data-size="${s}" data-price="${p[i]}">${c?c.q+" × ":"+ "}${s}<span>${rs(p[i])}</span></button>`}).join("")}</div>`}
+  else{const c=cart.get(key(n));ctl=c?`<div class="qty"><button type="button" data-dec="${esc(n)}" aria-label="Remove one">–</button><b>${c.q}</b><button type="button" class="p" data-add="${esc(n)}" data-price="${p}" aria-label="Add one">+</button></div>`:`<button type="button" class="add" data-add="${esc(n)}" data-price="${p}" aria-label="Add ${esc(n)}">+</button>`}
+  return`<div class="it">${img?`<img class="ph" src="img/${img}.webp" alt="" loading="lazy">`:""}<div class="tx"><div class="nm">${esc(n)}</div>${ds?`<div class="ds">${esc(ds)}</div>`:""}<div class="pr">${big?rs(p[0])+" – "+rs(p[1]):rs(p)} ${bd}</div></div>${ctl}</div>`}
+const slug=s=>s.toLowerCase().replace(/[^a-z0-9]+/g,"-");
+function catIcon(img){return img?`<span class="ic thali"><img src="img/${img}.webp" alt=""><i class="gl"></i></span>`:""}
+function drawTabs(){const dot={indian:"var(--red)",thai:"var(--pur)",sets:"var(--lime)"};
+  $("tabs").innerHTML=MENU.map(g=>`<button class="tab ${g.id===tab?"on":""}" data-t="${g.id}"><i style="background:${dot[g.id]}"></i>${g.label}</button>`).join("");
+  $("tabs").querySelectorAll(".tab").forEach(b=>b.onclick=()=>{tab=b.dataset.t;$("q").value="";drawMenu();drawTabs();document.getElementById("menu").scrollIntoView({behavior:"smooth"})})}
+function drawMenu(){const q=$("q").value.trim().toLowerCase();
+  if(q){const res=[];MENU.forEach(g=>g.cats.forEach(c=>c.items.forEach(it=>{if(it[0].toLowerCase().includes(q))res.push(it)})));
+    $("chips").innerHTML=`<span class="chip on">${res.length} results for "${esc(q)}"</span>`;
+    $("cats").innerHTML=res.length?`<div class="cat"><div class="items">${res.map(itemHTML).join("")}</div></div>`:`<div class="empty">ඒ නමින් කෑමක් නෑ. "dosai", "naan", "curry" වගේ වචනයක් try කරන්න.</div>`;return}
+  const g=MENU.find(x=>x.id===tab);
+  $("chips").innerHTML=g.cats.map(c=>`<a class="chip" href="#c-${slug(c.n)}">${c.n}</a>`).join("");
+  $("cats").innerHTML=g.cats.map(c=>{const all=openCats.has(c.n)||c.items.length<=SHOW+2,list=all?c.items:c.items.slice(0,SHOW);
+    return`<div class="cat" id="c-${slug(c.n)}"><h3>${catIcon(c.img)}${c.n}<small>${c.items.length} items</small></h3>${c.note?`<div class="note">${esc(c.note)}</div>`:""}<div class="items">${list.map(itemHTML).join("")}</div>${all?"":`<button type="button" class="more" data-more="${esc(c.n)}">තව ${c.items.length-SHOW}ක් බලන්න ↓</button>`}</div>`}).join("")}
+$("q").oninput=drawMenu;
+document.addEventListener("click",e=>{const a=e.target.closest("[data-add]"),d=e.target.closest("[data-dec]"),mo=e.target.closest("[data-more]");
+  if(mo){openCats.add(mo.dataset.more);refresh();return}
+  if(a){const k=key(a.dataset.add,a.dataset.size),c=cart.get(k);if(c)c.q++;else cart.set(k,{n:a.dataset.add,s:a.dataset.size||"",p:+a.dataset.price,q:1});refresh()}
+  if(d){const k=d.dataset.dec,c=cart.get(k);if(c){c.q--;if(!c.q)cart.delete(k)}refresh()}});
+$("addLunch").onclick=()=>{const k="Executive Lunch (Chicken Biriyani + Watalappam)";const c=cart.get(k);if(c)c.q++;else cart.set(k,{n:k,s:"",p:1650,q:1});refresh()};
+const chipObs=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){const id=e.target.id;document.querySelectorAll("#chips .chip").forEach(c=>c.classList.toggle("on",c.getAttribute("href")==="#"+id))}}),{rootMargin:"-140px 0px -70% 0px"});
+function observeCats(){document.querySelectorAll(".cat[id]").forEach(c=>chipObs.observe(c))}
+
+/* ---------- cart ---------- */
+let otype="Pickup",otime="ASAP";
+function total(){let t=0,n=0;cart.forEach(c=>{t+=c.p*c.q;n+=c.q});return{t,n}}
+function refresh(){const y=scrollY;drawMenu();observeCats();scrollTo(0,y);const{t,n}=total();
+  $("cbar").classList.toggle("show",n>0);$("cn").textContent=n;$("ct").textContent=rs(t);$("cs").textContent=BR[branch].n+" · "+n+(n===1?" item":" items");
+  if($("sheet").classList.contains("open"))drawSheet()}
+function orderMsg(){const{t}=total();let lines=[];cart.forEach(c=>lines.push(`${c.q} × ${c.n}${c.s?" ("+c.s+")":""} — ${rs(c.p*c.q)}`));
+  const nm=$("oname").value.trim()||"…",ad=$("oaddr").value.trim(),nt=$("onote").value.trim();
+  return`Hi Lemongrass ${BR[branch].n}! Order එකක් දාන්න කැමතියි 🙏\n\n${lines.join("\n")}\nTotal: ${rs(t)}\n\n${otype}${otype==="Delivery"?"\nAddress: "+(ad||"…"):""}\nවෙලාව: ${otime}\nනම: ${nm}${nt?"\nNote: "+nt:""}`}
+function drawSheet(){
+  let h="";cart.forEach((c,k)=>{h+=`<div class="cl"><div class="tx"><b>${esc(c.n)}${c.s?" · "+c.s:""}</b><span>${rs(c.p)} each</span></div><div class="qty"><button type="button" data-dec="${esc(k)}" aria-label="Remove one">–</button><b>${c.q}</b><button type="button" class="p" data-inc="${esc(k)}" aria-label="Add one">+</button></div></div>`});
+  $("clist").innerHTML=h||'<div class="empty">Order එක හිස්. Menu එකෙන් කෑම add කරන්න.</div>';$("ctot").textContent=rs(total().t);
+  $("clist").querySelectorAll("[data-inc]").forEach(b=>b.onclick=()=>{cart.get(b.dataset.inc).q++;refresh()});
+  $("otype").innerHTML=["Pickup","Delivery"].map(x=>`<button type="button" class="opt ${x===otype?"on":""}" data-v="${x}">${x==="Pickup"?"🛍️ Pickup":"🛵 Delivery"}</button>`).join("");
+  $("otype").querySelectorAll(".opt").forEach(b=>b.onclick=()=>{otype=b.dataset.v;drawSheet()});
+  $("oaddrw").hidden=otype!=="Delivery";
+  $("obr").innerHTML=Object.keys(BR).map(k=>`<button type="button" class="opt ${k===branch?"on":""}" data-v="${k}">${BR[k].n}</button>`).join("");
+  $("obr").querySelectorAll(".opt").forEach(b=>b.onclick=()=>{setBranch(b.dataset.v);drawSheet()});
+  const n=now(),m=n.getHours()*60+n.getMinutes(),slots=["ASAP"];let s=Math.ceil((Math.max(m,OPEN[0])+45)/30)*30;for(;s<=OPEN[1]-30&&slots.length<6;s+=30)slots.push(fmtT(s));
+  if(!slots.includes(otime))otime="ASAP";
+  $("otime").innerHTML=slots.map(x=>`<button type="button" class="opt ${x===otime?"on":""}">${x}</button>`).join("");
+  $("otime").querySelectorAll(".opt").forEach(b=>b.onclick=()=>{otime=b.textContent;drawSheet()});
+  $("omsg").innerHTML="<small>WHATSAPP MESSAGE</small>"+esc(orderMsg())}
+["oname","oaddr","onote"].forEach(i=>$(i).oninput=()=>$("omsg").innerHTML="<small>WHATSAPP MESSAGE</small>"+esc(orderMsg()));
+$("copen").onclick=()=>{drawSheet();$("sheet").classList.add("open");document.body.style.overflow="hidden"};
+const closeS=()=>{$("sheet").classList.remove("open");document.body.style.overflow=""};$("sx").onclick=closeS;$("sbg").onclick=closeS;
+$("oform").onsubmit=e=>{e.preventDefault();const miss=[];if(!total().n)miss.push("කෑම");if(!$("oname").value.trim())miss.push("නම");if(otype==="Delivery"&&!$("oaddr").value.trim())miss.push("address");
+  if(miss.length){$("oerr").textContent=miss.join(", ")+" දාන්න ඕනේ";return}$("oerr").textContent="";window.open(wa(orderMsg()),"_blank")||(location.href=wa(orderMsg()))};
+
+/* ---------- branches ---------- */
+function setBranch(k){branch=k;$("branch").value=k;drawBranches();const{n}=total();$("cs").textContent=BR[k].n+" · "+n+(n===1?" item":" items");drawBook()}
+$("branch").onchange=e=>setBranch(e.target.value);
+const pinI='<svg viewBox="0 0 24 24"><path fill="currentColor" d="M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>',clkI='<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 7v5l3 2" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/></svg>',telI='<svg viewBox="0 0 24 24"><path fill="currentColor" d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1A17 17 0 0 1 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1l-2.3 2.2z"/></svg>';
+function drawBranches(){$("brs").innerHTML=Object.entries(BR).map(([k,b])=>`<div class="br ${k===branch?"on":""}"><h3>${b.n}</h3><div class="row">${pinI}<span>${b.addr}</span></div><div class="row">${clkI}<span>${b.hrs}</span></div><div class="row">${telI}<span class="num">${b.tel}</span></div><div class="acts"><a class="btn o" href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(b.q)}" target="_blank" rel="noopener">Directions</a><button class="btn ${k===branch?"l":"o"}" data-br="${k}">${k===branch?"✓ Selected":"Select"}</button></div></div>`).join("");
+  $("brs").querySelectorAll("[data-br]").forEach(b=>b.onclick=()=>setBranch(b.dataset.br))}
+
+/* ---------- booking ---------- */
+let bd=null,bt=null,bg=4,bo="";
+const BT=[720,750,780,810,840,1140,1170,1200,1230,1260];
+function bookMsg(){return`Hi Lemongrass ${BR[branch].n}! Table එකක් book කරන්න කැමතියි 🍽️\nදවස: ${bd?fmtD(bd):"…"}\nවෙලාව: ${bt!==null?fmtT(bt):"…"}\nකට්ටිය: ${bg} දෙනා\nනම: ${$("bname").value.trim()||"…"}${bo?"\nOccasion: "+bo:""}`}
+function drawBook(){let h="";for(let i=0;i<8;i++){const d=addD(today0(),i);h+=`<button type="button" class="opt ${bd&&+bd===+d?"on":""}" data-i="${i}">${i===0?"අද":i===1?"හෙට":DN[d.getDay()]+" "+d.getDate()}</button>`}$("bdays").innerHTML=h;
+  $("bdays").querySelectorAll(".opt").forEach(b=>b.onclick=()=>{bd=addD(today0(),+b.dataset.i);drawBook()});
+  const n=now(),m=n.getHours()*60+n.getMinutes(),isT=bd&&+bd===+today0();
+  $("btimes").innerHTML=BT.map(t=>{const ok=!isT||t>m+30;if(!ok&&bt===t)bt=null;return`<button type="button" class="opt ${bt===t?"on":""}" data-t="${t}" ${ok?"":"disabled"}>${fmtT(t)}</button>`}).join("");
+  $("btimes").querySelectorAll(".opt").forEach(b=>b.onclick=()=>{bt=+b.dataset.t;drawBook()});
+  $("gn").textContent=bg;
+  $("bocc").innerHTML=["Birthday","Family dinner","Office lunch","Anniversary"].map(x=>`<button type="button" class="opt ${bo===x?"on":""}">${x}</button>`).join("");
+  $("bocc").querySelectorAll(".opt").forEach(b=>b.onclick=()=>{bo=bo===b.textContent?"":b.textContent;drawBook()});
+  $("bmsg").innerHTML="<small>WHATSAPP MESSAGE</small>"+esc(bookMsg())}
+$("gm").onclick=()=>{bg=Math.max(1,bg-1);drawBook()};$("gp").onclick=()=>{bg=Math.min(30,bg+1);drawBook()};$("bname").oninput=drawBook;
+$("bform").onsubmit=e=>{e.preventDefault();const miss=[];if(!bd)miss.push("දවස");if(bt===null)miss.push("වෙලාව");if(!$("bname").value.trim())miss.push("නම");
+  if(miss.length){$("berr").textContent=miss.join(", ")+" දාන්න ඕනේ";return}$("berr").textContent="";window.open(wa(bookMsg()),"_blank")||(location.href=wa(bookMsg()))};
+
+/* ---------- hero steam + bokeh ---------- */
+(function(){const c=$("steam"),x=c.getContext("2d");let W=0,H=0;const dpr=Math.min(2,window.devicePixelRatio||1);
+  function size(){W=c.clientWidth;H=c.clientHeight;c.width=W*dpr;c.height=H*dpr;x.setTransform(dpr,0,0,dpr,0,0)}size();addEventListener("resize",size);
+  let seed=11;const R=(a,b)=>{seed=(seed*16807)%2147483647;return a+(seed/2147483647)*(b-a)};
+  const B=[...Array(26)].map(()=>({x:R(.35,1),y:R(0,.9),r:R(8,34),a:R(.06,.2),c:R(0,1)<.6?"185,230,49":"255,214,150",vx:R(-.005,.005),vy:R(-.004,.004)}));
+  const S=[...Array(14)].map(()=>({x:R(.55,.95),y:R(.3,.9),r:R(30,70),a:R(.03,.07),vy:R(-.03,-.012),ph:R(0,6)}));
+  const still=matchMedia("(prefers-reduced-motion: reduce)").matches;let last=performance.now();
+  function f(t){const dt=Math.min(.05,(t-last)/1000);last=t;x.clearRect(0,0,W,H);x.globalCompositeOperation="lighter";
+    for(const b of B){b.x+=b.vx*dt;b.y+=b.vy*dt;const X=b.x*W,Y=b.y*H,g=x.createRadialGradient(X,Y,0,X,Y,b.r);g.addColorStop(0,`rgba(${b.c},${b.a})`);g.addColorStop(.75,`rgba(${b.c},${b.a*.5})`);g.addColorStop(1,`rgba(${b.c},0)`);x.fillStyle=g;x.beginPath();x.arc(X,Y,b.r,0,7);x.fill()}
+    x.globalCompositeOperation="source-over";
+    for(const s of S){s.y+=s.vy*dt;if(s.y<-.1){s.y=.9;s.x=R(.55,.95)}const X=(s.x+Math.sin(t/1600+s.ph)*.02)*W,Y=s.y*H,g=x.createRadialGradient(X,Y,0,X,Y,s.r);g.addColorStop(0,`rgba(255,255,255,${s.a})`);g.addColorStop(1,"rgba(255,255,255,0)");x.fillStyle=g;x.beginPath();x.arc(X,Y,s.r,0,7);x.fill()}
+    if(!still)requestAnimationFrame(f)}
+  requestAnimationFrame(f)})();
+
+drawTabs();drawMenu();observeCats();drawBranches();drawBook();
+</script>
+</body></html>
