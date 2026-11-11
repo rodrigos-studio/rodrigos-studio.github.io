@@ -173,7 +173,32 @@ footer .wrap{display:flex;justify-content:space-between}
 @media (prefers-reduced-motion:reduce){.fx-run{animation:none}.fx-dots{display:none}.fx-top,.fx-fill.on .w{transition:none}}
 :root{--fx-b1:#C8F43A;--fx-b1-ink:#16133A;--fx-b1-sep:#231E5C;--fx-b2:#231E5C;--fx-b2-ink:#FFFFFF;--fx-b2-sep:#C8F43A;--fx-font:"Archivo","Arial Narrow",system-ui,sans-serif;--fx-weight:900;--fx-si:"Archivo",system-ui,sans-serif;--fx-say-font:"Archivo",system-ui,sans-serif;--fx-say-weight:800;--fx-ink:var(--ink);--fx-bg:var(--paper);--fx-accent:var(--ok);--fx-top-bg:var(--ind);--fx-top-ink:#FFFFFF;--fx-top-ring:var(--lime);--fx-max:1200px}
 /* ---------- end RS demo effects ---------- */
-</style></head><body>
+</style>
+<style id="bgx-css">
+/* bgx: section backgrounds */
+.bgx-s{position:relative;isolation:isolate}
+.bgx-s.bgx-nf{isolation:auto}
+.bgx{position:absolute;inset:0;z-index:-1;pointer-events:none;overflow:hidden;-webkit-mask-image:linear-gradient(180deg,transparent,#000 90px,#000 calc(100% - 90px),transparent);mask-image:linear-gradient(180deg,transparent,#000 90px,#000 calc(100% - 90px),transparent)}
+.bgx-w>.bgx{left:calc(50% - 50vw);right:auto;width:100vw}
+.bgx>*{position:absolute;display:block}
+.bgx .nz{inset:0;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");opacity:var(--bgx-nzo,.13);mix-blend-mode:var(--bgx-nzb,multiply)}
+.bgx .pt{inset:0}
+.bgx .gl{border-radius:50%;filter:blur(70px)}
+.bgx svg{color:var(--bgx-k);overflow:visible}
+.bgx .wd{font-family:var(--bgx-wf);font-weight:900;line-height:.8;color:transparent;-webkit-text-stroke:2px var(--bgx-w2);letter-spacing:.02em;white-space:nowrap;font-size:clamp(90px,13vw,200px)}
+.bgx .sc{border-radius:18px;box-shadow:0 30px 60px rgba(0,0,0,.22);opacity:.5;width:clamp(150px,15vw,220px);-webkit-mask-image:linear-gradient(180deg,#000 55%,transparent);mask-image:linear-gradient(180deg,#000 55%,transparent)}
+.bgx .fl{animation:bgxf 11s ease-in-out infinite}
+.bgx .fl2{animation:bgxf 14s ease-in-out -5s infinite reverse}
+.bgx .tw{animation:bgxt 3.2s ease-in-out infinite}
+@keyframes bgxf{50%{translate:0 -18px;rotate:5deg}}
+@keyframes bgxt{50%{opacity:.25;scale:.7}}
+@media (prefers-reduced-motion:reduce){.bgx .fl,.bgx .fl2,.bgx .tw{animation:none}}
+@media (max-width:1360px){.bgx .sc{display:none}}
+@media (max-width:700px){.bgx svg.fl,.bgx svg.fl2{filter:opacity(.6);scale:.8}.bgx .gl{opacity:1.25}.bgx .mh{display:none}.bgx .wd{-webkit-text-stroke-width:1.5px}}
+.bgx-dk .bgx{--bgx-k:rgba(255,255,255,.10);--bgx-w2:rgba(255,255,255,.07);--bgx-nzb:overlay;--bgx-nzo:.3}
+:root{--bgx-k:color-mix(in srgb,var(--ind) 13%,transparent);--bgx-w2:color-mix(in srgb,var(--ind) 9%,transparent);--bgx-wf:"Archivo",system-ui,sans-serif}
+</style>
+</head><body>
 <div class="ribbon">Demo website · sample phone shop made by <a href="https://rodrigos-studio.github.io/">Rodrigo's Studio</a> · not a real business</div>
 <header><div class="wrap">
   <a class="logo" href="#"><b>navo<i>.</i></b><span>MOBILE</span></a>
@@ -197,7 +222,7 @@ footer .wrap{display:flex;justify-content:space-between}
 </div></div>
 
 <!-- rs-demo-fx --><div class="fx-tick" aria-hidden="true"><div class="fx-band b2"><div class="fx-shift"><div class="fx-run"><div class="fx-set"><span>1 hour repairs</span><i>✱</i><span>3-month warranty</span><i>✱</i><span>Fixed price</span><i>✱</i><span>Fixed in front of you</span><i>✱</i><span>1 hour repairs</span><i>✱</i><span>3-month warranty</span><i>✱</i><span>Fixed price</span><i>✱</i><span>Fixed in front of you</span><i>✱</i></div></div></div></div><div class="fx-band b1"><div class="fx-shift"><div class="fx-run"><div class="fx-set"><span>Screens</span><i>✱</i><span>Batteries</span><i>✱</i><span>Charging ports</span><i>✱</i><span>Back glass</span><i>✱</i><span>Accessories</span><i>✱</i><span>Screens</span><i>✱</i><span>Batteries</span><i>✱</i><span>Charging ports</span><i>✱</i><span>Back glass</span><i>✱</i><span>Accessories</span><i>✱</i></div></div></div></div></div><!-- /rs-demo-fx -->
-<section id="repair"><div class="wrap">
+<section class="bgx-s" id="repair"><div class="bgx" aria-hidden="true"><i class="nz"></i><i class="pt" style="background:radial-gradient(color-mix(in srgb,var(--ind) 16%,transparent) 1.5px,transparent 1.7px) 0 0/18px 18px;opacity:1;-webkit-mask-image:radial-gradient(80% 90% at 100% 0%,#000,transparent 75%);mask-image:radial-gradient(80% 90% at 100% 0%,#000,transparent 75%)"></i><i class="gl" style="background:color-mix(in srgb,var(--lime) 40%,transparent);width:min(560px,90vw);height:420px;right:-140px;top:-120px"></i><i class="gl" style="background:rgba(142,134,240,.28);width:min(440px,80vw);height:340px;left:-160px;bottom:-140px"></i><svg class="fl" viewBox="0 0 300 220" style="width:clamp(240px,30vw,420px);right:max(-40px,-3vw);top:6%;rotate:0deg;opacity:1"><g fill="none" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"><path d="M0 40h80l20 20h90M0 90h50l30 30h120l20-20h80M0 150h120l20-20M60 220v-40l20-20h60M200 220v-50l30-30h70M170 0v30l-20 20M240 0v60h60"/></g><g fill="#C8F43A" stroke="currentColor" stroke-width="2"><circle cx="190" cy="60" r="6"/><circle cx="140" cy="130" r="6"/><circle cx="140" cy="160" r="6"/><circle cx="150" cy="50" r="6"/><circle cx="300" cy="100" r="6"/></g></svg><svg class="fl2" viewBox="0 0 120 200" style="width:clamp(80px,9vw,130px);left:max(-30px,-2vw);bottom:5%;rotate:8deg;opacity:1"><g fill="none" stroke="currentColor" stroke-width="3.5" stroke-linejoin="round"><rect x="10" y="20" width="100" height="174" rx="14"/><rect x="40" y="6" width="40" height="14" rx="4"/><path d="M66 60l-24 50h28l-16 50 36-62H62z"/></g></svg></div><div class="wrap">
   <div class="kick">REPAIR PRICES</div>
   <h2>Know the price before you come.</h2>
   <p class="lead">Pick your phone and what's wrong. The price includes the part, the fitting and a 3-month warranty.</p>
@@ -227,7 +252,7 @@ footer .wrap{display:flex;justify-content:space-between}
 </div></section>
 
 <!-- rs-demo-fx --><div class="fx-say"><div class="fx-wrap"><p class="fx-fill">Most fixes are done in <b>about an hour</b>, with a <b>3-month warranty</b> and the price told before we start.</p></div></div><!-- /rs-demo-fx -->
-<section id="accessories" style="padding-top:0"><div class="wrap">
+<section class="bgx-s" id="accessories" style="padding-top:0"><div class="bgx" aria-hidden="true"><i class="nz"></i><i class="pt" style="background:radial-gradient(color-mix(in srgb,var(--ind) 16%,transparent) 1.5px,transparent 1.7px) 0 0/18px 18px;opacity:1;-webkit-mask-image:radial-gradient(80% 90% at 0% 100%,#000,transparent 75%);mask-image:radial-gradient(80% 90% at 0% 100%,#000,transparent 75%)"></i><i class="gl" style="background:color-mix(in srgb,var(--lime) 40%,transparent);width:min(520px,90vw);height:400px;left:-160px;top:10%"></i><i class="gl" style="background:rgba(142,134,240,.28);width:min(420px,80vw);height:320px;right:-120px;bottom:-120px"></i><svg class="fl" viewBox="0 0 130 230" style="width:clamp(90px,11vw,160px);left:max(-40px,-3vw);top:8%;rotate:-10deg;opacity:1"><g fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round"><rect x="4" y="4" width="122" height="222" rx="20"/><rect x="48" y="14" width="34" height="6" rx="3"/><path d="M70 90l-30-20M70 90l-50 30M70 90l20-50M70 90l40 10M70 90l10 70M70 90l-20 60M40 70l-10-20M90 40l20-10"/></g></svg><svg class="fl2" viewBox="0 0 60 240" style="width:clamp(40px,5vw,70px);right:max(-30px,-2vw);bottom:6%;rotate:30deg;opacity:1"><g fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round"><rect x="14" y="8" width="32" height="84" rx="12"/><path d="M22 24v52M30 24v52M38 24v52"/><path d="M24 92h12v110l-6 24-6-24z"/></g></svg><span class="wd mh" style="right:-1vw;bottom:-0.12em">FIXED</span></div><div class="wrap">
   <div class="kick">ACCESSORIES</div>
   <h2>Chargers, covers and more.</h2>
   <div class="acc">
@@ -240,14 +265,14 @@ footer .wrap{display:flex;justify-content:space-between}
   </div>
 </div></section>
 
-<section class="why"><div class="wrap">
+<section class="why bgx-s bgx-dk"><div class="bgx" aria-hidden="true"><i class="nz"></i><i class="pt" style="background:radial-gradient(color-mix(in srgb,var(--ind) 16%,transparent) 1.5px,transparent 1.7px) 0 0/18px 18px;opacity:1;-webkit-mask-image:radial-gradient(80% 90% at 0% 0%,#000,transparent 75%);mask-image:radial-gradient(80% 90% at 0% 0%,#000,transparent 75%)"></i><i class="gl" style="background:color-mix(in srgb,var(--lime) 40%,transparent);width:min(560px,90vw);height:420px;right:-140px;top:-120px"></i><i class="gl" style="background:rgba(142,134,240,.28);width:min(440px,80vw);height:340px;left:-160px;bottom:-140px"></i><svg class="fl" viewBox="0 0 120 200" style="width:clamp(80px,9vw,130px);right:max(-40px,-3vw);top:6%;rotate:-8deg;opacity:1"><g fill="none" stroke="currentColor" stroke-width="3.5" stroke-linejoin="round"><rect x="10" y="20" width="100" height="174" rx="14"/><rect x="40" y="6" width="40" height="14" rx="4"/><path d="M66 60l-24 50h28l-16 50 36-62H62z"/></g></svg><svg class="fl2" viewBox="0 0 160 120" style="width:clamp(110px,16vw,240px);left:max(-30px,-2vw);bottom:5%;rotate:0deg;opacity:1"><g fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round"><path d="M20 60a84 84 0 0 1 120 0M42 82a54 54 0 0 1 76 0M64 104a24 24 0 0 1 32 0"/></g></svg></div><div class="wrap">
   <div class="kick" style="color:var(--lime)">WHY NAVO</div>
   <h2>Fixed in front of you.</h2>
   <p class="lead">No leaving your phone for days. Watch us fix it at the counter.</p>
   <div class="wg"><div><i>1h</i><b>Most fixes in an hour</b><span>Screens, batteries and ports are kept in stock.</span></div><div><i>3m</i><b>3-month warranty</b><span>If the same part fails, we fix it again for free.</span></div><div><i>Rs</i><b>Price first</b><span>You know the full price before we open the phone.</span></div></div>
 </div></section>
 
-<section class="visit" id="visit"><div class="wrap">
+<section class="visit bgx-s" id="visit"><div class="bgx" aria-hidden="true"><i class="nz"></i><i class="pt" style="background:radial-gradient(color-mix(in srgb,var(--ind) 16%,transparent) 1.5px,transparent 1.7px) 0 0/18px 18px;opacity:1;-webkit-mask-image:radial-gradient(80% 90% at 100% 100%,#000,transparent 75%);mask-image:radial-gradient(80% 90% at 100% 100%,#000,transparent 75%)"></i><i class="gl" style="background:color-mix(in srgb,var(--lime) 40%,transparent);width:min(520px,90vw);height:400px;left:-160px;top:10%"></i><i class="gl" style="background:rgba(142,134,240,.28);width:min(420px,80vw);height:320px;right:-120px;bottom:-120px"></i><svg class="fl" viewBox="0 0 60 240" style="width:clamp(40px,5vw,70px);left:max(-40px,-3vw);top:8%;rotate:-30deg;opacity:1"><g fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round"><rect x="14" y="8" width="32" height="84" rx="12"/><path d="M22 24v52M30 24v52M38 24v52"/><path d="M24 92h12v110l-6 24-6-24z"/></g></svg><svg class="fl2" viewBox="0 0 300 220" style="width:clamp(240px,30vw,420px);right:max(-30px,-2vw);bottom:6%;rotate:0deg;opacity:1"><g fill="none" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"><path d="M0 40h80l20 20h90M0 90h50l30 30h120l20-20h80M0 150h120l20-20M60 220v-40l20-20h60M200 220v-50l30-30h70M170 0v30l-20 20M240 0v60h60"/></g><g fill="#C8F43A" stroke="currentColor" stroke-width="2"><circle cx="190" cy="60" r="6"/><circle cx="140" cy="130" r="6"/><circle cx="140" cy="160" r="6"/><circle cx="150" cy="50" r="6"/><circle cx="300" cy="100" r="6"/></g></svg><span class="wd mh" style="right:-1vw;bottom:-0.12em">NAVO</span></div><div class="wrap">
   <div><div class="kick">VISIT US</div><h2>Open every day.</h2>
     <div class="hrs"><div class="t"><span>Mon – Sat · open now</span><b>9:00 am – 8:00 pm</b></div><div><span>Sunday</span><b>10:00 am – 4:00 pm</b></div><div><span>Poya days</span><b>Closed</b></div></div></div>
   <div class="map" id="map"><div class="pin"></div><span class="btn l">Get directions</span></div>
