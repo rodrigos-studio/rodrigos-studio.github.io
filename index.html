@@ -390,6 +390,16 @@ footer{padding-block:28px 36px;color:var(--ink-2);font-size:14px;font-family:var
 .shot.gym .ph2 img{display:block;width:100%;height:100%;object-fit:cover;object-position:top}
 .shot.gym .p1{display:none}
 .shot.gym .p2{right:16px;top:26px;transform:rotate(5deg)}
+.shot.ldy{background:radial-gradient(circle at 30% 30%,rgba(255,255,255,.9) 0 6%,rgba(127,220,232,.35) 7% 30%,transparent 32%) 0 0/90px 90px,radial-gradient(420px 260px at 85% 10%,rgba(16,169,190,.28),transparent 60%),linear-gradient(160deg,#DDF6FA,#BCEBF2);color:#0D2B45;padding:22px}
+.shot.ldy .nv{position:relative;z-index:1;max-width:58%}
+.shot.ldy .t{font-family:"Lilita One","Archivo",sans-serif;font-weight:400;font-size:44px;line-height:.95}
+.shot.ldy .t small{display:block;margin-top:6px;font-family:ui-monospace,"IBM Plex Mono",Menlo,monospace;font-size:12.5px;font-weight:600;letter-spacing:.3em;color:#0B7E9B}
+.shot.ldy .s{font-family:"Archivo",sans-serif;font-weight:800;font-size:17px;margin-top:10px;color:#163E5F;line-height:1.2}
+.shot.ldy .ok{display:inline-block;margin-top:12px;background:#0D2B45;color:#FFCF3F;font-weight:800;font-size:12.5px;border-radius:99px;padding:4px 10px}
+.shot.ldy .ph2{position:absolute;width:112px;aspect-ratio:9/16;border-radius:14px;overflow:hidden;box-shadow:0 14px 30px rgba(13,43,69,.35);border:3px solid #0D2B45;background:#0D2B45}
+.shot.ldy .ph2 img{display:block;width:100%;height:100%;object-fit:cover;object-position:top}
+.shot.ldy .p1{display:none}
+.shot.ldy .p2{right:16px;top:26px;transform:rotate(5deg)}
 .shot.hw{background:radial-gradient(420px 260px at 85% 10%,rgba(255,122,0,.26),transparent 60%),repeating-linear-gradient(-45deg,rgba(255,255,255,.035) 0 2px,transparent 2px 14px),#17191B;color:#F5F2EA;padding:22px}
 .shot.hw .nv{position:relative;z-index:1;max-width:58%}
 .shot.hw .t{font-family:"Archivo",sans-serif;font-weight:900;font-stretch:78%;font-size:46px;line-height:.95;letter-spacing:.01em}
@@ -404,12 +414,12 @@ footer{padding-block:28px 36px;color:var(--ink-2);font-size:14px;font-family:var
 .case.wide{grid-column:1 / -1;display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr)}
   .case.wide .shot{height:auto;min-height:310px;border-bottom:0;border-right:1px solid var(--line);padding:30px}
   .case.wide .shot .t{font-size:52px}
-  .shot.hw .ph2{width:150px}
-  .shot.hw .p1{display:block;right:150px;top:44px;transform:rotate(-6deg)}
-  .shot.hw .p2{right:22px;top:70px}
+  .case.wide .shot .ph2{width:150px}
+  .case.wide .shot .p1{display:block;right:150px;top:44px;transform:rotate(-6deg)}
+  .case.wide .shot .p2{right:22px;top:70px}
   .case.wide .txt{padding:28px 30px;justify-content:center}
 }
-@media (min-width:641px) and (max-width:1000px){.shot.hw .p1{display:none}.shot.hw .nv{max-width:62%}}
+@media (min-width:641px) and (max-width:1000px){.case.wide .shot .p1{display:none}.case.wide .shot .nv{max-width:62%}}
 
 /* ---------- slanted moving banners ---------- */
 .tick{position:relative;height:150px;overflow:hidden;overflow:clip;padding-block:0;margin-top:10px}
@@ -556,7 +566,7 @@ footer{padding-block:28px 36px;color:var(--ink-2);font-size:14px;font-family:var
           <h2>Shop එකට website එකක්</h2>
           <p>Menu, ගණන්, WhatsApp ඕඩර් සහ booking, Google Maps. Phone එකට ගැලපෙන විදියට.</p>
           <span class="pr"><b>Rs 35,000</b> සිට · එක පාරක් ගෙවන්නේ · දවස් 7න් ready</span>
-          <span class="go">Demo 10ක් බලන්න ↓</span>
+          <span class="go">Demo 11ක් බලන්න ↓</span>
         </a>
         <a href="#page-care">
           <span class="k">Facebook + TikTok page care</span>
@@ -581,19 +591,32 @@ footer{padding-block:28px 36px;color:var(--ink-2);font-size:14px;font-family:var
         <div class="mosaic" aria-hidden="true"><div class="mgrid"><div class="mcol c1"><div class="mtrack"><img src="assets/hero/cafe.webp" alt="" width="360" height="640" loading="lazy"><img src="assets/hero/salon.webp" alt="" width="360" height="640" loading="lazy"><img src="assets/hero/athal-kade.webp" alt="" width="360" height="640" loading="lazy"><img src="assets/hero/tuition_2.webp" alt="" width="360" height="640" loading="lazy"><img src="assets/hero/night.webp" alt="" width="360" height="640" loading="lazy"><img src="assets/hero/cafe.webp" alt="" width="360" height="640" loading="lazy"><img src="assets/hero/salon.webp" alt="" width="360" height="640" loading="lazy"><img src="assets/hero/athal-kade.webp" alt="" width="360" height="640" loading="lazy"><img src="assets/hero/tuition_2.webp" alt="" width="360" height="640" loading="lazy"><img src="assets/hero/night.webp" alt="" width="360" height="640" loading="lazy"></div></div><div class="mcol c2"><div class="mtrack"><img src="assets/hero/navo.webp" alt="" width="360" height="640" loading="lazy"><img src="assets/hero/cakes_2.webp" alt="" width="360" height="640" loading="lazy"><img src="assets/hero/night_2.webp" alt="" width="360" height="640" loading="lazy"><img src="assets/hero/salon_2.webp" alt="" width="360" height="640" loading="lazy"><img src="assets/hero/cafe_2.webp" alt="" width="360" height="640" loading="lazy"><img src="assets/hero/navo.webp" alt="" width="360" height="640" loading="lazy"><img src="assets/hero/cakes_2.webp" alt="" width="360" height="640" loading="lazy"><img src="assets/hero/night_2.webp" alt="" width="360" height="640" loading="lazy"><img src="assets/hero/salon_2.webp" alt="" width="360" height="640" loading="lazy"><img src="assets/hero/cafe_2.webp" alt="" width="360" height="640" loading="lazy"></div></div><div class="mcol c3"><div class="mtrack"><img src="assets/hero/tuition.webp" alt="" width="360" height="640" loading="lazy"><img src="assets/hero/athal-kade_2.webp" alt="" width="360" height="640" loading="lazy"><img src="assets/hero/navo_2.webp" alt="" width="360" height="640" loading="lazy"><img src="assets/hero/cakes.webp" alt="" width="360" height="640" loading="lazy"><img src="assets/hero/salon.webp" alt="" width="360" height="640" loading="lazy"><img src="assets/hero/tuition.webp" alt="" width="360" height="640" loading="lazy"><img src="assets/hero/athal-kade_2.webp" alt="" width="360" height="640" loading="lazy"><img src="assets/hero/navo_2.webp" alt="" width="360" height="640" loading="lazy"><img src="assets/hero/cakes.webp" alt="" width="360" height="640" loading="lazy"><img src="assets/hero/salon.webp" alt="" width="360" height="640" loading="lazy"></div></div></div></div>
         <div class="ttext">
           <p class="kick"><i></i>WEBSITES</p>
-          <h2 id="work-h">Demo sites 10ක්</h2><span class="en">Ten demo sites you can try</span>
+          <h2 id="work-h">Demo sites 11ක්</h2><span class="en">Eleven demo sites you can try</span>
           <p class="tp">හැම එකම වැඩ කරන demo. Phone එකෙන් open කරලා ඕඩර් එකක් හරි booking එකක් හරි දාලා බලන්න. ඔබේ කඩේට ගැලපෙන style එක තෝරන්න.</p>
         </div>
       </div>
       <div class="work">
         <article class="case wide">
+          <div class="shot ldy" aria-hidden="true">
+            <div class="nv"><div class="t">Pirisidu<small>LAUNDRY</small></div><div class="s">See the price first.<br>We pick up, you relax.</div><span class="ok">Shirt wash + iron · Rs 80</span></div>
+            <div class="ph2 p1"><img src="assets/hero/laundry.webp" alt="" width="360" height="640" loading="lazy"></div>
+            <div class="ph2 p2"><img src="assets/hero/laundry_2.webp" alt="" width="360" height="640" loading="lazy"></div>
+          </div>
+          <div class="txt">
+            <span class="new">අලුත්ම demo එක</span>
+            <h3>Pirisidu Laundry · laundry කඩයක්</h3>
+            <p>රෙදි ගාණ දාපු ගමන් මුළු ගාණයි, ready වෙන දවසයි පේනවා. Pickup එකට දවසයි වෙලාවයි තෝරලා WhatsApp කරනවා. Bill එකේ order number එක දාලා "රෙදි ready ද?" කියලා call නොකර බලන්න පුළුවන්.</p>
+            <ul><li>Price calculator</li><li>Ready වෙන දවස</li><li>Pickup booking</li><li>Order tracking</li><li>Express පැය 24</li><li>සුවඳ තෝරන්න</li></ul>
+            <a class="btn btn-line" href="laundry/" target="_blank" rel="noopener">Laundry demo එක</a>
+          </div>
+        </article>
+        <article class="case">
           <div class="shot hw" aria-hidden="true">
             <div class="nv"><div class="t">SAVIYA<small>HARDWARE</small></div><div class="s">Today's prices.<br>Paint calculator.</div><span class="ok">Cement 50kg · Rs 2,280</span></div>
             <div class="ph2 p1"><img src="assets/hero/hardware.webp" alt="" width="360" height="640" loading="lazy"></div>
             <div class="ph2 p2"><img src="assets/hero/hardware_2.webp" alt="" width="360" height="640" loading="lazy"></div>
           </div>
           <div class="txt">
-            <span class="new">අලුත්ම demo එක</span>
             <h3>Saviya Hardware · hardware කඩයක්</h3>
             <p>Cement, වැලි, යකඩ, තීන්ත වල අද ගණන් උඩින්ම පේනවා. Customer ට ඕන items list එකට දාලා, කඩෙන් ගන්නවද delivery ද කියලා තෝරලා, එක tap එකෙන් WhatsApp කරන්න පුළුවන්. කාමරේ size එක දැම්මම තීන්ත ලීටර් කීයද, ටින් කීයද, ගාණ කීයද කියලා එවෙලෙම පේනවා.</p>
             <ul><li>අද ගණන්</li><li>WhatsApp item list</li><li>Paint calculator</li><li>Delivery areas</li><li>Stock පේනවා</li><li>පෝය දවස් වහලා</li></ul>
@@ -1097,7 +1120,7 @@ function makeBird(canvas, imgs) {
 const LINES = [
   ['හායි! මම RS කුරුල්ලා.', 'wave'],
   ['ඔයාගේ කඩේටත් website එකක් හදමුද?', 'hop'],
-  ['පහළට scroll කරන්න. Demo 10ක් තියෙනවා.', 'wiggle'],
+  ['පහළට scroll කරන්න. Demo 11ක් තියෙනවා.', 'wiggle'],
   ['WhatsApp ඕඩර් කෙලින්ම ඔයාගේ phone එකට.', 'wave'],
   ['අයියෝ! හෙමින්, පිහාටු ගැලවෙනවා.', 'feathers'],
   ['Rodrigo කඩේටම ඇවිත් කතා කරනවා.', 'hop']

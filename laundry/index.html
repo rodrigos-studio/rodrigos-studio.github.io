@@ -1,0 +1,461 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Pirisidu Laundry · demo</title>
+<meta name="description" content="Demo website for a laundry shop: price calculator, pickup booking on WhatsApp, order tracking and opening hours. Made by Rodrigo's Studio.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Pirisidu Laundry · demo by Rodrigo&#x27;s Studio">
+<meta property="og:description" content="Laundry shop demo: see the price before you send your clothes, book a pickup on WhatsApp and track your order.">
+<meta property="og:url" content="https://rodrigos-studio.github.io/laundry/">
+<meta property="og:image" content="https://rodrigos-studio.github.io/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/png" href="https://rodrigos-studio.github.io/icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lilita+One&family=Nunito+Sans:wght@400;600;700;800;900&family=Noto+Sans+Sinhala:wght@400;500;600;700;800&display=swap">
+<style>
+*{margin:0;box-sizing:border-box}
+:root{--navy:#0D2B45;--navy2:#163E5F;--aq:#10A9BE;--aq2:#7FDCE8;--aq3:#D7F4F8;--foam:#F2FAFC;--card:#FFFFFF;--line:#D8ECF1;--mut:#58707D;--yl:#FFCF3F;--pk:#FF7A9C;--ok:#1F9D57;--bad:#D7352B;--wa:#1FAF5A}
+html{scroll-behavior:smooth;overflow-x:clip}
+body{background:var(--foam);color:var(--navy);font-family:"Nunito Sans","Noto Sans Sinhala",system-ui,sans-serif;font-size:17px;line-height:1.55}
+.si{font-family:"Noto Sans Sinhala","Nunito Sans",sans-serif}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+input,select{font:inherit;color:inherit}
+.wrap{max-width:1160px;margin:0 auto;padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px))}
+.ribbon{background:var(--navy);color:#cfe9f0;font-size:13.5px;text-align:center;padding:7px 12px;font-weight:600}
+.ribbon a{text-decoration:underline;color:#fff}
+.btn{white-space:nowrap;display:inline-flex;align-items:center;justify-content:center;gap:10px;border-radius:999px;padding:14px 24px;font-weight:800;font-size:17px;border:2px solid transparent;transition:transform .15s}
+.btn:active{transform:scale(.97)}
+.btn.aq{background:var(--aq);color:#fff;box-shadow:0 8px 20px rgba(16,169,190,.35)}
+.btn.nv{background:var(--navy);color:#fff}
+.btn.ol{border-color:var(--navy);color:var(--navy);background:rgba(255,255,255,.6)}
+.btn.w{background:var(--wa);color:#fff;box-shadow:0 8px 20px rgba(31,175,90,.3)}
+.btn svg{width:20px;height:20px;flex:none}
+.kick{font-weight:900;font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:var(--aq);display:flex;align-items:center;gap:10px}
+.kick::before{content:"";width:22px;height:22px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#fff 0 18%,var(--aq2) 19% 55%,var(--aq) 56%);box-shadow:inset -2px -3px 0 rgba(0,0,0,.08)}
+h2{font-family:"Noto Sans Sinhala","Nunito Sans";font-weight:800;font-size:clamp(28px,4vw,42px);line-height:1.3;margin:10px 0 4px;text-wrap:balance}
+h2 em{font-style:normal;color:var(--aq)}
+.lead{max-width:640px;color:var(--mut);margin-top:8px}
+.sec{padding:84px 0;position:relative;overflow:hidden}
+.sec>.wrap{position:relative;z-index:1}
+.bub{position:absolute;inset:0;pointer-events:none;z-index:0;background:
+ radial-gradient(circle at 30% 30%,rgba(255,255,255,.9) 0 10%,rgba(127,220,232,.35) 11% 60%,rgba(127,220,232,0) 62%) 0 0/140px 140px,
+ radial-gradient(circle at 30% 30%,rgba(255,255,255,.8) 0 10%,rgba(127,220,232,.25) 11% 60%,rgba(127,220,232,0) 62%) 70px 90px/90px 90px;opacity:.55;
+ -webkit-mask:linear-gradient(90deg,#000 0,transparent 22%,transparent 78%,#000 100%);mask:linear-gradient(90deg,#000 0,transparent 22%,transparent 78%,#000 100%)}
+.wave{position:absolute;left:0;right:0;height:70px;pointer-events:none;z-index:0}
+.wave svg{width:100%;height:100%;display:block}
+
+/* header */
+header{background:rgba(255,255,255,.92);backdrop-filter:blur(10px);position:sticky;top:0;z-index:30;border-bottom:1px solid var(--line)}
+header .wrap{height:70px;display:flex;align-items:center;gap:22px}
+.logo{display:flex;align-items:center;gap:10px;white-space:nowrap}
+.logo i{width:44px;height:44px;border-radius:14px;background:linear-gradient(145deg,var(--aq),#0B7E9B);display:grid;place-items:center;flex:none;box-shadow:0 6px 14px rgba(16,169,190,.35)}
+.logo b{font-family:"Lilita One";font-weight:400;font-size:27px;letter-spacing:.01em;line-height:1;color:var(--navy)}
+.logo small{display:block;font-weight:800;font-size:10.5px;letter-spacing:.24em;color:var(--aq);margin-top:3px;text-transform:uppercase}
+nav{display:flex;gap:24px;font-weight:700;font-size:15px;color:var(--mut);margin-left:auto}
+nav a:hover{color:var(--navy)}
+.st{display:inline-flex;align-items:center;gap:8px;font-weight:800;font-size:14px;padding:7px 13px;border-radius:999px;background:var(--aq3);white-space:nowrap}
+.st b{width:9px;height:9px;border-radius:50%;background:var(--ok);box-shadow:0 0 0 4px rgba(31,157,87,.2)}
+.st.cl b{background:var(--bad);box-shadow:0 0 0 4px rgba(215,53,43,.2)}
+@media(max-width:880px){nav{display:none}.st{margin-left:auto}}
+@media(max-width:520px){.logo b{font-size:22px}.logo small{display:none}.logo i{width:38px;height:38px}.st{font-size:12.5px;padding:6px 10px}}
+
+/* hero */
+.hero{position:relative;overflow:hidden;background:linear-gradient(180deg,#DDF6FA 0,#F2FAFC 100%);min-height:620px}
+.hero canvas{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:1}
+.hero .tiles{position:absolute;inset:0;background:linear-gradient(90deg,rgba(13,43,69,.035) 1px,transparent 1px) 0 0/48px 48px,linear-gradient(rgba(13,43,69,.035) 1px,transparent 1px) 0 0/48px 48px;-webkit-mask:linear-gradient(180deg,#000,transparent 85%);mask:linear-gradient(180deg,#000,transparent 85%)}
+.hero .wrap{position:relative;z-index:3;padding-top:70px;padding-bottom:120px;display:grid;grid-template-columns:1.1fr .9fr;gap:30px;align-items:center}
+.hero h1{font-family:"Noto Sans Sinhala";font-weight:800;font-size:clamp(34px,5vw,58px);line-height:1.22;text-wrap:balance}
+.hero h1 em{font-style:normal;color:var(--aq);position:relative;white-space:nowrap}
+.hero h1 em::after{content:"";position:absolute;left:0;right:0;bottom:.08em;height:.22em;background:var(--yl);z-index:-1;border-radius:6px;opacity:.8}
+.hero p{max-width:520px;color:var(--mut);margin:16px 0 26px;font-size:18px}
+.hero .cta{display:flex;gap:12px;flex-wrap:wrap}
+.chips{display:flex;gap:10px;flex-wrap:wrap;margin-top:26px}
+.chips span{font-size:14.5px;font-weight:700;background:#fff;border:1px solid var(--line);padding:8px 13px;border-radius:12px;box-shadow:0 4px 12px rgba(13,43,69,.06)}
+.mach{position:relative;justify-self:center;width:min(380px,80vw);aspect-ratio:.82}
+.mach svg{width:100%;height:100%;overflow:visible;filter:drop-shadow(0 30px 40px rgba(13,43,69,.22))}
+#drum{transform-origin:190px 268px;animation:spin 3.2s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.mach .tag{position:absolute;background:#fff;border-radius:14px;padding:10px 14px;font-weight:800;font-size:14px;box-shadow:0 12px 26px rgba(13,43,69,.16);white-space:nowrap;animation:bob 3s ease-in-out infinite}
+.mach .tag small{display:block;font-weight:700;font-size:12px;color:var(--mut)}
+@keyframes bob{50%{transform:translateY(-8px)}}
+.hero .wave{bottom:-1px}
+@media(max-width:880px){.hero .wrap{grid-template-columns:1fr;padding-top:44px;padding-bottom:90px}.mach{width:min(250px,64vw);margin-top:8px}}
+@media (prefers-reduced-motion:reduce){#drum,.mach .tag{animation:none}}
+
+/* ready strip */
+.ready{margin-top:-40px;position:relative;z-index:5}
+.ready .in{background:var(--navy);color:#fff;border-radius:22px;padding:20px 24px;display:flex;align-items:center;gap:18px;flex-wrap:wrap;box-shadow:0 24px 50px rgba(13,43,69,.25)}
+.ready .ic{width:54px;height:54px;border-radius:16px;background:rgba(127,220,232,.18);display:grid;place-items:center;flex:none}
+.ready .t{flex:1;min-width:220px}
+.ready .t small{display:block;color:var(--aq2);font-weight:800;font-size:13px;letter-spacing:.12em;text-transform:uppercase}
+.ready .t b{font-size:clamp(19px,2.6vw,26px);font-weight:900}
+.ready .t span{color:#b9d6e2;font-size:15px}
+.seg{display:inline-flex;background:rgba(255,255,255,.1);border-radius:999px;padding:4px}
+.seg button{padding:9px 16px;border-radius:999px;font-weight:800;font-size:14.5px;color:#cfe9f0;white-space:nowrap}
+.seg button.on{background:#fff;color:var(--navy)}
+
+/* calculator */
+.calc{display:grid;grid-template-columns:1.25fr .75fr;gap:26px;margin-top:30px;align-items:start}
+.items{background:var(--card);border:1px solid var(--line);border-radius:24px;padding:10px;box-shadow:0 14px 30px rgba(13,43,69,.06)}
+.it{display:grid;grid-template-columns:52px 1fr auto auto;gap:14px;align-items:center;padding:12px 12px;border-radius:16px}
+.it+.it{border-top:1px dashed var(--line)}
+.it.on{background:var(--aq3)}
+.it .e{width:52px;height:52px;border-radius:16px;background:var(--foam);display:grid;place-items:center;font-size:28px}
+.it .n b{display:block;font-weight:800;font-size:17px}
+.it .n small{color:var(--mut);font-size:13.5px}
+.it .p{font-weight:900;font-size:16px;white-space:nowrap}
+.it .p small{font-weight:700;color:var(--mut);font-size:12.5px}
+.stp{display:flex;align-items:center;gap:6px;background:var(--foam);border-radius:999px;padding:4px}
+.stp button{width:36px;height:36px;border-radius:50%;background:#fff;font-weight:900;font-size:20px;line-height:1;box-shadow:0 2px 6px rgba(13,43,69,.12)}
+.stp button.pl{background:var(--aq);color:#fff}
+.stp span{min-width:24px;text-align:center;font-weight:900;font-size:17px}
+.kg{padding:16px 14px 14px;border-top:1px dashed var(--line)}
+.kg .row{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.kg input[type=range]{width:100%;margin-top:12px;accent-color:var(--aq);height:30px}
+.kg .marks{display:flex;justify-content:space-between;color:var(--mut);font-size:12.5px;font-weight:700}
+.sum{position:sticky;top:90px;background:var(--navy);color:#fff;border-radius:24px;padding:24px;box-shadow:0 24px 50px rgba(13,43,69,.25);overflow:hidden}
+.sum::after{content:"";position:absolute;right:-60px;top:-60px;width:180px;height:180px;border-radius:50%;background:radial-gradient(circle at 35% 35%,rgba(255,255,255,.25),rgba(127,220,232,.12) 60%,transparent 62%)}
+.sum h3{font-family:"Noto Sans Sinhala";font-size:20px;font-weight:800}
+.sum .ln{display:flex;justify-content:space-between;gap:10px;padding:9px 0;border-bottom:1px solid rgba(255,255,255,.12);color:#cfe3ec;font-size:15.5px}
+.sum .ln b{color:#fff;white-space:nowrap}
+.sum .tot{display:flex;justify-content:space-between;align-items:baseline;margin:16px 0 4px}
+.sum .tot b{font-family:"Lilita One";font-weight:400;font-size:44px;color:var(--yl);line-height:1}
+.sum .rd{background:rgba(127,220,232,.14);border-radius:14px;padding:12px 14px;margin:14px 0;font-size:15px;color:#d8f1f6}
+.sum .rd b{color:#fff}
+.sum .empty{color:#9fc0cf;font-size:15px;margin:8px 0}
+.note{font-size:13px;color:#9fc0cf;margin-top:10px}
+@media(max-width:880px){.calc{grid-template-columns:1fr}.sum{position:relative;top:0}}
+@media(max-width:420px){.it{grid-template-columns:44px 1fr auto;gap:10px}.it .e{width:44px;height:44px;font-size:24px}.it .p{grid-column:2;grid-row:2;font-size:14.5px}.it .stp{grid-column:3;grid-row:1/3}}
+
+/* pickup */
+.pick{background:linear-gradient(180deg,#fff 0,#EAF8FB 100%)}
+.pk{display:grid;grid-template-columns:1fr 1fr;gap:26px;margin-top:28px}
+.box{background:var(--card);border:1px solid var(--line);border-radius:24px;padding:24px;box-shadow:0 14px 30px rgba(13,43,69,.06)}
+.box h3{font-family:"Noto Sans Sinhala";font-size:19px;font-weight:800;margin-bottom:12px}
+.days{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.days button{border:2px solid var(--line);border-radius:16px;padding:10px 6px;text-align:center;background:#fff}
+.days button b{display:block;font-family:"Lilita One";font-weight:400;font-size:26px;line-height:1.1}
+.days button small{font-weight:800;font-size:13px;color:var(--mut)}
+.days button.on{border-color:var(--aq);background:var(--aq3)}
+.slots{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px}
+.slots button{border:2px solid var(--line);border-radius:16px;padding:12px;font-weight:800;text-align:left;background:#fff}
+.slots button small{display:block;font-weight:700;font-size:13px;color:var(--mut)}
+.slots button.on{border-color:var(--aq);background:var(--aq3)}
+.ff{display:grid;gap:10px;margin-top:6px}
+.ff input,.ff select{width:100%;padding:14px 16px;border-radius:14px;border:2px solid var(--line);background:#fff;font-size:16px}
+.ff input:focus,.ff select:focus{outline:none;border-color:var(--aq)}
+.pkl{margin-top:14px;background:var(--foam);border-radius:14px;padding:12px 14px;font-size:14.5px;color:var(--mut)}
+.pkl b{color:var(--navy)}
+.free{display:flex;align-items:center;gap:10px;margin-top:12px;font-weight:700;font-size:14.5px}
+.bar{flex:1;height:10px;border-radius:99px;background:var(--line);overflow:hidden}
+.bar i{display:block;height:100%;background:linear-gradient(90deg,var(--aq2),var(--aq));border-radius:99px;transition:width .3s}
+@media(max-width:880px){.pk{grid-template-columns:1fr}}
+
+/* track */
+.track{background:var(--navy);color:#fff}
+.track .lead{color:#b9d6e2}
+.track .bubw{opacity:.25}
+.tk{display:grid;grid-template-columns:.8fr 1.2fr;gap:30px;margin-top:28px;align-items:start}
+.tk .q{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:24px;padding:24px}
+.tk .q label{font-weight:800;font-size:15px;color:var(--aq2)}
+.tk .q .r{display:flex;gap:10px;margin-top:10px}
+.tk .q input{flex:1;min-width:0;padding:14px 16px;border-radius:14px;border:2px solid rgba(255,255,255,.2);background:rgba(255,255,255,.08);color:#fff;font-weight:800;letter-spacing:.06em;text-transform:uppercase}
+.tk .q input::placeholder{color:#7fa2b3}
+.tk .q .try{margin-top:12px;font-size:14px;color:#9fc0cf}
+.tk .q .try button{color:var(--yl);font-weight:800;text-decoration:underline}
+.steps{background:#fff;color:var(--navy);border-radius:24px;padding:24px 26px;box-shadow:0 30px 60px rgba(0,0,0,.25);min-height:300px}
+.steps .hd{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:12px}
+.steps .hd b{font-family:"Lilita One";font-weight:400;font-size:28px;letter-spacing:.03em}
+.steps .hd span{font-weight:800;font-size:14px;padding:6px 12px;border-radius:999px;background:var(--aq3);color:#0B7E9B}
+.stl{position:relative;padding-left:44px}
+.stl::before{content:"";position:absolute;left:16px;top:10px;bottom:10px;width:4px;border-radius:4px;background:var(--line)}
+.stl .fill{position:absolute;left:16px;top:10px;width:4px;border-radius:4px;background:var(--aq);transition:height .8s ease}
+.sx{position:relative;padding:10px 0}
+.sx i{position:absolute;left:-44px;top:8px;width:36px;height:36px;border-radius:50%;background:#fff;border:3px solid var(--line);display:grid;place-items:center;font-style:normal;font-size:17px;transition:.3s}
+.sx.d i{background:var(--aq);border-color:var(--aq);color:#fff}
+.sx.c i{border-color:var(--aq);box-shadow:0 0 0 6px rgba(16,169,190,.18);animation:pul 1.6s ease-in-out infinite}
+@keyframes pul{50%{box-shadow:0 0 0 12px rgba(16,169,190,.05)}}
+.sx b{display:block;font-weight:800}
+.sx small{color:var(--mut);font-size:14px}
+.sx:not(.d):not(.c) b{color:#9bb0bb}
+.nf{color:var(--mut);padding:30px 0;text-align:center}
+.tk>*{min-width:0}
+@media(max-width:880px){.tk{grid-template-columns:1fr}}
+@media(max-width:420px){.tk .q .r{flex-wrap:wrap}.tk .q .r .btn{width:100%}.steps{padding:20px 18px}}
+
+/* services */
+.line{position:absolute;left:-20px;right:-20px;top:0;height:170px;pointer-events:none;z-index:0}
+.line svg{width:100%;height:100%}
+.svc{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:34px}
+.sv{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:22px;position:relative;overflow:hidden;box-shadow:0 10px 24px rgba(13,43,69,.05)}
+.sv .ic{width:56px;height:56px;border-radius:18px;display:grid;place-items:center;font-size:30px;background:var(--aq3);margin-bottom:12px}
+.sv h3{font-family:"Noto Sans Sinhala";font-size:18px;font-weight:800}
+.sv p{color:var(--mut);font-size:15px;margin-top:4px}
+.sv .pr{display:inline-block;margin-top:10px;font-weight:900;font-size:14px;background:var(--foam);padding:5px 10px;border-radius:10px}
+@media(max-width:880px){.svc{grid-template-columns:1fr 1fr}}
+@media(max-width:560px){.svc{grid-template-columns:1fr}}
+.frg{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
+.frg button{border:2px solid var(--line);border-radius:999px;padding:8px 14px;font-weight:800;font-size:14px;background:#fff}
+.frg button.on{border-color:var(--pk);background:#FFF0F4}
+
+/* visit */
+.vis{display:grid;grid-template-columns:1fr 1fr;gap:26px;margin-top:28px}
+.hrs{width:100%;border-collapse:collapse;font-size:16px}
+.hrs td{padding:11px 0;border-bottom:1px dashed var(--line)}
+.hrs td:last-child{text-align:right;font-weight:800}
+.hrs tr.now td{color:var(--aq);font-weight:900}
+.mapx{border-radius:24px;overflow:hidden;min-height:300px;position:relative;background:
+ linear-gradient(90deg,rgba(13,43,69,.06) 2px,transparent 2px) 0 0/60px 60px,linear-gradient(rgba(13,43,69,.06) 2px,transparent 2px) 0 0/60px 60px,#E8F4F7;border:1px solid var(--line)}
+.mapx>svg{position:absolute;inset:0;width:100%;height:100%}
+.mapx .pin{position:absolute;left:50%;top:44%;transform:translate(-50%,-100%);text-align:center}
+.mapx .pin b{display:block;background:var(--navy);color:#fff;padding:8px 12px;border-radius:12px;font-weight:800;font-size:14px;white-space:nowrap;margin-bottom:6px}
+@media(max-width:880px){.vis{grid-template-columns:1fr}}
+footer{background:var(--navy);color:#9fc0cf;font-size:14px;padding:22px 0}
+footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+
+/* bottom bar */
+.lb{position:fixed;left:12px;right:12px;bottom:calc(12px + env(safe-area-inset-bottom,0px));z-index:40;background:var(--navy);color:#fff;border-radius:20px;padding:10px 10px 10px 18px;display:flex;align-items:center;gap:12px;box-shadow:0 20px 40px rgba(13,43,69,.35);transform:translateY(140%);transition:transform .3s}
+.lb.on{transform:none}
+.lb .t{flex:1;min-width:0}
+.lb .t b{display:block;font-weight:900}
+.lb .t small{color:var(--aq2);font-weight:700}
+@media(min-width:881px){.lb{left:auto;width:380px;right:24px}}
+.toast{position:fixed;left:50%;top:84px;transform:translate(-50%,-30px);opacity:0;background:var(--navy);color:#fff;padding:12px 18px;border-radius:14px;font-weight:800;z-index:50;transition:.3s;white-space:nowrap}
+.toast.on{opacity:1;transform:translate(-50%,0)}
+</style></head><body>
+<div class="ribbon">Demo website · sample laundry shop made by <a href="https://rodrigos-studio.github.io/">Rodrigo's Studio</a> · not a real business</div>
+<header><div class="wrap">
+ <a class="logo" href="#top"><i><svg width="26" height="26" viewBox="0 0 26 26"><circle cx="10" cy="15" r="7" fill="#fff" opacity=".95"/><circle cx="18" cy="8" r="4.5" fill="#fff" opacity=".7"/><circle cx="20" cy="17" r="2.6" fill="#fff" opacity=".55"/><circle cx="8" cy="13" r="2" fill="#7FDCE8"/></svg></i><span><b>Pirisidu</b><small>Laundry · Kotte</small></span></a>
+ <nav class="si"><a href="#calc">ගාණ බලන්න</a><a href="#pickup">Pickup</a><a href="#track">Order එක කොහෙද?</a><a href="#visit">වෙලාවල්</a></nav>
+ <span class="st si" id="st"><b></b><span id="stt">Open</span></span>
+</div></header>
+
+<section class="hero" id="top">
+ <div class="tiles"></div><canvas id="fx"></canvas>
+ <div class="wrap">
+  <div>
+   <div class="kick">Wash · Iron · Dry clean</div>
+   <h1 class="si" style="margin-top:12px">රෙදි ගොඩ අපිට දෙන්න. <em>පැය 48න්</em> මැදලා, නවලා ගෙදරටම.</h1>
+   <p class="si">යවන්න කලින්ම ගාණ බලන්න. Pickup එක WhatsApp එකෙන් book කරන්න. ඔයාගේ order එක දැන් කොහෙද කියලත් මෙතනින්ම බලන්න පුළුවන්.</p>
+   <div class="cta"><a class="btn aq si" href="#calc">ගාණ බලන්න</a><a class="btn ol si" href="#pickup">Pickup book කරන්න</a></div>
+   <div class="chips si"><span>🫧 පැය 48න් ready</span><span>⚡ Express පැය 24</span><span>🚚 ගෙදරටම pickup</span><span>🧺 Kg එකට Rs 450</span></div>
+  </div>
+  <div class="mach" aria-hidden="true">
+   <svg viewBox="0 0 380 464">
+    <defs>
+     <linearGradient id="bd" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#E3F1F5"/></linearGradient>
+     <radialGradient id="gl" cx=".4" cy=".35" r=".7"><stop offset="0" stop-color="#BFF0F6"/><stop offset=".7" stop-color="#5CC9DA"/><stop offset="1" stop-color="#1990A8"/></radialGradient>
+     <clipPath id="win"><circle cx="190" cy="268" r="112"/></clipPath>
+    </defs>
+    <rect x="18" y="20" width="344" height="430" rx="34" fill="url(#bd)" stroke="#CFE4EA" stroke-width="3"/>
+    <rect x="18" y="20" width="344" height="86" rx="34" fill="#F7FCFD"/><rect x="18" y="86" width="344" height="20" fill="#F7FCFD"/>
+    <line x1="18" y1="106" x2="362" y2="106" stroke="#CFE4EA" stroke-width="3"/>
+    <rect x="44" y="46" width="120" height="36" rx="10" fill="#0D2B45"/><text x="104" y="70" text-anchor="middle" font-family="Lilita One" font-size="18" fill="#7FDCE8" id="clock">00:48</text>
+    <circle cx="232" cy="64" r="20" fill="#fff" stroke="#CFE4EA" stroke-width="3"/><line x1="232" y1="64" x2="244" y2="54" stroke="#10A9BE" stroke-width="4" stroke-linecap="round"/>
+    <circle cx="290" cy="58" r="8" fill="#FFCF3F"/><circle cx="318" cy="58" r="8" fill="#FF7A9C"/><circle cx="304" cy="80" r="6" fill="#10A9BE"/>
+    <circle cx="190" cy="268" r="140" fill="#E8F3F6" stroke="#CFE4EA" stroke-width="4"/>
+    <circle cx="190" cy="268" r="124" fill="#0D2B45"/>
+    <g clip-path="url(#win)">
+     <rect x="70" y="150" width="240" height="240" fill="url(#gl)"/>
+     <g id="drum">
+      <path d="M118 300 q30 -40 70 -10 q30 20 60 -6 l14 40 q-40 30 -80 6 q-30 -18 -60 6z" fill="#FF7A9C" opacity=".95"/>
+      <path d="M150 196 q40 -14 70 10 q20 16 46 4 l-6 34 q-30 14 -54 -6 q-26 -20 -58 -6z" fill="#FFCF3F" opacity=".95"/>
+      <path d="M96 236 q20 -24 50 -12 l-10 44 q-22 -6 -44 6z" fill="#ffffff" opacity=".9"/>
+      <path d="M214 312 q26 -6 50 12 q-6 26 -30 30 q-20 -10 -20 -42z" fill="#0D2B45" opacity=".55"/>
+      <circle cx="160" cy="250" r="9" fill="#fff" opacity=".7"/><circle cx="236" cy="262" r="6" fill="#fff" opacity=".7"/><circle cx="196" cy="330" r="7" fill="#fff" opacity=".6"/>
+     </g>
+     <path d="M70 330 q30 -12 60 0 t60 0 t60 0 t60 0 v80 h-240z" fill="#7FDCE8" opacity=".55"/>
+     <ellipse cx="150" cy="212" rx="40" ry="20" fill="#fff" opacity=".25" transform="rotate(-30 150 212)"/>
+    </g>
+    <circle cx="190" cy="268" r="124" fill="none" stroke="#9FB9C6" stroke-width="6"/>
+    <rect x="300" y="250" width="16" height="40" rx="8" fill="#CFE4EA"/>
+   </svg>
+   <div class="tag si" style="left:-24px;top:34%">🫧 Wash + iron<small>Shirt එකක් Rs 80</small></div>
+   <div class="tag si" style="right:-18px;top:66%;animation-delay:-1.4s">✅ Ready: <span id="tagd">Mon 5 pm</span><small>Normal service</small></div>
+  </div>
+ </div>
+ <div class="wave"><svg viewBox="0 0 1440 70" preserveAspectRatio="none"><path d="M0 40 C240 70 480 10 720 34 S1200 70 1440 30 V70 H0Z" fill="#F2FAFC"/></svg></div>
+</section>
+
+<div class="ready"><div class="wrap"><div class="in">
+ <div class="ic"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#7FDCE8" stroke-width="2.2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div>
+ <div class="t si"><small>අද දුන්නොත්</small><b id="rdy">—</b> <span id="rdy2"></span></div>
+ <div class="seg si" id="spd"><button data-s="n" class="on">Normal · පැය 48</button><button data-s="x">Express · පැය 24</button></div>
+</div></div></div>
+
+<section class="sec" id="calc"><div class="bub"></div><div class="wrap">
+ <div class="kick">Price calculator</div>
+ <h2 class="si">යවන්න කලින්ම <em>ගාණ</em> බලන්න</h2>
+ <p class="lead si">රෙදි ගාණ දාන්න. ගාණ, ready වෙන දවස එවෙලෙම පේනවා. Rs 2,000ට වැඩි නම් pickup සහ delivery free.</p>
+ <div class="calc">
+  <div class="items" id="items"></div>
+  <aside class="sum">
+   <h3 class="si">ඔයාගේ order එක</h3>
+   <div id="lines"></div>
+   <div class="tot"><span class="si">එකතුව</span><b id="tot">Rs 0</b></div>
+   <div class="rd si" id="rd">✅ Ready: <b>—</b></div>
+   <a class="btn w si" id="toPick" href="#pickup" style="width:100%">Pickup එකට යන්න →</a>
+   <div class="note si">Sample prices. ඇත්ත ගාණ කඩෙන් confirm කරනවා.</div>
+  </aside>
+ </div>
+</div></section>
+
+<section class="sec pick" id="pickup"><div class="bub"></div><div class="wrap">
+ <div class="kick">Pickup booking</div>
+ <h2 class="si">ගෙදරින් එළියට යන්න ඕන නෑ. <em>අපි එන්නම්</em></h2>
+ <p class="lead si">දවස, වෙලාව තෝරලා WhatsApp කරන්න. අපේ rider ඇවිත් රෙදි අරන් යනවා, මැදලා ආපහු ගෙනත් දෙනවා.</p>
+ <div class="pk">
+  <div class="box">
+   <h3 class="si">1 · දවස</h3><div class="days" id="days"></div>
+   <h3 class="si" style="margin-top:20px">2 · වෙලාව</h3>
+   <div class="slots si" id="slots"><button data-t="උදේ 8 – 11" class="on">🌤️ උදේ<small>8 – 11</small></button><button data-t="හවස 4 – 7">🌇 හවස<small>4 – 7</small></button></div>
+  </div>
+  <div class="box">
+   <h3 class="si">3 · කොහෙන්ද?</h3>
+   <div class="ff">
+    <select id="ar" class="si"><option value="0">Kotte · Pitakotte · Ethul Kotte</option><option value="0">Nugegoda · Mirihana · Gangodawila</option><option value="0">Rajagiriya · Welikada</option><option value="150">Battaramulla · Thalawathugoda (+Rs 150)</option><option value="250">Maharagama · Kottawa (+Rs 250)</option></select>
+    <input id="nm" class="si" placeholder="ඔයාගේ නම">
+    <input id="ad" class="si" placeholder="Address / ළඟ තියෙන තැනක්">
+   </div>
+   <div class="pkl si" id="pkl">Calculator එකේ රෙදි දැම්මම, ඒ list එකත් මේ message එකටම එකතු වෙනවා.</div>
+   <div class="free si"><span id="frt">Free delivery: Rs 2,000</span><div class="bar"><i id="frb" style="width:0"></i></div></div>
+   <button class="btn w si" id="book" style="width:100%;margin-top:16px"><svg viewBox="0 0 24 24" fill="#fff"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2z"/></svg>Pickup book කරන්න</button>
+  </div>
+ </div>
+</div></section>
+
+<section class="sec track" id="track"><div class="bub bubw"></div><div class="wrap">
+ <div class="kick" style="color:var(--aq2)">Order tracking</div>
+ <h2 class="si">"මගේ රෙදි <em style="color:var(--aq2)">ready ද?</em>" කියලා call කරන්න ඕන නෑ</h2>
+ <p class="lead si">Bill එකේ තියෙන order number එක දාන්න. ඔයාගේ රෙදි දැන් මොන step එකේද කියලා පේනවා.</p>
+ <div class="tk">
+  <div class="q">
+   <label class="si" for="on">Order number</label>
+   <div class="r"><input id="on" value="PL-1024" maxlength="8" autocomplete="off"><button class="btn aq si" id="go" style="padding:12px 20px">බලන්න</button></div>
+   <div class="try si">Demo numbers: <button data-o="PL-1024">PL-1024</button> · <button data-o="PL-1025">PL-1025</button> · <button data-o="PL-1026">PL-1026</button></div>
+  </div>
+  <div class="steps" id="steps"></div>
+ </div>
+</div></section>
+
+<section class="sec" id="svc"><div class="line" aria-hidden="true"><svg viewBox="0 0 1200 170" preserveAspectRatio="none" id="clothes"></svg></div><div class="wrap" style="padding-top:90px">
+ <div class="kick">What we do</div>
+ <h2 class="si">සාරියේ ඉඳන් <em>school uniform</em> එක වෙනකම්</h2>
+ <div class="svc si">
+  <div class="sv"><div class="ic">🧺</div><h3>Wash & fold</h3><p>Kg ගාණට. හෝදලා, වේලලා, ලස්සනට නවලා.</p><span class="pr">Kg 1 · Rs 450</span></div>
+  <div class="sv"><div class="ic">👔</div><h3>Iron විතරක්</h3><p>Office shirts, trousers. Hanger එකේම දාලා දෙනවා.</p><span class="pr">Shirt · Rs 80</span></div>
+  <div class="sv"><div class="ic">🥻</div><h3>සාරි care</h3><p>අතින් හෝදලා, steam iron කරලා. Pleats එක්කම ready කරලා.</p><span class="pr">Saree · Rs 350</span></div>
+  <div class="sv"><div class="ic">🎒</div><h3>School uniforms</h3><p>සිකුරාදා දුන්නොත් සඳුදා උදේට ready. සුදුම සුදුයි.</p><span class="pr">Set · Rs 150</span></div>
+  <div class="sv"><div class="ic">🛏️</div><h3>Bedsheets & curtains</h3><p>ලොකු ඒවා ගෙදර හෝදන්න අමාරුයි. අපිට දෙන්න.</p><span class="pr">Bedsheet · Rs 250</span></div>
+  <div class="sv"><div class="ic">✨</div><h3>සුවඳ තෝරන්න</h3><p>ඔයාගේ රෙදි වලට ඕන සුවඳ:</p><div class="frg" id="frg"><button class="on" data-f="Lavender">💜 Lavender</button><button data-f="Fresh">🌿 Fresh</button><button data-f="No scent">🚫 සුවඳ නැතුව</button></div></div>
+ </div>
+</div></section>
+
+<section class="sec" id="visit" style="padding-top:20px"><div class="bub"></div><div class="wrap">
+ <div class="kick">Visit us</div>
+ <h2 class="si">කඩේ <em>open</em> වෙලාවල්</h2>
+ <div class="vis">
+  <div class="box"><table class="hrs si" id="hrs"></table>
+   <div class="cta" style="display:flex;gap:10px;flex-wrap:wrap;margin-top:18px"><a class="btn nv si" id="call" href="tel:+94724996667">📞 Call කරන්න</a><a class="btn w si" id="wa2" href="#">WhatsApp</a></div>
+  </div>
+  <div class="mapx"><svg viewBox="0 0 500 320" preserveAspectRatio="none"><path d="M-10 210 C120 190 220 240 520 170" stroke="#fff" stroke-width="26" fill="none"/><path d="M180 -10 C200 120 160 220 230 340" stroke="#fff" stroke-width="20" fill="none"/><path d="M-10 210 C120 190 220 240 520 170" stroke="#FFCF3F" stroke-width="3" stroke-dasharray="14 12" fill="none"/></svg>
+   <div class="pin si"><b>🫧 Pirisidu Laundry</b><svg width="34" height="44" viewBox="0 0 34 44"><path d="M17 0C7.6 0 0 7.6 0 17c0 12.8 17 27 17 27s17-14.2 17-27C34 7.6 26.4 0 17 0z" fill="#10A9BE"/><circle cx="17" cy="17" r="7" fill="#fff"/></svg></div>
+  </div>
+ </div>
+</div></section>
+
+<footer><div class="wrap"><span>Demo site by <a href="https://rodrigos-studio.github.io/" style="text-decoration:underline">Rodrigo's Studio</a> · prices are sample prices</span><span>In this demo, WhatsApp messages go to Rodrigo's Studio</span></div></footer>
+
+<div class="lb si" id="lb"><div class="t"><b id="lbn">Items 0</b><small id="lbt">Rs 0</small></div><a class="btn w" href="#pickup" style="padding:11px 18px;font-size:16px">Pickup →</a></div>
+<div class="toast si" id="toast"></div>
+
+<script>
+const $=id=>document.getElementById(id);
+const WA_NUMBER="94724996667";
+const waLink=m=>"https://wa.me/"+WA_NUMBER+"?text="+encodeURIComponent(m);
+const rs=n=>"Rs "+Math.round(n).toLocaleString("en-US");
+const DAYS_SI=["ඉරිදා","සඳුදා","අඟහරුවාදා","බදාදා","බ්‍රහස්පතින්දා","සිකුරාදා","සෙනසුරාදා"];
+const DAYS_EN=["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
+const MON=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+const OPEN=7,CLOSE=20; // Mon-Sat 7am-8pm, Sunday closed
+// ---- open / closed ----
+function status(){const d=new Date(),h=d.getHours()+d.getMinutes()/60,sun=d.getDay()===0,open=!sun&&h>=OPEN&&h<CLOSE;
+ $("st").classList.toggle("cl",!open);$("stt").textContent=open?"Open · රෑ 8 වෙනකම්":(sun?"අද වහලා · හෙට 7ට":"Closed · උදේ 7ට");}
+status();setInterval(status,60000);
+// ---- ready date ----
+let speed="n";
+function readyAt(){const d=new Date();let start=new Date(d);if(d.getHours()>=18||d.getDay()===0){start.setDate(start.getDate()+1);start.setHours(9,0,0,0)}
+ const r=new Date(start.getTime()+(speed==="x"?24:48)*3600e3);r.setHours(17,0,0,0);if(r<=start)r.setDate(r.getDate()+1);while(r.getDay()===0)r.setDate(r.getDate()+1);return r}
+const fmt=r=>`${DAYS_SI[r.getDay()]} ${r.getDate()} ${MON[r.getMonth()]}, හවස 5ට`;
+const fmtEn=r=>`${DAYS_EN[r.getDay()]} ${r.getDate()} ${MON[r.getMonth()]}, 5 pm`;
+function paintReady(){const r=readyAt();$("rdy").textContent="Ready: "+fmt(r);$("rdy2").textContent=speed==="x"?"· Express (+50%)":"· Normal service";$("tagd").textContent=DAYS_EN[r.getDay()]+" 5 pm";}
+document.querySelectorAll("#spd button").forEach(b=>b.onclick=()=>{speed=b.dataset.s;document.querySelectorAll("#spd button").forEach(x=>x.classList.toggle("on",x===b));paintReady();render()});
+// ---- items ----
+const IT=[["shirt","👕","Shirt / T-shirt","Wash + iron",80],["trouser","👖","Trouser / Skirt","Wash + iron",100],["frock","👗","Frock / Dress","Wash + iron",150],["saree","🥻","Saree","අතින් හෝදලා steam",350],["uni","🎒","School uniform set","Shirt + short / frock",150],["bed","🛏️","Bedsheet + pillow cases","Wash + fold",250],["cur","🪟","Curtain (panel)","Wash + iron",400],["suit","🤵","Suit / Blazer","Dry clean",1200]];
+const Q={};IT.forEach(i=>Q[i[0]]=0);let KG=0;
+$("items").innerHTML=IT.map(([k,e,n,s,p])=>`<div class="it" id="it-${k}"><div class="e">${e}</div><div class="n"><b>${n}</b><small class="si">${s}</small></div><div class="p">${rs(p)} <small>/ එක</small></div><div class="stp"><button aria-label="less" data-k="${k}" data-d="-1">−</button><span id="q-${k}">0</span><button class="pl" aria-label="more" data-k="${k}" data-d="1">+</button></div></div>`).join("")
+ +`<div class="kg"><div class="row"><div class="n"><b>🧺 Wash & fold (kg ගාණට)</b><br><small class="si" style="color:var(--mut)">ගෙදර රෙදි, towels. Kg 1 · Rs 450</small></div><b id="kgv" style="font-size:20px">0 kg</b></div><input type="range" id="kg" min="0" max="12" step="1" value="0" aria-label="kg"><div class="marks"><span>0</span><span>3</span><span>6</span><span>9</span><span>12 kg</span></div></div>`;
+document.querySelectorAll(".stp button").forEach(b=>b.onclick=()=>{const k=b.dataset.k;Q[k]=Math.max(0,Math.min(40,Q[k]+(+b.dataset.d)));render()});
+$("kg").oninput=e=>{KG=+e.target.value;render()};
+let AREA=0;
+function calc(){let sub=0,n=0;const L=[];IT.forEach(([k,e,nm,s,p])=>{if(Q[k]){sub+=Q[k]*p;n+=Q[k];L.push([`${nm} × ${Q[k]}`,Q[k]*p])}});if(KG){sub+=KG*450;L.push([`Wash & fold ${KG} kg`,KG*450])}
+ const ex=speed==="x"?Math.round(sub*.5):0,free=sub>=2000,del=sub===0?0:(free?0:250)+AREA;return{sub,n,L,ex,del,tot:sub+ex+del,free,cnt:n+(KG?1:0)}}
+function render(){const c=calc();IT.forEach(([k])=>{$("q-"+k).textContent=Q[k];$("it-"+k).classList.toggle("on",Q[k]>0)});$("kgv").textContent=KG+" kg";
+ $("lines").innerHTML=c.L.length?c.L.map(([a,b])=>`<div class="ln"><span>${a}</span><b>${rs(b)}</b></div>`).join("")+(c.ex?`<div class="ln si"><span>⚡ Express (+50%)</span><b>${rs(c.ex)}</b></div>`:"")+`<div class="ln si"><span>🚚 Pickup + delivery</span><b>${c.del?rs(c.del):"Free"}</b></div>`:`<div class="empty si">+ ඔබලා රෙදි එකතු කරන්න. ගාණ මෙතන පේනවා.</div>`;
+ $("tot").textContent=rs(c.tot);$("rd").innerHTML="✅ Ready: <b>"+fmt(readyAt())+"</b>";
+ const left=Math.max(0,2000-c.sub);$("frb").style.width=Math.min(100,c.sub/20)+"%";$("frt").textContent=left?`Free delivery වෙන්න තව ${rs(left)}`:"🎉 Free pickup + delivery";
+ $("pkl").innerHTML=c.L.length?`<b>${c.L.length} items · ${rs(c.tot)}</b> · මේ list එක message එකට එකතු වෙනවා.`:"Calculator එකේ රෙදි දැම්මම, ඒ list එකත් මේ message එකටම එකතු වෙනවා.";
+ $("lbn").textContent=c.L.length+" items · Ready "+fmtEn(readyAt()).split(",")[0];$("lbt").textContent=rs(c.tot);$("lb").classList.toggle("on",c.L.length>0&&!nearPick);paintReady()}
+// ---- pickup days / slots ----
+let DAY=null,SLOT="උදේ 8 – 11";
+(function(){const out=[];const d=new Date();d.setHours(12,0,0,0);if(new Date().getHours()>=17)d.setDate(d.getDate()+1);while(out.length<6){if(d.getDay()!==0)out.push(new Date(d));d.setDate(d.getDate()+1)}
+ const today=new Date().toDateString();
+ $("days").innerHTML=out.map((x,i)=>`<button data-i="${i}" class="${i===0?"on":""}"><small class="si">${x.toDateString()===today?"අද":DAYS_SI[x.getDay()]}</small><b>${x.getDate()}</b><small>${MON[x.getMonth()]}</small></button>`).join("");DAY=out[0];
+ document.querySelectorAll("#days button").forEach(b=>b.onclick=()=>{DAY=out[+b.dataset.i];document.querySelectorAll("#days button").forEach(y=>y.classList.toggle("on",y===b))})})();
+document.querySelectorAll("#slots button").forEach(b=>b.onclick=()=>{SLOT=b.dataset.t;document.querySelectorAll("#slots button").forEach(y=>y.classList.toggle("on",y===b))});
+$("ar").onchange=e=>{AREA=+e.target.value;render()};
+let FRG="Lavender";document.querySelectorAll("#frg button").forEach(b=>b.onclick=()=>{FRG=b.dataset.f;document.querySelectorAll("#frg button").forEach(y=>y.classList.toggle("on",y===b));toast("සුවඳ: "+b.textContent)});
+function toast(t){const e=$("toast");e.textContent=t;e.classList.add("on");clearTimeout(toast.t);toast.t=setTimeout(()=>e.classList.remove("on"),1800)}
+$("book").onclick=()=>{const c=calc(),nm=$("nm").value.trim(),ad=$("ad").value.trim();
+ if(!nm){$("nm").focus();toast("ඔයාගේ නම දාන්න 🙂");return}
+ const m=[`Hi Pirisidu Laundry 👋 Pickup එකක් book කරන්න ඕන.`,`👤 ${nm}`,`📅 ${DAYS_EN[DAY.getDay()]} ${DAY.getDate()} ${MON[DAY.getMonth()]} · ${SLOT}`,`📍 ${$("ar").selectedOptions[0].text.replace(/ \(\+Rs \d+\)/,"")}${ad?" · "+ad:""}`];
+ if(c.L.length){m.push("","🧺 Items:");c.L.forEach(([a,b])=>m.push(`• ${a} – ${rs(b)}`));m.push(`Service: ${speed==="x"?"Express 24h":"Normal 48h"} · Scent: ${FRG}`,`Total (estimate): ${rs(c.tot)}`,`Ready: ${fmtEn(readyAt())}`)}else m.push("","රෙදි ගාණ rider ආවම කියන්නම්.");
+ window.open(waLink(m.join("\n")),"_blank")};
+$("wa2").href=waLink("Hi Pirisidu Laundry 👋");
+// ---- tracking (demo orders) ----
+const ST=[["🧾","Order එක ලැබුණා","Received"],["🫧","හෝදනවා","Washing"],["👔","මදිනවා","Ironing"],["✅","Ready","Ready for pickup / delivery"],["🚚","ගෙදරට ආවා","Delivered"]];
+function orders(){const d=new Date(),t=(h,m,back=0)=>{const x=new Date(d);x.setDate(x.getDate()-back);x.setHours(h,m,0,0);return x};
+ return{"PL-1024":{n:"Nimali · 9 items",at:2,times:[t(8,40,1),t(14,10,1),t(9,30)]},"PL-1025":{n:"Kasun · 14 items",at:3,times:[t(7,55,2),t(11,20,2),t(16,5,1),t(10,15)]},"PL-1026":{n:"Dilini · 6 items",at:4,times:[t(9,5,3),t(13,40,3),t(10,0,2),t(15,30,2),t(11,10,1)]}}}
+const hm=x=>`${DAYS_EN[x.getDay()]} ${x.getHours()%12||12}:${String(x.getMinutes()).padStart(2,"0")} ${x.getHours()<12?"am":"pm"}`;
+function track(){const k=$("on").value.trim().toUpperCase().replace(/\s/g,""),o=orders()[k.startsWith("PL-")?k:"PL-"+k.replace(/^PL/,"")];
+ if(!o){$("steps").innerHTML=`<div class="nf si">😕 <b>${k||"—"}</b> කියලා order එකක් නෑ.<br>Demo එකේ PL-1024, PL-1025, PL-1026 try කරන්න.</div>`;return}
+ const key=Object.keys(orders()).find(x=>orders()[x]===o)||k;
+ $("steps").innerHTML=`<div class="hd"><b>${$("on").value.toUpperCase()}</b><span class="si">${o.n}</span></div><div class="stl"><div class="fill" id="fill" style="height:0"></div>${ST.map(([e,s,en],i)=>`<div class="sx ${i<o.at?"d":i===o.at?"c":""}"><i>${i<o.at?"✓":e}</i><b class="si">${s}</b><small>${en}${o.times[i]?" · "+hm(o.times[i]):(i===o.at?" · දැන් මේක කරනවා":"")}</small></div>`).join("")}</div>`;
+ requestAnimationFrame(()=>{const sx=document.querySelectorAll(".sx"),a=sx[0].offsetTop,b=sx[Math.min(o.at,sx.length-1)].offsetTop;$("fill").style.height=(b-a)+"px"})}
+$("go").onclick=track;$("on").onkeydown=e=>{if(e.key==="Enter")track()};
+document.querySelectorAll(".try button").forEach(b=>b.onclick=()=>{$("on").value=b.dataset.o;track()});
+track();
+// ---- hours ----
+(function(){const t=new Date().getDay(),rows=[[1,"සඳුදා","7 am – 8 pm"],[2,"අඟහරුවාදා","7 am – 8 pm"],[3,"බදාදා","7 am – 8 pm"],[4,"බ්‍රහස්පතින්දා","7 am – 8 pm"],[5,"සිකුරාදා","7 am – 8 pm"],[6,"සෙනසුරාදා","7 am – 8 pm"],[0,"ඉරිදා","වහලා"]];
+ $("hrs").innerHTML=rows.map(([d,n,h])=>`<tr class="${d===t?"now":""}"><td>${n}${d===t?" · අද":""}</td><td>${h}</td></tr>`).join("")+`<tr><td>පෝය දවස්</td><td>වහලා</td></tr>`})();
+// ---- clothesline deco ----
+(function(){const C=["#FF7A9C","#FFCF3F","#10A9BE","#7FDCE8","#0D2B45","#FFB4C6"];let s=`<path d="M0 30 Q600 90 1200 30" stroke="#9FB9C6" stroke-width="3" fill="none"/>`;
+ for(let i=0;i<9;i++){const x=70+i*130,y=30+60*(1-Math.pow((x-600)/600,2))*.95,c=C[i%C.length],r=(i%2?6:-6);
+  s+=i%3===2?`<g transform="translate(${x} ${y}) rotate(${r})"><rect x="-22" y="0" width="44" height="58" rx="6" fill="${c}"/><rect x="-22" y="0" width="44" height="10" fill="rgba(0,0,0,.08)"/></g>`
+   :`<g transform="translate(${x} ${y}) rotate(${r})"><path d="M-30 4 L-12 0 Q0 8 12 0 L30 4 L40 22 L28 28 L24 20 L24 64 L-24 64 L-24 20 L-28 28 L-40 22Z" fill="${c}"/></g>`;
+  s+=`<rect x="${x-4}" y="${y-8}" width="8" height="18" rx="2" fill="#C99A5B"/>`}
+ $("clothes").innerHTML=s})();
+// ---- bubbles in hero ----
+(function(){const cv=$("fx"),ctx=cv.getContext("2d"),R=matchMedia("(prefers-reduced-motion: reduce)").matches;let W,H,B=[];
+ function sz(){W=cv.width=cv.offsetWidth*devicePixelRatio;H=cv.height=cv.offsetHeight*devicePixelRatio;B=[...Array(Math.round(W/60))].map(()=>({x:Math.random()*W,y:Math.random()*H,r:(6+Math.random()*26)*devicePixelRatio,v:(.2+Math.random()*.6)*devicePixelRatio,p:Math.random()*6}))}
+ function draw(t){ctx.clearRect(0,0,W,H);B.forEach(b=>{if(!R){b.y-=b.v;b.x+=Math.sin(t/900+b.p)*.4;if(b.y<-b.r){b.y=H+b.r;b.x=Math.random()*W}}
+  const g=ctx.createRadialGradient(b.x-b.r*.35,b.y-b.r*.35,b.r*.1,b.x,b.y,b.r);g.addColorStop(0,"rgba(255,255,255,.95)");g.addColorStop(.25,"rgba(255,255,255,.25)");g.addColorStop(.85,"rgba(127,220,232,.18)");g.addColorStop(1,"rgba(16,169,190,.45)");
+  ctx.beginPath();ctx.arc(b.x,b.y,b.r,0,7);ctx.fillStyle=g;ctx.fill()});if(!R)requestAnimationFrame(draw)}
+ sz();addEventListener("resize",sz);requestAnimationFrame(draw)})();
+// machine clock counts down
+(function(){let s=48*60;setInterval(()=>{s=s>0?s-1:48*60;$("clock").textContent=String(Math.floor(s/60)).padStart(2,"0")+":"+String(s%60).padStart(2,"0")},1000)})();
+// hide bottom bar near pickup
+let nearPick=true;const seen={hero:true,pick:false};const io=new IntersectionObserver(es=>{es.forEach(e=>{if(e.target.id==="top")seen.hero=e.isIntersecting;else seen.pick=e.isIntersecting});nearPick=seen.hero||seen.pick;render()},{threshold:.05});io.observe($("top"));io.observe($("pickup"));
+// demo: start with a few items so the calculator never looks empty
+Q.shirt=5;Q.trouser=3;Q.bed=1;KG=2;$("kg").value=2;render();
+</script>
+</body></html>
