@@ -136,6 +136,23 @@ nav a:hover{color:var(--pl)}
 @media(max-width:760px){.visit{grid-template-columns:1fr}}
 footer{background:var(--pl);color:#bfaed1;font-size:14px;padding:22px 0;border-top:1px solid rgba(255,255,255,.1)}
 footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+
+/* real photos: moving hero background + sliding gallery */
+.hbg{position:absolute;inset:0;z-index:0;overflow:hidden}
+.hbg div{position:absolute;inset:-6%;background:center/cover no-repeat;opacity:0;animation:kb 18s infinite}
+.hbg div:nth-child(2){animation-delay:6s}.hbg div:nth-child(3){animation-delay:12s}
+@keyframes kb{0%{opacity:0;transform:scale(1.02) translate(0,0)}6%{opacity:1}33%{opacity:1}40%{opacity:0;transform:scale(1.14) translate(-2%,-2%)}100%{opacity:0}}
+.hbg::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(43,26,61,.95) 0,rgba(43,26,61,.86) 48%,rgba(43,26,61,.5) 100%)}
+@media(max-width:860px){.hbg::after{background:linear-gradient(180deg,rgba(43,26,61,.92) 0,rgba(43,26,61,.86) 65%,rgba(43,26,61,.7) 100%)}}
+.gal{overflow:hidden;margin-top:30px;-webkit-mask:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);mask:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent)}
+.gal .row{display:flex;gap:16px;width:max-content;animation:slide 40s linear infinite}
+.gal:hover .row{animation-play-state:paused}
+.gal figure{width:240px;flex:none;border-radius:18px;overflow:hidden;position:relative;box-shadow:0 14px 30px rgba(43,26,61,.15)}
+.gal figure img{width:100%;height:340px;object-fit:cover;display:block;transition:transform 6s ease}
+.gal figure:hover img{transform:scale(1.08)}
+.gal figcaption{position:absolute;left:12px;bottom:12px;background:rgba(251,246,238,.92);border-radius:999px;padding:5px 12px;font-weight:800;font-size:13px}
+@keyframes slide{to{transform:translateX(calc(-50% - 8px))}}
+@media(prefers-reduced-motion:reduce){.hbg div{animation:none}.hbg div:first-child{opacity:1}.gal .row{animation:none}}
 .toast{position:fixed;left:50%;top:84px;transform:translate(-50%,-30px);opacity:0;background:var(--pl);color:#fff;padding:12px 18px;border-radius:14px;font-weight:800;z-index:50;transition:.3s;white-space:nowrap}
 .toast.on{opacity:1;transform:translate(-50%,0)}
 .spin{width:18px;height:18px;border:3px solid rgba(255,255,255,.4);border-top-color:#fff;border-radius:50%;animation:sp .8s linear infinite;display:none}
@@ -148,7 +165,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
  <nav class="si"><a href="#prices">ගණන්</a><a href="#order">Order කරන්න</a><a href="#track">මගේ order එක</a><a href="#visit">වෙලාවල්</a></nav>
 </div></header>
 
-<section class="hero" id="top"><div class="wrap">
+<section class="hero" id="top"><div class="hbg" aria-hidden="true"><div style="background-image:url(../assets/tailor/dress_window.webp)"></div><div style="background-image:url(../assets/tailor/fitting.webp)"></div><div style="background-image:url(../assets/tailor/shop_window.webp)"></div></div><div class="wrap">
  <div>
   <div class="kick" style="color:var(--gd2)">Ladies · Gents · School uniforms</div>
   <h1 class="si" style="margin-top:14px">මහන්න දෙන්න <em>පෝලිමේ ඉන්න</em> ඕන නෑ</h1>
@@ -166,6 +183,12 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
 </div>
 <div class="tape" id="tape"></div>
 </section>
+
+<section class="sec" id="work" style="padding-bottom:20px"><div class="wrap">
+ <div class="kick">Our work</div>
+ <h2 class="si">අපි මහපු <em>ඇඳුම්</em></h2>
+ <p class="lead si">Saree jacket එකේ ඉඳන් office wear එක වෙනකම්. (Demo එකේ තියෙන්නේ sample photos.)</p>
+</div><div class="gal"><div class="row"><figure><img src="../assets/tailor/saree_red.webp" alt="Saree jacket" loading="lazy"><figcaption>Saree jacket</figcaption></figure><figure><img src="../assets/tailor/dress_window.webp" alt="Frocks" loading="lazy"><figcaption>Frocks</figcaption></figure><figure><img src="../assets/tailor/saree_maroon.webp" alt="Saree blouse" loading="lazy"><figcaption>Saree blouse</figcaption></figure><figure><img src="../assets/tailor/fitting.webp" alt="Office wear" loading="lazy"><figcaption>Office wear</figcaption></figure><figure><img src="../assets/tailor/saree_white.webp" alt="Saree jacket" loading="lazy"><figcaption>Saree jacket</figcaption></figure><figure><img src="../assets/tailor/saree_print.webp" alt="Long sleeve blouse" loading="lazy"><figcaption>Long sleeve blouse</figcaption></figure><figure><img src="../assets/tailor/saree_red.webp" alt="Saree jacket" loading="lazy"><figcaption>Saree jacket</figcaption></figure><figure><img src="../assets/tailor/dress_window.webp" alt="Frocks" loading="lazy"><figcaption>Frocks</figcaption></figure><figure><img src="../assets/tailor/saree_maroon.webp" alt="Saree blouse" loading="lazy"><figcaption>Saree blouse</figcaption></figure><figure><img src="../assets/tailor/fitting.webp" alt="Office wear" loading="lazy"><figcaption>Office wear</figcaption></figure><figure><img src="../assets/tailor/saree_white.webp" alt="Saree jacket" loading="lazy"><figcaption>Saree jacket</figcaption></figure><figure><img src="../assets/tailor/saree_print.webp" alt="Long sleeve blouse" loading="lazy"><figcaption>Long sleeve blouse</figcaption></figure></div></div></section>
 
 <section class="sec" id="prices"><div class="wrap">
  <div class="kick">Prices</div>
