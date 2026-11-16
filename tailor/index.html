@@ -64,15 +64,16 @@ nav a:hover{color:var(--pl)}
 .facts div b{display:block;font-family:"Yeseva One";font-weight:400;font-size:30px;color:var(--gd2)}
 .facts div span{font-size:14px;color:#cdbedb}
 /* order ticket */
-.ticket{position:relative;justify-self:center;width:min(360px,100%);background:#FFFDF8;color:var(--pl);border-radius:6px;padding:30px 26px 24px;box-shadow:0 30px 60px rgba(0,0,0,.4);transform:rotate(3deg)}
+.ticket{position:relative;justify-self:center;width:min(390px,100%);background:#FFFDF8;color:var(--pl);border-radius:6px;padding:30px 26px 24px;box-shadow:0 30px 60px rgba(0,0,0,.4);transform:rotate(3deg)}
 .ticket::before{content:"";position:absolute;left:50%;top:-14px;width:28px;height:28px;margin-left:-14px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#fff 0 15%,#E04B4B 16% 60%,#9E1F1F 61%);box-shadow:0 4px 8px rgba(0,0,0,.35)}
 .ticket .no{font-family:"Yeseva One";font-size:34px;letter-spacing:.02em}
 .ticket .row{display:flex;justify-content:space-between;border-bottom:1px dashed var(--line);padding:8px 0;font-size:15px}
 .ticket .row span{color:var(--mut)}
-.steps{display:flex;justify-content:space-between;margin-top:18px;position:relative}
-.steps::before{content:"";position:absolute;left:12px;right:12px;top:11px;height:3px;background:var(--line)}
-.steps .fill{position:absolute;left:12px;top:11px;height:3px;background:var(--gd);transition:width .6s}
-.steps div{position:relative;z-index:1;text-align:center;width:22%;font-size:11.5px;font-weight:700;color:var(--mut);line-height:1.25}
+.steps{display:flex;margin-top:18px;position:relative;--n:5}
+.steps::before{content:"";position:absolute;left:calc(50% / var(--n));right:calc(50% / var(--n));top:11px;height:4px;border-radius:2px;background:var(--line)}
+.steps .fill{position:absolute;left:calc(50% / var(--n));top:11px;height:4px;border-radius:2px;background:var(--gd);width:0;transition:width .9s cubic-bezier(.4,0,.2,1)}
+.steps div{position:relative;z-index:1;text-align:center;flex:1;min-width:0;font-size:11.5px;font-weight:700;color:var(--mut);line-height:1.25;transition:color .3s .2s}
+.steps div i{transition:background .3s .2s,border-color .3s .2s}
 .steps div i{display:block;width:25px;height:25px;margin:0 auto 6px;border-radius:50%;background:#fff;border:3px solid var(--line)}
 .steps div.on{color:var(--pl)}
 .steps div.on i{background:var(--gd);border-color:var(--gd)}
@@ -160,7 +161,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
   <div class="no">ST-1024</div>
   <div class="row"><span>Item</span><b>Saree jacket</b></div>
   <div class="row"><span>Ready</span><b>සිකුරාදා</b></div>
-  <div class="steps" id="hs"><span class="fill" style="width:0"></span><div><i></i>New</div><div><i></i>Cutting</div><div><i></i>Stitching</div><div><i></i>Ready</div></div>
+  <div class="steps" id="hs"><span class="fill"></span><div><i></i>New</div><div><i></i>Cutting</div><div><i></i>Stitching</div><div><i></i>Ready</div><div><i></i>Collected</div></div>
  </div>
 </div>
 <div class="tape" id="tape"></div>
@@ -206,7 +207,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
  <p class="lead si">කඩේ අය Sheet එකේ status එක මාරු කරනකොටම මෙතන පේනවා.</p>
  <form class="tk si" id="tk"><input id="tid" placeholder="Order number (ST-1001)" autocapitalize="characters"><input id="tph" inputmode="tel" placeholder="Phone number"><button class="btn gd" id="tbtn"><span class="spin"></span>බලන්න</button></form>
  <div class="res si" id="res"><div style="display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap"><div><small style="color:#cdbedb" id="rid"></small><div class="st" id="rst"></div></div><div style="text-align:right"><small style="color:#cdbedb">Item</small><div style="font-weight:800" id="rit"></div></div></div>
-  <div class="steps" id="rs" style="margin-top:22px"><span class="fill"></span><div><i></i>New</div><div><i></i>Cutting</div><div><i></i>Stitching</div><div><i></i>Ready</div></div></div>
+  <div class="steps" id="rs" style="margin-top:22px"><span class="fill"></span><div><i></i>New</div><div><i></i>Cutting</div><div><i></i>Stitching</div><div><i></i>Ready</div><div><i></i>Collected</div></div></div>
  <div class="err" id="terr" style="margin-top:14px;color:#FFB4A8"></div>
 </div></section>
 
@@ -267,7 +268,10 @@ $("copy").onclick=()=>{const t=$("oid").textContent;navigator.clipboard.writeTex
 $("again").onclick=()=>{$("form").reset();setMin();$("form").style.display="grid";$("done").style.display="none";$("form").scrollIntoView({behavior:"smooth"})};
 // track <- Google Sheet
 const ORDER=["New","Cutting","Stitching","Ready to collect","Collected"];
-function steps(el,st){const k=Math.min(3,ORDER.indexOf(st));const ds=el.querySelectorAll("div");ds.forEach((d,i)=>d.classList.toggle("on",i<=k));el.querySelector(".fill").style.width=`calc((100% - 24px) * ${Math.max(0,k)/3})`}
+// the line fills up to the current step, dot by dot
+function steps(el,st,fromZero){const ds=[...el.querySelectorAll("div")],n=ds.length,k=Math.max(0,Math.min(n-1,ORDER.indexOf(st))),f=el.querySelector(".fill");
+ const set=()=>{ds.forEach((d,i)=>d.classList.toggle("on",i<=k));f.style.width=`calc(${k/(n-1)} * (100% - 100% / ${n}))`};
+ if(fromZero){ds.forEach(d=>d.classList.remove("on"));f.style.transition="none";f.style.width="0";f.offsetWidth;f.style.transition="";requestAnimationFrame(()=>requestAnimationFrame(set))}else set()}
 $("tk").onsubmit=async e=>{e.preventDefault();$("terr").textContent="";$("res").style.display="none";
  const id=$("tid").value.trim().toUpperCase(),ph=$("tph").value.replace(/\D/g,"");
  if(!id||ph.length<9){$("terr").textContent="Order number එකයි phone number එකයි දෙකම දාන්න";return}
@@ -275,11 +279,11 @@ $("tk").onsubmit=async e=>{e.preventDefault();$("terr").textContent="";$("res").
  try{const r=await fetch(API+"?id="+encodeURIComponent(id)+"&phone="+encodeURIComponent(ph));const j=await r.json();
   if(!j.ok){$("terr").textContent=j.error==="Order not found"?"Order එක හම්බුණේ නෑ. Number දෙකම check කරන්න.":"ආයෙත් try කරන්න.";}
   else{$("rid").textContent=j.id;const M={"New":"Order එක ලැබුණා","Cutting":"කපනවා ✂️","Stitching":"මහනවා 🧵","Ready to collect":"Ready! ඇවිත් ගන්න 🎉","Collected":"ගෙනිච්චා ✓"};
-   $("rst").textContent=M[j.status]||j.status;$("rit").textContent=j.item;steps($("rs"),j.status);$("res").style.display="block"}
+   $("rst").textContent=M[j.status]||j.status;$("rit").textContent=j.item;steps($("rs"),j.status,true);$("res").style.display="block"}
  }catch(err){$("terr").textContent="Check කරන්න බැරි වුණා. ආයෙත් try කරන්න."}
  b.classList.remove("busy");b.disabled=false};
 // hero ticket animation
-(function(){const el=$("hs");let k=0;const go=()=>{steps(el,ORDER[k]);k=(k+1)%4};go();setInterval(go,1600)})();
+(function(){const el=$("hs");let k=0;const go=()=>{steps(el,ORDER[k]);k=(k+1)%5};go();setInterval(go,1600)})();
 // hours
 (function(){const H=[["Monday","9:00 am – 7:00 pm"],["Tuesday","9:00 am – 7:00 pm"],["Wednesday","9:00 am – 7:00 pm"],["Thursday","9:00 am – 7:00 pm"],["Friday","9:00 am – 7:00 pm"],["Saturday","9:00 am – 5:00 pm"],["Sunday","Closed"]];
  const t=(new Date().getDay()+6)%7;$("hours").innerHTML=H.map((h,i)=>`<div class="${i===t?"today":""}"><span>${h[0]}${i===t?" · today":""}</span><span>${h[1]}</span></div>`).join("")})();
