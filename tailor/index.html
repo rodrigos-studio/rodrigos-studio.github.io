@@ -166,6 +166,21 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
 .tk input{border:1.5px solid var(--line)!important;box-shadow:0 8px 18px rgba(43,26,61,.08)}
 .res{background:var(--pl)!important;border:0!important;color:#fff;box-shadow:0 18px 40px rgba(43,26,61,.25)}
 #terr{color:var(--bad)!important}
+
+/* fabric patterns on the coloured half + a stitched seam on the split */
+.sec>.pat{position:absolute;inset:0;z-index:0;pointer-events:none}
+.sec>.wrap,.sec>.gal{position:relative;z-index:1}
+.pat .fab{position:absolute;inset:0;opacity:.55}
+.pat svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+#work .fab{background:radial-gradient(circle,rgba(201,150,58,.35) 0 3px,transparent 3.5px) 0 0/26px 26px,radial-gradient(circle,rgba(201,150,58,.22) 0 3px,transparent 3.5px) 13px 13px/26px 26px}
+#prices .fab{background:repeating-linear-gradient(90deg,rgba(200,90,80,.16) 0 2px,transparent 2px 14px),repeating-linear-gradient(90deg,rgba(200,90,80,.10) 0 1px,transparent 1px 7px)}
+#order .fab{background:linear-gradient(rgba(110,80,160,.14) 1px,transparent 1px) 0 0/24px 24px,linear-gradient(90deg,rgba(110,80,160,.14) 1px,transparent 1px) 0 0/24px 24px,linear-gradient(rgba(110,80,160,.22) 1.5px,transparent 1.5px) 0 0/120px 120px,linear-gradient(90deg,rgba(110,80,160,.22) 1.5px,transparent 1.5px) 0 0/120px 120px}
+#track .fab{background:linear-gradient(90deg,rgba(46,155,95,.16) 50%,transparent 50%) 0 0/34px 34px,linear-gradient(rgba(46,155,95,.16) 50%,transparent 50%) 0 0/34px 34px}
+#how .fab{background:repeating-linear-gradient(45deg,rgba(214,130,60,.16) 0 6px,transparent 6px 12px) 0 0/24px 24px,repeating-linear-gradient(-45deg,rgba(214,130,60,.16) 0 6px,transparent 6px 12px) 12px 0/24px 24px}
+#visit .fab{background:repeating-linear-gradient(135deg,rgba(60,100,170,.12) 0 3px,transparent 3px 18px),repeating-linear-gradient(45deg,rgba(60,100,170,.09) 0 3px,transparent 3px 18px)}
+.pat .sew{fill:none;stroke:#2B1A3D;stroke-opacity:.35;stroke-width:2.2;stroke-dasharray:10 8;stroke-linecap:round}
+.pat .edge{fill:none;stroke:#fff;stroke-opacity:.8;stroke-width:5}
+.pat .tag{position:absolute;font-family:"Yeseva One";font-size:clamp(70px,12vw,170px);line-height:1;color:var(--pl);opacity:.06;white-space:nowrap;right:3%;bottom:2%}
 .toast{position:fixed;left:50%;top:84px;transform:translate(-50%,-30px);opacity:0;background:var(--pl);color:#fff;padding:12px 18px;border-radius:14px;font-weight:800;z-index:50;transition:.3s;white-space:nowrap}
 .toast.on{opacity:1;transform:translate(-50%,0)}
 .spin{width:18px;height:18px;border:3px solid rgba(255,255,255,.4);border-top-color:#fff;border-radius:50%;animation:sp .8s linear infinite;display:none}
@@ -318,6 +333,18 @@ $("tk").onsubmit=async e=>{e.preventDefault();$("terr").textContent="";$("res").
    $("rst").textContent=M[j.status]||j.status;$("rit").textContent=j.item;steps($("rs"),j.status,true);$("res").style.display="block"}
  }catch(err){$("terr").textContent="Check කරන්න බැරි වුණා. ආයෙත් try කරන්න."}
  b.classList.remove("busy");b.disabled=false};
+
+// fabric patterns, a stitched seam and a big faint word on each coloured half
+(function(){const W={work:"Sarees",prices:"Rs",order:"Pattern",track:"Ready",how:"1 · 2 · 3",visit:"Kotte"};
+ const secs=[...document.querySelectorAll(".sec")];
+ secs.forEach(sec=>{const p=document.createElement("div");p.className="pat";p.innerHTML=`<div class="fab"></div><svg><path class="edge"/><path class="sew"/></svg><span class="tag">${W[sec.id]||""}</span>`;sec.prepend(p)});
+ function lay(){const mob=innerWidth<=760;secs.forEach(sec=>{const w=sec.offsetWidth,h=sec.offsetHeight,p=sec.querySelector(".pat");let a,b,poly;
+  if(mob){a=[0,h/2];b=[w,h/2];poly=`polygon(0 ${h/2}px,${w}px ${h/2}px,${w}px ${h}px,0 ${h}px)`}
+  else{const t=Math.tan(10*Math.PI/180)*h/2;a=[w/2+t,0];b=[w/2-t,h];poly=`polygon(${a[0]}px 0,${w}px 0,${w}px ${h}px,${b[0]}px ${h}px)`}
+  p.querySelector(".fab").style.clipPath=poly;p.querySelector(".tag").style.clipPath="none";
+  const off=mob?[0,8]:[8,0];const d=`M${a[0]+off[0]} ${a[1]+off[1]} L${b[0]+off[0]} ${b[1]+off[1]}`;
+  p.querySelector(".sew").setAttribute("d",d);p.querySelector(".edge").setAttribute("d",`M${a[0]} ${a[1]} L${b[0]} ${b[1]}`)})}
+ lay();addEventListener("resize",lay);new ResizeObserver(lay).observe(document.body)})();
 // hero ticket animation
 (function(){const el=$("hs");let k=0;const go=()=>{steps(el,ORDER[k]);k=(k+1)%5};go();setInterval(go,1600)})();
 // hours
