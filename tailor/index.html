@@ -177,7 +177,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
 <section class="sec order" id="order"><div class="wrap">
  <div class="kick">Order online</div>
  <h2 class="si">Order එක දාන්න, <em>අපිට එවෙලෙම</em> පේනවා</h2>
- <p class="lead si">ඔයා දාන order එක කඩේ Google Sheet එකට එවෙලෙම යනවා. Order number එකක් ලැබෙනවා, ඒක save කරගන්න.</p>
+ <p class="lead si">Order එක යැව්වම order number එකක් ලැබෙනවා. ඒක save කරගන්න, ඇඳුම ready ද කියලා බලන්න ඒක ඕනේ.</p>
  <form class="form si" id="form" novalidate>
   <div class="f"><label for="item">මහන්න ඕන මොකක්ද?</label><select id="item"></select></div>
   <div class="f"><label for="needBy">කවදට ඕනද?</label><input type="date" id="needBy"><small id="minnote"></small></div>
@@ -204,7 +204,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
 <section class="sec track" id="track"><div class="wrap">
  <div class="kick" style="color:var(--gd2)">Track</div>
  <h2 class="si">"මගේ ඇඳුම <em>ready ද?</em>" කියලා call කරන්න ඕන නෑ</h2>
- <p class="lead si">කඩේ අය Sheet එකේ status එක මාරු කරනකොටම මෙතන පේනවා.</p>
+ <p class="lead si">Order number එකයි phone number එකයි දාන්න. ඇඳුම දැන් කපනවද, මහනවද, ready ද කියලා එවෙලෙම පේනවා.</p>
  <form class="tk si" id="tk"><input id="tid" placeholder="Order number (ST-1001)" autocapitalize="characters"><input id="tph" inputmode="tel" placeholder="Phone number"><button class="btn gd" id="tbtn"><span class="spin"></span>බලන්න</button></form>
  <div class="res si" id="res"><div style="display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap"><div><small style="color:#cdbedb" id="rid"></small><div class="st" id="rst"></div></div><div style="text-align:right"><small style="color:#cdbedb">Item</small><div style="font-weight:800" id="rit"></div></div></div>
   <div class="steps" id="rs" style="margin-top:22px"><span class="fill"></span><div><i></i>New</div><div><i></i>Cutting</div><div><i></i>Stitching</div><div><i></i>Ready</div><div><i></i>Collected</div></div></div>
@@ -217,7 +217,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
  <div class="how si">
   <div><b>1</b><strong>Order එක online දාන්න</strong><p style="color:var(--mut);margin-top:6px">Item එක, දවස, measurements. Order number එක එවෙලෙම ලැබෙනවා.</p></div>
   <div><b>2</b><strong>රෙදි ගෙනත් දෙන්න</strong><p style="color:var(--mut);margin-top:6px">Measurements නැත්නම් කඩේදීම මනිනවා. විනාඩි 10යි.</p></div>
-  <div><b>3</b><strong>Ready වුණාම ගෙනියන්න</strong><p style="color:var(--mut);margin-top:6px">Status එක "Ready to collect" වුණාම ඇවිත් ගන්න.</p></div>
+  <div><b>3</b><strong>Ready වුණාම ගෙනියන්න</strong><p style="color:var(--mut);margin-top:6px">"Ready" කියලා පෙන්නුවම ඇවිත් ගන්න. Call කරන්න ඕන නෑ.</p></div>
  </div>
 </div></section>
 
@@ -231,7 +231,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
  </div>
 </div></section>
 
-<footer><div class="wrap"><span>Demo site by <a href="https://rodrigos-studio.github.io/" style="text-decoration:underline">Rodrigo's Studio</a> · prices are sample prices</span><span>Orders in this demo go to a sample Google Sheet</span></div></footer>
+<footer><div class="wrap"><span>Demo site by <a href="https://rodrigos-studio.github.io/" style="text-decoration:underline">Rodrigo's Studio</a> · prices are sample prices</span><span>Orders in this demo are sample orders</span></div></footer>
 <div class="toast si" id="toast"></div>
 
 <script>
