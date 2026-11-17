@@ -1,0 +1,319 @@
+<!doctype html><html lang="si"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Thilini Pharmacy · demo</title>
+<meta name="description" content="Demo website for a pharmacy: send a photo of your prescription straight to the pharmacy's WhatsApp, get a refill reminder, and check common items. Made by Rodrigo's Studio.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Thilini Pharmacy · demo by Rodrigo&#x27;s Studio">
+<meta property="og:description" content="Pharmacy demo: prescription photo to WhatsApp, refill reminder, common items with prices.">
+<meta property="og:url" content="https://rodrigos-studio.github.io/pharmacy/">
+<meta property="og:image" content="https://rodrigos-studio.github.io/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/png" href="https://rodrigos-studio.github.io/icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@400;500;700;800&family=Noto+Sans+Sinhala:wght@400;500;600;700;800&display=swap">
+<style>
+*{margin:0;box-sizing:border-box}
+:root{--gr:#0B6B57;--gr2:#0E8A6F;--dk:#06372D;--mint:#E8F5F0;--mint2:#D3EDE3;--paper:#FAFCFB;--card:#fff;--line:#D5E6DE;--mut:#5C7069;--ink:#0F2A23;--lime:#C8E86A;--amb:#F2A93B;--bad:#C8372D;--wa:#1FAF5A}
+html{scroll-behavior:smooth;overflow-x:clip}
+body{background:var(--paper);color:var(--ink);font-family:"DM Sans","Noto Sans Sinhala",system-ui,sans-serif;font-size:17px;line-height:1.6}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+input,select,textarea{font:inherit;color:inherit}
+img{max-width:100%;display:block}
+.wrap{max-width:1140px;margin:0 auto;padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px))}
+.ribbon{background:var(--dk);color:#bfe0d4;font-size:13.5px;text-align:center;padding:7px 12px;font-weight:500}
+.ribbon a{text-decoration:underline;color:#fff}
+.btn{white-space:nowrap;display:inline-flex;align-items:center;justify-content:center;gap:10px;border-radius:14px;padding:14px 22px;font-weight:800;font-size:17px;border:2px solid transparent;transition:transform .15s}
+.btn:active{transform:scale(.97)}
+.btn.g{background:var(--gr);color:#fff;box-shadow:0 10px 22px rgba(11,107,87,.28)}
+.btn.l{background:var(--lime);color:var(--dk)}
+.btn.ol{border-color:var(--gr);color:var(--gr);background:#fff}
+.btn.w{background:var(--wa);color:#fff}
+.btn[disabled]{opacity:.55;pointer-events:none}
+.kick{font-weight:800;font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:var(--gr2);display:flex;align-items:center;gap:10px}
+.kick::before{content:"";width:14px;height:14px;background:linear-gradient(var(--gr2),var(--gr2)) center/100% 4px no-repeat,linear-gradient(var(--gr2),var(--gr2)) center/4px 100% no-repeat}
+h2{font-weight:800;font-size:clamp(28px,4vw,42px);line-height:1.3;margin:10px 0 4px;text-wrap:balance}
+h2 em{font-style:normal;color:var(--gr2)}
+.lead{max-width:640px;color:var(--mut);margin-top:8px}
+.sec{padding:84px 0;position:relative}
+/* blister strip (the subject's own object) */
+.blister{display:flex;gap:10px;padding:10px 14px;border-radius:14px;background:linear-gradient(160deg,#EEF3F1,#D9E3DF);box-shadow:inset 0 1px 0 #fff,0 8px 18px rgba(6,55,45,.15);width:max-content}
+.blister i{width:30px;height:30px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#fff 0 18%,#F7F9F8 30%,#D9E1DE 70%,#C3CFCA);box-shadow:0 2px 3px rgba(0,0,0,.12)}
+.blister i.out{background:radial-gradient(circle at 50% 50%,#C9D3CF 0 40%,#E3EAE7 60%);box-shadow:inset 0 2px 4px rgba(0,0,0,.15)}
+/* header */
+header{background:rgba(250,252,251,.94);backdrop-filter:blur(10px);position:sticky;top:0;z-index:30;border-bottom:1px solid var(--line)}
+header .wrap{height:70px;display:flex;align-items:center;gap:22px}
+.logo{display:flex;align-items:center;gap:10px;white-space:nowrap}
+.logo i{width:42px;height:42px;border-radius:12px;background:var(--gr);position:relative;flex:none}
+.logo i::before,.logo i::after{content:"";position:absolute;left:50%;top:50%;background:#fff;border-radius:2px;transform:translate(-50%,-50%)}
+.logo i::before{width:22px;height:7px}.logo i::after{width:7px;height:22px}
+.logo b{font-family:"DM Serif Display",Georgia,serif;font-weight:400;font-size:25px;line-height:1}
+.logo small{display:block;font-weight:800;font-size:10.5px;letter-spacing:.22em;color:var(--gr2);margin-top:4px;text-transform:uppercase}
+nav{display:flex;gap:24px;font-weight:700;font-size:15px;color:var(--mut);margin-left:auto}
+nav a:hover{color:var(--gr)}
+@media(max-width:860px){nav{display:none}header .wrap{justify-content:space-between;gap:10px}}
+@media(max-width:520px){.logo b{font-size:20px}.logo i{width:36px;height:36px;border-radius:10px}.logo small{font-size:9.5px;letter-spacing:.16em}header .btn{padding:9px 12px!important;font-size:14px!important}}
+/* hero */
+.hero{background:var(--dk);color:#fff;overflow:hidden;position:relative}
+.hero .ph{position:absolute;inset:0;background:var(--dk) center/cover no-repeat}
+.hero .ph::after{content:"";position:absolute;inset:0;background:linear-gradient(100deg,rgba(6,55,45,.97) 0,rgba(6,55,45,.88) 45%,rgba(6,55,45,.55) 100%)}
+.hero .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center;padding-top:70px;padding-bottom:84px;position:relative;z-index:1}
+.hero h1{font-weight:800;font-size:clamp(32px,5vw,54px);line-height:1.3;text-wrap:balance}
+.hero h1 em{font-style:normal;color:var(--lime)}
+.hero p{color:#c7e2d8;font-size:19px;margin:18px 0 28px;max-width:540px}
+.hero .bt{display:flex;gap:12px;flex-wrap:wrap}
+.hero .btn.ol{border-color:#fff;color:#fff;background:transparent}
+.open{display:inline-flex;align-items:center;gap:8px;background:rgba(200,232,106,.14);border:1px solid rgba(200,232,106,.4);color:var(--lime);font-weight:800;font-size:14px;padding:6px 14px;border-radius:99px;margin-bottom:18px}
+.open i{width:9px;height:9px;border-radius:50%;background:var(--lime);box-shadow:0 0 0 4px rgba(200,232,106,.25)}
+.facts{display:flex;gap:26px;margin-top:34px;flex-wrap:wrap}
+.facts div b{display:block;font-family:"DM Serif Display";font-weight:400;font-size:30px;color:var(--lime)}
+.facts div span{font-size:14px;color:#b5d6ca}
+/* Rx slip */
+.slip{position:relative;justify-self:center;width:min(380px,100%);background:#fff;color:var(--ink);border-radius:16px;padding:24px 24px 20px;box-shadow:0 30px 60px rgba(0,0,0,.4);transform:rotate(2.5deg)}
+.slip .rx{position:absolute;right:20px;top:14px;font-family:"DM Serif Display";font-size:56px;color:var(--mint2);line-height:1}
+.slip small{font-weight:800;font-size:12px;letter-spacing:.16em;color:var(--gr2)}
+.slip .no{font-family:"DM Serif Display";font-size:34px;line-height:1.1;margin:2px 0 10px}
+.slip .row{display:flex;justify-content:space-between;gap:10px;border-bottom:1px dashed var(--line);padding:8px 0;font-size:15px}
+.slip .row span{color:var(--mut)}
+.slip .blister{margin:16px auto 0}
+.steps{display:flex;margin-top:18px;position:relative;--n:3}
+.steps::before{content:"";position:absolute;left:calc(50% / var(--n));right:calc(50% / var(--n));top:11px;height:4px;border-radius:2px;background:var(--line)}
+.steps .fill{position:absolute;left:calc(50% / var(--n));top:11px;height:4px;border-radius:2px;background:var(--gr2);width:0;transition:width .9s cubic-bezier(.4,0,.2,1)}
+.steps div{position:relative;z-index:1;text-align:center;flex:1;min-width:0;font-size:12.5px;font-weight:700;color:var(--mut);line-height:1.3}
+.steps div i{display:block;width:25px;height:25px;margin:0 auto 6px;border-radius:50%;background:#fff;border:3px solid var(--line);transition:background .3s .2s,border-color .3s .2s}
+.steps div.on{color:var(--ink)}
+.steps div.on i{background:var(--gr2);border-color:var(--gr2)}
+@media(max-width:880px){.hero .wrap{grid-template-columns:1fr;padding-top:46px}.slip{transform:rotate(1.5deg);margin-top:10px}}
+/* rx form */
+.form{background:var(--card);border-radius:24px;padding:28px;margin-top:30px;box-shadow:0 20px 50px rgba(6,55,45,.08);display:grid;grid-template-columns:1fr 1fr;gap:18px 22px}
+.f{display:flex;flex-direction:column;gap:6px;min-width:0}
+.f.full{grid-column:1/-1}
+.f label,.f .lb{font-weight:800;font-size:15px}
+.f input,.f select,.f textarea{border:1.5px solid var(--line);border-radius:12px;padding:12px 14px;background:#FBFDFC;width:100%}
+.f input:focus,.f select:focus,.f textarea:focus{outline:none;border-color:var(--gr2);box-shadow:0 0 0 4px rgba(14,138,111,.14)}
+.f small{color:var(--mut);font-size:13.5px}
+.drop{grid-column:1/-1;border:2px dashed var(--gr2);border-radius:18px;background:var(--mint);padding:22px;display:flex;align-items:center;gap:20px;cursor:pointer;position:relative}
+.drop input{position:absolute;inset:0;opacity:0;cursor:pointer}
+.drop .ic{width:64px;height:64px;border-radius:16px;background:var(--gr);display:grid;place-items:center;flex:none;font-size:30px}
+.drop b{display:block;font-size:19px}
+.drop span{color:var(--mut);font-size:15px}
+.drop .thumb{width:84px;height:84px;border-radius:12px;object-fit:cover;flex:none;display:none;box-shadow:0 6px 14px rgba(0,0,0,.18)}
+.drop.has{border-style:solid;background:#fff}
+.drop.has .thumb{display:block}.drop.has .ic{display:none}
+.seg{display:flex;gap:8px;flex-wrap:wrap}
+.seg button{border:1.5px solid var(--line);border-radius:12px;padding:10px 16px;font-weight:700;font-size:15px;background:#fff}
+.seg button.on{background:var(--gr);color:#fff;border-color:var(--gr)}
+#addrBox{display:none}
+@media(max-width:720px){.form{grid-template-columns:1fr;padding:20px}.drop{padding:16px;gap:14px}}
+.err{color:var(--bad);font-weight:700;font-size:15px;min-height:1px}
+.done{display:none;text-align:center;background:var(--card);border-radius:24px;padding:34px 24px;margin-top:30px;box-shadow:0 20px 50px rgba(6,55,45,.08)}
+.done .big{font-family:"DM Serif Display";font-size:clamp(40px,8vw,64px);color:var(--gr);margin:6px 0}
+.done p{color:var(--mut);max-width:480px;margin:0 auto 18px}
+.done .bt{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.done .note{font-size:14px;margin-top:14px;color:var(--mut)}
+/* refill */
+.refill{background:var(--mint)}
+.rf{display:grid;grid-template-columns:1fr 1fr;gap:26px;margin-top:30px;align-items:start}
+.rf .form{margin-top:0;grid-template-columns:1fr 1fr}
+.cal{background:var(--dk);color:#fff;border-radius:24px;padding:26px;position:relative;overflow:hidden}
+.cal small{font-weight:800;font-size:12px;letter-spacing:.16em;color:var(--lime)}
+.cal .d{font-family:"DM Serif Display";font-size:clamp(36px,6vw,52px);line-height:1.1;margin:6px 0}
+.cal p{color:#c7e2d8}
+.cal .bar{height:10px;border-radius:5px;background:rgba(255,255,255,.15);margin:18px 0 8px;overflow:hidden}
+.cal .bar i{display:block;height:100%;background:var(--lime);width:0;transition:width .8s}
+.cal .bt{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}
+.cal .blister{position:absolute;right:-20px;bottom:-14px;transform:rotate(-12deg);opacity:.22}
+@media(max-width:860px){.rf{grid-template-columns:1fr}}
+/* items */
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:34px}
+.pc{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:18px;display:flex;flex-direction:column;gap:4px;transition:.2s}
+.pc:hover{transform:translateY(-3px);box-shadow:0 14px 28px rgba(6,55,45,.1)}
+.pc b{font-size:17px;line-height:1.35}
+.pc small{color:var(--mut);font-size:14px}
+.pc .p{font-family:"DM Serif Display";font-size:24px;color:var(--gr);margin-top:6px}
+.st{align-self:flex-start;font-size:12.5px;font-weight:800;padding:3px 10px;border-radius:99px;background:#E2F4EA;color:#1E7A4A}
+.st.o{background:#FDF0DC;color:#9A5B05}
+.pc button{margin-top:10px;align-self:flex-start;font-weight:800;font-size:14px;color:var(--gr);border:1.5px solid var(--gr);border-radius:10px;padding:6px 12px}
+.pc button.on{background:var(--gr);color:#fff}
+@media(max-width:900px){.grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:520px){.grid{gap:10px}.pc{padding:14px;border-radius:16px}.pc b{font-size:15.5px}.pc .p{font-size:21px}.pc button{font-size:13px;padding:6px 10px}.st{font-size:11.5px}}
+.list{position:sticky;bottom:14px;z-index:20;margin-top:22px;background:var(--dk);color:#fff;border-radius:18px;padding:14px 18px;display:none;align-items:center;gap:14px;flex-wrap:wrap;box-shadow:0 18px 40px rgba(0,0,0,.25)}
+.list span{flex:1;min-width:180px;font-weight:700}
+/* how + visit */
+.how{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:30px}
+.how div{background:#fff;border:1px solid var(--line);border-radius:20px;padding:22px}
+.how b{font-family:"DM Serif Display";font-weight:400;font-size:40px;color:var(--gr2);line-height:1}
+.how h3{font-size:19px;margin:8px 0 4px}
+.how p{color:var(--mut);font-size:15.5px}
+@media(max-width:800px){.how{grid-template-columns:1fr}}
+.visit{background:var(--dk);color:#fff}
+.visit .g2{display:grid;grid-template-columns:1fr 1fr;gap:26px;margin-top:26px}
+.visit .card{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);border-radius:20px;padding:24px}
+.visit .card h3{font-size:18px;margin-bottom:10px;color:var(--lime)}
+.hrs div{display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px dashed rgba(255,255,255,.15)}
+.visit p{color:#c7e2d8}
+.visit .tel{font-family:"DM Serif Display";font-size:34px;margin:6px 0 14px;user-select:all}
+@media(max-width:800px){.visit .g2{grid-template-columns:1fr}}
+footer{background:#04261F;color:#8fb5a8;font-size:14px;padding:26px 0;text-align:center}
+footer a{color:#fff;text-decoration:underline}
+.ph-img{position:relative;border-radius:22px;overflow:hidden;background:var(--mint2)}
+.ph-img img{width:100%;height:100%;object-fit:cover}
+.photos{display:grid;grid-template-columns:2fr 1fr 1fr;gap:14px;margin-top:30px;height:300px}
+.photos:empty{display:none}
+@media(max-width:700px){.photos{grid-template-columns:1fr 1fr;height:auto}.photos .ph-img{height:180px}.photos .ph-img:first-child{grid-column:1/-1}}
+</style></head><body>
+<div class="ribbon">මේක Rodrigo's Studio හදපු <b>sample website</b> එකක්. ඔයාගේ pharmacy එකටත් මේ වගේ එකක් ඕනෙද? <a href="https://rodrigos-studio.github.io/">Rodrigo's Studio</a></div>
+<header><div class="wrap">
+ <a class="logo" href="#top"><i></i><div><b>Thilini Pharmacy</b><small>Kotte · Since 2009</small></div></a>
+ <nav><a href="#rx">Prescription</a><a href="#refill">Refill reminder</a><a href="#items">Items</a><a href="#visit">Visit</a></nav>
+ <a class="btn g" href="#rx" style="padding:10px 16px;font-size:15px">📷 Prescription</a>
+</div></header>
+
+<section class="hero" id="top"><div class="ph" id="heroPh"></div><div class="wrap">
+ <div>
+  <div class="open"><i></i><span id="openTxt">දැන් open · රෑ 10 වෙනකම්</span></div>
+  <h1>Prescription එකේ photo එකක් එවන්න. <em>බෙහෙත් ready කරලා තියන්නම්.</em></h1>
+  <p>Queue එකේ ඉන්න ඕන නෑ. Pharmacist බලලා WhatsApp එකෙන් කියනවා බෙහෙත් තියෙනවද, ගාන කීයද, ready වෙන්නේ කීයටද කියලා.</p>
+  <div class="bt"><a class="btn l" href="#rx">📷 Prescription එක එවන්න</a><a class="btn ol" href="#refill">Refill reminder</a></div>
+  <div class="facts"><div><b>15 min</b><span>සාමාන්‍යයෙන් ready වෙන්න</span></div><div><b>3 km</b><span>ගෙදරටම delivery</span></div><div><b>8am–10pm</b><span>හැමදාම open</span></div></div>
+ </div>
+ <div class="slip" aria-hidden="true"><div class="rx">℞</div>
+  <small>PRESCRIPTION ORDER</small><div class="no">RX-1024</div>
+  <div class="row"><span>Name</span><b>Nadeeka</b></div>
+  <div class="row"><span>Items</span><b>3 medicines</b></div>
+  <div class="row"><span>Collect</span><b>Pickup · 6:30 pm</b></div>
+  <div class="steps" id="heroSteps"><span class="fill"></span><div><i></i>Received</div><div><i></i>Checking</div><div><i></i>Ready</div></div>
+  <div class="blister"><i></i><i></i><i class="out"></i><i></i><i></i><i class="out"></i></div>
+ </div>
+</div></section>
+
+<section class="sec" id="rx"><div class="wrap">
+ <div class="kick">Prescription</div>
+ <h2>Photo එක එවන්න, <em>ඉතුරු ටික අපි බලාගන්නම්</em></h2>
+ <p class="lead">Doctor දුන්න prescription එකේ photo එකක් ගන්න. Order number එකක් එක්කම ඒක කෙලින්ම pharmacy එකේ WhatsApp එකට යනවා.</p>
+ <form class="form" id="rxForm" novalidate>
+  <label class="drop" id="drop"><input type="file" id="photo" accept="image/*" capture="environment"><div class="ic">📷</div><img class="thumb" id="thumb" alt=""><div><b id="dropT">Prescription එකේ photo එක ගන්න</b><span id="dropS">Phone එකේ camera එක open වෙනවා. Gallery එකෙන් තෝරන්නත් පුළුවන්.</span></div></label>
+  <div class="f"><label for="name">නම</label><input id="name" placeholder="උදා: Nadeeka" autocomplete="name"></div>
+  <div class="f"><label for="phone">Phone (WhatsApp)</label><input id="phone" inputmode="tel" placeholder="07X XXX XXXX" autocomplete="tel"></div>
+  <div class="f"><span class="lb">කොහොමද ගන්නේ?</span><div class="seg" id="how"><button type="button" class="on" data-v="Pickup">🏪 කඩේට ඇවිත්</button><button type="button" data-v="Delivery">🛵 Delivery</button></div><small id="howNote">Ready වුණාම WhatsApp එකෙන් කියනවා.</small></div>
+  <div class="f"><span class="lb">Brand එක</span><div class="seg" id="brand"><button type="button" class="on" data-v="Same brand only">Prescription එකේ එකම</button><button type="button" data-v="Generic OK">Generic OK</button></div><small>Generic නම් ගාන අඩුයි.</small></div>
+  <div class="f full" id="addrBox"><label for="addr">Delivery address</label><input id="addr" placeholder="ගෙදර address එක (3 km ඇතුළත)"></div>
+  <div class="f full"><label for="notes">Note එකක් (ඕන නම්)</label><textarea id="notes" rows="2" placeholder="උදා: දවස් 14ට විතරක් දෙන්න"></textarea></div>
+  <div class="f full"><div class="err" id="err"></div><button class="btn g" id="send" type="submit" style="justify-self:start;width:max-content">Order එක හදන්න →</button></div>
+ </form>
+ <div class="done" id="done">
+  <div class="kick" style="justify-content:center">Order එක ready</div>
+  <div class="big" id="oid">RX-1024</div>
+  <p id="doneTxt">දැන් WhatsApp button එක ඔබන්න. Photo එකයි order number එකයි එකම පාරට pharmacy එකට යනවා.</p>
+  <div class="bt"><button class="btn w" id="waSend">WhatsApp එකට යවන්න</button><button class="btn ol" id="again">අලුත් order එකක්</button></div>
+  <div class="note" id="waNote">Pharmacist බලලා විනාඩි 15ක් ඇතුළත reply කරනවා.</div>
+ </div>
+</div></section>
+
+<section class="sec refill" id="refill"><div class="wrap">
+ <div class="kick">Refill reminder</div>
+ <h2>හැමදාම බොන බෙහෙත් <em>ඉවර වෙන්න කලින් මතක් කරනවා</em></h2>
+ <p class="lead">Pressure, sugar වගේ හැමදාම බොන බෙහෙත් ඉවර වෙන දවස බලාගන්න. Phone එකේ calendar එකට reminder එකකුත් දාගන්න පුළුවන්.</p>
+ <div class="rf">
+  <form class="form" id="rfForm" onsubmit="return false">
+   <div class="f full"><label for="med">බෙහෙත</label><input id="med" value="Pressure tablets" placeholder="උදා: Pressure tablets"></div>
+   <div class="f"><label for="start">පටන් ගත්ත දවස</label><input id="start" type="date"></div>
+   <div class="f"><label for="qty">Tablets කීයක් තියෙනවද?</label><input id="qty" type="number" min="1" value="30" inputmode="numeric"></div>
+   <div class="f full"><span class="lb">දවසට කීයක්?</span><div class="seg" id="perDay"><button type="button" class="on" data-v="1">1</button><button type="button" data-v="2">2</button><button type="button" data-v="3">3</button></div></div>
+  </form>
+  <div class="cal" id="cal">
+   <small>ඉවර වෙන්නේ</small><div class="d" id="endD">—</div>
+   <p id="endP">තව දවස් —</p>
+   <div class="bar"><i id="endBar"></i></div>
+   <p id="remP" style="font-size:15px">Reminder: දවස් 3කට කලින්</p>
+   <div class="bt"><button class="btn l" id="ics">📅 Calendar එකට දාන්න</button><button class="btn w" id="refillWa">Refill order කරන්න</button></div>
+   <div class="blister"><i></i><i></i><i></i><i></i><i></i></div>
+  </div>
+ </div>
+</div></section>
+
+<section class="sec" id="items"><div class="wrap">
+ <div class="kick">Common items</div>
+ <h2>නිතර ගන්න දේවල්, <em>ගානත් එක්කම</em></h2>
+ <p class="lead">ඕන දේවල් list එකට දාලා WhatsApp එකෙන් එවන්න. අපි ready කරලා තියන්නම්. (Sample prices)</p>
+ <div class="grid" id="grid"></div>
+ <div class="list" id="list"><span id="listT">Items 0</span><button class="btn w" id="listWa" style="padding:10px 16px;font-size:15px">List එක WhatsApp කරන්න</button></div>
+ <div class="photos" id="photos"></div>
+</div></section>
+
+<section class="sec" id="how-it-works" style="padding-top:20px"><div class="wrap">
+ <div class="kick">How it works</div>
+ <h2>පියවර තුනයි</h2>
+ <div class="how">
+  <div><b>1</b><h3>Photo එක ගන්න</h3><p>Prescription එකේ photo එක මේ site එකෙන්ම ගන්න. Order number එකක් හැදෙනවා.</p></div>
+  <div><b>2</b><h3>WhatsApp එකට යවන්න</h3><p>Photo එකයි number එකයි pharmacy එකට යනවා. Pharmacist ගාන කියනවා.</p></div>
+  <div><b>3</b><h3>ඇවිත් ගන්න, නැත්නම් delivery</h3><p>Ready වුණාම message එකක් එනවා. Queue නෑ.</p></div>
+ </div>
+</div></section>
+
+<section class="sec visit" id="visit"><div class="wrap">
+ <div class="kick" style="color:var(--lime)">Visit</div>
+ <h2 style="color:#fff">කඩේට එන්න, <em style="color:var(--lime)">නැත්නම් call කරන්න</em></h2>
+ <div class="g2">
+  <div class="card"><h3>Open hours</h3><div class="hrs" id="hrs"><div><span>සඳුදා – සෙනසුරාදා</span><b>8:00 am – 10:00 pm</b></div><div><span>ඉරිදා</span><b>8:00 am – 9:00 pm</b></div><div><span>Poya days</span><b>9:00 am – 6:00 pm</b></div></div><p style="margin-top:14px">Registered pharmacist කෙනෙක් හැම වෙලාවෙම ඉන්නවා.</p></div>
+  <div class="card"><h3>Call / WhatsApp</h3><div class="tel">072 499 6667</div><p>No. 21, Sample Road, Kotte (sample address)<br>Delivery: 3 km ඇතුළත · Rs 150</p><div style="margin-top:16px;display:flex;gap:10px;flex-wrap:wrap"><a class="btn w" href="https://wa.me/94724996667" target="_blank" rel="noopener">WhatsApp</a></div></div>
+ </div>
+</div></section>
+<footer>Sample website · <a href="https://rodrigos-studio.github.io/">Rodrigo's Studio</a> · ඔයාගේ pharmacy එකටත් මේ වගේ එකක් හදමු</footer>
+
+<script>
+const $=id=>document.getElementById(id),WA="94724996667";
+// optional real photos (added in assets/pharmacy/)
+const PH="../assets/pharmacy/";
+const tryImg=(src,ok)=>{const i=new Image();i.onload=()=>ok(i);i.src=src};
+tryImg(PH+"hero.webp",()=>$("heroPh").style.backgroundImage=`url(${PH}hero.webp)`);
+["shelves","counter","tablets"].forEach(n=>tryImg(PH+n+".webp",i=>{const d=document.createElement("div");d.className="ph-img";i.alt="";d.appendChild(i);$("photos").appendChild(d)}));
+// open now
+(function(){const d=new Date(),h=d.getHours()+d.getMinutes()/60,sun=d.getDay()===0,cl=sun?21:22,op=h>=8&&h<cl;$("openTxt").textContent=op?`දැන් open · රෑ ${cl-12} වෙනකම්`:"දැන් වහලා · උදේ 8ට open";if(!op)document.querySelector(".open i").style.background="#F2A93B"})();
+// hero slip steps
+function steps(el,k){const f=el.querySelector(".fill"),ds=[...el.querySelectorAll("div")],n=ds.length;ds.forEach((d,i)=>d.classList.toggle("on",i<=k));f.style.width=`calc(${k/(n-1)} * (100% - 100% / ${n}))`}
+let hs=0;setTimeout(function t(){steps($("heroSteps"),hs);hs=(hs+1)%3;setTimeout(t,hs===0?2600:1300)},500);
+// segmented buttons
+document.querySelectorAll(".seg").forEach(s=>s.addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;s.querySelectorAll("button").forEach(x=>x.classList.toggle("on",x===b));s.dispatchEvent(new Event("change"))}));
+const segv=id=>$(id).querySelector(".on").dataset.v;
+$("how").addEventListener("change",()=>{const d=segv("how")==="Delivery";$("addrBox").style.display=d?"flex":"none";$("howNote").textContent=d?"3 km ඇතුළත · Rs 150. Ready වුණාම එවනවා.":"Ready වුණාම WhatsApp එකෙන් කියනවා."});
+// prescription photo
+let file=null;
+$("photo").addEventListener("change",e=>{file=e.target.files[0]||null;if(!file)return;const u=URL.createObjectURL(file);$("thumb").src=u;$("drop").classList.add("has");$("dropT").textContent="Photo එක හරි ✓";$("dropS").textContent="වෙනස් කරන්න ඕන නම් ආයෙත් ඔබන්න.";$("err").textContent=""});
+const phoneOk=p=>/^(?:\+?94|0)7\d{8}$/.test(p.replace(/[\s-]/g,""));
+let order=null;
+$("rxForm").addEventListener("submit",e=>{e.preventDefault();const name=$("name").value.trim(),phone=$("phone").value.trim();
+ if(!file){$("err").textContent="Prescription එකේ photo එක දාන්න.";return}
+ if(!name){$("err").textContent="නම දාන්න.";$("name").focus();return}
+ if(!phoneOk(phone)){$("err").textContent="Phone number එක හරියට දාන්න (07X XXX XXXX).";$("phone").focus();return}
+ if(segv("how")==="Delivery"&&!$("addr").value.trim()){$("err").textContent="Delivery address එක දාන්න.";$("addr").focus();return}
+ $("err").textContent="";const id="RX-"+(1000+Math.floor(Math.random()*9000));
+ order={id,name,phone,how:segv("how"),brand:segv("brand"),addr:$("addr").value.trim(),notes:$("notes").value.trim()};
+ $("oid").textContent=id;$("rxForm").style.display="none";$("done").style.display="block";$("done").scrollIntoView({behavior:"smooth",block:"center"})});
+const msg=o=>`Hi Thilini Pharmacy 👋\nPrescription order: ${o.id}\nName: ${o.name}\nPhone: ${o.phone}\n${o.how==="Delivery"?"Delivery: "+o.addr:"Pickup (කඩේට ඇවිත්)"}\nBrand: ${o.brand}${o.notes?"\nNote: "+o.notes:""}`;
+$("waSend").addEventListener("click",async()=>{if(!order)return;const text=msg(order);
+ try{if(file&&navigator.canShare&&navigator.canShare({files:[file]})){await navigator.share({files:[file],text});$("waNote").textContent="Share list එකෙන් WhatsApp තෝරන්න. Photo එකයි message එකයි එකට යනවා.";return}}catch(err){if(err&&err.name==="AbortError")return}
+ window.open(`https://wa.me/${WA}?text=${encodeURIComponent(text)}`,"_blank","noopener");$("waNote").textContent="WhatsApp open වුණාම 📎 ඔබලා prescription photo එකත් attach කරන්න."});
+$("again").addEventListener("click",()=>{$("rxForm").reset();file=null;$("drop").classList.remove("has");$("dropT").textContent="Prescription එකේ photo එක ගන්න";$("dropS").textContent="Phone එකේ camera එක open වෙනවා. Gallery එකෙන් තෝරන්නත් පුළුවන්.";$("done").style.display="none";$("rxForm").style.display="grid"});
+// refill reminder
+const iso=d=>d.toISOString().slice(0,10),fmt=d=>d.toLocaleDateString("en-GB",{weekday:"short",day:"numeric",month:"short"});
+(function(){const d=new Date();d.setDate(d.getDate()-18);$("start").value=iso(d)})();
+let end=null;
+function calc(){const s=new Date($("start").value+"T00:00:00"),q=Math.max(1,+$("qty").value||1),pd=+segv("perDay");if(isNaN(s)){return}
+ const days=Math.floor(q/pd);end=new Date(s);end.setDate(end.getDate()+days);const today=new Date();today.setHours(0,0,0,0);
+ const left=Math.round((end-today)/864e5),used=Math.min(1,Math.max(0,(today-s)/864e5/days));
+ $("endD").textContent=fmt(end);$("endP").textContent=left>0?`තව දවස් ${left}යි. ${left<=5?"දැන්ම refill කරගන්න 🙏":"Reminder එකක් දාගන්න."}`:"බෙහෙත් ඉවරයි. අදම refill කරගන්න 🙏";
+ $("endBar").style.width=(used*100)+"%";const r=new Date(end);r.setDate(r.getDate()-3);$("remP").textContent=`Reminder: ${fmt(r)} (දවස් 3කට කලින්)`}
+["start","qty","med"].forEach(i=>$(i).addEventListener("input",calc));$("perDay").addEventListener("change",calc);calc();
+$("ics").addEventListener("click",()=>{if(!end)return;const r=new Date(end);r.setDate(r.getDate()-3);const ds=iso(r).replace(/-/g,""),de=iso(new Date(r.getTime()+864e5)).replace(/-/g,""),med=($("med").value||"Medicine").replace(/[,;\n]/g," ");
+ const ics=["BEGIN:VCALENDAR","VERSION:2.0","PRODID:-//Thilini Pharmacy demo//EN","BEGIN:VEVENT",`UID:${Date.now()}@thilini-demo`,`DTSTAMP:${new Date().toISOString().replace(/[-:]/g,"").slice(0,15)}Z`,`DTSTART;VALUE=DATE:${ds}`,`DTEND;VALUE=DATE:${de}`,`SUMMARY:Refill: ${med} (Thilini Pharmacy)`,`DESCRIPTION:${med} ඉවර වෙන්නේ ${fmt(end)}. WhatsApp 072 499 6667`,"BEGIN:VALARM","TRIGGER:PT9H","ACTION:DISPLAY","DESCRIPTION:Refill reminder","END:VALARM","END:VEVENT","END:VCALENDAR"].join("\r\n");
+ const a=document.createElement("a");a.href=URL.createObjectURL(new Blob([ics],{type:"text/calendar"}));a.download="refill-reminder.ics";document.body.appendChild(a);a.click();a.remove()});
+$("refillWa").addEventListener("click",()=>window.open(`https://wa.me/${WA}?text=${encodeURIComponent(`Hi Thilini Pharmacy 👋\nRefill order: ${$("med").value}\n${$("qty").value} tablets ඕන. කීයටද ready වෙන්නේ?`)}`,"_blank","noopener"));
+// common items (sample prices)
+const ITEMS=[["Paracetamol 500mg","Tablets 10ක strip එක",45,1],["Vitamin C 500mg","Tablets 30",950,1],["ORS sachet","Sachet 1",60,1],["Face masks","Masks 10",250,1],["Digital thermometer","1",1450,1],["BP monitor (arm)","1",12500,0],["Glucometer strips","Strips 50",4800,1],["Baby diapers M","Diapers 40",3900,1]];
+const pick=new Set();
+$("grid").innerHTML=ITEMS.map((it,i)=>`<div class="pc"><span class="st ${it[3]?"":"o"}">${it[3]?"In stock":"දවස් 2න් ගෙන්නලා දෙනවා"}</span><b>${it[0]}</b><small>${it[1]}</small><div class="p">Rs ${it[2].toLocaleString("en-US")}</div><button data-i="${i}">+ List එකට</button></div>`).join("");
+$("grid").addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;const i=+b.dataset.i;pick.has(i)?pick.delete(i):pick.add(i);b.classList.toggle("on",pick.has(i));b.textContent=pick.has(i)?"✓ List එකේ":"+ List එකට";
+ const tot=[...pick].reduce((a,i)=>a+ITEMS[i][2],0);$("list").style.display=pick.size?"flex":"none";$("listT").textContent=`Items ${pick.size} · Rs ${tot.toLocaleString("en-US")}`});
+$("listWa").addEventListener("click",()=>{const l=[...pick].map(i=>`• ${ITEMS[i][0]} (${ITEMS[i][1]})`).join("\n");window.open(`https://wa.me/${WA}?text=${encodeURIComponent(`Hi Thilini Pharmacy 👋\nමේ ටික ready කරලා තියන්න පුළුවන්ද?\n${l}`)}`,"_blank","noopener")});
+</script>
+</body></html>
