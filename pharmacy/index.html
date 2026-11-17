@@ -192,7 +192,7 @@ footer a{color:#fff;text-decoration:underline}
  <h2>Photo එක එවන්න, <em>ඉතුරු ටික අපි බලාගන්නම්</em></h2>
  <p class="lead">Doctor දුන්න prescription එකේ photo එකක් ගන්න. Order number එකක් එක්කම ඒක කෙලින්ම pharmacy එකේ WhatsApp එකට යනවා.</p>
  <form class="form" id="rxForm" novalidate>
-  <label class="drop" id="drop"><input type="file" id="photo" accept="image/*" capture="environment"><div class="ic">📷</div><img class="thumb" id="thumb" alt=""><div><b id="dropT">Prescription එකේ photo එක ගන්න</b><span id="dropS">Phone එකේ camera එක open වෙනවා. Gallery එකෙන් තෝරන්නත් පුළුවන්.</span></div></label>
+  <label class="drop" id="drop"><input type="file" id="photo" accept="image/*" capture="environment"><div class="ic">📷</div><img class="thumb" id="thumb" alt=""><div><b id="dropT">Prescription එකේ photo එක ගන්න</b><span id="dropS">Prescription එක නැත්නම් බෙහෙත් strip එකේ / පෙට්ටියේ photo එකත් හරි.</span></div></label>
   <div class="f"><label for="name">නම</label><input id="name" placeholder="උදා: Nadeeka" autocomplete="name"></div>
   <div class="f"><label for="phone">Phone (WhatsApp)</label><input id="phone" inputmode="tel" placeholder="07X XXX XXXX" autocomplete="tel"></div>
   <div class="f"><span class="lb">කොහොමද ගන්නේ?</span><div class="seg" id="how"><button type="button" class="on" data-v="Pickup">🏪 කඩේට ඇවිත්</button><button type="button" data-v="Delivery">🛵 Delivery</button></div><small id="howNote">Ready වුණාම WhatsApp එකෙන් කියනවා.</small></div>
@@ -294,7 +294,7 @@ const msg=o=>`Hi Thilini Pharmacy 👋\nPrescription order: ${o.id}\nName: ${o.n
 $("waSend").addEventListener("click",async()=>{if(!order)return;const text=msg(order);
  try{if(file&&navigator.canShare&&navigator.canShare({files:[file]})){await navigator.share({files:[file],text});$("waNote").textContent="Share list එකෙන් WhatsApp තෝරන්න. Photo එකයි message එකයි එකට යනවා.";return}}catch(err){if(err&&err.name==="AbortError")return}
  window.open(`https://wa.me/${WA}?text=${encodeURIComponent(text)}`,"_blank","noopener");$("waNote").textContent="WhatsApp open වුණාම 📎 ඔබලා prescription photo එකත් attach කරන්න."});
-$("again").addEventListener("click",()=>{$("rxForm").reset();file=null;$("drop").classList.remove("has");$("dropT").textContent="Prescription එකේ photo එක ගන්න";$("dropS").textContent="Phone එකේ camera එක open වෙනවා. Gallery එකෙන් තෝරන්නත් පුළුවන්.";$("done").style.display="none";$("rxForm").style.display="grid"});
+$("again").addEventListener("click",()=>{$("rxForm").reset();file=null;$("drop").classList.remove("has");$("dropT").textContent="Prescription එකේ photo එක ගන්න";$("dropS").textContent="Prescription එක නැත්නම් බෙහෙත් strip එකේ / පෙට්ටියේ photo එකත් හරි.";$("done").style.display="none";$("rxForm").style.display="grid"});
 // refill reminder
 const iso=d=>d.toISOString().slice(0,10),fmt=d=>d.toLocaleDateString("en-GB",{weekday:"short",day:"numeric",month:"short"});
 (function(){const d=new Date();d.setDate(d.getDate()-18);$("start").value=iso(d)})();
