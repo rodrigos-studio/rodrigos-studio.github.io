@@ -58,7 +58,7 @@ header .btn{padding:10px 16px;font-size:15px;margin-left:auto}
 @media(max-width:900px){.hsearch{display:none}}
 @media(max-width:520px){.logo b{font-size:18px}.logo i{width:34px;height:34px;border-radius:9px}.logo small{font-size:10px}header .btn{padding:9px 12px!important;font-size:14px!important}}
 /* hero */
-.hero{background:linear-gradient(180deg,#EEF5FE 0,#fff 100%);overflow:hidden}
+.hero{background:linear-gradient(180deg,#EEF5FE 0,#fff 100%);overflow:hidden;overflow:clip}
 .hero .wrap{display:grid;grid-template-columns:1.05fr .95fr;gap:44px;align-items:center;padding-top:56px;padding-bottom:64px}
 .open{display:inline-flex;align-items:center;gap:8px;background:var(--gr2);color:#0B7A3B;font-weight:800;font-size:14px;padding:6px 14px;border-radius:99px;margin-bottom:16px}
 .open i{width:9px;height:9px;border-radius:50%;background:var(--gr);box-shadow:0 0 0 4px rgba(18,161,80,.18)}
@@ -196,7 +196,7 @@ footer a{color:#fff;text-decoration:underline}
 
 /* ---- motion + real photo backgrounds ---- */
 .hero{position:relative}
-.hbg{position:absolute;inset:0;z-index:0;overflow:hidden}
+.hbg{position:absolute;inset:0;z-index:0;overflow:hidden;overflow:clip}
 .hbg div{position:absolute;inset:-6%;background:center/cover no-repeat;opacity:0;animation:kb 18s infinite}
 .hbg div:nth-child(2){animation-delay:6s}.hbg div:nth-child(3){animation-delay:12s}
 @keyframes kb{0%{opacity:0;transform:scale(1.03) translate(0,0)}6%{opacity:1}33%{opacity:1}40%{opacity:0;transform:scale(1.15) translate(-2%,-1.5%)}100%{opacity:0}}
@@ -229,7 +229,7 @@ footer a{color:#fff;text-decoration:underline}
 .gal figcaption{position:absolute;left:12px;bottom:12px;background:rgba(255,255,255,.94);color:var(--ink);border-radius:999px;padding:5px 12px;font-weight:800;font-size:13px}
 @keyframes slide{to{transform:translateX(calc(-50% - 8px))}}
 /* section backgrounds: real photos, soft and slowly panning */
-.sec.pbg{overflow:hidden}
+.sec.pbg{overflow:hidden;overflow:clip}
 .sec.pbg::before{content:"";position:absolute;inset:-40px;background:var(--img) center/cover no-repeat;filter:blur(3px) saturate(1.1);opacity:var(--op,.13);animation:pan 36s ease-in-out infinite alternate;z-index:0}
 .sec.pbg::after{content:"";position:absolute;inset:0;background:var(--ov);z-index:0}
 .sec.pbg>.wrap{position:relative;z-index:1}
