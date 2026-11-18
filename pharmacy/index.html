@@ -193,6 +193,60 @@ header .btn{padding:10px 16px;font-size:15px;margin-left:auto}
 .fab svg{width:30px;height:30px}
 footer{background:var(--ink);color:#9fb0cb;font-size:14px;padding:26px 0;text-align:center}
 footer a{color:#fff;text-decoration:underline}
+
+/* ---- motion + real photo backgrounds ---- */
+.hero{position:relative}
+.hbg{position:absolute;inset:0;z-index:0;overflow:hidden}
+.hbg div{position:absolute;inset:-6%;background:center/cover no-repeat;opacity:0;animation:kb 18s infinite}
+.hbg div:nth-child(2){animation-delay:6s}.hbg div:nth-child(3){animation-delay:12s}
+@keyframes kb{0%{opacity:0;transform:scale(1.03) translate(0,0)}6%{opacity:1}33%{opacity:1}40%{opacity:0;transform:scale(1.15) translate(-2%,-1.5%)}100%{opacity:0}}
+.hbg::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(255,255,255,.97) 0,rgba(244,249,255,.93) 40%,rgba(232,241,253,.45) 68%,rgba(13,71,161,.12) 100%)}
+.hero .wrap{position:relative;z-index:1}
+@media(min-width:901px){.hbg div{inset:-5% -4% -5% 36%;background-position:60% 22%}.hbg::after{background:linear-gradient(90deg,#fff 0,rgba(255,255,255,.98) 36%,rgba(244,249,255,.55) 50%,rgba(232,241,253,.05) 68%,rgba(13,71,161,.10) 100%)}}
+.hvis{min-height:460px}
+.hvis .ph{display:none}
+.slip{left:auto;right:10px;bottom:10px}
+.badge{right:auto;left:0;top:30px}
+.fcard{animation:bob 5s ease-in-out infinite}
+.slip{animation-delay:-2.5s}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+.chip3{position:absolute;right:30px;top:150px;background:#fff;border-radius:99px;padding:8px 14px;font-weight:800;font-size:14px;box-shadow:0 14px 30px rgba(14,34,64,.16);display:flex;gap:8px;align-items:center;animation:bob 6s ease-in-out -1s infinite}
+.chip3 i{width:10px;height:10px;border-radius:50%;background:var(--gr);box-shadow:0 0 0 0 rgba(18,161,80,.5);animation:ping 1.8s infinite}
+@keyframes ping{0%{box-shadow:0 0 0 0 rgba(18,161,80,.55)}100%{box-shadow:0 0 0 12px rgba(18,161,80,0)}}
+@media(max-width:900px){.hbg::after{background:linear-gradient(180deg,rgba(255,255,255,.96) 0,rgba(244,249,255,.9) 52%,rgba(232,241,253,.35) 78%,rgba(13,71,161,.15) 100%)}.hvis{min-height:430px;width:100%}.slip{right:0}.badge{left:0;top:10px}.chip3{right:auto;left:0;top:86px}}
+/* moving ticker of items + prices */
+.tick{background:var(--bl);color:#fff;overflow:hidden;white-space:nowrap;font-weight:700;font-size:15px}
+.tick .tr{display:inline-flex;gap:34px;padding:11px 0;animation:tk 38s linear infinite}
+.tick span b{color:#FFD54A;margin-left:6px}
+@keyframes tk{to{transform:translateX(-50%)}}
+/* sliding real-photo gallery */
+.gal{overflow:hidden;margin-top:28px;-webkit-mask:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);mask:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent)}
+.gal .row{display:flex;gap:16px;width:max-content;animation:slide 42s linear infinite}
+.gal:hover .row{animation-play-state:paused}
+.gal figure{width:250px;flex:none;border-radius:18px;overflow:hidden;position:relative;box-shadow:0 14px 30px rgba(14,34,64,.12);margin:0}
+.gal figure img{width:100%;height:330px;object-fit:cover;display:block;transition:transform 6s ease}
+.gal figure:hover img{transform:scale(1.08)}
+.gal figcaption{position:absolute;left:12px;bottom:12px;background:rgba(255,255,255,.94);color:var(--ink);border-radius:999px;padding:5px 12px;font-weight:800;font-size:13px}
+@keyframes slide{to{transform:translateX(calc(-50% - 8px))}}
+/* section backgrounds: real photos, soft and slowly panning */
+.sec.pbg{overflow:hidden}
+.sec.pbg::before{content:"";position:absolute;inset:-40px;background:var(--img) center/cover no-repeat;filter:blur(3px) saturate(1.1);opacity:var(--op,.13);animation:pan 36s ease-in-out infinite alternate;z-index:0}
+.sec.pbg::after{content:"";position:absolute;inset:0;background:var(--ov);z-index:0}
+.sec.pbg>.wrap{position:relative;z-index:1}
+@keyframes pan{from{transform:scale(1.05) translate(-2%,-1%)}to{transform:scale(1.12) translate(2%,1%)}}
+#rx{--img:url(../assets/pharmacy/shelves.webp);--op:.3;--ov:linear-gradient(180deg,rgba(243,248,254,.55),rgba(243,248,254,.85))}
+#refill{--img:url(../assets/pharmacy/hands.webp);--op:.3;--ov:linear-gradient(180deg,rgba(243,248,254,.6),rgba(243,248,254,.85))}
+#visit{--img:url(../assets/pharmacy/counter.webp);--op:.18;--ov:linear-gradient(180deg,rgba(255,255,255,.7),rgba(255,255,255,.9))}
+/* scroll reveal */
+.rv{opacity:0;transform:translateY(26px);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.7,.2,1)}
+.rv.in{opacity:1;transform:none}
+.pc.rv{transition-delay:calc(var(--d,0) * 60ms)}
+.fab::after{content:"";position:absolute;inset:0;border-radius:50%;box-shadow:0 0 0 0 rgba(31,175,90,.55);animation:ping2 2.2s infinite}
+@keyframes ping2{0%{box-shadow:0 0 0 0 rgba(31,175,90,.5)}100%{box-shadow:0 0 0 18px rgba(31,175,90,0)}}
+.trust i{animation:pop 3.2s ease-in-out infinite}
+.trust .wrap>div:nth-child(2) i{animation-delay:.4s}.trust .wrap>div:nth-child(3) i{animation-delay:.8s}.trust .wrap>div:nth-child(4) i{animation-delay:1.2s}
+@keyframes pop{0%,80%,100%{transform:none}88%{transform:translateY(-5px) scale(1.08)}}
+@media(prefers-reduced-motion:reduce){.hbg div{animation:none}.hbg div:first-child{opacity:1}.gal .row,.tick .tr,.fcard,.chip3,.sec.pbg::before,.trust i,.fab::after{animation:none}.rv{opacity:1;transform:none}}
 </style></head><body>
 <div class="ribbon">මේක Rodrigo's Studio හදපු <b>sample website</b> එකක්. ඔයාගේ pharmacy එකටත් මේ වගේ එකක් ඕනෙද? <a href="https://rodrigos-studio.github.io/">Rodrigo's Studio</a></div>
 <div class="topbar"><div class="wrap"><span>🛵 Kotte 3 km ඇතුළත delivery · <b>Rs 2,000ට වැඩි නම් free</b></span><span class="r">📞 072 499 6667 · හැමදාම 8am–10pm</span></div></div>
@@ -202,7 +256,7 @@ footer a{color:#fff;text-decoration:underline}
  <a class="btn b" href="#rx">📷 Prescription</a>
 </div></header>
 
-<section class="hero" id="top"><div class="wrap">
+<section class="hero" id="top"><div class="hbg" id="hbg"><div></div><div></div><div></div></div><div class="wrap">
  <div>
   <div class="open" id="open"><i></i><span id="openTxt">දැන් open · රෑ 10 වෙනකම්</span></div>
   <h1>Prescription එකේ photo එකක් එවන්න. <em>බෙහෙත් ready කරලා තියන්නම්.</em></h1>
@@ -212,7 +266,7 @@ footer a{color:#fff;text-decoration:underline}
   <div class="pop">Popular: <button data-q="Paracetamol">Paracetamol</button><button data-q="Vitamin">Vitamins</button><button data-q="Glucometer">Sugar test</button><button data-q="Diapers">Diapers</button></div>
  </div>
  <div class="hvis">
-  <div class="ph"><img id="heroImg" alt="Pharmacist at the counter"></div>
+  <div class="chip3"><i></i>Pharmacist online · reply ~15 min</div>
   <div class="fcard badge"><i>✚</i><div><b>Registered pharmacist</b><span>හැම වෙලාවෙම ඉන්නවා</span></div></div>
   <div class="fcard slip" aria-hidden="true">
    <small>PRESCRIPTION ORDER</small><div class="no">RX-1024</div>
@@ -229,8 +283,9 @@ footer a{color:#fff;text-decoration:underline}
  <div><i>⏱️</i><div><b>15 min ready</b><span>සාමාන්‍යයෙන්</span></div></div>
  <div><i>🛵</i><div><b>3 km delivery</b><span>Cash / card</span></div></div>
 </div></div>
+<div class="tick" aria-hidden="true"><div class="tr" id="tick"></div></div>
 
-<section class="sec alt" id="rx"><div class="wrap">
+<section class="sec alt pbg" id="rx"><div class="wrap">
  <div class="kick">Prescription</div>
  <h2>Photo එක එවන්න, <em>ඉතුරු ටික අපි බලාගන්නම්</em></h2>
  <p class="lead">Doctor දුන්න prescription එකේ photo එකක් ගන්න. Order number එකක් එක්කම ඒක කෙලින්ම pharmacy එකේ WhatsApp එකට යනවා.</p>
@@ -274,7 +329,7 @@ footer a{color:#fff;text-decoration:underline}
  <div class="list" id="list"><span id="listT">Items 0</span><button class="btn w" id="listWa" style="padding:10px 16px;font-size:15px">List එක WhatsApp කරන්න</button></div>
 </div></section>
 
-<section class="sec alt" id="refill"><div class="wrap">
+<section class="sec alt pbg" id="refill"><div class="wrap">
  <div class="kick">Refill reminder</div>
  <h2>හැමදාම බොන බෙහෙත් <em>ඉවර වෙන්න කලින් මතක් කරනවා</em></h2>
  <p class="lead">Pressure, sugar වගේ හැමදාම බොන බෙහෙත් ඉවර වෙන දවස බලාගන්න. Phone එකේ calendar එකට reminder එකකුත් දාගන්න පුළුවන්.</p>
@@ -295,10 +350,10 @@ footer a{color:#fff;text-decoration:underline}
  </div>
 </div></section>
 
-<section class="sec" id="visit"><div class="wrap">
+<section class="sec pbg" id="visit"><div class="wrap">
  <div class="kick">Visit</div>
  <h2>කඩේට එන්න, <em>නැත්නම් call කරන්න</em></h2>
- <div class="photos" id="photos"></div>
+ <div class="gal"><div class="row" id="gal"></div></div>
  <div class="vg">
   <div class="vc"><h3>Open hours</h3><div class="hrs" id="hrs"><div data-d="1-6"><span>සඳුදා – සෙනසුරාදා</span><b>8:00 am – 10:00 pm</b></div><div data-d="0"><span>ඉරිදා</span><b>8:00 am – 9:00 pm</b></div><div><span>Poya days</span><b>9:00 am – 6:00 pm</b></div></div><p style="margin-top:12px">Registered pharmacist කෙනෙක් හැම වෙලාවෙම ඉන්නවා.</p></div>
   <div class="vc"><h3>Call / WhatsApp</h3><div class="tel">072 499 6667</div><p>No. 21, Sample Road, Kotte (sample address)<br>Delivery: 3 km ඇතුළත · Rs 150 (Rs 2,000ට වැඩි නම් free)</p><div style="margin-top:16px;display:flex;gap:10px;flex-wrap:wrap"><a class="btn w" href="https://wa.me/94724996667" target="_blank" rel="noopener">WhatsApp</a><a class="btn ol" href="https://www.google.com/maps/search/?api=1&query=Kotte" target="_blank" rel="noopener">📍 Map</a></div></div>
@@ -309,8 +364,9 @@ footer a{color:#fff;text-decoration:underline}
 
 <script>
 const $=id=>document.getElementById(id),WA="94724996667",PH="../assets/pharmacy/";
-$("heroImg").src=PH+"hero.webp";
-["shelves","counter","tablets"].forEach(n=>{const d=document.createElement("div");d.className="ph-img";$("photos").appendChild(d);const i=new Image();i.onload=()=>d.appendChild(i);i.alt="";i.src=PH+n+".webp"});
+[...$("hbg").children].forEach((d,i)=>d.style.backgroundImage=`url(${PH}${["hero","counter","hands"][i]}.webp)`);
+const GAL=[["hero","Registered pharmacist"],["tablets","හරි බෙහෙත, හරි ගානට"],["counter","Stock එක හැමදාම check කරනවා"],["hands","Doctor දුන්න විදියටම"],["shelves","Personal care items"]];
+$("gal").innerHTML=[...GAL,...GAL].map(([n,c])=>`<figure><img src="${PH}${n}.webp" alt="" loading="lazy"><figcaption>${c}</figcaption></figure>`).join("");
 // open now + today's hours
 (function(){const d=new Date(),h=d.getHours()+d.getMinutes()/60,sun=d.getDay()===0,cl=sun?21:22,op=h>=8&&h<cl;$("openTxt").textContent=op?`දැන් open · රෑ ${cl-12} වෙනකම්`:"දැන් වහලා · උදේ 8ට open";$("open").classList.toggle("cl",!op);document.querySelector(sun?'#hrs [data-d="0"]':'#hrs [data-d="1-6"]').classList.add("today")})();
 function steps(el,k){const f=el.querySelector(".fill"),ds=[...el.querySelectorAll("div")],n=ds.length;ds.forEach((d,i)=>d.classList.toggle("on",i<=k));f.style.width=`calc(${k/(n-1)} * (100% - 100% / ${n}))`}
@@ -345,6 +401,7 @@ function render(){const s=q.toLowerCase(),vis=ITEMS.map((it,i)=>[it,i]).filter((
  $("grid").innerHTML=vis.map(([it,i])=>`<div class="pc"><span class="st ${it[3]?"":"o"}">${it[3]?"In stock":"දවස් 2න් ගෙන්නලා දෙනවා"}</span><span class="ct">${it[4]}</span><b>${it[0]}</b><small>${it[1]}</small><div class="row"><span class="p">Rs ${it[2].toLocaleString("en-US")}</span><button data-i="${i}" class="${pick.has(i)?"on":""}">${pick.has(i)?"✓ List එකේ":"+ List එකට"}</button></div></div>`).join("");
  $("none").style.display=vis.length?"none":"block"}
 render();
+{const t=ITEMS.map(i=>`<span>💊 ${i[0]}<b>Rs ${i[2].toLocaleString("en-US")}</b></span>`).join("");$("tick").innerHTML=t+t}
 $("grid").addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;const i=+b.dataset.i;pick.has(i)?pick.delete(i):pick.add(i);b.classList.toggle("on",pick.has(i));b.textContent=pick.has(i)?"✓ List එකේ":"+ List එකට";
  const tot=[...pick].reduce((a,i)=>a+ITEMS[i][2],0);$("list").style.display=pick.size?"flex":"none";$("listT").textContent=`Items ${pick.size} · Rs ${tot.toLocaleString("en-US")}`});
 $("listWa").addEventListener("click",()=>{const l=[...pick].map(i=>`• ${ITEMS[i][0]} (${ITEMS[i][1]})`).join("\n");window.open(`https://wa.me/${WA}?text=${encodeURIComponent(`Hi Thilini Pharmacy 👋\nමේ ටික ready කරලා තියන්න පුළුවන්ද?\n${l}`)}`,"_blank","noopener")});
@@ -366,5 +423,9 @@ $("ics").addEventListener("click",()=>{if(!end)return;const r=new Date(end);r.se
  const ics=["BEGIN:VCALENDAR","VERSION:2.0","PRODID:-//Thilini Pharmacy demo//EN","BEGIN:VEVENT",`UID:${Date.now()}@thilini-demo`,`DTSTAMP:${new Date().toISOString().replace(/[-:]/g,"").slice(0,15)}Z`,`DTSTART;VALUE=DATE:${ds}`,`DTEND;VALUE=DATE:${de}`,`SUMMARY:Refill: ${med} (Thilini Pharmacy)`,`DESCRIPTION:${med} ඉවර වෙන්නේ ${fmt(end)}. WhatsApp 072 499 6667`,"BEGIN:VALARM","TRIGGER:PT9H","ACTION:DISPLAY","DESCRIPTION:Refill reminder","END:VALARM","END:VEVENT","END:VCALENDAR"].join("\r\n");
  const a=document.createElement("a");a.href=URL.createObjectURL(new Blob([ics],{type:"text/calendar"}));a.download="refill-reminder.ics";document.body.appendChild(a);a.click();a.remove()});
 $("refillWa").addEventListener("click",()=>window.open(`https://wa.me/${WA}?text=${encodeURIComponent(`Hi Thilini Pharmacy 👋\nRefill order: ${$("med").value}\n${$("qty").value} tablets ඕන. කීයටද ready වෙන්නේ?`)}`,"_blank","noopener"));
+// scroll reveal (also re-applied when the item grid re-renders)
+const io="IntersectionObserver" in window?new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target)}}),{threshold:.12}):null;
+function reveal(root){if(!io)return;root.querySelectorAll(".sec h2,.sec .lead,.sec .kick,.rxs>div,.form,.cal,.vc,.pc,.trust .wrap>div,.done").forEach((el,i)=>{if(el.classList.contains("in"))return;el.classList.add("rv");if(el.classList.contains("pc"))el.style.setProperty("--d",i%4);io.observe(el)})}
+reveal(document);new MutationObserver(()=>reveal($("grid"))).observe($("grid"),{childList:true});
 </script>
 </body></html>
