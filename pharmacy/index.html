@@ -247,6 +247,22 @@ footer a{color:#fff;text-decoration:underline}
 .trust .wrap>div:nth-child(2) i{animation-delay:.4s}.trust .wrap>div:nth-child(3) i{animation-delay:.8s}.trust .wrap>div:nth-child(4) i{animation-delay:1.2s}
 @keyframes pop{0%,80%,100%{transform:none}88%{transform:translateY(-5px) scale(1.08)}}
 @media(prefers-reduced-motion:reduce){.hbg div{animation:none}.hbg div:first-child{opacity:1}.gal .row,.tick .tr,.fcard,.chip3,.sec.pbg::before,.trust i,.fab::after{animation:none}.rv{opacity:1;transform:none}}
+
+/* white mixed with two blues (light sky + deeper blue) */
+:root{--b1:#DDEAFD;--b2:#B7D1F8}
+.hero{background:linear-gradient(115deg,#fff 0,#fff 28%,var(--b1) 52%,var(--b2) 100%)}
+.hbg::after{background:linear-gradient(90deg,rgba(255,255,255,.97) 0,rgba(240,246,255,.9) 40%,rgba(195,217,249,.45) 68%,rgba(13,71,161,.18) 100%)}
+@media(min-width:901px){.hbg::after{background:linear-gradient(90deg,#fff 0,rgba(255,255,255,.96) 30%,rgba(226,237,253,.7) 44%,rgba(195,217,249,.15) 64%,rgba(13,71,161,.16) 100%)}}
+@media(max-width:900px){.hbg::after{background:linear-gradient(180deg,#fff 0,rgba(240,246,255,.94) 45%,rgba(195,217,249,.45) 75%,rgba(13,71,161,.2) 100%)}}
+.trust{background:linear-gradient(90deg,var(--b1) 0,#fff 35%,#fff 65%,var(--b2) 100%)}
+.sec.alt,.sec{background:#fff}
+#rx{background:linear-gradient(160deg,#fff 0,#fff 28%,var(--b1) 58%,var(--b2) 100%)}
+#items{background:linear-gradient(200deg,var(--b2) 0,var(--b1) 26%,#fff 58%,#fff 100%)}
+#refill{background:linear-gradient(150deg,var(--b1) 0,#fff 40%,#fff 55%,var(--b2) 100%)}
+#visit{background:linear-gradient(200deg,#fff 0,#fff 30%,var(--b1) 62%,var(--b2) 100%)}
+.sec.pbg::after{display:none}
+.sec.pbg::before{mix-blend-mode:multiply;filter:blur(3px) grayscale(.35) saturate(1.1)}
+#rx{--op:.16}#refill{--op:.15}#visit{--op:.12}
 </style></head><body>
 <div class="ribbon">මේක Rodrigo's Studio හදපු <b>sample website</b> එකක්. ඔයාගේ pharmacy එකටත් මේ වගේ එකක් ඕනෙද? <a href="https://rodrigos-studio.github.io/">Rodrigo's Studio</a></div>
 <div class="topbar"><div class="wrap"><span>🛵 Kotte 3 km ඇතුළත delivery · <b>Rs 2,000ට වැඩි නම් free</b></span><span class="r">📞 072 499 6667 · හැමදාම 8am–10pm</span></div></div>
