@@ -867,20 +867,29 @@ footer{padding-block:28px 36px;color:var(--ink-2);font-size:14px;font-family:var
     </div>
   </section>
 
-  <section class="bgx-s" id="pc-client" aria-labelledby="pcc-h">
+  <section class="bgx-s" id="pc-client" aria-labelledby="pcc-h"><div class="bgx" aria-hidden="true"><i class="nz"></i><i class="pt" style="background:radial-gradient(color-mix(in srgb,#E8761A 30%,transparent) 1.8px,transparent 2px) 0 0/22px 22px;opacity:1;-webkit-mask-image:radial-gradient(70% 80% at 0% 0%,#000,transparent 75%);mask-image:radial-gradient(70% 80% at 0% 0%,#000,transparent 75%)"></i><i class="gl rf-g1" style="background:color-mix(in srgb,#F2A23A 34%,transparent);width:min(520px,90vw);height:420px;right:-160px;top:-60px"></i><i class="gl rf-g2" style="background:color-mix(in srgb,#E2483A 24%,transparent);width:min(460px,80vw);height:360px;left:-140px;bottom:-120px"></i><i class="gl rf-g3" style="background:color-mix(in srgb,var(--accent) 26%,transparent);width:min(380px,70vw);height:300px;left:38%;top:40%"></i><svg class="fl" viewBox="0 0 120 120" style="width:clamp(90px,11vw,160px);right:max(-20px,-2vw);top:12%;rotate:10deg;opacity:1"><g fill="none" stroke="currentColor" stroke-width="3.5"><rect x="22" y="6" width="76" height="108" rx="14"/><path d="M50 44l26 16-26 16z" stroke-linejoin="round"/></g></svg><svg class="fl2" viewBox="0 0 120 110" style="width:clamp(80px,10vw,140px);left:max(-20px,-2vw);bottom:10%;rotate:-8deg;opacity:1"><path d="M60 100S10 68 10 36a24 24 0 0 1 50-12 24 24 0 0 1 50 12c0 32-50 64-50 64z" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linejoin="round"/></svg><span class="wd mh" style="left:-1vw;bottom:-0.12em">ROYAL FEAST</span></div>
     <style>
       #pc-client .rf-row{display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;padding:4px 2px 14px;margin:0 0 18px}
       #pc-client .rf-row figure{flex:0 0 min(62vw,230px);margin:0;scroll-snap-align:start}
       #pc-client .rf-row img{display:block;width:100%;height:auto;border-radius:12px;box-shadow:0 10px 24px color-mix(in srgb,var(--ink) 18%,transparent)}
       #pc-client .rf-row figcaption{font-family:var(--si);font-size:14px;color:var(--ink-2);margin-top:6px}
-      #pc-client .rf-reel{position:relative}
-      #pc-client .rf-reel::after{content:"";position:absolute;left:50%;top:30%;width:54px;height:54px;margin:-27px 0 0 -27px;border-radius:50%;background:rgba(0,0,0,.55) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M9 6l10 6-10 6z' fill='white'/%3E%3C/svg%3E") center/26px no-repeat}
       #pc-client .rf-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr));gap:12px 28px;margin-bottom:14px}
       #pc-client .rf-stats div{padding:14px 0;border-top:2px solid var(--ink)}
       #pc-client .rf-stats b{display:block;font-family:var(--display);font-size:clamp(26px,3.4vw,34px);line-height:1.1;font-variant-numeric:tabular-nums}
       #pc-client .rf-stats span{font-family:var(--si);font-size:15px;color:var(--ink-2)}
       #pc-client .rf-note{font-family:var(--si);font-size:15px;color:var(--ink-2);margin:0 0 10px;max-width:60ch}
       #pc-client .rf-link{font-family:var(--si);font-weight:700;color:var(--ink)}
+      #pc-client .rf-g1{animation:drift 13s ease-in-out infinite alternate;--dx:-40px;--dy:30px}
+      #pc-client .rf-g2{animation:drift 16s ease-in-out -4s infinite alternate;--dx:50px;--dy:-26px}
+      #pc-client .rf-g3{animation:drift 11s ease-in-out -2s infinite alternate;--dx:-60px;--dy:20px}
+      #pc-client .rf-vid{position:relative;aspect-ratio:4/5;border-radius:12px;overflow:hidden;box-shadow:0 10px 24px color-mix(in srgb,var(--ink) 18%,transparent);background:#1a0c05}
+      #pc-client .rf-vid video{display:block;width:100%;height:100%;object-fit:cover}
+      #pc-client .rf-vid .tag{position:absolute;left:10px;top:10px;font-family:var(--si);font-size:13px;font-weight:700;color:#fff;background:rgba(0,0,0,.55);padding:3px 10px;border-radius:99px}
+      #pc-client .rf-vid img.rf-bird{position:absolute;right:-4px;bottom:-6px;width:36%;height:auto;border-radius:0;box-shadow:none;filter:drop-shadow(0 8px 12px rgba(0,0,0,.45));animation:rfb 2.4s ease-in-out infinite;transform-origin:50% 100%}
+      @keyframes rfb{0%,100%{transform:translateY(0) rotate(0)}50%{transform:translateY(-6px) rotate(-3deg)}}
+      #pc-client .rf-end{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+      #pc-client .rf-end img{width:64px;height:auto;flex:none;animation:rfb 2.8s ease-in-out -1s infinite}
+      @media (prefers-reduced-motion:reduce){#pc-client .rf-g1,#pc-client .rf-g2,#pc-client .rf-g3,#pc-client .rf-vid img.rf-bird,#pc-client .rf-end img{animation:none}}
     </style>
     <div class="wrap">
       <div class="sec-top">
@@ -889,18 +898,18 @@ footer{padding-block:28px 36px;color:var(--ink-2);font-size:14px;font-family:var
       </div>
       <div class="rf-row">
         <figure><img src="assets/rf/combo.webp" alt="Royal Feast Devilled Chicken Rice combo post" loading="lazy" decoding="async"><figcaption>Office lunch combo</figcaption></figure>
-        <figure class="rf-reel"><img src="assets/rf/reel.webp" alt="Royal Feast kottu reel cover" loading="lazy" decoding="async"><figcaption>Kottu reel</figcaption></figure>
+        <figure><div class="rf-vid"><video src="assets/rf/kottu_clip.mp4" poster="assets/rf/kottu_clip_poster.webp" muted autoplay loop playsinline preload="metadata" aria-label="Royal Feast kottu reel clip"></video><span class="tag">▶ Reel</span><img class="rf-bird" src="assets/rf/bird_film.webp" alt="" loading="lazy" decoding="async"></div><figcaption>Kottu reel (අපි shoot කරලා edit කළා)</figcaption></figure>
         <figure><img src="assets/rf/kottu_weekend.webp" alt="Royal Feast weekend kottu offer post" loading="lazy" decoding="async"><figcaption>Weekend kottu offer</figcaption></figure>
         <figure><img src="assets/rf/offer_1111.webp" alt="Royal Feast 11.11 offer post" loading="lazy" decoding="async"><figcaption>11.11 offer</figcaption></figure>
         <figure><img src="assets/rf/noodles.webp" alt="Royal Feast noodles post" loading="lazy" decoding="async"><figcaption>Noodles post</figcaption></figure>
       </div>
       <div class="rf-stats">
         <div><b>11,546</b><span>Page views, දවස් 30ක (කලින් මාසෙට වඩා 22×)</span></div>
-        <div><b>13</b><span>Kottu reel ad එකෙන් messages. එකකට $0.15යි</span></div>
+        <div><b>13</b><span>Kottu reel ad එකෙන් ආපු messages</span></div>
         <div><b>+12</b><span>අලුත් followers</span></div>
       </div>
       <p class="rf-note">නොවැම්බර් 18 Facebook Insights වලින්. දෙසැම්බර් වල posts දැකලා shop එකට ආපු customers ගණන් කරලා මෙතන update කරනවා.</p>
-      <a class="rf-link" href="https://www.facebook.com/share/1HkihHQYqc/" target="_blank" rel="noopener">Royal Feast Facebook page එක බලන්න →</a>
+      <div class="rf-end"><img src="assets/rf/bird_point.webp" alt="" loading="lazy" decoding="async"><a class="rf-link" href="https://www.facebook.com/share/1HkihHQYqc/" target="_blank" rel="noopener">Royal Feast Facebook page එක බලන්න →</a></div>
     </div>
   </section>
 
