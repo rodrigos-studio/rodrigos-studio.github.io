@@ -95,7 +95,7 @@ section{padding:80px 0}
 .bq .pr .btn{padding:9px 16px;font-size:14.5px}
 .bq.hide{display:none}
 /* order builder */
-#order{background:var(--bl2)}
+#order{background:transparent}
 .ob{display:grid;grid-template-columns:1.15fr .85fr;gap:28px;align-items:start}
 @media(max-width:960px){.ob{grid-template-columns:1fr}}
 .panel{background:#fff;border-radius:24px;padding:26px;border:1px solid var(--line)}
@@ -189,6 +189,21 @@ footer a{color:#fff;text-decoration:underline}
 .fwa{position:fixed;right:max(18px,env(safe-area-inset-right,0px));bottom:max(18px,env(safe-area-inset-bottom,0px));z-index:40;background:var(--wa);color:#fff;border-radius:40px;padding:13px 20px;font-weight:800;box-shadow:0 12px 26px rgba(0,0,0,.25);display:flex;gap:8px;align-items:center}
 .rv{opacity:0;transform:translateY(26px);transition:opacity .7s,transform .7s}
 .rv.in{opacity:1;transform:none}
+
+/* real photo backgrounds, slowly moving */
+.pb{position:relative;overflow:hidden;isolation:isolate}
+.pb>.pbg{position:absolute;inset:-8%;z-index:-2;background:center/cover no-repeat;animation:drift 34s ease-in-out infinite alternate;will-change:transform}
+.pb>.pov{position:absolute;inset:0;z-index:-1}
+.pb.d2>.pbg{animation-duration:42s;animation-direction:alternate-reverse}
+@keyframes drift{0%{transform:scale(1.06) translate(-2%,-1%)}100%{transform:scale(1.16) translate(2%,1.5%)}}
+.ov-cream{background:linear-gradient(180deg,rgba(251,246,241,.93) 0,rgba(251,246,241,.86) 55%,rgba(251,246,241,.95) 100%)}
+.ov-hero{background:linear-gradient(90deg,rgba(251,246,241,.96) 0,rgba(251,246,241,.9) 45%,rgba(251,246,241,.55) 100%)}
+@media(max-width:900px){.ov-hero{background:rgba(251,246,241,.9)}}
+.ov-blush{background:linear-gradient(180deg,rgba(251,237,234,.94),rgba(251,237,234,.88))}
+.ov-green{background:linear-gradient(180deg,rgba(20,38,28,.88),rgba(20,38,28,.8))}
+.pb .ey,.pb h2{text-shadow:0 1px 0 rgba(255,255,255,.4)}
+.green-sec h2,.green-sec .how h3{color:var(--gr)}
+.green-sec>.wrap>.sh h2{color:#fff;text-shadow:none}.green-sec>.wrap>.sh .ey{color:#F4C9D2;text-shadow:none}
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.rv{opacity:1;transform:none}}
 </style></head><body>
 <div class="ribbon">මේක Rodrigo's Studio හදපු <b>sample website</b> එකක්. ඔයාගේ flower shop එකටත් මේ වගේ එකක් ඕනෙද? <a href="https://rodrigos-studio.github.io/">Rodrigo's Studio</a></div>
@@ -199,7 +214,7 @@ footer a{color:#fff;text-decoration:underline}
  <a class="btn w" href="https://wa.me/94724996667" target="_blank" rel="noopener">WhatsApp</a>
 </div></header>
 
-<div class="hero" id="top"><div class="wrap">
+<div class="hero pb" id="top"><div class="pbg" style="background-image:url(../assets/flowers/bg_market.webp)"></div><div class="pov ov-hero"></div><div class="wrap">
  <div>
   <div class="ey">Fresh flowers · Kotte</div>
   <h1>වචනවලින් කියන්න බැරි දේ <em>මලකින්</em> කියන්න</h1>
@@ -221,13 +236,13 @@ footer a{color:#fff;text-decoration:underline}
 
 <div class="ticker" aria-hidden="true"><div><span>Red Roses</span><i>✿</i><span>Pastel Mix</span><i>✿</i><span>Flower Box</span><i>✿</i><span>Poruwa Décor</span><i>✿</i><span>Bridal Bouquets</span><i>✿</i><span>Birthday Flowers</span><i>✿</i><span>Get Well Soon</span><i>✿</i><span>Red Roses</span><i>✿</i><span>Pastel Mix</span><i>✿</i><span>Flower Box</span><i>✿</i><span>Poruwa Décor</span><i>✿</i><span>Bridal Bouquets</span><i>✿</i><span>Birthday Flowers</span><i>✿</i><span>Get Well Soon</span><i>✿</i></div></div>
 
-<section id="bouquets"><div class="wrap">
+<section id="bouquets" class="pb d2"><div class="pbg" style="background-image:url(../assets/flowers/bg_stall.webp)"></div><div class="pov ov-cream"></div><div class="wrap">
  <div class="sh rv"><div><div class="ey">Bouquets</div><h2>මොන දවසටද?</h2></div><p class="lead">Occasion එක තෝරන්න. ගණන් Medium size එකට (sample prices).</p></div>
  <div class="occ rv" id="occ"><button class="on" data-o="all">ඔක්කොම</button><button data-o="love">❤️ ආදරේ</button><button data-o="bday">🎂 Birthday</button><button data-o="thanks">🙏 Thank you</button><button data-o="well">🌼 Get well</button></div>
  <div class="grid" id="grid"></div>
 </div></section>
 
-<section id="order"><div class="wrap">
+<section id="order" class="pb"><div class="pbg" style="background-image:url(../assets/flowers/bg_peony.webp)"></div><div class="pov ov-blush"></div><div class="wrap">
  <div class="sh rv"><div><div class="ey">Order</div><h2>විනාඩි 2න් order එක</h2></div><p class="lead">පහළ ටික පුරවලා "WhatsApp එකෙන් order කරන්න" ඔබන්න. Order number එකක් එක්කම message එක අපේ WhatsApp එකට යනවා.</p></div>
  <div class="ob">
   <div class="panel rv">
@@ -285,16 +300,16 @@ footer a{color:#fff;text-decoration:underline}
  </form>
 </div></section>
 
-<section style="padding-bottom:40px"><div class="wrap"><div class="sh rv"><div><div class="ey">අද හදපු ඒවා</div><h2>අපේ මල්</h2></div></div></div>
+<section style="padding-bottom:40px" class="pb d2"><div class="pbg" style="background-image:url(../assets/flowers/bg_purple.webp)"></div><div class="pov ov-cream"></div><div class="wrap"><div class="sh rv"><div><div class="ey">අද හදපු ඒවා</div><h2>අපේ මල්</h2></div></div></div>
  <div class="gal"><div class="tr" id="gal"></div></div>
 </section>
 
-<section style="padding-top:40px"><div class="wrap">
+<section style="padding-top:64px" class="pb green-sec"><div class="pbg" style="background-image:url(../assets/flowers/bg_team.webp)"></div><div class="pov ov-green"></div><div class="wrap">
  <div class="sh rv"><div><div class="ey">How it works</div><h2>Order එකක් යන හැටි</h2></div></div>
  <div class="how rv"><div><h3>Order එක</h3><p>Bouquet, size, දවස, card message. Order number එකක් එක්කම අපේ WhatsApp එකට.</p></div><div><h3>Photo එක</h3><p>Bouquet එක හැදුවම deliver කරන්න කලින් photo එක ඔයාට WhatsApp කරනවා.</p></div><div><h3>Delivery</h3><p>තෝරපු වෙලාවට ගෙදරටම. ලැබුණම ඔයාට message එකක් එනවා.</p></div></div>
 </div></section>
 
-<section id="contact" style="padding-top:20px"><div class="wrap"><div class="vc rv">
+<section id="contact" class="pb d2"><div class="pbg" style="background-image:url(../assets/flowers/bg_shop.webp)"></div><div class="pov ov-cream"></div><div class="wrap"><div class="vc rv">
  <div><span class="open" id="openb">…</span><h3>Call / WhatsApp</h3><div class="tel">072 499 6667</div><p style="color:#7A6866;margin:6px 0 14px">No. 14, Sample Road, Kotte (sample address)</p><div style="display:flex;gap:10px;flex-wrap:wrap"><a class="btn w" href="https://wa.me/94724996667" target="_blank" rel="noopener">WhatsApp</a><a class="btn ol" href="https://www.google.com/maps/search/?api=1&query=Kotte" target="_blank" rel="noopener">📍 Map</a></div></div>
  <div><h3>Open වෙලාවල්</h3><div class="hrs"><div><span>සඳුදා – සෙනසුරාදා</span><b>8:00 AM – 8:00 PM</b></div><div><span>ඉරිදා</span><b>8:00 AM – 2:00 PM</b></div><div><span>Same-day delivery cut-off</span><b>2:00 PM</b></div></div></div>
 </div></div></section>
