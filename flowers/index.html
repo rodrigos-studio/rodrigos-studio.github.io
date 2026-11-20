@@ -41,7 +41,8 @@ header{position:sticky;top:0;z-index:30;background:rgba(251,246,241,.92);backdro
 header .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-top:12px;padding-bottom:12px}
 .logo{display:flex;align-items:center;gap:10px}
 .logo .m{width:42px;height:42px;border-radius:50%;background:var(--gr);color:var(--cr);display:grid;place-items:center;font-family:"Cormorant Garamond",serif;font-size:26px;font-weight:700;font-style:italic}
-.logo b{display:block;font-family:"Cormorant Garamond",serif;font-size:26px;line-height:1;color:var(--gr)}
+.logo b{display:block;font-family:"Cormorant Garamond",serif;font-size:26px;line-height:1;color:var(--gr);white-space:nowrap}
+@media(max-width:420px){.logo b{font-size:22px}.logo small{letter-spacing:.14em}header .btn{padding:9px 14px;font-size:14px}}
 .logo small{display:block;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--mut)}
 nav{display:flex;gap:24px;font-weight:700;font-size:15px}
 nav a:hover{color:var(--rose)}
@@ -211,6 +212,7 @@ footer a{color:#fff;text-decoration:underline}
    <img class="on" src="../assets/flowers/hero.webp" alt="Florist making a bouquet">
    <img src="../assets/flowers/roses.webp" alt="Red roses bouquet">
    <img src="../assets/flowers/pastel.webp" alt="Pastel bouquet">
+   <img src="../assets/flowers/box.webp" alt="Flower box">
   </div>
   <div class="fcard c1">අද delivery cut-off<b id="cut">2:00 PM</b><span id="cutl" style="color:#7A6866;font-size:13px"></span></div>
   <div class="fcard c2">🌹 අද orders<b id="todayN">14</b></div>
@@ -306,8 +308,8 @@ const P=[
  {id:'roses',n:'Red Rose Love',d:'රතු රෝස මල්, eucalyptus කොළ, kraft wrap එකක',p:6500,o:['love'],img:'roses.webp',t:'Best seller'},
  {id:'pastel',n:'Pastel Garden',d:'Pink, peach, cream මල් මිශ්‍ර bouquet එකක්',p:5500,o:['bday','thanks','love'],img:'pastel.webp'},
  {id:'box',n:'Flower Box',d:'Gift box එකක ලස්සනට අල්ලපු මල්',p:7200,o:['bday','love','thanks'],img:'box.webp',t:'New'},
- {id:'florist',n:"Florist's Choice",d:'අද තියෙන හොඳම fresh මල් වලින් අපේ florist තෝරලා හදනවා',p:4800,o:['bday','thanks','well'],img:'hero.webp'},
- {id:'shop',n:'Sunny Mix',d:'ලා කහ, සුදු මල් එක්ක ඉක්මනට සනීප වෙන්න කියන්න',p:4500,o:['well','thanks'],img:'shop.webp'}
+ {id:'florist',n:"Florist's Choice",d:'අද තියෙන හොඳම fresh මල් වලින් අපේ florist තෝරලා හදනවා',p:4800,o:['bday','thanks','well'],img:'choice.webp'},
+ {id:'shop',n:'Sunny Mix',d:'ලා කහ, සුදු මල් එක්ක ඉක්මනට සනීප වෙන්න කියන්න',p:4500,o:['well','thanks'],img:'sunny.webp'}
 ];
 const SZ={S:.6,M:1,L:1.8};
 const rs=n=>'Rs '+Math.round(n).toLocaleString('en-US');
@@ -382,7 +384,7 @@ $('todayN').textContent=8+Math.min(20,new Date().getHours());
 // open now
 (function(){const n=new Date(),d=n.getDay(),h=n.getHours()+n.getMinutes()/60;const o=d===0?(h>=8&&h<14):(h>=8&&h<20);const b=$('openb');b.className='open '+(o?'y':'n');b.textContent=o?'● දැන් open':'● දැන් වහලා'})();
 // gallery
-const G=['hero','roses','wedding','pastel','box','shop'];$('gal').innerHTML=[...G,...G].map(g=>`<img src="../assets/flowers/${g}.webp" alt="" loading="lazy">`).join('');
+const G=['g_team','g_reds','g_bride','g_stall','g_purple','g_tulips','g_basket','g_church','g_bout','g_bride2','shop','g_rings'];$('gal').innerHTML=[...G,...G].map(g=>`<img src="../assets/flowers/${g}.webp" alt="">`).join('');
 // reveal
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12});
 document.querySelectorAll('.rv').forEach(el=>io.observe(el));
