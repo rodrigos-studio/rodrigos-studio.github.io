@@ -1,0 +1,391 @@
+<!doctype html><html lang="si"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Piyumi Flowers · demo</title>
+<meta name="description" content="Demo website for a flower shop: pick a bouquet, size and add-ons, choose the delivery day and time, write the card message, and send the order with an order number straight to the shop's WhatsApp. Made by Rodrigo's Studio.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Piyumi Flowers · demo by Rodrigo&#x27;s Studio">
+<meta property="og:description" content="Flower shop demo: bouquet order with card message, same-day delivery cut-off and WhatsApp ordering.">
+<meta property="og:url" content="https://rodrigos-studio.github.io/flowers/">
+<meta property="og:image" content="https://rodrigos-studio.github.io/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/png" href="https://rodrigos-studio.github.io/icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=DM+Sans:wght@400;500;700;800&family=Noto+Sans+Sinhala:wght@400;500;600;700;800&family=Noto+Serif+Sinhala:wght@500;600;700&family=Caveat:wght@500;700&display=swap">
+<style>
+*{margin:0;box-sizing:border-box}
+:root{--cr:#FBF6F1;--cr2:#F5ECE3;--bl:#F4DCD8;--bl2:#FBEDEA;--rose:#B23A55;--rose2:#8E2541;--gr:#1F3B2D;--gr2:#2E5541;--sage:#DCE5D6;--gold:#C49A4E;--ink:#2A1E1F;--mut:#7A6866;--line:#EADCD3;--wa:#1FAF5A}
+html{scroll-behavior:smooth;overflow-x:clip}
+body{background:var(--cr);color:var(--ink);font-family:"DM Sans","Noto Sans Sinhala",system-ui,sans-serif;font-size:17px;line-height:1.6}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+input,select,textarea{font:inherit;color:inherit}
+img{max-width:100%;display:block}
+.wrap{max-width:1180px;margin:0 auto;padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px))}
+.serif{font-family:"Cormorant Garamond","Noto Serif Sinhala",Georgia,serif}
+h1,h2,h3{font-family:"Cormorant Garamond","Noto Serif Sinhala",Georgia,serif;font-weight:700;line-height:1.12;text-wrap:balance;color:var(--gr)}
+h2{font-size:clamp(32px,4.4vw,48px)}
+.ey{font-size:13px;font-weight:800;letter-spacing:.2em;text-transform:uppercase;color:var(--rose)}
+.lead{color:var(--mut);max-width:620px}
+.ribbon{background:var(--gr);color:#cfe0d5;font-size:13px;text-align:center;padding:6px 12px}
+.ribbon a{text-decoration:underline;color:#fff}
+.topbar{background:var(--rose);color:#fff;font-size:14px;font-weight:500}
+.topbar .wrap{display:flex;justify-content:space-between;gap:14px;padding-top:7px;padding-bottom:7px;flex-wrap:wrap}
+.topbar b{font-weight:800}
+@media(max-width:640px){.topbar .r{display:none}.topbar .wrap{justify-content:center;text-align:center}}
+.btn{white-space:nowrap;display:inline-flex;align-items:center;justify-content:center;gap:10px;border-radius:40px;padding:13px 24px;font-weight:800;font-size:16px;border:2px solid transparent;transition:transform .15s,background .2s}
+.btn:active{transform:scale(.97)}
+.btn.p{background:var(--rose);color:#fff}.btn.p:hover{background:var(--rose2)}
+.btn.g{background:var(--gr);color:#fff}
+.btn.w{background:var(--wa);color:#fff}
+.btn.ol{border-color:var(--gr);color:var(--gr)}
+header{position:sticky;top:0;z-index:30;background:rgba(251,246,241,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+header .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-top:12px;padding-bottom:12px}
+.logo{display:flex;align-items:center;gap:10px}
+.logo .m{width:42px;height:42px;border-radius:50%;background:var(--gr);color:var(--cr);display:grid;place-items:center;font-family:"Cormorant Garamond",serif;font-size:26px;font-weight:700;font-style:italic}
+.logo b{display:block;font-family:"Cormorant Garamond",serif;font-size:26px;line-height:1;color:var(--gr)}
+.logo small{display:block;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--mut)}
+nav{display:flex;gap:24px;font-weight:700;font-size:15px}
+nav a:hover{color:var(--rose)}
+@media(max-width:860px){nav{display:none}}
+header .btn{padding:10px 18px;font-size:15px}
+/* hero */
+.hero{position:relative;overflow:hidden}
+.hero .wrap{display:grid;grid-template-columns:1.05fr .95fr;gap:48px;align-items:center;padding-top:56px;padding-bottom:64px}
+@media(max-width:900px){.hero .wrap{grid-template-columns:1fr;gap:30px;padding-top:30px}}
+.hero h1{font-size:clamp(44px,6.4vw,76px);margin:12px 0 16px}
+.hero h1 em{font-style:italic;color:var(--rose)}
+.hero .cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:26px}
+.chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:26px}
+.chips span{background:#fff;border:1px solid var(--line);border-radius:30px;padding:7px 14px;font-size:14px;font-weight:600;color:var(--gr)}
+.hframe{position:relative;aspect-ratio:4/5;max-width:520px;width:100%;justify-self:end}
+@media(max-width:900px){.hframe{justify-self:center;max-width:440px}}
+.hshow{position:absolute;inset:0;border-radius:240px 240px 26px 26px;overflow:hidden;background:var(--bl);box-shadow:0 30px 60px rgba(62,30,30,.18)}
+.hshow img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity 1.2s;animation:kb 12s ease-in-out infinite alternate}
+.hshow img.on{opacity:1}
+@keyframes kb{from{transform:scale(1.04)}to{transform:scale(1.14) translateY(-2%)}}
+.fcard{position:absolute;background:#fff;border-radius:18px;padding:12px 16px;box-shadow:0 16px 34px rgba(62,30,30,.18);font-size:14px;animation:bob 5s ease-in-out infinite}
+.fcard b{display:block;font-size:22px;color:var(--rose);font-family:"DM Sans",sans-serif;letter-spacing:.02em}
+.fcard.c1{left:-26px;bottom:60px}.fcard.c2{right:-14px;top:70px;animation-delay:-2.5s}
+@media(max-width:560px){.fcard.c1{left:-6px}.fcard.c2{right:-6px}}
+@keyframes bob{50%{transform:translateY(-10px)}}
+.ticker{background:var(--gr);color:var(--cr);overflow:hidden;white-space:nowrap;padding:14px 0;font-family:"Cormorant Garamond",serif;font-size:22px;font-style:italic}
+.ticker div{display:inline-block;animation:tk 30s linear infinite}
+.ticker span{margin:0 26px}.ticker i{color:var(--gold);font-style:normal}
+@keyframes tk{to{transform:translateX(-50%)}}
+section{padding:80px 0}
+@media(max-width:640px){section{padding:56px 0}}
+.sh{display:flex;justify-content:space-between;align-items:end;gap:20px;flex-wrap:wrap;margin-bottom:28px}
+/* occasions + bouquets */
+.occ{display:flex;gap:10px;overflow-x:auto;padding-bottom:6px;margin-bottom:22px;scrollbar-width:none}
+.occ button{white-space:nowrap;border:1.5px solid var(--line);background:#fff;border-radius:30px;padding:9px 18px;font-weight:700;font-size:15px;color:var(--gr)}
+.occ button.on{background:var(--gr);border-color:var(--gr);color:#fff}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:22px}
+.bq{background:#fff;border-radius:22px;overflow:hidden;border:1px solid var(--line);display:flex;flex-direction:column;transition:transform .25s,box-shadow .25s}
+.bq:hover{transform:translateY(-4px);box-shadow:0 18px 40px rgba(62,30,30,.12)}
+.bq .ph{aspect-ratio:1/1;overflow:hidden;background:var(--bl);position:relative}
+.bq .ph img{width:100%;height:100%;object-fit:cover;transition:transform .6s}
+.bq:hover .ph img{transform:scale(1.06)}
+.bq .tag{position:absolute;left:12px;top:12px;background:var(--rose);color:#fff;font-size:12px;font-weight:800;padding:4px 10px;border-radius:20px}
+.bq .bd{padding:16px 18px 18px;display:flex;flex-direction:column;gap:6px;flex:1}
+.bq h3{font-size:26px}
+.bq p{font-size:14.5px;color:var(--mut)}
+.bq .pr{display:flex;justify-content:space-between;align-items:center;margin-top:auto;padding-top:10px}
+.bq .pr b{font-size:19px;color:var(--gr)}
+.bq .pr small{color:var(--mut);font-size:13px;font-weight:500}
+.bq .pr .btn{padding:9px 16px;font-size:14.5px}
+.bq.hide{display:none}
+/* order builder */
+#order{background:var(--bl2)}
+.ob{display:grid;grid-template-columns:1.15fr .85fr;gap:28px;align-items:start}
+@media(max-width:960px){.ob{grid-template-columns:1fr}}
+.panel{background:#fff;border-radius:24px;padding:26px;border:1px solid var(--line)}
+@media(max-width:560px){.panel{padding:18px}}
+.step{padding:18px 0;border-bottom:1px dashed var(--line)}
+.step:first-child{padding-top:0}.step:last-child{border-bottom:0;padding-bottom:0}
+.step h3{font-family:"DM Sans","Noto Sans Sinhala",sans-serif;font-size:17px;font-weight:800;color:var(--gr);margin-bottom:12px;display:flex;align-items:center;gap:10px}
+.step h3 i{font-style:normal;width:28px;height:28px;border-radius:50%;background:var(--rose);color:#fff;display:grid;place-items:center;font-size:14px;flex:none}
+.pick{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px}
+.pick button{border:2px solid var(--line);border-radius:16px;padding:8px;display:flex;gap:10px;align-items:center;text-align:left;background:#fff;min-width:0}
+.pick button img{width:46px;height:46px;border-radius:10px;object-fit:cover;flex:none;background:var(--bl)}
+.pick button span{font-size:14px;font-weight:700;line-height:1.25;min-width:0}
+.pick button small{display:block;font-weight:500;color:var(--mut);font-size:12.5px}
+.pick button.on{border-color:var(--rose);background:var(--bl2)}
+.seg{display:flex;gap:8px;flex-wrap:wrap}
+.seg button{flex:1 1 0;min-width:96px;border:2px solid var(--line);border-radius:14px;padding:10px 8px;font-weight:800;font-size:15px;background:#fff;text-align:center}
+.seg button small{display:block;font-weight:500;font-size:12.5px;color:var(--mut)}
+.seg button.on{border-color:var(--rose);background:var(--bl2);color:var(--rose2)}
+.seg button:disabled{opacity:.4;cursor:not-allowed}
+.adds{display:grid;gap:8px}
+.adds label{display:flex;align-items:center;gap:12px;border:1.5px solid var(--line);border-radius:14px;padding:10px 14px;cursor:pointer;font-weight:600;font-size:15px}
+.adds label b{margin-left:auto;color:var(--gr)}
+.adds input{width:20px;height:20px;accent-color:var(--rose)}
+.f2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:560px){.f2{grid-template-columns:1fr}}
+.fl label{display:block;font-size:13.5px;font-weight:700;color:var(--mut);margin-bottom:5px}
+.fl input,.fl select,.fl textarea{width:100%;border:1.5px solid var(--line);border-radius:12px;padding:11px 13px;background:#fff;font-size:16px}
+.fl textarea{min-height:84px;resize:vertical}
+.fl input:focus,.fl select:focus,.fl textarea:focus{outline:2px solid var(--rose);border-color:transparent}
+.note{font-size:13.5px;color:var(--mut);margin-top:8px}
+.note.warn{color:var(--rose2);font-weight:700}
+.sugg{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px}
+.sugg button{background:var(--sage);color:var(--gr);border-radius:20px;padding:5px 12px;font-size:13.5px;font-weight:700}
+.cnt{text-align:right;font-size:12.5px;color:var(--mut)}
+/* card preview + summary */
+.side{position:sticky;top:92px;display:grid;gap:18px}
+@media(max-width:960px){.side{position:static}}
+.gcard{position:relative;background:#FFFDF8;border-radius:6px;padding:30px 28px 26px;box-shadow:0 18px 40px rgba(62,30,30,.15);transform:rotate(-1.5deg);border:1px solid #EFE2CF;min-height:220px}
+.gcard:before{content:"";position:absolute;left:0;right:0;top:0;height:10px;background:linear-gradient(90deg,var(--rose),var(--gold),var(--gr))}
+.gcard small{display:block;font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--mut);margin-bottom:12px}
+.gcard .msg{font-family:"Caveat","Noto Sans Sinhala",cursive;font-size:30px;line-height:1.25;color:#3B2A2A;white-space:pre-wrap;word-break:break-word;min-height:76px}
+.gcard .from{font-family:"Caveat","Noto Sans Sinhala",cursive;font-size:26px;color:var(--rose2);text-align:right;margin-top:10px}
+.sum{background:var(--gr);color:#E8F0EA;border-radius:22px;padding:22px}
+.sum h3{color:#fff;font-size:28px;margin-bottom:10px}
+.sum .ln{display:flex;justify-content:space-between;gap:12px;font-size:15px;padding:5px 0;border-bottom:1px solid rgba(255,255,255,.12)}
+.sum .ln span:last-child{white-space:nowrap}
+.sum .tot{display:flex;justify-content:space-between;font-size:22px;font-weight:800;color:#fff;padding-top:12px}
+.sum .on{font-size:13px;color:#BFD3C5;margin-top:4px}
+.sum .btn{width:100%;margin-top:16px}
+.sum .err{background:#FBEDEA;color:var(--rose2);border-radius:12px;padding:8px 12px;font-size:14px;font-weight:700;margin-top:12px}
+/* wedding */
+.wed{position:relative;overflow:hidden;color:#fff}
+.wed .bg{position:absolute;inset:-6%;background:var(--gr) center/cover no-repeat;animation:pan 26s ease-in-out infinite alternate}
+@keyframes pan{from{transform:scale(1.05) translateX(-2%)}to{transform:scale(1.15) translateX(2%)}}
+.wed:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(20,38,28,.92) 0,rgba(20,38,28,.75) 50%,rgba(20,38,28,.35) 100%)}
+.wed .wrap{position:relative;z-index:2;display:grid;grid-template-columns:1fr 1fr;gap:36px;align-items:center}
+@media(max-width:900px){.wed .wrap{grid-template-columns:1fr}.wed:after{background:rgba(20,38,28,.82)}}
+.wed h2{color:#fff}.wed .lead{color:#D9E5DC}
+.wed ul{list-style:none;margin-top:18px;display:grid;gap:8px}
+.wed li:before{content:"✿";color:var(--gold);margin-right:10px}
+.wform{background:rgba(255,255,255,.96);color:var(--ink);border-radius:22px;padding:22px}
+.wform .fl{margin-bottom:12px}
+.wtypes{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px}
+.wtypes label{display:flex;align-items:center;gap:6px;border:1.5px solid var(--line);border-radius:20px;padding:6px 12px;font-size:14px;font-weight:700;cursor:pointer}
+.wtypes input{accent-color:var(--rose)}
+/* gallery */
+.gal{overflow:hidden;padding:6px 0}
+.gal .tr{display:flex;gap:16px;width:max-content;animation:tk 40s linear infinite}
+.gal img{height:260px;width:auto;aspect-ratio:4/5;object-fit:cover;border-radius:18px;background:var(--bl)}
+@media(max-width:560px){.gal img{height:200px}}
+.gal:hover .tr{animation-play-state:paused}
+/* how */
+.how{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;counter-reset:s}
+@media(max-width:800px){.how{grid-template-columns:1fr}}
+.how div{background:#fff;border:1px solid var(--line);border-radius:22px;padding:24px}
+.how div:before{counter-increment:s;content:counter(s);display:grid;place-items:center;width:44px;height:44px;border-radius:50%;background:var(--bl);color:var(--rose2);font-family:"Cormorant Garamond",serif;font-size:26px;font-weight:700;margin-bottom:12px}
+.how h3{font-size:24px;margin-bottom:6px}
+.how p{color:var(--mut);font-size:15px}
+/* contact */
+.vc{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+@media(max-width:800px){.vc{grid-template-columns:1fr}}
+.vc>div{background:#fff;border:1px solid var(--line);border-radius:22px;padding:26px}
+.vc h3{font-size:28px;margin-bottom:8px}
+.vc .tel{font-size:28px;font-weight:800;color:var(--rose)}
+.hrs{display:grid;gap:6px;font-size:15px}
+.hrs div{display:flex;justify-content:space-between;border-bottom:1px dashed var(--line);padding-bottom:6px}
+.open{display:inline-block;font-size:13px;font-weight:800;border-radius:20px;padding:4px 12px;margin-bottom:10px}
+.open.y{background:#E2F3E6;color:#13723A}.open.n{background:var(--bl2);color:var(--rose2)}
+footer{background:var(--gr);color:#cfe0d5;text-align:center;font-size:14px;padding:26px 20px 90px}
+footer a{color:#fff;text-decoration:underline}
+.fwa{position:fixed;right:max(18px,env(safe-area-inset-right,0px));bottom:max(18px,env(safe-area-inset-bottom,0px));z-index:40;background:var(--wa);color:#fff;border-radius:40px;padding:13px 20px;font-weight:800;box-shadow:0 12px 26px rgba(0,0,0,.25);display:flex;gap:8px;align-items:center}
+.rv{opacity:0;transform:translateY(26px);transition:opacity .7s,transform .7s}
+.rv.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.rv{opacity:1;transform:none}}
+</style></head><body>
+<div class="ribbon">මේක Rodrigo's Studio හදපු <b>sample website</b> එකක්. ඔයාගේ flower shop එකටත් මේ වගේ එකක් ඕනෙද? <a href="https://rodrigos-studio.github.io/">Rodrigo's Studio</a></div>
+<div class="topbar"><div class="wrap"><span>💐 දවල් <b>2ට කලින්</b> order කළොත් <b>අදම delivery</b> · Kotte, Rajagiriya, Nugegoda</span><span class="r">හැමදාම උදේ 8 – රෑ 8 · 072 499 6667</span></div></div>
+<header><div class="wrap">
+ <a class="logo" href="#top"><span class="m">P</span><span><b>Piyumi Flowers</b><small>Kotte · since 2012</small></span></a>
+ <nav><a href="#bouquets">Bouquets</a><a href="#order">Order</a><a href="#wedding">Wedding</a><a href="#contact">Contact</a></nav>
+ <a class="btn w" href="https://wa.me/94724996667" target="_blank" rel="noopener">WhatsApp</a>
+</div></header>
+
+<div class="hero" id="top"><div class="wrap">
+ <div>
+  <div class="ey">Fresh flowers · Kotte</div>
+  <h1>වචනවලින් කියන්න බැරි දේ <em>මලකින්</em> කියන්න</h1>
+  <p class="lead">Bouquet එක තෝරලා, card එකේ message එක ලියලා, delivery දවසයි වෙලාවයි දාන්න. Order එක order number එකක් එක්කම අපේ WhatsApp එකට එනවා. Deliver කරන්න කලින් bouquet එකේ photo එක ඔයාට එවනවා.</p>
+  <div class="cta"><a class="btn p" href="#order">Bouquet එකක් order කරන්න</a><a class="btn ol" href="#bouquets">Bouquets බලන්න</a></div>
+  <div class="chips"><span>🚚 අදම delivery</span><span>✍️ Card එක අතින් ලියනවා</span><span>📸 Delivery කලින් photo එකක්</span></div>
+ </div>
+ <div class="hframe">
+  <div class="hshow" id="hshow">
+   <img class="on" src="../assets/flowers/hero.webp" alt="Florist making a bouquet">
+   <img src="../assets/flowers/roses.webp" alt="Red roses bouquet">
+   <img src="../assets/flowers/pastel.webp" alt="Pastel bouquet">
+  </div>
+  <div class="fcard c1">අද delivery cut-off<b id="cut">2:00 PM</b><span id="cutl" style="color:#7A6866;font-size:13px"></span></div>
+  <div class="fcard c2">🌹 අද orders<b id="todayN">14</b></div>
+ </div>
+</div></div>
+
+<div class="ticker" aria-hidden="true"><div><span>Red Roses</span><i>✿</i><span>Pastel Mix</span><i>✿</i><span>Flower Box</span><i>✿</i><span>Poruwa Décor</span><i>✿</i><span>Bridal Bouquets</span><i>✿</i><span>Birthday Flowers</span><i>✿</i><span>Get Well Soon</span><i>✿</i><span>Red Roses</span><i>✿</i><span>Pastel Mix</span><i>✿</i><span>Flower Box</span><i>✿</i><span>Poruwa Décor</span><i>✿</i><span>Bridal Bouquets</span><i>✿</i><span>Birthday Flowers</span><i>✿</i><span>Get Well Soon</span><i>✿</i></div></div>
+
+<section id="bouquets"><div class="wrap">
+ <div class="sh rv"><div><div class="ey">Bouquets</div><h2>මොන දවසටද?</h2></div><p class="lead">Occasion එක තෝරන්න. ගණන් Medium size එකට (sample prices).</p></div>
+ <div class="occ rv" id="occ"><button class="on" data-o="all">ඔක්කොම</button><button data-o="love">❤️ ආදරේ</button><button data-o="bday">🎂 Birthday</button><button data-o="thanks">🙏 Thank you</button><button data-o="well">🌼 Get well</button></div>
+ <div class="grid" id="grid"></div>
+</div></section>
+
+<section id="order"><div class="wrap">
+ <div class="sh rv"><div><div class="ey">Order</div><h2>විනාඩි 2න් order එක</h2></div><p class="lead">පහළ ටික පුරවලා "WhatsApp එකෙන් order කරන්න" ඔබන්න. Order number එකක් එක්කම message එක අපේ WhatsApp එකට යනවා.</p></div>
+ <div class="ob">
+  <div class="panel rv">
+   <div class="step"><h3><i>1</i>Bouquet එක</h3><div class="pick" id="pick"></div></div>
+   <div class="step"><h3><i>2</i>Size එක</h3><div class="seg" id="size"><button data-s="S">Small<small>මල් 6ක් විතර</small></button><button class="on" data-s="M">Medium<small>මල් 12ක් විතර</small></button><button data-s="L">Large<small>මල් 24ක් විතර</small></button></div></div>
+   <div class="step"><h3><i>3</i>එකට දාන්න</h3><div class="adds" id="adds">
+    <label><input type="checkbox" data-a="Chocolate box" data-p="1500">🍫 Chocolate box<b>+ Rs 1,500</b></label>
+    <label><input type="checkbox" data-a="Teddy bear" data-p="1800">🧸 Teddy bear<b>+ Rs 1,800</b></label>
+    <label><input type="checkbox" data-a="Balloon" data-p="600">🎈 Balloon එකක්<b>+ Rs 600</b></label>
+   </div></div>
+   <div class="step"><h3><i>4</i>Delivery</h3>
+    <div class="f2">
+     <div class="fl"><label for="ddate">දවස</label><input type="date" id="ddate"></div>
+     <div class="fl"><label for="area">Area එක</label><select id="area"><option value="Kotte|300">Kotte · Rs 300</option><option value="Rajagiriya|400">Rajagiriya · Rs 400</option><option value="Nugegoda|400">Nugegoda · Rs 400</option><option value="Maharagama|500">Maharagama · Rs 500</option><option value="Battaramulla|450">Battaramulla · Rs 450</option><option value="Shop pickup|0">Shop එකෙන් ගන්නවා · free</option></select></div>
+    </div>
+    <div class="seg" id="slot" style="margin-top:12px"><button data-t="9–12" data-h="12">උදේ<small>9 – 12</small></button><button class="on" data-t="12–4" data-h="16">දවල්<small>12 – 4</small></button><button data-t="4–7" data-h="19">හවස<small>4 – 7</small></button></div>
+    <div class="note" id="dnote"></div>
+    <div class="f2" style="margin-top:12px">
+     <div class="fl"><label for="rname">මල් ලැබෙන කෙනාගේ නම</label><input id="rname" placeholder="උදා: Nimesha"></div>
+     <div class="fl"><label for="rphone">එයාගේ phone එක</label><input id="rphone" inputmode="tel" placeholder="07X XXX XXXX"></div>
+    </div>
+    <div class="fl" style="margin-top:12px"><label for="raddr">Address එක</label><input id="raddr" placeholder="Shop pickup නම් හිස්ව තියන්න"></div>
+   </div>
+   <div class="step"><h3><i>5</i>Card එකේ message එක</h3>
+    <div class="sugg" id="sugg"><button>Happy Birthday අම්මේ ❤️</button><button>ආදරෙයි. හැමදාම.</button><button>ඉක්මනට සනීප වෙන්න 🌼</button><button>Congratulations! 🎉</button><button>ස්තූතියි, හැම දේටම.</button></div>
+    <div class="fl"><textarea id="msg" maxlength="160" placeholder="අපි මේක card එකේ අතින් ලියනවා"></textarea><div class="cnt"><span id="mc">0</span>/160</div></div>
+    <div class="f2">
+     <div class="fl"><label for="from">ඔයාගේ නම (card එකේ)</label><input id="from" placeholder="උදා: Kasun"></div>
+     <div class="fl adds"><label style="display:block;border:0;padding:0;margin-bottom:5px;font-size:13.5px;color:var(--mut)">Secret ද?</label><label><input type="checkbox" id="anon">🤫 Card එකේ නම දාන්න එපා</label></div>
+    </div>
+   </div>
+  </div>
+  <div class="side">
+   <div class="gcard rv"><small>Piyumi Flowers · card preview</small><div class="msg" id="pmsg">ඔයාගේ message එක මෙතන පේනවා…</div><div class="from" id="pfrom"></div></div>
+   <div class="sum rv">
+    <h3>ඔයාගේ order එක</h3>
+    <div id="lines"></div>
+    <div class="tot"><span>එකතුව</span><span id="tot">Rs 0</span></div>
+    <div class="on">Order no. <b id="ono">PF-0000</b> · ගෙවන්නේ delivery එකේදී හරි bank transfer එකෙන්</div>
+    <div class="err" id="err" hidden></div>
+    <button class="btn w" id="send">WhatsApp එකෙන් order කරන්න</button>
+   </div>
+  </div>
+ </div>
+</div></section>
+
+<section class="wed" id="wedding"><div class="bg" style="background-image:url(../assets/flowers/wedding.webp)"></div><div class="wrap">
+ <div class="rv"><div class="ey" style="color:#F4C9D2">Wedding &amp; events</div><h2>Poruwa එකේ ඉඳන් table එක දක්වා</h2><p class="lead">Wedding, homecoming, birthday party, office event. දවසයි venue එකයි කිව්වම අපි ඇවිත් බලලා ගාණ කියනවා.</p>
+  <ul><li>Poruwa සහ stage decoration</li><li>Bridal bouquet සහ bridesmaids ලාගේ මල්</li><li>Table centerpieces</li><li>Wedding car decoration</li></ul></div>
+ <form class="wform rv" id="wf">
+  <div class="wtypes"><label><input type="checkbox" value="Poruwa">Poruwa</label><label><input type="checkbox" value="Bridal bouquet">Bridal bouquet</label><label><input type="checkbox" value="Tables">Tables</label><label><input type="checkbox" value="Car">Car</label></div>
+  <div class="f2"><div class="fl"><label for="wdate">දවස</label><input type="date" id="wdate"></div><div class="fl"><label for="wguests">අමුත්තෝ කීදෙනෙක්</label><input id="wguests" inputmode="numeric" placeholder="උදා: 150"></div></div>
+  <div class="fl"><label for="wvenue">Venue එක</label><input id="wvenue" placeholder="උදා: Waters Edge"></div>
+  <button class="btn g" style="width:100%">Quote එකක් ඉල්ලන්න (WhatsApp)</button>
+ </form>
+</div></section>
+
+<section style="padding-bottom:40px"><div class="wrap"><div class="sh rv"><div><div class="ey">අද හදපු ඒවා</div><h2>අපේ මල්</h2></div></div></div>
+ <div class="gal"><div class="tr" id="gal"></div></div>
+</section>
+
+<section style="padding-top:40px"><div class="wrap">
+ <div class="sh rv"><div><div class="ey">How it works</div><h2>Order එකක් යන හැටි</h2></div></div>
+ <div class="how rv"><div><h3>Order එක</h3><p>Bouquet, size, දවස, card message. Order number එකක් එක්කම අපේ WhatsApp එකට.</p></div><div><h3>Photo එක</h3><p>Bouquet එක හැදුවම deliver කරන්න කලින් photo එක ඔයාට WhatsApp කරනවා.</p></div><div><h3>Delivery</h3><p>තෝරපු වෙලාවට ගෙදරටම. ලැබුණම ඔයාට message එකක් එනවා.</p></div></div>
+</div></section>
+
+<section id="contact" style="padding-top:20px"><div class="wrap"><div class="vc rv">
+ <div><span class="open" id="openb">…</span><h3>Call / WhatsApp</h3><div class="tel">072 499 6667</div><p style="color:#7A6866;margin:6px 0 14px">No. 14, Sample Road, Kotte (sample address)</p><div style="display:flex;gap:10px;flex-wrap:wrap"><a class="btn w" href="https://wa.me/94724996667" target="_blank" rel="noopener">WhatsApp</a><a class="btn ol" href="https://www.google.com/maps/search/?api=1&query=Kotte" target="_blank" rel="noopener">📍 Map</a></div></div>
+ <div><h3>Open වෙලාවල්</h3><div class="hrs"><div><span>සඳුදා – සෙනසුරාදා</span><b>8:00 AM – 8:00 PM</b></div><div><span>ඉරිදා</span><b>8:00 AM – 2:00 PM</b></div><div><span>Same-day delivery cut-off</span><b>2:00 PM</b></div></div></div>
+</div></div></section>
+
+<footer>Sample website · <a href="https://rodrigos-studio.github.io/">Rodrigo's Studio</a> · ඔයාගේ flower shop එකටත් මේ වගේ එකක් හදමු</footer>
+<a class="fwa" href="https://wa.me/94724996667" target="_blank" rel="noopener">💬 WhatsApp</a>
+
+<script>
+const WA='94724996667';
+const P=[
+ {id:'roses',n:'Red Rose Love',d:'රතු රෝස මල්, eucalyptus කොළ, kraft wrap එකක',p:6500,o:['love'],img:'roses.webp',t:'Best seller'},
+ {id:'pastel',n:'Pastel Garden',d:'Pink, peach, cream මල් මිශ්‍ර bouquet එකක්',p:5500,o:['bday','thanks','love'],img:'pastel.webp'},
+ {id:'box',n:'Flower Box',d:'Gift box එකක ලස්සනට අල්ලපු මල්',p:7200,o:['bday','love','thanks'],img:'box.webp',t:'New'},
+ {id:'florist',n:"Florist's Choice",d:'අද තියෙන හොඳම fresh මල් වලින් අපේ florist තෝරලා හදනවා',p:4800,o:['bday','thanks','well'],img:'hero.webp'},
+ {id:'shop',n:'Sunny Mix',d:'ලා කහ, සුදු මල් එක්ක ඉක්මනට සනීප වෙන්න කියන්න',p:4500,o:['well','thanks'],img:'shop.webp'}
+];
+const SZ={S:.6,M:1,L:1.8};
+const rs=n=>'Rs '+Math.round(n).toLocaleString('en-US');
+const $=id=>document.getElementById(id);
+// bouquet grid
+$('grid').innerHTML=P.map(b=>`<article class="bq rv" data-o="${b.o.join(' ')}"><div class="ph"><img src="../assets/flowers/${b.img}" alt="${b.n}" loading="lazy">${b.t?`<span class="tag">${b.t}</span>`:''}</div><div class="bd"><h3>${b.n}</h3><p>${b.d}</p><div class="pr"><b>${rs(b.p)} <small>· M</small></b><a class="btn p" href="#order" data-pick="${b.id}">තෝරන්න</a></div></div></article>`).join('');
+$('occ').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;[...$('occ').children].forEach(x=>x.classList.toggle('on',x===b));const o=b.dataset.o;document.querySelectorAll('.bq').forEach(c=>c.classList.toggle('hide',o!=='all'&&!c.dataset.o.split(' ').includes(o)))});
+// order state
+const st={b:'roses',s:'M',slot:'12–4',slotH:16};
+$('pick').innerHTML=P.map(b=>`<button data-id="${b.id}"><img src="../assets/flowers/${b.img}" alt=""><span>${b.n}<small>${rs(b.p)}</small></span></button>`).join('');
+function setB(id){st.b=id;[...$('pick').children].forEach(x=>x.classList.toggle('on',x.dataset.id===id));calc()}
+$('pick').addEventListener('click',e=>{const b=e.target.closest('button');if(b)setB(b.dataset.id)});
+document.addEventListener('click',e=>{const a=e.target.closest('[data-pick]');if(a)setB(a.dataset.pick)});
+$('size').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;st.s=b.dataset.s;[...$('size').children].forEach(x=>x.classList.toggle('on',x===b));calc()});
+$('slot').addEventListener('click',e=>{const b=e.target.closest('button');if(!b||b.disabled)return;st.slot=b.dataset.t;st.slotH=+b.dataset.h;[...$('slot').children].forEach(x=>x.classList.toggle('on',x===b));calc()});
+$('adds').addEventListener('change',calc);
+['area','rname','rphone','raddr','from'].forEach(i=>$(i).addEventListener('input',calc));
+$('anon').addEventListener('change',calc);
+// date rules: no past dates; today only before 2 PM
+const pad=n=>String(n).padStart(2,'0');
+const iso=d=>d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate());
+const now=new Date();const today=iso(now);
+$('ddate').min=today;
+$('ddate').value=now.getHours()<14?today:iso(new Date(now.getTime()+864e5));
+$('ddate').addEventListener('input',calc);
+function slots(){const isToday=$('ddate').value===today;const h=new Date().getHours();let first=null;
+ [...$('slot').children].forEach(b=>{const dis=isToday&&(h>=14||+b.dataset.h-3<=h);b.disabled=dis;if(!dis&&!first)first=b});
+ const cur=[...$('slot').children].find(b=>b.classList.contains('on'));
+ if(cur&&cur.disabled&&first){[...$('slot').children].forEach(x=>x.classList.toggle('on',x===first));st.slot=first.dataset.t;st.slotH=+first.dataset.h}
+ $('dnote').className='note'+(isToday&&h>=14?' warn':'');
+ $('dnote').textContent=isToday?(h>=14?'අද delivery එක 2ට කලින් order කරන්න ඕන. හෙට හරි ඊට පස්සේ දවසක් තෝරන්න.':'අද delivery: දවල් 2ට කලින් order කරන්න.'):'';
+ return !(isToday&&h>=14)}
+// card message
+$('sugg').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;$('msg').value=b.textContent;calc()});
+$('msg').addEventListener('input',calc);
+let ono='PF-'+(1000+Math.floor(Math.random()*9000));$('ono').textContent=ono;
+function calc(){
+ const ok=slots();
+ const b=P.find(x=>x.id===st.b);const base=b.p*SZ[st.s];
+ const adds=[...$('adds').querySelectorAll('input:checked')].map(i=>({n:i.dataset.a,p:+i.dataset.p}));
+ const [an,ap]=$('area').value.split('|');const del=+ap;
+ const tot=base+adds.reduce((s,a)=>s+a.p,0)+del;
+ $('lines').innerHTML=`<div class="ln"><span>${b.n} · ${st.s}</span><span>${rs(base)}</span></div>`+adds.map(a=>`<div class="ln"><span>${a.n}</span><span>${rs(a.p)}</span></div>`).join('')+`<div class="ln"><span>Delivery · ${an}</span><span>${del?rs(del):'free'}</span></div><div class="ln"><span>${$('ddate').value||'දවස තෝරන්න'} · ${st.slot}</span><span></span></div>`;
+ $('tot').textContent=rs(tot);
+ const m=$('msg').value.trim();$('mc').textContent=$('msg').value.length;
+ $('pmsg').textContent=m||'ඔයාගේ message එක මෙතන පේනවා…';$('pmsg').style.opacity=m?1:.45;
+ $('pfrom').textContent=$('anon').checked?'— 🤫':($('from').value.trim()?'— '+$('from').value.trim():'');
+ st.tot=tot;st.ok=ok;st.adds=adds;st.area=an;st.del=del;st.base=base;st.bn=b.n;
+}
+$('send').addEventListener('click',()=>{
+ calc();const err=[];
+ if(!st.ok)err.push('Delivery දවස වෙනස් කරන්න');
+ if(!$('rname').value.trim())err.push('මල් ලැබෙන කෙනාගේ නම දාන්න');
+ if(st.area!=='Shop pickup'&&!$('raddr').value.trim())err.push('Address එක දාන්න');
+ if(err.length){$('err').hidden=false;$('err').textContent=err.join(' · ');return}
+ $('err').hidden=true;
+ const t=[`🌸 Piyumi Flowers order ${ono}`,`Bouquet: ${st.bn} (${st.s}) – ${rs(st.base)}`,...st.adds.map(a=>`+ ${a.n} – ${rs(a.p)}`),`Delivery: ${$('ddate').value}, ${st.slot} · ${st.area}${st.del?' – '+rs(st.del):''}`,`To: ${$('rname').value.trim()} ${$('rphone').value.trim()}`,st.area!=='Shop pickup'?`Address: ${$('raddr').value.trim()}`:'Pickup from shop',`Card: "${$('msg').value.trim()||'(no message)'}"`,`From: ${$('anon').checked?'(secret)':($('from').value.trim()||'-')}`,`Total: ${rs(st.tot)}`].join('\n');
+ window.open('https://wa.me/'+WA+'?text='+encodeURIComponent(t),'_blank','noopener');
+ ono='PF-'+(1000+Math.floor(Math.random()*9000));$('ono').textContent=ono;
+});
+setB('roses');
+// wedding form
+$('wf').addEventListener('submit',e=>{e.preventDefault();const ty=[...$('wf').querySelectorAll('.wtypes input:checked')].map(i=>i.value).join(', ')||'-';
+ const t=`💐 Piyumi Flowers · event quote\nNeed: ${ty}\nDate: ${$('wdate').value||'-'}\nGuests: ${$('wguests').value||'-'}\nVenue: ${$('wvenue').value||'-'}`;
+ window.open('https://wa.me/'+WA+'?text='+encodeURIComponent(t),'_blank','noopener')});
+// hero slideshow
+const hs=[...document.querySelectorAll('#hshow img')];let hi=0;setInterval(()=>{hs[hi].classList.remove('on');hi=(hi+1)%hs.length;hs[hi].classList.add('on')},4200);
+// cut-off countdown
+function cut(){const n=new Date(),c=new Date(n);c.setHours(14,0,0,0);const l=$('cutl');if(n<c){const m=Math.round((c-n)/6e4);l.textContent=`තව පැය ${Math.floor(m/60)}යි විනාඩි ${m%60}යි`}else{l.textContent='අද ඉවරයි · හෙට delivery'}}
+cut();setInterval(cut,30000);
+$('todayN').textContent=8+Math.min(20,new Date().getHours());
+// open now
+(function(){const n=new Date(),d=n.getDay(),h=n.getHours()+n.getMinutes()/60;const o=d===0?(h>=8&&h<14):(h>=8&&h<20);const b=$('openb');b.className='open '+(o?'y':'n');b.textContent=o?'● දැන් open':'● දැන් වහලා'})();
+// gallery
+const G=['hero','roses','wedding','pastel','box','shop'];$('gal').innerHTML=[...G,...G].map(g=>`<img src="../assets/flowers/${g}.webp" alt="" loading="lazy">`).join('');
+// reveal
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12});
+document.querySelectorAll('.rv').forEach(el=>io.observe(el));
+calc();
+</script>
+</body></html>
