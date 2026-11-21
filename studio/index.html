@@ -120,9 +120,8 @@ section{padding:84px 0}
 .gal figure img{width:100%;transition:transform .6s}
 .gal figure:hover img{transform:scale(1.05)}
 .gal figure span{position:absolute;left:10px;bottom:10px;background:rgba(20,17,14,.75);color:var(--iv);font-family:"JetBrains Mono",monospace;font-size:11.5px;padding:3px 9px;border-radius:6px}
-.gal figure.hide,.gal.short figure.more{display:none}
+.gal figure.hide{display:none}
 @media(max-width:560px){.gal{columns:2;column-gap:10px}.gal figure{margin-bottom:10px}}
-.gmore{display:flex;justify-content:center;margin-top:14px}.gmore .btn{background:var(--ink);color:var(--iv)}
 .lb{position:fixed;inset:0;z-index:60;background:rgba(10,8,6,.94);display:none;align-items:center;justify-content:center;padding:20px}
 .lb.on{display:flex}
 .lb img{max-height:84vh;max-width:min(92vw,1000px);border-radius:8px;box-shadow:0 30px 70px rgba(0,0,0,.6)}
@@ -275,7 +274,7 @@ footer a{color:var(--am);text-decoration:underline}
 <section id="gallery" class="pb light"><div class="pbg" style="background-image:url(../assets/studio/bg_white.webp)"></div><div class="pov ov-iv"></div><div class="wrap">
  <div class="sh rv"><div><div class="ey">Gallery</div><h2>අපි ගත්ත <em>ඇත්ත</em> photos</h2></div><p class="lead">Photo එකක් ඔබලා ලොකුවට බලන්න.</p></div>
  <div class="gf rv" id="gf"></div>
- <div class="gal short" id="gal"></div><div class="gmore" id="gmw"><button class="btn" id="gmore">තව photos බලන්න</button></div>
+ <div class="gal" id="gal"></div>
 </div></section>
 
 <section id="book" class="pb"><div class="pbg" style="background-image:url(../assets/studio/bg_backdrop.webp)"></div><div class="pov ov-dark"></div><div class="wrap">
@@ -369,11 +368,9 @@ const GC={w:'Wedding',p:'Pre-shoot',b:'Baby & Birthday',f:'Family',g:'Graduation
 const GL=['w1','p1','b1','f1','w3','p3','b2','g1','w2','p2','b3','f2','w5','p6','b6','f3','g2','w6','p5','b4','f4','w4','p7','b7','g3','w7','p8','b8','f5','g4','w9','p10','b9','f7','w8','p11','b10','g5','p4','b5','f6','p9','b11'];
 const EX=['f/1.8 · 85mm','f/2.8 · 35mm','f/4 · 50mm','f/2 · 135mm','f/1.4 · 50mm'];
 $('gf').innerHTML='<button class="on" data-c="all">ඔක්කොම</button>'+Object.entries(GC).map(([k,v])=>`<button data-c="${k}">${v}</button>`).join('');
-$('gal').innerHTML=GL.map((g,i)=>`<figure data-c="${g[0]}" data-i="${i}" class="${i>=16?'more':''}"><img src="${A+g}.webp" alt="${GC[g[0]]}" loading="lazy"><span>${EX[i%5]}</span></figure>`).join('');
+$('gal').innerHTML=GL.map((g,i)=>`<figure data-c="${g[0]}" data-i="${i}"><img src="${A+g}.webp" alt="${GC[g[0]]}" loading="lazy"><span>${EX[i%5]}</span></figure>`).join('');
 $('gf').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;[...$('gf').children].forEach(x=>x.classList.toggle('on',x==b));
- document.querySelectorAll('#gal figure').forEach(f=>f.classList.toggle('hide',b.dataset.c!='all'&&f.dataset.c!=b.dataset.c));
- $('gal').classList.toggle('short',b.dataset.c=='all'&&!opened);$('gmw').hidden=b.dataset.c!='all'||opened});
-let opened=false;$('gmore').onclick=()=>{opened=true;$('gal').classList.remove('short');$('gmw').hidden=true};
+ document.querySelectorAll('#gal figure').forEach(f=>f.classList.toggle('hide',b.dataset.c!='all'&&f.dataset.c!=b.dataset.c));});
 let li=0;const vis=()=>[...document.querySelectorAll('#gal figure:not(.hide)')].filter(f=>f.offsetParent);
 function lbShow(f){const v=vis();li=v.indexOf(f);$('lbi').src=f.querySelector('img').src;$('lbc').textContent=GC[f.dataset.c]+' · '+f.querySelector('span').textContent+` · ${li+1}/${v.length}`;$('lb').classList.add('on')}
 $('gal').addEventListener('click',e=>{const f=e.target.closest('figure');if(f)lbShow(f)});
