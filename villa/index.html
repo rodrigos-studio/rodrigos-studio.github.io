@@ -1,0 +1,350 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Tea Ridge Bungalow · demo</title>
+<meta name="description" content="Demo website for a hill-country guest house in Ella: rooms with nightly prices, a live availability calendar, a price that adds up as you pick dates and extras, tuk-tuk tours, and booking straight to WhatsApp with a booking number.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Tea Ridge Bungalow · demo by Rodrigo&#x27;s Studio">
+<meta property="og:description" content="Guest house demo: rooms, free-date calendar, live price, tours and WhatsApp booking.">
+<meta property="og:url" content="https://rodrigos-studio.github.io/villa/">
+<meta property="og:image" content="https://rodrigos-studio.github.io/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/png" href="https://rodrigos-studio.github.io/icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,700;1,9..144,500;1,9..144,700&family=Manrope:wght@400;500;700;800&family=JetBrains+Mono:wght@500;700&family=Noto+Sans+Sinhala:wght@400;600;700&display=swap">
+<style>
+/* Tea Ridge Bungalow: sample guest house in Ella (not a real business). Theme: misty indigo + saffron. Every section has a slowly moving real photo behind it. */
+*{margin:0;box-sizing:border-box}
+:root{--ink:#121828;--ink2:#1A2236;--ink3:#253049;--iv:#F4EFE4;--iv2:#E3DCCD;--mut:#9DA5B8;--sf:#E8A33D;--sf2:#CF8A26;--tc:#C25A3C;--line:rgba(244,239,228,.15);--wa:#1FAF5A;--bk:#E5534B}
+html{scroll-behavior:smooth;overflow-x:clip}
+body{background:var(--ink);color:var(--iv);font-family:"Manrope","Noto Sans Sinhala",system-ui,sans-serif;font-size:17px;line-height:1.6}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+input,select,textarea{font:inherit;color:inherit}
+img{max-width:100%;display:block}
+.wrap{max-width:1200px;margin:0 auto;padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px))}
+h1,h2,h3{font-family:"Fraunces",Georgia,serif;font-weight:700;line-height:1.1;text-wrap:balance}
+h2{font-size:clamp(32px,4.6vw,52px)}
+h1 em,h2 em{font-style:italic;color:var(--sf)}
+.ey{font-family:"JetBrains Mono",monospace;font-size:13px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--sf)}
+.lead{color:var(--iv2);max-width:640px;opacity:.92}
+.mono{font-family:"JetBrains Mono",monospace}
+.ribbon{background:var(--sf);color:var(--ink);font-family:"Noto Sans Sinhala","Manrope",sans-serif;font-size:13px;text-align:center;padding:6px 12px;font-weight:600}
+.ribbon a{text-decoration:underline;font-weight:800}
+header{position:sticky;top:0;z-index:30;background:rgba(18,24,40,.86);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+header .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-top:12px;padding-bottom:12px}
+.logo{display:flex;align-items:center;gap:11px}
+.logo svg{width:40px;height:40px;flex:none}
+.logo b{display:block;font-family:"Fraunces",serif;font-size:24px;line-height:1;white-space:nowrap}
+.logo small{display:block;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--mut)}
+nav{display:flex;gap:24px;font-weight:700;font-size:15px}
+nav a:hover{color:var(--sf)}
+@media(max-width:900px){nav{display:none}}
+.btn{white-space:nowrap;display:inline-flex;align-items:center;justify-content:center;gap:10px;border-radius:40px;padding:13px 24px;font-weight:800;font-size:16px;border:2px solid transparent;transition:transform .15s,background .2s}
+.btn:active{transform:scale(.97)}
+.btn.a{background:var(--sf);color:var(--ink)}.btn.a:hover{background:#F2B354}
+.btn.w{background:var(--wa);color:#fff}
+.btn.ol{border-color:var(--iv);color:var(--iv)}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+header .btn{padding:10px 18px;font-size:15px}
+@media(max-width:420px){.logo b{font-size:20px}header .btn{padding:9px 14px;font-size:14px}}
+/* moving photo backgrounds */
+.pb{position:relative;overflow:hidden;isolation:isolate}
+.pb>.pbg{position:absolute;inset:-8%;z-index:-2;background:center/cover no-repeat;animation:drift 38s ease-in-out infinite alternate;will-change:transform}
+.pb.d2>.pbg{animation-duration:46s;animation-direction:alternate-reverse}
+.pb>.pov{position:absolute;inset:0;z-index:-1}
+@keyframes drift{0%{transform:scale(1.06) translate(-2%,-1%)}100%{transform:scale(1.17) translate(2%,1.5%)}}
+.mist{position:absolute;inset:-20% -40%;z-index:-1;pointer-events:none;background:radial-gradient(ellipse 40% 18% at 30% 60%,rgba(244,239,228,.16),transparent 70%),radial-gradient(ellipse 35% 14% at 75% 40%,rgba(244,239,228,.12),transparent 70%);animation:mist 28s linear infinite}
+@keyframes mist{from{transform:translateX(-12%)}to{transform:translateX(12%)}}
+.ov-dark{background:linear-gradient(180deg,rgba(18,24,40,.86),rgba(18,24,40,.74) 50%,rgba(18,24,40,.9))}
+.ov-hero{background:linear-gradient(90deg,rgba(18,24,40,.93) 0,rgba(18,24,40,.72) 50%,rgba(18,24,40,.25) 100%)}
+@media(max-width:900px){.ov-hero{background:linear-gradient(180deg,rgba(18,24,40,.55),rgba(18,24,40,.9) 60%)}}
+.ov-iv{background:linear-gradient(180deg,rgba(244,239,228,.9),rgba(244,239,228,.84))}
+.light{color:var(--ink)}.light .lead{color:#3E4558}.light .ey{color:var(--tc)}
+section{padding:84px 0}
+@media(max-width:640px){section{padding:58px 0}}
+.sh{display:flex;justify-content:space-between;align-items:end;gap:20px;flex-wrap:wrap;margin-bottom:30px}
+/* hero */
+.hero{min-height:min(88vh,760px);display:flex;align-items:center}
+.hero .wrap{width:100%;padding-top:70px;padding-bottom:80px}
+.hero h1{font-size:clamp(44px,7vw,88px);margin:14px 0 18px;max-width:780px}
+.hero .lead{font-size:19px}
+.hero .cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}
+.chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:28px}
+.chips span{border:1px solid var(--line);background:rgba(244,239,228,.08);backdrop-filter:blur(4px);border-radius:30px;padding:7px 14px;font-size:14px;font-weight:600}
+.wx{position:absolute;right:max(20px,env(safe-area-inset-right,0px));bottom:26px;z-index:2;background:rgba(18,24,40,.78);border:1px solid var(--line);border-radius:14px;padding:12px 16px;font-family:"JetBrains Mono",monospace;font-size:13px;line-height:1.5}
+.wx b{color:var(--sf);font-size:20px;display:block}
+@media(max-width:640px){.wx{display:none}}
+.ticker{background:var(--sf);color:var(--ink);overflow:hidden;white-space:nowrap;padding:13px 0;font-family:"Fraunces",serif;font-size:22px;font-style:italic;font-weight:600}
+.ticker div{display:inline-block;animation:tk 34s linear infinite}
+.ticker span{margin:0 24px}
+@keyframes tk{to{transform:translateX(-50%)}}
+/* rooms */
+.rooms{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+@media(max-width:980px){.rooms{grid-template-columns:1fr;max-width:620px}}
+.rm{background:rgba(26,34,54,.88);border:1px solid var(--line);border-radius:20px;overflow:hidden;display:flex;flex-direction:column}
+.rm .ph{position:relative;aspect-ratio:4/3;overflow:hidden}
+.rm .ph img{width:100%;height:100%;object-fit:cover;transition:transform 6s}
+.rm:hover .ph img{transform:scale(1.07)}
+.rm .ph span{position:absolute;left:12px;top:12px;background:rgba(18,24,40,.8);font-family:"JetBrains Mono",monospace;font-size:12px;padding:4px 10px;border-radius:8px}
+.rm .bd{padding:20px 22px 24px;display:flex;flex-direction:column;gap:10px;flex:1}
+.rm h3{font-size:27px}
+.rm .pr{font-family:"Fraunces",serif;font-size:34px;font-weight:700;color:var(--sf);line-height:1}
+.rm .pr small{font-family:"Manrope",sans-serif;font-size:14px;color:var(--mut);font-weight:500;margin-left:6px}
+.rm ul{list-style:none;display:grid;gap:6px;margin:4px 0 8px;font-size:15px}
+.rm li{display:flex;gap:10px}
+.rm li::before{content:"";flex:none;width:7px;height:7px;margin-top:9px;border-radius:50%;background:var(--sf)}
+.rm .btn{margin-top:auto;align-self:flex-start}
+/* booking */
+.bk{display:grid;grid-template-columns:1.15fr .85fr;gap:24px;align-items:start}
+@media(max-width:980px){.bk{grid-template-columns:1fr}}
+.card{background:rgba(26,34,54,.9);border:1px solid var(--line);border-radius:20px;padding:22px}
+.rsel{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}
+.rsel button{border:1.5px solid var(--line);border-radius:30px;padding:8px 16px;font-weight:700;font-size:14.5px;background:rgba(244,239,228,.05)}
+.rsel button.on{background:var(--sf);border-color:var(--sf);color:var(--ink)}
+.calh{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
+.calh b{font-family:"Fraunces",serif;font-size:24px}
+.calh button{width:40px;height:40px;border-radius:50%;border:1.5px solid var(--line);font-size:18px}
+.cal{display:grid;grid-template-columns:repeat(7,1fr);gap:5px}
+.cal .dw{font-family:"JetBrains Mono",monospace;font-size:11px;color:var(--mut);text-align:center;padding:4px 0}
+.cal button{aspect-ratio:1;border-radius:10px;background:rgba(244,239,228,.06);font-weight:700;font-size:15px;position:relative}
+.cal button:hover:not(:disabled){background:rgba(232,163,61,.25)}
+.cal button.bkd{color:var(--mut);background:transparent;text-decoration:line-through;text-decoration-color:var(--bk);text-decoration-thickness:2px;cursor:not-allowed}
+.cal button.past{opacity:.25;cursor:not-allowed}
+.cal button.in,.cal button.out{background:var(--sf);color:var(--ink)}
+.cal button.mid{background:rgba(232,163,61,.35)}
+.cal button.blank{visibility:hidden}
+.leg{display:flex;gap:16px;flex-wrap:wrap;font-size:13px;color:var(--mut);margin-top:12px}
+.leg i{display:inline-block;width:12px;height:12px;border-radius:4px;margin-right:6px;vertical-align:-1px}
+.hint{font-size:14px;color:var(--iv2);margin-top:10px;min-height:22px}
+.row{display:flex;justify-content:space-between;gap:12px;padding:8px 0;border-bottom:1px dashed var(--line);font-size:15.5px}
+.row:last-child{border-bottom:0}
+.row b{font-family:"JetBrains Mono",monospace;font-size:14.5px;white-space:nowrap}
+.tot{display:flex;justify-content:space-between;align-items:end;margin-top:10px;padding-top:12px;border-top:2px solid var(--line)}
+.tot b{font-family:"Fraunces",serif;font-size:38px;color:var(--sf);line-height:1}
+.adv{font-size:14px;color:var(--iv2);margin-top:6px}
+.adv b{color:var(--iv)}
+.addons{display:grid;gap:8px;margin:14px 0}
+.addons label{display:flex;gap:10px;align-items:flex-start;background:rgba(244,239,228,.05);border:1px solid var(--line);border-radius:12px;padding:10px 12px;font-size:15px;cursor:pointer}
+.addons input{margin-top:5px;accent-color:var(--sf);width:18px;height:18px;flex:none}
+.addons small{display:block;color:var(--mut);font-size:13px}
+.addons em{font-style:normal;margin-left:auto;font-family:"JetBrains Mono",monospace;font-size:13.5px;white-space:nowrap;padding-left:8px}
+.fld{display:grid;gap:6px;margin-top:10px}
+.fld label{font-size:13px;font-weight:700;color:var(--iv2)}
+.fld input,.fld select{background:rgba(244,239,228,.07);border:1.5px solid var(--line);border-radius:12px;padding:11px 13px;width:100%}
+.fld select option{color:#111}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.ref{font-family:"JetBrains Mono",monospace;font-size:13px;color:var(--mut);margin-top:10px}
+/* tours */
+.tours{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+@media(max-width:980px){.tours{grid-template-columns:1fr 1fr}}
+@media(max-width:560px){.tours{grid-template-columns:1fr}}
+.tr{border-radius:18px;overflow:hidden;background:#fff;color:var(--ink);box-shadow:0 14px 30px rgba(18,24,40,.18);display:flex;flex-direction:column}
+.tr .ph{aspect-ratio:4/3;overflow:hidden}
+.tr .ph img{width:100%;height:100%;object-fit:cover;transition:transform 5s}
+.tr:hover .ph img{transform:scale(1.08)}
+.tr .bd{padding:16px 18px 18px;display:flex;flex-direction:column;gap:6px;flex:1}
+.tr h3{font-size:22px}
+.tr p{font-size:14.5px;color:#4A5064}
+.tr .m{display:flex;justify-content:space-between;align-items:center;margin-top:auto;padding-top:8px;font-family:"JetBrains Mono",monospace;font-size:13px}
+.tr .m b{color:var(--tc);font-size:15px}
+/* breakfast */
+.bf{display:grid;grid-template-columns:1fr 1fr;gap:26px;align-items:center}
+@media(max-width:900px){.bf{grid-template-columns:1fr}}
+.menu{background:rgba(244,239,228,.95);color:var(--ink);border-radius:18px;padding:24px 26px;box-shadow:0 24px 50px rgba(0,0,0,.4)}
+.menu h3{font-size:26px;margin-bottom:6px}
+.menu .it{display:flex;justify-content:space-between;gap:10px;padding:8px 0;border-bottom:1px dashed rgba(18,24,40,.18);font-size:15.5px}
+.menu .it:last-child{border-bottom:0}
+.menu .it span{color:#5A6074;font-size:14px}
+/* getting here */
+.gh{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+@media(max-width:900px){.gh{grid-template-columns:1fr}}
+.gh .card h3{font-size:22px;margin:6px 0}
+.gh .card p{font-size:15px;color:var(--iv2)}
+.big{font-family:"Fraunces",serif;font-size:40px;color:var(--sf);line-height:1}
+/* booking check */
+.chk{max-width:720px}
+.chk form{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}
+.chk input{flex:1;min-width:200px;background:#fff;border:2px solid rgba(18,24,40,.15);border-radius:40px;padding:13px 20px;color:var(--ink);font-family:"JetBrains Mono",monospace;font-size:17px;text-transform:uppercase}
+.steps{display:grid;gap:0;margin-top:22px;background:#fff;border-radius:18px;padding:8px 22px;box-shadow:0 14px 30px rgba(18,24,40,.14)}
+.st{display:flex;gap:14px;align-items:flex-start;padding:14px 0;border-bottom:1px solid rgba(18,24,40,.08)}
+.st:last-child{border-bottom:0}
+.st i{flex:none;width:30px;height:30px;border-radius:50%;display:grid;place-items:center;font-style:normal;font-weight:800;font-size:14px;background:#E3E6EE;color:#8A90A2}
+.st.ok i{background:var(--wa);color:#fff}
+.st.now i{background:var(--sf);color:var(--ink);box-shadow:0 0 0 5px rgba(232,163,61,.25)}
+.st b{display:block}
+.st small{color:#5A6074;font-size:14px}
+/* faq + footer */
+.faq details{border-bottom:1px solid rgba(18,24,40,.12);padding:14px 0}
+.faq summary{cursor:pointer;font-weight:800;font-size:18px;list-style:none;display:flex;justify-content:space-between;gap:12px}
+.faq summary::after{content:"+";font-family:"JetBrains Mono",monospace;color:var(--tc)}
+.faq details[open] summary::after{content:"−"}
+.faq p{margin-top:8px;color:#3E4558}
+footer{padding:46px 0 calc(40px + env(safe-area-inset-bottom,0px))}
+footer .wrap{display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap}
+footer p{color:var(--iv2);font-size:15px}
+.wfab{position:fixed;right:max(18px,env(safe-area-inset-right,0px));bottom:calc(18px + env(safe-area-inset-bottom,0px));z-index:40;width:60px;height:60px;border-radius:50%;background:var(--wa);display:grid;place-items:center;box-shadow:0 10px 26px rgba(0,0,0,.4)}
+.wfab svg{width:32px;height:32px;fill:#fff}
+.reveal{opacity:0;transform:translateY(26px);transition:opacity .8s,transform .8s}
+.reveal.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){.pb>.pbg,.mist,.ticker div{animation:none}.reveal{opacity:1;transform:none}}
+</style></head><body>
+<div class="ribbon">මේක Rodrigo's Studio හදපු <b>sample website</b> එකක්. ඔයාගේ guest house එකටත් මේ වගේ එකක් ඕනෙද? <a href="https://rodrigos-studio.github.io/">Rodrigo's Studio</a></div>
+<header><div class="wrap">
+ <a class="logo" href="#top"><svg viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="19" fill="none" stroke="#E8A33D" stroke-width="2"/><path d="M7 27 L15 17 L20 22 L26 13 L33 27 Z" fill="#E8A33D"/><path d="M20 30 C14 30 11 25 12 21 C17 21 20 25 20 30 Z M20 30 C26 30 29 25 28 21 C23 21 20 25 20 30 Z" fill="#7FBF7A"/></svg><span><b>Tea Ridge</b><small>Bungalow · Ella</small></span></a>
+ <nav><a href="#rooms">Rooms</a><a href="#book">Dates &amp; price</a><a href="#tours">Tours</a><a href="#breakfast">Breakfast</a><a href="#here">Getting here</a><a href="#check">My booking</a></nav>
+ <a class="btn a" href="#book">Check dates</a>
+</div></header>
+
+<section class="pb hero" id="top"><div class="pbg" style="background-image:url(../assets/villa/hero_bungalow.webp)"></div><div class="mist"></div><div class="pov ov-hero"></div>
+ <div class="wrap">
+  <div class="ey">Colonial bungalow · 4 rooms · Ella</div>
+  <h1>Wake up <em>above</em> the tea fields</h1>
+  <p class="lead">A quiet hill-country bungalow 2.5 km from Ella town. Breakfast on the veranda, hot water, and a free tuk-tuk pickup from Ella station when you arrive by train.</p>
+  <div class="cta"><a class="btn a" href="#book">See free dates &amp; price</a><a class="btn ol" href="#rooms">Rooms</a></div>
+  <div class="chips"><span>🍳 Breakfast included</span><span>🛺 Free station pickup</span><span>🔥 Hot water</span><span>📶 Wi-Fi</span><span>🅿️ Parking</span></div>
+ </div>
+ <div class="wx"><b id="wxT">19°C</b>Ella right now · misty<br><span class="mono" id="wxClock">--:--</span> local time</div>
+</section>
+
+<div class="ticker"><div><span>Nine Arch Bridge · 1.8 km</span><span>Little Adam's Peak · 3 km</span><span>Ravana Falls · 6 km</span><span>Ella station · 2.5 km</span><span>Ella Rock sunrise</span><span>Tea factory visit</span><span>Nine Arch Bridge · 1.8 km</span><span>Little Adam's Peak · 3 km</span><span>Ravana Falls · 6 km</span><span>Ella station · 2.5 km</span><span>Ella Rock sunrise</span><span>Tea factory visit</span></div></div>
+
+<section class="pb" id="rooms"><div class="pbg" style="background-image:url(../assets/villa/ella_rock.webp)"></div><div class="pov ov-dark"></div><div class="wrap">
+ <div class="sh"><div><div class="ey">Rooms</div><h2>Three rooms, <em>one view</em> each</h2></div><p class="lead">Price is per room, per night, with breakfast for everyone in the room.</p></div>
+ <div class="rooms" id="roomCards"></div>
+</div></section>
+
+<section class="pb d2" id="book"><div class="pbg" style="background-image:url(../assets/villa/villa_mist.webp)"></div><div class="mist"></div><div class="pov ov-dark"></div><div class="wrap">
+ <div class="sh"><div><div class="ey">Dates &amp; price</div><h2>Pick your dates, <em>see the total</em></h2></div><p class="lead">Crossed-out dates are already booked. Tap the day you arrive, then the day you leave.</p></div>
+ <div class="bk">
+  <div class="card reveal">
+   <div class="rsel" id="rsel"></div>
+   <div class="calh"><button id="pm" aria-label="Previous month">‹</button><b id="mt"></b><button id="nm" aria-label="Next month">›</button></div>
+   <div class="cal" id="cal"></div>
+   <div class="leg"><span><i style="background:var(--sf)"></i>Your stay</span><span><i style="background:transparent;border:2px solid var(--bk)"></i>Booked</span><span><i style="background:rgba(244,239,228,.12)"></i>Free</span></div>
+   <div class="hint" id="hint">Tap your check-in date.</div>
+  </div>
+  <div class="card reveal">
+   <div class="ey" style="margin-bottom:6px">Your stay</div>
+   <div class="row"><span>Room</span><b id="sRoom">-</b></div>
+   <div class="row"><span>Dates</span><b id="sDates">-</b></div>
+   <div class="row"><span id="sNightsL">Nights</span><b id="sNights">-</b></div>
+   <div class="addons" id="addons"></div>
+   <div class="two"><div class="fld"><label for="gN">Guests</label><select id="gN"></select></div><div class="fld"><label for="arr">Arriving by</label><select id="arr"><option>Train</option><option>Own vehicle</option><option>Bus</option></select></div></div>
+   <div class="fld"><label for="nm2">Your name</label><input id="nm2" placeholder="e.g. Nimal Perera" autocomplete="name"></div>
+   <div class="tot"><span>Total</span><b id="sTot">Rs 0</b></div>
+   <div class="adv" id="sAdv">30% advance confirms the room.</div>
+   <button class="btn w" id="sendWA" style="width:100%;margin-top:14px" disabled>Send booking on WhatsApp</button>
+   <div class="ref" id="sRef"></div>
+  </div>
+ </div>
+</div></section>
+
+<section class="pb light" id="tours"><div class="pbg" style="background-image:url(../assets/villa/nine_arch.webp)"></div><div class="pov ov-iv"></div><div class="wrap">
+ <div class="sh"><div><div class="ey">Tuk-tuk tours</div><h2>Our driver knows <em>every bend</em></h2></div><p class="lead">Add a tour to your booking above, or ask at breakfast. Price is for the whole tuk-tuk (up to 3 people).</p></div>
+ <div class="tours" id="tourCards"></div>
+</div></section>
+
+<section class="pb d2" id="breakfast"><div class="pbg" style="background-image:url(../assets/villa/breakfast_tea.webp)"></div><div class="pov ov-dark"></div><div class="wrap bf">
+ <div class="reveal"><div class="ey">Breakfast</div><h2>Tea from the hill <em>you're looking at</em></h2><p class="lead" style="margin-top:14px">Served on the veranda from 7 to 10 am. Tell us the night before which one you'd like, and if anyone in your room can't eat something.</p></div>
+ <div class="menu reveal"><h3>Morning menu</h3>
+  <div class="it"><b>Sri Lankan</b><span>String hoppers, kiri hodi, pol sambol, dhal</span></div>
+  <div class="it"><b>Kiribath plate</b><span>Milk rice, lunu miris, banana</span></div>
+  <div class="it"><b>Western</b><span>Eggs your way, toast, butter, jam</span></div>
+  <div class="it"><b>Fruit bowl</b><span>Papaya, pineapple, banana</span></div>
+  <div class="it"><b>Ceylon tea</b><span>From the estate next door, all morning</span></div>
+ </div>
+</div></section>
+
+<section class="pb" id="here"><div class="pbg" style="background-image:url(../assets/villa/train.webp)"></div><div class="pov ov-dark"></div><div class="wrap">
+ <div class="sh"><div><div class="ey">Getting here</div><h2>Come up by <em>the blue train</em></h2></div></div>
+ <div class="gh">
+  <div class="card reveal"><div class="big">2.5 km</div><h3>From Ella station</h3><p>Send us your train time. Our tuk-tuk waits at the station gate. Free for every booking.</p></div>
+  <div class="card reveal"><div class="big">~6 hrs</div><h3>By road from Colombo</h3><p>Via the Southern Expressway and Wellawaya. The last 600 m is a narrow estate road, fine for cars and vans.</p></div>
+  <div class="card reveal"><div class="big">2 pm</div><h3>Check-in · 11 am check-out</h3><p>Early on the night train? Leave your bags and have tea on the veranda until the room is ready.</p></div>
+ </div>
+</div></section>
+
+<section class="pb light d2" id="check"><div class="pbg" style="background-image:url(../assets/villa/tuk_waterfall.webp)"></div><div class="pov ov-iv"></div><div class="wrap chk">
+ <div class="ey">My booking</div><h2>Already booked? <em>Check it here</em></h2>
+ <p class="lead" style="margin-top:12px">Type the booking number from your WhatsApp message. Try <b class="mono">TR-4821</b>.</p>
+ <form id="chkF"><input id="chkI" placeholder="TR-0000" maxlength="7" aria-label="Booking number"><button class="btn a" type="submit">Check</button></form>
+ <div id="chkOut"></div>
+</div></section>
+
+<section class="pb light" id="faq"><div class="pbg" style="background-image:url(../assets/villa/room_double.webp)"></div><div class="pov ov-iv"></div><div class="wrap faq">
+ <div class="ey">Questions</div><h2 style="margin-bottom:16px">Before you <em>pack</em></h2>
+ <details><summary>How do I pay the advance?</summary><p>After you send the booking on WhatsApp we reply with our bank details. Send 30% and a photo of the slip, and the room is yours. The rest is paid when you leave, by cash or bank transfer.</p></details>
+ <details><summary>Can I cancel?</summary><p>Cancel 7 days before and we return the full advance. Closer than that, we move your dates once for free.</p></details>
+ <details><summary>Is it cold at night?</summary><p>Nights go down to about 14°C from December to February. Every bed has a thick blanket and the showers have hot water.</p></details>
+ <details><summary>Do you have parking?</summary><p>Yes, for two cars or one van, inside the gate.</p></details>
+</div></section>
+
+<footer><div class="wrap">
+ <div><a class="logo" href="#top"><span><b>Tea Ridge Bungalow</b><small>Sample guest house · Ella</small></span></a><p style="margin-top:12px">This is a demo made by Rodrigo's Studio. It is not a real guest house.</p></div>
+ <div><p>Website by <a href="https://rodrigos-studio.github.io/" style="color:var(--sf);font-weight:800">Rodrigo's Studio</a></p><p>WhatsApp 072 499 6667</p></div>
+</div></footer>
+<a class="wfab" href="https://wa.me/94724996667" target="_blank" rel="noopener" aria-label="WhatsApp"><svg viewBox="0 0 32 32"><path d="M16 3C8.8 3 3 8.7 3 15.8c0 2.5.7 4.9 2 7L3 29l6.4-2c2 1.1 4.3 1.7 6.6 1.7 7.2 0 13-5.7 13-12.8S23.2 3 16 3zm0 23.4c-2.1 0-4.1-.6-5.8-1.7l-.4-.3-3.8 1.2 1.2-3.7-.3-.4c-1.2-1.8-1.8-3.8-1.8-5.9C5.1 10 10 5.2 16 5.2S26.9 10 26.9 15.9 22 26.4 16 26.4zm6-7.8c-.3-.2-1.9-1-2.2-1.1-.3-.1-.5-.2-.7.2-.2.3-.8 1-1 1.2-.2.2-.4.2-.7.1-.3-.2-1.4-.5-2.6-1.6-1-.9-1.6-1.9-1.8-2.3-.2-.3 0-.5.1-.7l.5-.6c.2-.2.2-.4.3-.6.1-.2 0-.4 0-.6l-1-2.4c-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4-.3.3-1.2 1.1-1.2 2.8s1.2 3.2 1.4 3.5c.2.2 2.4 3.6 5.8 5 .8.3 1.4.5 1.9.7.8.3 1.5.2 2.1.1.6-.1 1.9-.8 2.2-1.5.3-.7.3-1.4.2-1.5-.1-.2-.3-.3-.6-.4z"/></svg></a>
+
+<script>
+const ROOMS=[
+ {id:'vv',name:'Valley View Double',img:'room_double',rate:14500,max:2,bed:'1 queen bed',tag:'Most booked',feat:['Glass door to the valley','Hot water shower','Writing desk and chair']},
+ {id:'mw',name:'Mist Window Room',img:'room_mist',rate:12000,max:2,bed:'1 double bed',tag:'Quietest',feat:['Big window over the mist','Small table for tea','Shared veranda']},
+ {id:'sb',name:'Sunrise Balcony Family',img:'room_balcony',rate:19500,max:4,bed:'1 double + 2 single',tag:'Families',feat:['Own balcony, east facing','Space for 4 people','Kettle with estate tea']}];
+const TOURS=[
+ {id:'na',name:'Nine Arch & Little Adam\'s Peak',img:'nine_arch',p:4500,t:'4 hrs',d:'Catch a train crossing the bridge, then a short climb for the view.'},
+ {id:'rf',name:'Ravana Falls',img:'tuk_waterfall',p:3500,t:'2 hrs',d:'A stop at the falls on the Wellawaya road, with time for photos.'},
+ {id:'tf',name:'Tea factory visit',img:'ella_rock',p:3000,t:'2 hrs',d:'See how the leaf becomes tea, and taste it fresh at the end.'},
+ {id:'st',name:'Station pickup & drop',img:'train',p:0,t:'any train',d:'We meet your train at Ella station and bring you back when you leave.'}];
+const EXTRA=[{id:'dn',name:'Dinner · rice & curry',sub:'Per person, per night',p:2500,per:'pn'}];
+const fmt=n=>'Rs '+n.toLocaleString('en-LK');
+const DAY=864e5,today=new Date();today.setHours(0,0,0,0);
+// booked nights per room (deterministic sample data)
+function booked(room,d){const k=Math.floor(d.getTime()/DAY);const s=room.charCodeAt(0)*31+room.charCodeAt(1)*7;const v=Math.sin(k*12.9898+s)*43758.5453;const r=v-Math.floor(v);const run=Math.floor((k+s)/3)%5===0;return r<.15||run}
+let room=ROOMS[0],view=new Date(today.getFullYear(),today.getMonth()+(today.getDate()>20?1:0),1),ci=null,co=null;
+const $=id=>document.getElementById(id);
+// room cards
+$('roomCards').innerHTML=ROOMS.map(r=>`<article class="rm reveal"><div class="ph"><img src="../assets/villa/${r.img}.webp" alt="${r.name}" loading="lazy"><span>${r.tag}</span></div><div class="bd"><h3>${r.name}</h3><div class="pr">${fmt(r.rate)}<small>/ night</small></div><ul><li>${r.bed} · up to ${r.max} guests</li>${r.feat.map(f=>`<li>${f}</li>`).join('')}</ul><a class="btn a" href="#book" data-r="${r.id}">See free dates</a></div></article>`).join('');
+document.querySelectorAll('[data-r]').forEach(b=>b.onclick=()=>pickRoom(b.dataset.r));
+$('tourCards').innerHTML=TOURS.map(t=>`<article class="tr reveal"><div class="ph"><img src="../assets/villa/${t.img}.webp" alt="${t.name}" loading="lazy"></div><div class="bd"><h3>${t.name}</h3><p>${t.d}</p><div class="m"><span>${t.t}</span><b>${t.p?fmt(t.p):'Free'}</b></div></div></article>`).join('');
+$('rsel').innerHTML=ROOMS.map(r=>`<button data-rs="${r.id}">${r.name.split(' ').slice(0,2).join(' ')}</button>`).join('');
+document.querySelectorAll('[data-rs]').forEach(b=>b.onclick=()=>pickRoom(b.dataset.rs));
+$('addons').innerHTML=[...TOURS.filter(t=>t.p).map(t=>({id:t.id,name:t.name,sub:'Tuk-tuk, '+t.t,p:t.p})),...EXTRA].map(a=>`<label><input type="checkbox" data-a="${a.id}"><span>${a.name}<small>${a.sub}</small></span><em>${fmt(a.p)}</em></label>`).join('');
+document.querySelectorAll('[data-a]').forEach(c=>c.onchange=sum);
+['gN','nm2','arr'].forEach(i=>$(i).addEventListener('input',sum));
+function pickRoom(id){room=ROOMS.find(r=>r.id===id);ci=co=null;$('gN').innerHTML=Array.from({length:room.max},(_,i)=>`<option>${i+1}</option>`).join('');$('gN').value=Math.min(2,room.max);document.querySelectorAll('[data-rs]').forEach(b=>b.classList.toggle('on',b.dataset.rs===id));draw();sum()}
+function draw(){const y=view.getFullYear(),m=view.getMonth();$('mt').textContent=view.toLocaleString('en',{month:'long',year:'numeric'});
+ const first=(new Date(y,m,1).getDay()+6)%7,n=new Date(y,m+1,0).getDate();let h=['Mo','Tu','We','Th','Fr','Sa','Su'].map(d=>`<div class="dw">${d}</div>`).join('');
+ for(let i=0;i<first;i++)h+='<button class="blank" disabled></button>';
+ for(let d=1;d<=n;d++){const dt=new Date(y,m,d),t=dt.getTime();let c='';const past=dt<today,bk=booked(room.id,dt);
+  if(past)c='past';else if(bk)c='bkd';
+  if(ci&&t===ci.getTime())c='in';else if(co&&t===co.getTime())c='out';else if(ci&&co&&t>ci&&t<co)c='mid';
+  h+=`<button class="${c}" data-d="${t}" ${past||(bk&&!(co&&t===co.getTime()))?'disabled':''}>${d}</button>`}
+ $('cal').innerHTML=h;document.querySelectorAll('[data-d]').forEach(b=>b.onclick=()=>tap(new Date(+b.dataset.d)));
+ $('pm').disabled=view<=new Date(today.getFullYear(),today.getMonth(),1);$('pm').style.opacity=$('pm').disabled?.3:1}
+function freeBetween(a,b){for(let t=a.getTime();t<b.getTime();t+=DAY)if(booked(room.id,new Date(t)))return false;return true}
+function tap(d){if(!ci||co||d<=ci){ci=d;co=null;$('hint').textContent='Now tap the day you leave.'}
+ else{if(!freeBetween(ci,d)){$('hint').textContent='Someone is staying on a night in between. Pick a shorter stay or another room.';return}co=d;$('hint').textContent='Nice. Your price is on the right.'}
+ draw();sum()}
+$('pm').onclick=()=>{view=new Date(view.getFullYear(),view.getMonth()-1,1);draw()};$('nm').onclick=()=>{view=new Date(view.getFullYear(),view.getMonth()+1,1);draw()};
+let ref='';
+function sum(){const nights=ci&&co?Math.round((co-ci)/DAY):0,g=+$('gN').value||1;
+ const sel=[...document.querySelectorAll('[data-a]:checked')].map(c=>c.dataset.a);
+ let tot=nights*room.rate,lines=[];sel.forEach(id=>{const t=TOURS.find(x=>x.id===id),e=EXTRA.find(x=>x.id===id);if(t){tot+=t.p;lines.push(t.name+' '+fmt(t.p))}if(e){const v=e.p*g*Math.max(nights,1);tot+=v;lines.push(e.name+' '+fmt(v))}});
+ $('sRoom').textContent=room.name;$('sDates').textContent=ci?(ci.toLocaleDateString('en',{day:'numeric',month:'short'})+(co?' → '+co.toLocaleDateString('en',{day:'numeric',month:'short'}):' → ?')):'-';
+ $('sNights').textContent=nights?nights+' × '+fmt(room.rate):'-';$('sTot').textContent=fmt(tot);
+ $('sAdv').innerHTML=nights?`30% advance to confirm: <b>${fmt(Math.round(tot*.3/100)*100)}</b>`:'30% advance confirms the room.';
+ const ok=nights>0&&$('nm2').value.trim().length>1;$('sendWA').disabled=!ok;
+ if(nights&&!ref)ref='TR-'+String(1000+Math.floor(Math.random()*9000));$('sRef').textContent=nights?'Your booking number: '+ref:'';
+ $('sendWA').onclick=()=>{const msg=`Hello Tea Ridge! Booking ${ref}\nName: ${$('nm2').value.trim()}\nRoom: ${room.name}\nCheck-in: ${ci.toDateString()}\nCheck-out: ${co.toDateString()} (${nights} nights)\nGuests: ${g}\nArriving by: ${$('arr').value}\n${lines.length?'Extras: '+lines.join(', ')+'\n':''}Total: ${fmt(tot)}`;window.open('https://wa.me/94724996667?text='+encodeURIComponent(msg),'_blank')}}
+// booking check (sample data from the number)
+$('chkF').onsubmit=e=>{e.preventDefault();const v=$('chkI').value.trim().toUpperCase();const m=v.match(/^TR-?(\d{4})$/);
+ if(!m){$('chkOut').innerHTML='<p style="margin-top:14px;color:#B0412E;font-weight:700">Booking numbers look like TR-4821.</p>';return}
+ const n=+m[1],stage=n%4+1,r=ROOMS[n%3],d=new Date(today.getTime()+((n%20)+2)*DAY);
+ const S=[['Booking received',`${r.name} · ${d.toDateString()}`],['Advance paid','Slip checked, room held for you'],['Pickup set','Tuk-tuk at Ella station gate, 15 min before your train'],['Room ready','Fresh sheets, tea tray and blanket out']];
+ $('chkOut').innerHTML=`<div class="steps">${S.map((s,i)=>`<div class="st ${i<stage-1?'ok':i===stage-1?'now':''}"><i>${i<stage-1?'✓':i+1}</i><div><b>${s[0]}</b><small>${s[1]}</small></div></div>`).join('')}</div>`};
+// weather clock (sample)
+function clock(){const t=new Date(Date.now()+(330+new Date().getTimezoneOffset())*6e4);$('wxClock').textContent=t.toTimeString().slice(0,5);$('wxT').textContent=(t.getHours()<9?16:t.getHours()<16?22:18)+'°C'}clock();setInterval(clock,3e4);
+// reveal on scroll
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.15});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+pickRoom('vv');
+</script></body></html>
