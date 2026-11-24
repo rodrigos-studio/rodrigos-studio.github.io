@@ -1,4 +1,4 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Tea Ridge Bungalow · demo</title>
 <meta name="description" content="Demo website for a hill-country guest house in Ella: rooms with nightly prices, a live availability calendar, a price that adds up as you pick dates and extras, tuk-tuk tours, and booking straight to WhatsApp with a booking number.">
 <meta property="og:type" content="website">
@@ -13,7 +13,7 @@
 <style>
 /* Tea Ridge Bungalow: sample guest house in Ella (not a real business). Theme: misty indigo + saffron. Every section has a slowly moving real photo behind it. */
 *{margin:0;box-sizing:border-box}
-:root{--ink:#121828;--ink2:#1A2236;--ink3:#253049;--iv:#F4EFE4;--iv2:#E3DCCD;--mut:#9DA5B8;--sf:#E8A33D;--sf2:#CF8A26;--tc:#C25A3C;--line:rgba(244,239,228,.15);--wa:#1FAF5A;--bk:#E5534B}
+:root{--free:rgba(244,239,228,.12);--ink:#121828;--ink2:#1A2236;--ink3:#253049;--iv:#F4EFE4;--iv2:#E3DCCD;--mut:#9DA5B8;--sf:#E8A33D;--sf2:#CF8A26;--tc:#C25A3C;--line:rgba(244,239,228,.15);--wa:#1FAF5A;--bk:#E5534B}
 html{scroll-behavior:smooth;overflow-x:clip}
 body{background:var(--ink);color:var(--iv);font-family:"Manrope","Noto Sans Sinhala",system-ui,sans-serif;font-size:17px;line-height:1.6}
 a{color:inherit;text-decoration:none}
@@ -185,6 +185,30 @@ footer p{color:var(--iv2);font-size:15px}
 .wfab svg{width:32px;height:32px;fill:#fff}
 .reveal{opacity:0;transform:translateY(26px);transition:opacity .8s,transform .8s}
 .reveal.in{opacity:1;transform:none}
+
+/* LIGHT MODE: phone/PC in light mode gets light colours; dark mode keeps the original dark look (RS rule) */
+@media (prefers-color-scheme: light){
+:root{--iv:#18203A;--iv2:#3E4558;--mut:#6A7186;--line:rgba(18,24,40,.12);--free:rgba(18,24,40,.08)}
+body{background:#F6F1E6}
+h1 em,h2 em,.rm .pr,.tot b,.big,.wx b{color:#BD7416}
+.ey{color:#B4512F}
+nav a:hover{color:#BD7416}
+header{background:rgba(246,241,230,.9);border-bottom-color:rgba(18,24,40,.1)}
+.ov-dark{background:linear-gradient(180deg,rgba(246,241,230,.9),rgba(246,241,230,.8) 50%,rgba(246,241,230,.93))}
+.ov-hero{background:linear-gradient(90deg,rgba(246,241,230,.95) 0,rgba(246,241,230,.78) 50%,rgba(246,241,230,.2) 100%)}
+.ov-iv{background:linear-gradient(180deg,rgba(255,253,248,.9),rgba(255,253,248,.85))}
+.mist{opacity:.6}
+.chips span{background:rgba(255,255,255,.7)}
+.wx{background:rgba(255,255,255,.88)}
+.rm,.card{background:rgba(255,255,255,.95);box-shadow:0 14px 30px rgba(18,24,40,.1)}
+.rm .ph span{background:rgba(255,255,255,.92);color:var(--ink)}
+.rsel button,.addons label,.fld input,.fld select{background:#fff}
+.cal button{background:rgba(18,24,40,.05)}
+.cal button.bkd{background:transparent;color:#9AA0B0}
+.menu{background:#fff;box-shadow:0 18px 40px rgba(18,24,40,.14)}
+.wfab{box-shadow:0 10px 24px rgba(18,24,40,.25)}
+}
+@media (prefers-color-scheme: light) and (max-width:900px){.ov-hero{background:linear-gradient(180deg,rgba(246,241,230,.5),rgba(246,241,230,.93) 60%)}}
 @media(prefers-reduced-motion:reduce){.pb>.pbg,.mist,.ticker div{animation:none}.reveal{opacity:1;transform:none}}
 </style></head><body>
 <div class="ribbon">මේක Rodrigo's Studio හදපු <b>sample website</b> එකක්. ඔයාගේ guest house එකටත් මේ වගේ එකක් ඕනෙද? <a href="https://rodrigos-studio.github.io/">Rodrigo's Studio</a></div>
@@ -219,7 +243,7 @@ footer p{color:var(--iv2);font-size:15px}
    <div class="rsel" id="rsel"></div>
    <div class="calh"><button id="pm" aria-label="Previous month">‹</button><b id="mt"></b><button id="nm" aria-label="Next month">›</button></div>
    <div class="cal" id="cal"></div>
-   <div class="leg"><span><i style="background:var(--sf)"></i>Your stay</span><span><i style="background:transparent;border:2px solid var(--bk)"></i>Booked</span><span><i style="background:rgba(244,239,228,.12)"></i>Free</span></div>
+   <div class="leg"><span><i style="background:var(--sf)"></i>Your stay</span><span><i style="background:transparent;border:2px solid var(--bk)"></i>Booked</span><span><i style="background:var(--free)"></i>Free</span></div>
    <div class="hint" id="hint">Tap your check-in date.</div>
   </div>
   <div class="card reveal">
