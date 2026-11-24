@@ -1,4 +1,4 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Diya Auto Spa · demo</title>
 <meta name="description" content="Demo website for a car wash: pick your vehicle and package, see the price, and book a time on WhatsApp. Made by Rodrigo's Studio.">
 <meta property="og:type" content="website">
@@ -317,6 +317,33 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
 @media (max-width:700px){.bgx svg.fl,.bgx svg.fl2{filter:opacity(.6);scale:.8}.bgx .gl{opacity:1.25}.bgx .mh{display:none}.bgx .wd{-webkit-text-stroke-width:1.5px}}
 .bgx-dk .bgx{--bgx-k:rgba(255,255,255,.10);--bgx-w2:rgba(255,255,255,.07);--bgx-nzb:overlay;--bgx-nzo:.3}
 :root{--bgx-k:color-mix(in srgb,var(--ink) 12%,transparent);--bgx-w2:color-mix(in srgb,#0A8FAD 14%,transparent);--bgx-wf:"Barlow Condensed",system-ui,sans-serif}
+
+/* LIGHT MODE (RS rule): light colours in light mode; dark look only in dark mode */
+@media (prefers-color-scheme: light){
+header{background:rgba(238,248,251,.95);color:var(--ink);border-bottom:1px solid var(--line)}
+.logo small,.hero h1 em,.sum .k{color:#0A8FAD}
+.hero{background:linear-gradient(180deg,#E3F5FB,#EEF8FB);color:var(--ink)}
+.hero p{color:#3B5868}
+.pill{border-color:rgba(11,34,51,.14);color:#2A4656;background:#fff}
+.hero .btn.g,header .btn.g{border-color:rgba(11,34,51,.25);color:var(--ink)}
+.bay .floor{background:linear-gradient(#CFE3EC,#B7D1DD);border-top-color:#9FC0CF}
+.bay .lights i{background:#fff;box-shadow:0 0 18px 4px rgba(25,195,230,.35)}
+.sum{background:#fff;color:var(--ink);border:1px solid var(--line);box-shadow:0 16px 34px rgba(11,34,51,.1)}
+.sum ul,.sum .tot span{color:#3B5868}
+.sum .when{background:#EEF8FB}
+.sum .tot{border-top-color:var(--line)}
+.sum .tot b,.mbar b{color:#0B2233}
+.sum input{border-color:var(--line);background:#fff;color:var(--ink)}
+.sum label,.sum .note{color:var(--mut)}
+.card.dark{background:#E3F5FB;color:var(--ink)}
+.card.dark .lead{color:#3B5868}
+.card.dark .btn.g{border-color:rgba(11,34,51,.25);color:var(--ink)}
+footer{background:#E3F0F5;color:#4A6675}
+.mbar{background:#fff;color:var(--ink);box-shadow:0 -6px 20px rgba(11,34,51,.12)}
+.mbar small{color:var(--mut)}
+.facts b{color:#0A8FAD}.facts span,.card .meta{color:#4A6675}
+.stamps i.f{border-color:#D9A400;color:#A87F00}
+}
 </style>
 </head><body>
 <div class="ribbon">Demo website · sample car wash made by <a href="https://rodrigos-studio.github.io/">Rodrigo's Studio</a> · not a real business</div>

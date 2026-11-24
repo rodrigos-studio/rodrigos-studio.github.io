@@ -1,4 +1,4 @@
-<!doctype html><html lang="si"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<!doctype html><html lang="si"><head><meta charset="utf-8"><meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Frame 47 · demo</title>
 <meta name="description" content="Demo website for a photo studio: packages with prices, a gallery by shoot type, a booking calendar that shows free dates, a live quote with add-ons, booking straight to WhatsApp, and a photo-ready tracker. Made by Rodrigo's Studio.">
 <meta property="og:type" content="website">
@@ -238,6 +238,36 @@ footer a{color:var(--am);text-decoration:underline}
 .fab{position:fixed;right:max(16px,env(safe-area-inset-right,0px));bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:40;width:58px;height:58px;border-radius:50%;background:var(--wa);display:grid;place-items:center;box-shadow:0 12px 26px rgba(0,0,0,.4)}
 .rv{opacity:0;transform:translateY(24px);transition:opacity .8s,transform .8s}.rv.in{opacity:1;transform:none}
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.rv{opacity:1;transform:none}}
+
+/* LIGHT MODE (RS rule): light colours when the phone/PC is in light mode; dark look only in dark mode */
+@media (prefers-color-scheme: light){
+:root{--iv:#1E1A16;--iv2:#4A4036;--mut:#7A6E60;--line:rgba(20,17,14,.13)}
+body{background:#F8F3EA}
+h1 em,h2 em,.pk .pr,.facts b,.adds label b{color:#B3701A}
+.ey{color:var(--tc)}
+nav a:hover{color:#B3701A}
+header{background:rgba(248,243,234,.9)}
+.logo .m::before{box-shadow:0 0 0 5px #F8F3EA,0 0 0 7px var(--am)}
+.ov-dark{background:linear-gradient(180deg,rgba(248,243,234,.9),rgba(248,243,234,.8) 50%,rgba(248,243,234,.93))}
+.ov-hero{background:linear-gradient(90deg,rgba(248,243,234,.95) 0,rgba(248,243,234,.82) 48%,rgba(248,243,234,.4) 100%)}
+.ov-iv{background:linear-gradient(180deg,rgba(255,253,249,.9),rgba(255,253,249,.84))}
+.chips span,.tabs button,.pick button,.fld input,.fld select,.tform input{background:#fff}
+.vf .c{border-color:#fff}
+.vf .exif,.lb .cap{color:#E9E0D2}
+.pk,.panel{background:rgba(255,255,255,.95);box-shadow:0 16px 36px rgba(20,17,14,.1)}
+.gf button.on,.gal figure span{color:#fff}
+.ticket{background:#fff;box-shadow:0 20px 40px rgba(20,17,14,.14)}
+.ticket::before,.ticket::after{background:#F8F3EA}
+.days button{background:rgba(20,17,14,.05)}
+.days button.bk1{color:#A89C8C}
+.film{background:#EFE7DA}
+.fr{border-color:#CDBFAE;color:#9A8E80}
+.stack img{box-shadow:0 0 0 8px #fff,0 24px 40px rgba(20,17,14,.22)}
+.open.y{color:#1E8E4E}.open.n{color:#B5452E}
+footer{background:#EDE5D8}
+.shut{box-shadow:0 0 0 6px rgba(227,163,60,.25),0 14px 30px rgba(20,17,14,.2)}
+}
+@media (prefers-color-scheme: light) and (max-width:900px){.ov-hero{background:rgba(248,243,234,.88)}}
 </style></head><body>
 <div class="ribbon">මේක Rodrigo's Studio හදපු <b>sample website</b> එකක්. ඔයාගේ studio එකටත් මේ වගේ එකක් ඕනෙද? <a href="https://rodrigos-studio.github.io/">Rodrigo's Studio</a></div>
 <header><div class="wrap">

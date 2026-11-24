@@ -1,4 +1,4 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Lemongrass Kotte · sample website</title>
 <meta name="robots" content="noindex,nofollow">
 <meta name="description" content="Sample website made by Rodrigo's Studio to show Lemongrass, Kotte how online ordering and table booking could work. Not the official Lemongrass website.">
@@ -222,6 +222,35 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
   .cat h3 .ic{width:48px;height:48px}
 }
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}html{scroll-behavior:auto}}
+
+/* LIGHT MODE (RS rule): light colours in light mode; dark look only in dark mode */
+@media (prefers-color-scheme: light){
+:root{--bg:#F6F7F0;--bg2:#ECEFE3;--card:#FFFFFF;--card2:#F1F3EA;--line:#DDE1D2;--tx:#191B14;--mut:#5F6355}
+header{background:rgba(246,247,240,.93)}
+nav{color:#3A3D33}nav a:hover{color:#000}
+.brsel select option,.sheet .pan{background:#fff;color:#111}
+.hero{background:radial-gradient(800px 520px at 75% 40%,#E9F1D2,#F2F5E8 60%,#F6F7F0)}
+.pill{border-color:rgba(0,0,0,.12);color:#3A3D33;background:#fff}
+.hero .sih{color:#2A2D24}
+.tag{background:rgba(255,255,255,.96);border-color:#DDE1D2;box-shadow:0 16px 30px rgba(40,50,20,.14)}
+.thali{box-shadow:0 26px 44px rgba(40,50,20,.28),inset 0 0 0 3px rgba(255,255,255,.4)}
+.lunch .in{background:linear-gradient(100deg,#EBF3D6,#F8FAF1);border-color:#D2DCB8}
+.tab.on{color:#fff}
+.chip{color:#3A3D33}
+.chips{background:linear-gradient(var(--bg) 80%,rgba(246,247,240,0))}
+.kick,.brsel select,.hero h1 .script,.tag em,.chip.on,.sz button.has,.more,.br .row svg,.facts b,.lunch .pr,.it .pr{color:#557F06}
+.chip.on,.sz button.has,.br.on{border-color:#7FAE1C}
+.lunch small{color:#9A7417}
+.bdg{background:#E6F2C8;color:#4A6E05}
+.qty button{background:#E7EADF}
+.form label,.points li{color:#2E3127}
+.msg{background:#E8F6EC;border-color:#BDE2C8;color:#1D4A2B}.msg small{color:#3E8A58}
+.err{color:#C4382B}
+.gal figcaption{color:#fff}
+.br .row{color:#33362D}.br .num{color:#111}
+.sheet .bgc{background:rgba(20,24,12,.4)}
+.apps span.b{box-shadow:0 0 0 1px #DDE1D2}
+}
 </style></head><body>
 <div class="ribbon">Sample website made by <a href="https://rodrigos-studio.github.io/">Rodrigo's Studio</a> to show Lemongrass · not the official site</div>
 

@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="si">
 <head>
-<meta charset="utf-8">
+<meta charset="utf-8"><meta name="color-scheme" content="light dark">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="description" content="Demo late-night restaurant website with menu, match nights and table booking. Made by Rodrigo&#x27;s Studio, Sri Lanka.">
 <meta property="og:type" content="website">
@@ -16,7 +16,7 @@
 <link rel="icon" type="image/png" href="https://rodrigos-studio.github.io/icon.png">
 <link rel="apple-touch-icon" href="https://rodrigos-studio.github.io/icon.png">
 <meta name="theme-color" content="#12202B">
-<style>:root{color-scheme:light;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0;font:14px system-ui,-apple-system,'Segoe UI',Roboto,sans-serif}img{max-width:100%}[hidden]{display:none!important}</style>
+<style>:root{color-scheme:light dark;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0;font:14px system-ui,-apple-system,'Segoe UI',Roboto,sans-serif}img{max-width:100%}[hidden]{display:none!important}</style>
 <style id="bgx-css">
 /* bgx: section backgrounds */
 .bgx-s{position:relative;isolation:isolate}
@@ -241,6 +241,18 @@ footer{padding-block:30px 110px;color:var(--muted);font-size:14.5px;text-align:c
 @media (prefers-reduced-motion:reduce){.fx-run{animation:none}.fx-dots{display:none}.fx-top,.fx-fill.on .w{transition:none}}
 :root{--fx-b1:#E2A24A;--fx-b1-ink:#1A1209;--fx-b1-sep:#D3553A;--fx-b2:#25221F;--fx-b2-ink:#F1E9DD;--fx-b2-sep:#E2A24A;--fx-font:var(--sign);--fx-weight:900;--fx-track:.04em;--fx-si:var(--si);--fx-si-weight:700;--fx-say-font:var(--si);--fx-ink:var(--ink);--fx-bg:var(--bg);--fx-accent:var(--amber);--fx-top-bg:var(--ink);--fx-top-ink:var(--bg);--fx-top-ring:var(--amber);--fx-max:1100px}
 /* ---------- end RS demo effects ---------- */
+
+/* LIGHT MODE (RS rule): light colours in light mode; night look only in dark mode */
+@media (prefers-color-scheme: light){
+:root{--bg:#F7F1E7;--surface:#FFFFFF;--surface2:#F1E8DA;--ink:#1F1A15;--muted:#6E6457;--line:#E2D7C6;--amber:#D08F35;--ok:#2E9B57;
+--fx-b2:#EFE5D5;--fx-b2-ink:#1F1A15;--bgx-nzb:multiply;--bgx-nzo:.12}
+h1 em,.sh h2 .si,.felt p.am,.only,.night.today .d,.day[aria-pressed="true"] small,.hours tr.today td,.chip[aria-pressed="true"],a{color:#A8661A}
+.add,.qty button{color:#A8661A;border-color:#C98A33}
+.msg,.lede,.shutter{color:#3A332B}
+.status.open .dot{box-shadow:0 0 0 4px rgba(46,155,87,.18)}
+.board{box-shadow:inset 0 0 0 1px #000,0 20px 40px rgba(60,40,20,.25)}
+.sheet-bg{background:rgba(30,24,18,.35)}
+}
 </style>
 
 <div class="ribbon">Demo website · sample restaurant made by <a href="https://rodrigos-studio.github.io/">Rodrigo's Studio</a> · not a real business</div>

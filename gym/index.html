@@ -1,4 +1,4 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Wiru Fitness · demo</title>
 <meta name="description" content="Demo website for a gym: see how busy it is right now, compare membership plans, book a class and a free trial day on WhatsApp. Made by Rodrigo's Studio.">
 <meta property="og:type" content="website">
@@ -327,6 +327,31 @@ footer{position:relative;background:radial-gradient(600px 200px at 80% 0%,rgba(2
   .dur button em{display:block;margin:0}
 }
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+
+/* LIGHT MODE (RS rule): light colours in light mode; dark look only in dark mode */
+@media (prefers-color-scheme: light){
+header{background:rgba(243,241,234,.95);color:var(--ink);border-bottom-color:var(--line)}
+.logo small,.hero h1 em,.goal .kick,.grec small,.facts b{color:var(--voltd)}
+.hero{background:var(--chalk);color:var(--ink)}
+.scene .shade{background:linear-gradient(90deg,rgba(243,241,234,.95) 0%,rgba(243,241,234,.8) 40%,rgba(243,241,234,.2) 70%)}
+.hero .si-h{color:var(--ink)}
+.hero p,.goal .lead,.grec p{color:#4A4E45}
+.pill{border-color:rgba(18,20,17,.14);color:#33372f;background:#fff}
+.hero .btn.o,header .btn.o,.goal .btn.o{border-color:rgba(18,20,17,.3);color:var(--ink)}
+.mini{background:rgba(255,255,255,.95);border-color:var(--line);box-shadow:0 18px 40px rgba(18,20,17,.14);color:var(--ink)}
+.mini small,.gbtn span,.facts span{color:var(--mut)}
+.mini .meter i{background:#E1DED3}
+.mini .tag{color:#4A4E45}
+.goal{background:#EAF3CF;color:var(--ink)}
+.gbtn{background:#fff;border-color:var(--line);color:var(--ink)}
+.gbtn.on{border-color:var(--voltd);background:var(--volt2)}
+.grec{background:#fff;border-color:var(--line)}
+.grec .tags span{background:var(--chalk);color:#33372f}
+footer{background:#E9E6DC;color:#55594F}
+.mbar{background:#fff;color:var(--ink);box-shadow:0 -6px 20px rgba(18,20,17,.12)}
+.mbar b span,.mbar small{color:var(--mut)}
+}
+@media (prefers-color-scheme: light) and (max-width:900px){.scene .shade{background:linear-gradient(180deg,rgba(243,241,234,.8),rgba(243,241,234,.9))}}
 </style></head><body>
 <div class="ribbon">Demo website · sample gym made by <a href="https://rodrigos-studio.github.io/">Rodrigo's Studio</a> · not a real business</div>
 

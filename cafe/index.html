@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="si">
 <head>
-<meta charset="utf-8">
+<meta charset="utf-8"><meta name="color-scheme" content="light dark">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="description" content="Demo garden café website with menu, WhatsApp orders and table booking. Made by Rodrigo&#x27;s Studio, Sri Lanka.">
 <meta property="og:type" content="website">
@@ -16,7 +16,7 @@
 <link rel="icon" type="image/png" href="https://rodrigos-studio.github.io/icon.png">
 <link rel="apple-touch-icon" href="https://rodrigos-studio.github.io/icon.png">
 <meta name="theme-color" content="#12202B">
-<style>:root{color-scheme:light;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0;font:14px system-ui,-apple-system,'Segoe UI',Roboto,sans-serif}img{max-width:100%}[hidden]{display:none!important}</style>
+<style>:root{color-scheme:light dark;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0;font:14px system-ui,-apple-system,'Segoe UI',Roboto,sans-serif}img{max-width:100%}[hidden]{display:none!important}</style>
 <style id="bgx-css">
 /* bgx: section backgrounds */
 .bgx-s{position:relative;isolation:isolate}
@@ -243,6 +243,19 @@ footer{padding-block:30px 120px;color:var(--muted);font-size:14px;text-align:cen
 @media (prefers-reduced-motion:reduce){.fx-run{animation:none}.fx-dots{display:none}.fx-top,.fx-fill.on .w{transition:none}}
 :root{--fx-b1:#2E4636;--fx-b1-ink:#F2EEE3;--fx-b1-sep:#E9C46A;--fx-b2:#E9C46A;--fx-b2-ink:#1F2A22;--fx-b2-sep:#B8643E;--fx-font:var(--display);--fx-weight:700;--fx-track:.03em;--fx-si:var(--si);--fx-si-weight:600;--fx-say-font:var(--si-head);--fx-say-weight:600;--fx-ink:var(--ink);--fx-bg:var(--bg);--fx-accent:var(--clay);--fx-top-bg:var(--forest);--fx-top-ink:var(--forest-ink);--fx-top-ring:var(--sun);--fx-max:1080px}
 /* ---------- end RS demo effects ---------- */
+
+/* LIGHT MODE (RS rule): light colours in light mode; dark look only in dark mode */
+@media (prefers-color-scheme: light){
+.ribbon{background:#E3EBDD;color:var(--ink)}
+.ribbon a{color:var(--forest)}
+.hero{background:linear-gradient(135deg,#E6EEDF,#F4F0E5);color:var(--ink);border:1px solid var(--line)}
+.hero h1 em,.hero em{color:var(--clay)}
+.hero .btn-main{background:var(--forest);color:var(--forest-ink)}
+.hero .btn-line{border-color:rgba(31,42,34,.3);color:var(--ink)}
+.hero .status{background:#fff;border-color:var(--line)}
+.hero p{color:#3F4A41}
+.bar{background:#fff;color:var(--ink);box-shadow:0 -6px 20px rgba(31,42,34,.12)}
+}
 </style>
 
 <div class="ribbon">Demo website · sample garden café made by <a href="https://rodrigos-studio.github.io/">Rodrigo's Studio</a> · not a real business</div>

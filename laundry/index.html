@@ -1,4 +1,4 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Pirisidu Laundry · demo</title>
 <meta name="description" content="Demo website for a laundry shop: price calculator, pickup booking on WhatsApp, order tracking and opening hours. Made by Rodrigo's Studio.">
 <meta property="og:type" content="website">
@@ -228,6 +228,35 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
 @media(min-width:881px){.lb{left:auto;width:380px;right:24px}}
 .toast{position:fixed;left:50%;top:84px;transform:translate(-50%,-30px);opacity:0;background:var(--navy);color:#fff;padding:12px 18px;border-radius:14px;font-weight:800;z-index:50;transition:.3s;white-space:nowrap}
 .toast.on{opacity:1;transform:translate(-50%,0)}
+
+/* LIGHT MODE (RS rule): light colours in light mode; dark look only in dark mode */
+@media (prefers-color-scheme: light){
+.ribbon{background:var(--aq3);color:var(--navy)}
+.ribbon a{color:var(--navy)}
+.track h2 em,.track em{color:#0B7E9B}
+.ready .in{background:#fff;color:var(--navy);border:1px solid var(--line);box-shadow:0 18px 40px rgba(13,43,69,.1)}
+.ready .ic{background:var(--aq3)}
+.ready .t small,.tk .q label,.lb .t small{color:#0B7E9B}
+.ready .t span,.track .lead{color:#3E5A6A}
+.sum{background:#fff;color:var(--navy);border:1px solid var(--line);box-shadow:0 18px 40px rgba(13,43,69,.1)}
+.sum::after{opacity:.4}
+.sum .ln{border-bottom-color:var(--line);color:#3E5A6A}
+.sum .ln b,.sum .rd b{color:var(--navy)}
+.sum .tot b{color:#0B7E9B}
+.sum .rd{background:var(--aq3);color:#24485C}
+.sum .empty,.note,.tk .q .try{color:var(--mut)}
+.seg{background:var(--aq3)}
+.seg button{color:#3E5A6A}
+.seg button.on{background:var(--navy);color:#fff}
+.track{background:#E4F5F9;color:var(--navy)}
+.tk .q{background:#fff;border-color:var(--line)}
+.tk .q input{border-color:var(--line);background:var(--foam);color:var(--navy)}
+.tk .q input::placeholder{color:#8AA6B3}
+.tk .q .try button{color:#0B7E9B}
+.steps{box-shadow:0 20px 40px rgba(13,43,69,.12)}
+footer{background:#E4F1F5;color:#4A6675}
+.lb{background:#fff;color:var(--navy);box-shadow:0 10px 30px rgba(13,43,69,.2)}
+}
 </style></head><body>
 <div class="ribbon">Demo website · sample laundry shop made by <a href="https://rodrigos-studio.github.io/">Rodrigo's Studio</a> · not a real business</div>
 <header><div class="wrap">

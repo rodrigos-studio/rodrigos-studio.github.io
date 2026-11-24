@@ -1,4 +1,4 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Saviya Hardware · demo</title>
 <meta name="description" content="Demo website for a hardware shop: today's prices, a product list you send on WhatsApp, a paint calculator and delivery areas. Made by Rodrigo's Studio.">
 <meta property="og:type" content="website">
@@ -204,6 +204,34 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
 @media (max-width:700px){.bgx svg.fl,.bgx svg.fl2{filter:opacity(.6);scale:.8}.bgx .gl{opacity:1.25}.bgx .mh{display:none}.bgx .wd{-webkit-text-stroke-width:1.5px}}
 .bgx-dk .bgx{--bgx-k:rgba(255,255,255,.10);--bgx-w2:rgba(255,255,255,.07);--bgx-nzb:overlay;--bgx-nzo:.3}
 :root{--bgx-k:color-mix(in srgb,var(--ink) 12%,transparent);--bgx-w2:color-mix(in srgb,var(--or) 16%,transparent);--bgx-wf:"Barlow Condensed",system-ui,sans-serif}
+
+/* LIGHT MODE (RS rule): light colours in light mode; dark look only in dark mode */
+@media (prefers-color-scheme: light){
+header{background:#FFFDF8;color:var(--ink)}
+.logo small{color:#C25E00}
+.hero{background:linear-gradient(180deg,#F7F3EA,#EFE9DC);color:var(--ink)}
+.hero .bgw{background:radial-gradient(circle,rgba(23,25,27,.06) 1.6px,transparent 2.2px) 0 0/26px 26px,linear-gradient(180deg,#F8F4EC 0,#F1EBDF 60%,#EAE3D5 100%)}
+.hero .beam{background:linear-gradient(180deg,rgba(255,170,60,.22),rgba(255,170,60,0) 75%);mix-blend-mode:multiply}
+.hero h1 em{color:#E06A00}
+.hero p,.paint .lead{color:#4C5156}
+.hero .chips span{background:#fff;border-color:var(--line);color:var(--ink)}
+.hero .btn.ol,header .btn.ol,.paint .btn.ol{border-color:rgba(23,25,27,.3);color:var(--ink)}
+.board .in{background:#fff;color:var(--ink);border-color:var(--line);box-shadow:0 22px 50px rgba(23,25,27,.12)}
+.board .hd small{color:#C25E00}
+.pr div{background:var(--paper)}
+.pr span,.fld label,.res span,.lb .t small{color:var(--mut)}
+.pr b{color:var(--ink)}
+.pr i.up{color:#C8372D}.pr i.dn{color:#1F8A4C}.pr i.eq{color:var(--mut)}
+.paint{background:#EFEAE0;color:var(--ink)}
+.pc .f,.res div{background:#fff;border-color:var(--line)}
+.fld input{background:#fff;border-color:#D6D0C2;color:var(--ink)}
+.seg{background:var(--paper);border-color:#D6D0C2}
+.seg button{color:#4C5156}
+.cans{background:#fff;border-color:#CFC8B8}
+.room{border-color:var(--line)}
+.lb{background:#fff;color:var(--ink);box-shadow:0 -6px 20px rgba(23,25,27,.12)}
+footer{background:#ECE7DC;color:#5A5F63}
+}
 </style>
 </head><body>
 <div class="ribbon">Demo website · sample hardware shop made by <a href="https://rodrigos-studio.github.io/">Rodrigo's Studio</a> · not a real business</div>

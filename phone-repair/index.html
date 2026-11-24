@@ -1,4 +1,4 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Navo Mobile · demo</title>
 <meta name="description" content="Demo website for a phone repair shop: check the repair price and book on WhatsApp in one tap. Made by Rodrigo's Studio.">
 <meta property="og:type" content="website">
@@ -197,6 +197,27 @@ footer .wrap{display:flex;justify-content:space-between}
 @media (max-width:700px){.bgx svg.fl,.bgx svg.fl2{filter:opacity(.6);scale:.8}.bgx .gl{opacity:1.25}.bgx .mh{display:none}.bgx .wd{-webkit-text-stroke-width:1.5px}}
 .bgx-dk .bgx{--bgx-k:rgba(255,255,255,.10);--bgx-w2:rgba(255,255,255,.07);--bgx-nzb:overlay;--bgx-nzo:.3}
 :root{--bgx-k:color-mix(in srgb,var(--ind) 13%,transparent);--bgx-w2:color-mix(in srgb,var(--ind) 9%,transparent);--bgx-wf:"Archivo",system-ui,sans-serif}
+
+/* LIGHT MODE (RS rule): light colours in light mode; dark look only in dark mode */
+@media (prefers-color-scheme: light){
+header{background:#fff;color:var(--ink);border-bottom:1px solid var(--line)}
+.burger{border-color:var(--line)}
+.burger path{stroke:var(--ink)}
+nav{color:#3F3C66}
+.logo b i,.hero h1 em,.facts div b,.quote .pr,.quote li::before{color:#5A7A00}
+.logo span,.facts div span,.quote .q1,.quote .note,.why .lead,.wg span{color:var(--mut)}
+.hero{background:radial-gradient(700px 420px at 80% 30%,rgba(200,244,58,.25),transparent 60%),#EFEEF8;color:var(--ink)}
+.hero p{color:#4A4770}
+.pill{border-color:var(--line);color:var(--ink);background:#fff}
+.hero .btn.g,header .btn.g,.why .btn.g{border-color:rgba(22,19,58,.25);color:var(--ink)}
+.quote{background:#fff;color:var(--ink);border:1px solid var(--line);box-shadow:0 16px 36px rgba(22,19,58,.1)}
+.quote ul{color:#3F3C66}
+.why{background:#EFEEF8;color:var(--ink)}
+.why .bgx,.bgx-dk .bgx{--bgx-k:rgba(22,19,58,.07);--bgx-w2:rgba(35,30,92,.08);--bgx-nzb:multiply;--bgx-nzo:.12}
+.wg div{border-color:var(--line);background:#fff}
+footer{background:#EAE9F3;color:#55527A}
+.dev{box-shadow:0 26px 50px rgba(22,19,58,.3)}
+}
 </style>
 </head><body>
 <div class="ribbon">Demo website · sample phone shop made by <a href="https://rodrigos-studio.github.io/">Rodrigo's Studio</a> · not a real business</div>

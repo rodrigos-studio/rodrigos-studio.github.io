@@ -1,4 +1,4 @@
-<!doctype html><html lang="si"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<!doctype html><html lang="si"><head><meta charset="utf-8"><meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Sithmi Tailors · demo</title>
 <meta name="description" content="Demo website for a tailor shop: online order form that goes straight into the owner's Google Sheet, and order tracking from the same Sheet. Made by Rodrigo's Studio.">
 <meta property="og:type" content="website">
@@ -207,6 +207,27 @@ body.s4 .pat .tag{color:#F1D39A;opacity:.18}
 .spin{width:18px;height:18px;border:3px solid rgba(255,255,255,.4);border-top-color:#fff;border-radius:50%;animation:sp .8s linear infinite;display:none}
 .busy .spin{display:inline-block}
 @keyframes sp{to{transform:rotate(360deg)}}
+
+/* LIGHT MODE (RS rule): light colours in light mode; dark look only in dark mode */
+@media (prefers-color-scheme: light){
+.ribbon{background:var(--cr2);color:#4A3A5A}
+.ribbon a{color:var(--pl)}
+.hero{background:var(--cr);color:var(--pl)}
+.hero h1 em{color:#A8741C}
+.hero p{color:#5A4C68}
+.hero .btn.ol{border-color:var(--pl);color:var(--pl)}
+.res,.res[style]{background:#fff!important;border:1px solid var(--line)!important;color:var(--pl);box-shadow:0 18px 40px rgba(43,26,61,.1)}
+.res .steps div{color:var(--mut)}
+.res .steps div.on{color:var(--pl)}
+.res .steps::before{background:var(--line)}
+.res .steps div i{background:var(--cr2);border-color:var(--line)}
+.cont{background:var(--cr2);color:var(--pl)}
+.kick,.track .kick,.facts div b,.track h2 em,.hero h1 em{color:#A8741C!important}
+.facts div span,.track .lead{color:#5A4C68}
+.cont span[style]{color:#6E6275!important}
+.hbg::after{background:linear-gradient(180deg,rgba(251,246,238,.93) 0,rgba(251,246,238,.86) 65%,rgba(251,246,238,.95))!important}
+footer{background:var(--cr2);color:#5A4C68;border-top-color:var(--line)}
+}
 </style></head><body class="s2">
 <div class="ribbon">Demo website · sample tailor shop made by <a href="https://rodrigos-studio.github.io/">Rodrigo's Studio</a> · not a real business</div>
 <header><div class="wrap">
