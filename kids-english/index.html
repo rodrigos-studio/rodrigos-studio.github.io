@@ -1,0 +1,309 @@
+<!doctype html><html lang="si"><head><meta charset="utf-8"><meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Little Lions English · demo</title>
+<meta name="description" content="Demo website for a kids' spoken English class: find the right group by age, see what a week looks like, a sample progress card for parents, fees, and a free trial class booked straight to WhatsApp.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Little Lions English · demo by Rodrigo&#x27;s Studio">
+<meta property="og:description" content="Kids spoken English class demo: age groups, weekly plan, progress card, fees and WhatsApp trial booking.">
+<meta property="og:url" content="https://rodrigos-studio.github.io/kids-english/">
+<meta property="og:image" content="https://rodrigos-studio.github.io/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/png" href="https://rodrigos-studio.github.io/icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&family=Nunito:wght@500;700;800&family=Noto+Sans+Sinhala:wght@400;600;700;800&display=swap">
+<style>
+/* Little Lions English: sample kids' spoken English class in Kotte (not a real business). Light: chalk white + teal + sunflower. Dark: deep teal night. Every section has a slowly moving real photo behind it. */
+*{margin:0;box-sizing:border-box}
+:root{color-scheme:light dark;--bg:#FBF8F1;--bg2:#FFFFFF;--ink:#14302F;--ink2:#3E5958;--mut:#6F8584;--tl:#0E8A85;--tl2:#0A6F6B;--sun:#F5B82E;--sun2:#E39E12;--cor:#E8664F;--line:rgba(20,48,47,.12);--card:rgba(255,255,255,.88);--ov:rgba(251,248,241,.62);--ov2:rgba(251,248,241,.7);--hov:linear-gradient(90deg,rgba(251,248,241,.94) 0,rgba(251,248,241,.72) 50%,rgba(251,248,241,.1) 100%);--wa:#1FAF5A;--sh:0 14px 34px rgba(20,48,47,.12)}
+@media (prefers-color-scheme: dark){:root{--bg:#0E1F1F;--bg2:#132827;--ink:#EFF6F4;--ink2:#C3D6D3;--mut:#8FA9A6;--tl:#35C2BA;--tl2:#5ED6CF;--sun:#F7C34A;--sun2:#F5B82E;--cor:#F07F6A;--line:rgba(239,246,244,.14);--card:rgba(19,40,39,.88);--ov:rgba(14,31,31,.68);--ov2:rgba(14,31,31,.76);--hov:linear-gradient(90deg,rgba(14,31,31,.94) 0,rgba(14,31,31,.7) 50%,rgba(14,31,31,.15) 100%);--sh:0 14px 34px rgba(0,0,0,.4)}}
+html{scroll-behavior:smooth;overflow-x:clip}
+body{background:var(--bg);color:var(--ink);font-family:"Nunito","Noto Sans Sinhala",system-ui,sans-serif;font-size:17px;line-height:1.65}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+input,select{font:inherit;color:inherit}
+.wrap{max-width:1180px;margin:0 auto;padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px))}
+h1,h2,h3{font-family:"Baloo 2","Noto Sans Sinhala",sans-serif;font-weight:800;line-height:1.15;text-wrap:balance}
+h1{font-size:clamp(36px,5.6vw,64px)}
+h2{font-size:clamp(30px,4.2vw,46px)}
+h1 em,h2 em{font-style:normal;color:var(--tl);background:linear-gradient(transparent 62%,rgba(245,184,46,.45) 62%);padding:0 4px}
+.ey{display:inline-block;font-family:"Baloo 2",sans-serif;font-weight:800;font-size:14px;letter-spacing:.14em;text-transform:uppercase;color:var(--cor);margin-bottom:8px}
+.lead{color:var(--ink2);max-width:640px}
+section>.wrap>.lead,section>.wrap>div>.lead,.hero .lead{background:color-mix(in srgb,var(--bg) 70%,transparent);border-radius:14px;padding:6px 10px;margin-left:-10px;backdrop-filter:blur(3px)}
+h2,h1{text-shadow:0 1px 0 color-mix(in srgb,var(--bg) 80%,transparent)}
+.ribbon{background:var(--sun);color:#14302F;font-family:"Noto Sans Sinhala","Nunito",sans-serif;font-size:13px;text-align:center;padding:6px 12px;font-weight:600}
+.ribbon a{text-decoration:underline;font-weight:800}
+header{position:sticky;top:0;z-index:30;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+header .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-top:10px;padding-bottom:10px}
+.logo{display:flex;align-items:center;gap:10px}
+.logo svg{width:44px;height:44px;flex:none}
+.logo b{display:block;font-family:"Baloo 2",sans-serif;font-size:24px;line-height:1;white-space:nowrap}
+.logo small{display:block;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--mut);font-weight:800}
+nav{display:flex;gap:22px;font-weight:800;font-size:15px}
+nav a:hover{color:var(--tl)}
+@media(max-width:900px){nav{display:none}}
+.btn{white-space:nowrap;display:inline-flex;align-items:center;justify-content:center;gap:10px;border-radius:40px;padding:13px 24px;font-weight:800;font-size:16px;border:2px solid transparent;transition:transform .15s,background .2s;font-family:"Nunito","Noto Sans Sinhala",sans-serif}
+.btn:active{transform:scale(.97)}
+.btn.a{background:var(--tl);color:#fff}.btn.a:hover{background:var(--tl2)}
+.btn.s{background:var(--sun);color:#14302F}
+.btn.w{background:var(--wa);color:#fff}
+.btn.ol{border-color:var(--ink);color:var(--ink)}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+header .btn{padding:10px 18px;font-size:15px}
+@media(max-width:420px){.logo b{font-size:20px}header .btn{padding:9px 13px;font-size:14px}}
+/* moving photo backgrounds */
+.pb{position:relative;overflow:hidden;isolation:isolate}
+.pb>.pbg{position:absolute;inset:-8%;z-index:-2;background:center/cover no-repeat;animation:drift 36s ease-in-out infinite alternate;will-change:transform}
+.pb.d2>.pbg{animation-duration:44s;animation-direction:alternate-reverse}
+.pb>.pov{position:absolute;inset:0;z-index:-1;background:var(--ov)}
+.pb>.pov.o2{background:var(--ov2)}
+.pb>.pov.hero{background:var(--hov)}
+@media(max-width:900px){.pb>.pov.hero{background:linear-gradient(180deg,color-mix(in srgb,var(--bg) 50%,transparent),var(--ov2) 58%)}}
+@keyframes drift{0%{transform:scale(1.06) translate(-2%,-1%)}100%{transform:scale(1.17) translate(2%,1.5%)}}
+.dots{position:absolute;inset:0;z-index:-1;pointer-events:none;background-image:radial-gradient(circle,rgba(245,184,46,.35) 2px,transparent 3px),radial-gradient(circle,rgba(14,138,133,.25) 2px,transparent 3px);background-size:80px 80px,120px 120px;background-position:0 0,40px 60px;animation:float 30s linear infinite}
+@keyframes float{to{background-position:0 -800px,40px -1140px}}
+section{padding:90px 0}
+@media(max-width:700px){section{padding:64px 0}}
+.hero{padding:110px 0 120px}
+.hero .lead{font-size:19px;margin:18px 0 28px}
+.cta{display:flex;flex-wrap:wrap;gap:12px}
+.stats{display:flex;flex-wrap:wrap;gap:14px;margin-top:34px}
+.stat{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:12px 18px;box-shadow:var(--sh)}
+.stat b{display:block;font-family:"Baloo 2",sans-serif;font-size:28px;line-height:1;color:var(--tl)}
+.stat span{font-size:14px;color:var(--ink2);font-weight:700}
+.card{background:var(--card);border:1px solid var(--line);border-radius:24px;box-shadow:var(--sh);backdrop-filter:blur(6px)}
+/* age finder */
+.ages{display:flex;flex-wrap:wrap;gap:10px;margin:26px 0}
+.age{min-width:64px;padding:12px 16px;border-radius:16px;border:2px solid var(--line);background:var(--card);font-family:"Baloo 2",sans-serif;font-weight:800;font-size:22px}
+.age small{display:block;font-family:"Nunito",sans-serif;font-size:12px;color:var(--mut);font-weight:700;line-height:1}
+.age[aria-pressed=true]{background:var(--tl);color:#fff;border-color:var(--tl)}
+.age[aria-pressed=true] small{color:#DFF5F3}
+.grp{display:grid;grid-template-columns:1.2fr 1fr;gap:22px;padding:26px}
+@media(max-width:800px){.grp{grid-template-columns:1fr}}
+.grp h3{font-size:32px}
+.grp .tag{display:inline-block;background:var(--sun);color:#14302F;border-radius:30px;padding:3px 14px;font-weight:800;font-size:14px;margin-bottom:8px}
+.grp ul{list-style:none;margin-top:12px}
+.grp li{padding-left:28px;position:relative;margin:6px 0;color:var(--ink2)}
+.grp li::before{content:"";position:absolute;left:0;top:.45em;width:16px;height:16px;border-radius:50%;background:var(--tl);box-shadow:inset 0 0 0 4px var(--bg2)}
+.slot{border-radius:18px;background:color-mix(in srgb,var(--tl) 10%,transparent);padding:18px}
+.slot div{display:flex;justify-content:space-between;gap:10px;padding:8px 0;border-bottom:1px dashed var(--line)}
+.slot div:last-child{border:0}
+.slot b{font-weight:800}
+.seats{color:var(--cor);font-weight:800}
+/* week */
+.week{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:30px}
+@media(max-width:960px){.week{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:520px){.week{grid-template-columns:1fr}}
+.wk{padding:22px}
+.wk .n{display:inline-flex;width:44px;height:44px;border-radius:14px;align-items:center;justify-content:center;font-family:"Baloo 2",sans-serif;font-weight:800;font-size:22px;color:#fff;margin-bottom:10px}
+.wk h3{font-size:24px;margin-bottom:6px}
+.wk p{color:var(--ink2);font-size:15.5px}
+.wk .say{margin-top:12px;font-family:"Baloo 2",sans-serif;font-weight:700;font-size:16px;color:var(--tl);border-left:4px solid var(--sun);padding-left:10px}
+/* progress card */
+.pg{display:grid;grid-template-columns:1fr 1.1fr;gap:34px;align-items:center}
+@media(max-width:900px){.pg{grid-template-columns:1fr}}
+.rep{padding:26px;position:relative}
+.rep .hd{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;margin-bottom:16px}
+.rep .hd b{font-family:"Baloo 2",sans-serif;font-size:26px;line-height:1.1}
+.rep .hd small{display:block;color:var(--mut);font-weight:700}
+.stamp{flex:none;border:3px solid var(--cor);color:var(--cor);border-radius:12px;padding:4px 10px;font-family:"Baloo 2",sans-serif;font-weight:800;transform:rotate(6deg);font-size:15px}
+.bar{margin:12px 0}
+.bar div{display:flex;justify-content:space-between;font-weight:800;font-size:15px}
+.bar i{display:block;height:12px;border-radius:10px;background:color-mix(in srgb,var(--tl) 15%,transparent);overflow:hidden;margin-top:5px}
+.bar i s{display:block;height:100%;border-radius:10px;background:linear-gradient(90deg,var(--tl),var(--sun));width:0;transition:width 1.4s cubic-bezier(.2,.8,.2,1)}
+.rep .nt{margin-top:16px;padding:14px;border-radius:16px;background:color-mix(in srgb,var(--sun) 18%,transparent);font-size:15px}
+.rep .wd{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.rep .wd span{border:2px solid var(--line);border-radius:30px;padding:2px 12px;font-weight:800;font-size:14px}
+/* fees */
+.fees{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:30px}
+@media(max-width:900px){.fees{grid-template-columns:1fr}}
+.fee{padding:26px}
+.fee.hl{border:3px solid var(--sun)}
+.fee h3{font-size:24px}
+.fee .pr{font-family:"Baloo 2",sans-serif;font-weight:800;font-size:42px;color:var(--tl);line-height:1.1;margin:10px 0}
+.fee .pr small{font-size:16px;color:var(--mut)}
+.fee p{color:var(--ink2);font-size:15.5px}
+.calc{margin-top:22px;padding:22px;display:flex;flex-wrap:wrap;gap:16px;align-items:center;justify-content:space-between}
+.calc label{font-weight:800}
+.calc select{margin-left:8px;padding:8px 12px;border-radius:12px;border:2px solid var(--line);background:var(--bg2)}
+.calc .tot{font-family:"Baloo 2",sans-serif;font-weight:800;font-size:30px;color:var(--tl)}
+/* trial booking */
+.bk{display:grid;grid-template-columns:1fr 1.1fr;gap:30px;align-items:start}
+@media(max-width:900px){.bk{grid-template-columns:1fr}}
+form.card{padding:26px}
+.f{margin-bottom:14px}
+.f label{display:block;font-weight:800;font-size:15px;margin-bottom:5px}
+.f input,.f select{width:100%;padding:12px 14px;border-radius:14px;border:2px solid var(--line);background:var(--bg2)}
+.f input:focus,.f select:focus{outline:3px solid color-mix(in srgb,var(--tl) 40%,transparent);border-color:var(--tl)}
+.days{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.day{padding:12px;border-radius:14px;border:2px solid var(--line);background:var(--bg2);text-align:left}
+.day b{display:block;font-weight:800}
+.day small{font-weight:700;color:var(--mut)}
+.day.full{opacity:.45;cursor:not-allowed;text-decoration:line-through}
+.day[aria-pressed=true]{border-color:var(--tl);background:color-mix(in srgb,var(--tl) 12%,var(--bg2))}
+.err{color:var(--cor);font-weight:800;font-size:14px;min-height:20px;margin-top:6px}
+.done{padding:26px;text-align:center}
+.done .ref{font-family:"Baloo 2",sans-serif;font-size:34px;font-weight:800;color:var(--tl)}
+.steps{list-style:none;counter-reset:s;margin-top:18px;background:color-mix(in srgb,var(--bg) 72%,transparent);border-radius:18px;padding:4px 14px;backdrop-filter:blur(3px)}
+.steps li{counter-increment:s;padding-left:46px;position:relative;margin:14px 0;color:var(--ink2)}
+.steps li::before{content:counter(s);position:absolute;left:0;top:-2px;width:34px;height:34px;border-radius:50%;background:var(--sun);color:#14302F;font-family:"Baloo 2",sans-serif;font-weight:800;display:flex;align-items:center;justify-content:center}
+/* contact */
+.ct{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:26px}
+@media(max-width:900px){.ct{grid-template-columns:1fr}}
+.ct .card{padding:22px}
+.ct b{display:block;font-family:"Baloo 2",sans-serif;font-size:20px}
+.ct p{color:var(--ink2)}
+footer{padding:30px 0 90px;text-align:center;color:var(--mut);font-size:14px;border-top:1px solid var(--line)}
+footer a{text-decoration:underline;font-weight:800}
+.wfab{position:fixed;right:max(18px,env(safe-area-inset-right,0px));bottom:max(18px,env(safe-area-inset-bottom,0px));z-index:40;width:60px;height:60px;border-radius:50%;background:var(--wa);display:flex;align-items:center;justify-content:center;box-shadow:0 10px 24px rgba(0,0,0,.3)}
+.wfab svg{width:32px;height:32px;fill:#fff}
+.rv{opacity:0;transform:translateY(22px);transition:opacity .7s,transform .7s}
+.rv.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.pb>.pbg,.dots{animation:none}.rv{opacity:1;transform:none}}
+</style></head><body>
+<div class="ribbon">මේක sample website එකක් (ඇත්ත class එකක් නෙවෙයි) · හැදුවේ <a href="https://rodrigos-studio.github.io/">Rodrigo's Studio</a></div>
+<header><div class="wrap">
+ <a class="logo" href="#top"><svg viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="24" r="22" fill="#F5B82E"/><circle cx="24" cy="26" r="12" fill="#FFF3D6"/><circle cx="19.5" cy="24" r="1.8" fill="#14302F"/><circle cx="28.5" cy="24" r="1.8" fill="#14302F"/><path d="M20 30q4 3 8 0" stroke="#14302F" stroke-width="2" fill="none" stroke-linecap="round"/><path d="M24 27.5l-2 1.6h4z" fill="#E8664F"/></svg><span><b>Little Lions</b><small>Spoken English</small></span></a>
+ <nav><a href="#groups">Groups</a><a href="#week">සතියක්</a><a href="#progress">Progress</a><a href="#fees">ගාස්තු</a><a href="#trial">Free trial</a></nav>
+ <a class="btn a" href="#trial">Free trial class</a>
+</div></header>
+
+<main id="top">
+<section class="pb hero"><div class="pbg" style="background-image:url(../assets/kids-english/rug_circle.webp)"></div><div class="pov hero"></div><div class="dots"></div>
+ <div class="wrap">
+  <span class="ey">Grade 1 – 5 · Spoken English</span>
+  <h1>ඔයාගේ දරුවා English <em>කතා කරන්න</em> පටන් ගන්නේ මෙතනින් 🦁</h1>
+  <p class="lead">පොතෙන් කටපාඩම් කරන්නේ නෑ. Games, stories, show &amp; tell එක්ක සතියෙන් සතිය English වලින් කතා කරන්න හුරු වෙනවා. Group එකට ළමයි 8යි, ඒ නිසා හැමෝටම කතා කරන්න වෙලාව තියෙනවා.</p>
+  <div class="cta"><a class="btn a" href="#trial">පළවෙනි class එක free 🎈</a><a class="btn ol" href="#groups">දරුවාට ගැළපෙන group එක</a></div>
+  <div class="stats">
+   <div class="stat"><b>8</b><span>Group එකට ළමයි</span></div>
+   <div class="stat"><b>4</b><span>Age groups</span></div>
+   <div class="stat"><b>Sat · Sun</b><span>Kotte class එක</span></div>
+   <div class="stat"><b>1st free</b><span>Trial class</span></div>
+  </div>
+ </div>
+</section>
+
+<section class="pb d2" id="groups"><div class="pbg" style="background-image:url(../assets/kids-english/classroom.webp)"></div><div class="pov o2"></div>
+ <div class="wrap rv">
+  <span class="ey">Group finder</span>
+  <h2>දරුවාගේ <em>වයස</em> තෝරන්න</h2>
+  <p class="lead">වයස ඔබපු ගමන් ගැළපෙන group එක, class වෙලාව, ඉතුරු seats ගණන පේනවා.</p>
+  <div class="ages" id="ages"></div>
+  <div class="card grp" id="grp" aria-live="polite"></div>
+ </div>
+</section>
+
+<section class="pb" id="week"><div class="pbg" style="background-image:url(../assets/kids-english/whiteboard.webp)"></div><div class="pov"></div>
+ <div class="wrap rv">
+  <span class="ey">One week at Little Lions</span>
+  <h2>සතියක් class එකේ <em>මොනවද</em> කරන්නේ?</h2>
+  <p class="lead">හැම class එකක්ම පැය 1½යි. Class එකක් කොටස් 4කට බෙදිලා තියෙනවා, ළමයි කම්මැලි වෙන්න කලින් activity එක මාරු වෙනවා.</p>
+  <div class="week">
+   <div class="card wk"><span class="n" style="background:#0E8A85">1</span><h3>Phonics</h3><p>අකුරුවල sound එක හරියට කියන්න. වචන කියවන්න පටන් ගන්නේ මෙතනින්.</p><div class="say">"c – a – t … cat!"</div></div>
+   <div class="card wk"><span class="n" style="background:#E8664F">2</span><h3>Speaking games</h3><p>Shop game, ask &amp; answer, guess what. සෙල්ලම් කර කර වාක්‍ය හදන්න පුරුදු වෙනවා.</p><div class="say">"Can I have two apples, please?"</div></div>
+   <div class="card wk"><span class="n" style="background:#E39E12">3</span><h3>Story time</h3><p>පොඩි කතාවක් එකට කියවලා, ඒ ගැන ප්‍රශ්න අහනවා, තමන්ගේම end එකක් හදනවා.</p><div class="say">"And then the lion said…"</div></div>
+   <div class="card wk"><span class="n" style="background:#3F7FBF">4</span><h3>Show &amp; tell</h3><p>ගෙදරින් ගෙනාපු දෙයක් ගැන group එකට English වලින් විනාඩි 1ක් කතා කරනවා.</p><div class="say">"This is my red bicycle."</div></div>
+  </div>
+ </div>
+</section>
+
+<section class="pb d2" id="progress"><div class="pbg" style="background-image:url(../assets/kids-english/teacher_kids.webp)"></div><div class="pov o2"></div>
+ <div class="wrap pg rv">
+  <div>
+   <span class="ey">For parents</span>
+   <h2>හැම මාසෙම <em>progress card</em> එකක්</h2>
+   <p class="lead">දරුවා කොච්චර දියුණු වුණාද කියලා අනුමාන කරන්න ඕන නෑ. මාසය ඉවර වෙද්දී speaking, reading, listening ගැන card එකක් සහ teacher ගේ කෙටි සටහනක් WhatsApp එකට එනවා.</p>
+   <div class="cta" style="margin-top:22px"><button class="btn s" id="nextM" type="button">ඊළඟ මාසය බලන්න ▸</button></div>
+  </div>
+  <div class="card rep" id="rep"></div>
+ </div>
+</section>
+
+<section class="pb" id="fees"><div class="pbg" style="background-image:url(../assets/kids-english/story_time.webp)"></div><div class="pov"></div>
+ <div class="wrap rv">
+  <span class="ey">Fees</span>
+  <h2>ගාස්තු <em>පැහැදිලිව</em></h2>
+  <div class="fees">
+   <div class="card fee"><h3>Kotte class</h3><div class="pr">Rs 3,500 <small>/ මාසෙට</small></div><p>සතියට එක class එකක් (පැය 1½), මාසෙට 4යි. Book එකයි activity sheets එකයි ඇතුළුයි.</p></div>
+   <div class="card fee hl"><h3>Kotte + online</h3><div class="pr">Rs 5,000 <small>/ මාසෙට</small></div><p>Kotte class එකට අමතරව සතියට එක Zoom speaking class එකක් (විනාඩි 45). කතා කරන්න ඉක්මනට හුරු වෙන්න.</p></div>
+   <div class="card fee"><h3>සහෝදරයන්ට</h3><div class="pr">10% <small>off</small></div><p>එකම ගෙදරින් දෙන්නෙක් එනවා නම් දෙවෙනි දරුවාට මාසික ගාස්තුවෙන් 10% අඩුයි.</p></div>
+  </div>
+  <div class="card calc">
+   <label>ළමයි ගණන <select id="kids"><option>1</option><option>2</option><option>3</option></select></label>
+   <label>Plan <select id="plan"><option value="3500">Kotte class</option><option value="5000">Kotte + online</option></select></label>
+   <div>මාසෙට <span class="tot" id="tot">Rs 3,500</span></div>
+  </div>
+ </div>
+</section>
+
+<section class="pb d2" id="trial"><div class="pbg" style="background-image:url(../assets/kids-english/rug_circle.webp)"></div><div class="pov o2"></div><div class="dots"></div>
+ <div class="wrap bk rv">
+  <div>
+   <span class="ey">Free trial class</span>
+   <h2>පළවෙනි class එක <em>free</em></h2>
+   <p class="lead">දරුවා එක්ක ඇවිත් class එක බලන්න. කැමති නම් විතරයි ඉස්සරහට යන්නේ.</p>
+   <ol class="steps">
+    <li>දරුවාගේ නමයි වයසයි දාන්න. ගැළපෙන group එක තනියම තේරෙනවා.</li>
+    <li>Seats ඉතුරු තියෙන දවසක් තෝරන්න.</li>
+    <li>"WhatsApp එකෙන් confirm කරන්න" ඔබන්න. Booking number එකක් එක්කම message එක teacher ට යනවා.</li>
+   </ol>
+  </div>
+  <form class="card" id="tf" novalidate>
+   <div class="f"><label for="pn">ඔයාගේ නම (දෙමාපිය)</label><input id="pn" autocomplete="name" placeholder="උදා: Nadeesha"></div>
+   <div class="f"><label for="cn">දරුවාගේ නම</label><input id="cn" placeholder="උදා: Senuli"></div>
+   <div class="f"><label for="ca">දරුවාගේ වයස</label><select id="ca"></select></div>
+   <div class="f"><label>Trial දවස <span id="gname" style="color:var(--tl)"></span></label><div class="days" id="days"></div></div>
+   <div class="err" id="err"></div>
+   <button class="btn w" type="submit" style="width:100%">WhatsApp එකෙන් confirm කරන්න</button>
+  </form>
+ </div>
+</section>
+
+<section class="pb" id="contact"><div class="pbg" style="background-image:url(../assets/kids-english/teacher_kids.webp)"></div><div class="pov"></div>
+ <div class="wrap rv">
+  <span class="ey">Visit us</span>
+  <h2>Class එක <em>තියෙන්නේ</em></h2>
+  <div class="ct">
+   <div class="card"><b>📍 කොහෙද</b><p>Little Lions English, Kotte (sample address)</p></div>
+   <div class="card"><b>🕘 කවදාද</b><p>සෙනසුරාදා සහ ඉරිදා, උදේ 8:00 – සවස 4:00<br>Online class: සතියේ දවස් රෑ 7:00</p></div>
+   <div class="card"><b>💬 කතා කරන්න</b><p>WhatsApp: <span class="mono">072 499 6667</span><br>(demo එකේ Rodrigo's Studio number එක)</p></div>
+  </div>
+ </div>
+</section>
+</main>
+<footer><div class="wrap">Little Lions English කියන්නේ sample class එකක්. ඔයාගේ class එකටත් මේ වගේ website එකක් ඕන නම්: <a href="https://rodrigos-studio.github.io/">Rodrigo's Studio</a> · WhatsApp 072 499 6667</div></footer>
+<a class="wfab" href="https://wa.me/94724996667" target="_blank" rel="noopener" aria-label="WhatsApp"><svg viewBox="0 0 32 32"><path d="M16 3C8.8 3 3 8.7 3 15.8c0 2.5.7 4.9 2 7L3 29l6.4-2c2 1.1 4.3 1.7 6.6 1.7 7.2 0 13-5.7 13-12.8S23.2 3 16 3zm0 23.4c-2.1 0-4.1-.6-5.8-1.7l-.4-.3-3.8 1.2 1.2-3.7-.3-.4c-1.2-1.8-1.8-3.8-1.8-5.9C5.1 10 10 5.2 16 5.2S26.9 10 26.9 15.9 22 26.4 16 26.4zm6-7.8c-.3-.2-1.9-1-2.2-1.1-.3-.1-.5-.2-.7.2-.2.3-.8 1-1 1.2-.2.2-.4.2-.7.1-.3-.2-1.4-.5-2.6-1.6-1-.9-1.6-1.9-1.8-2.3-.2-.3 0-.5.1-.7l.5-.6c.2-.2.2-.4.3-.6.1-.2 0-.4 0-.6l-1-2.4c-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4-.3.3-1.2 1.1-1.2 2.8s1.2 3.2 1.4 3.5c.2.2 2.4 3.6 5.8 5 .8.3 1.4.5 1.9.7.8.3 1.5.2 2.1.1.6-.1 1.9-.8 2.2-1.5.3-.7.3-1.4.2-1.5-.1-.2-.3-.3-.6-.4z"/></svg></a>
+<script>
+const $=id=>document.getElementById(id);
+const G=[
+ {id:'cubs',name:'Lion Cubs',ages:[5,6],grade:'Grade 1',time:'සෙනසුරාදා 8:00 – 9:30',time2:'ඉරිදා 8:00 – 9:30',seats:[3,1],learn:['A–Z sounds (phonics)','Colours, numbers, animals','"My name is…" වගේ පොඩි වාක්‍ය','Songs සහ action games']},
+ {id:'roar',name:'Little Roarers',ages:[7,8],grade:'Grade 2 – 3',time:'සෙනසුරාදා 10:00 – 11:30',time2:'ඉරිදා 10:00 – 11:30',seats:[2,0],learn:['කෙටි story books කියවීම','ප්‍රශ්න අහලා උත්තර දීම','Shop, school, home roleplays','වචන 300කට වැඩිය']},
+ {id:'pride',name:'Pride Speakers',ages:[9,10],grade:'Grade 4 – 5',time:'සෙනසුරාදා 1:00 – 2:30',time2:'ඉරිදා 1:00 – 2:30',seats:[4,2],learn:['Show & tell, mini speeches','Picture description','Diary එකක් ලියන්න පටන් ගැනීම','Scholarship English vocabulary']},
+ {id:'kings',name:'Young Kings',ages:[11],grade:'Grade 6',time:'සෙනසුරාදා 2:45 – 4:15',time2:'ඉරිදා 2:45 – 4:15',seats:[1,3],learn:['Debate games','News එකක් ගැන කතා කිරීම','Grammar in use (tenses)','Confidence speaking']}];
+const groupOf=a=>G.find(g=>g.ages.includes(+a));
+let age=7;
+const ages=$('ages');
+for(let a=5;a<=11;a++){const b=document.createElement('button');b.type='button';b.className='age';b.innerHTML=a+'<small>අවුරුදු</small>';b.onclick=()=>{age=a;drawAges();drawGrp();$('ca').value=a;drawDays()};ages.appendChild(b)}
+function drawAges(){[...ages.children].forEach((b,i)=>b.setAttribute('aria-pressed',i+5===age))}
+function seatTxt(n){return n?`seats ${n}ක් ඉතුරුයි`:'පිරිලා'}
+function drawGrp(){const g=groupOf(age);$('grp').innerHTML=`<div><span class="tag">${g.grade}</span><h3>${g.name} 🦁</h3><p class="lead">අවුරුදු ${g.ages.join(' – ')} ළමයින්ට. මේ group එකේදී ඉගෙන ගන්නේ:</p><ul>${g.learn.map(x=>`<li>${x}</li>`).join('')}</ul></div><div class="slot"><div><b>${g.time}</b><span class="seats">${seatTxt(g.seats[0])}</span></div><div><b>${g.time2}</b><span class="seats">${seatTxt(g.seats[1])}</span></div><div><span>ගාස්තුව</span><b>Rs 3,500 / මාසෙට</b></div><a class="btn a" href="#trial" style="width:100%;margin-top:14px">මේ group එකට free trial</a></div>`}
+/* progress card */
+const M=[{m:'සැප්තැම්බර්',v:[35,30,45],w:['cat','sun','red','big','run'],n:'Senuli ලැජ්ජාවෙන් කතා කළේ. Phonics sounds 20ක් හරියට කියනවා.',s:'Good start'},{m:'ඔක්තෝබර්',v:[52,46,60],w:['apple','happy','school','jump','blue','friend'],n:'Shop game එකේදී තනියම "Can I have…" කිව්වා. Story time එකට කැමතියි.',s:'Getting there'},{m:'නොවැම්බර්',v:[71,63,74],w:['because','yesterday','favourite','kitchen','brave','quickly'],n:'Show & tell එකේදී ඇගේ cat ගැන විනාඩියක් English වලින් කතා කළා. Well done Senuli! 🌟',s:'Star of the month'}];
+let mi=2;
+function drawRep(){const r=M[mi];$('rep').innerHTML=`<div class="hd"><div><small>Progress card · ${r.m} (sample)</small><b>Senuli · Little Roarers</b></div><span class="stamp">${r.s}</span></div>${['Speaking','Reading','Listening'].map((k,i)=>`<div class="bar"><div><span>${k}</span><span>${r.v[i]}%</span></div><i><s data-w="${r.v[i]}"></s></i></div>`).join('')}<div class="wd">${r.w.map(x=>`<span>${x}</span>`).join('')}</div><div class="nt">👩‍🏫 ${r.n}</div>`;requestAnimationFrame(()=>requestAnimationFrame(()=>document.querySelectorAll('#rep s').forEach(s=>s.style.width=s.dataset.w+'%')))}
+$('nextM').onclick=()=>{mi=(mi+1)%3;drawRep();$('nextM').textContent=mi===2?'මුල් මාසය බලන්න ▸':'ඊළඟ මාසය බලන්න ▸'};
+$('nextM').textContent='මුල් මාසය බලන්න ▸';
+/* fees */
+function drawFee(){const k=+$('kids').value,p=+$('plan').value;const t=p+(k-1)*p*0.9;$('tot').textContent='Rs '+Math.round(t).toLocaleString('en-US')}
+$('kids').onchange=drawFee;$('plan').onchange=drawFee;
+/* trial booking */
+const ca=$('ca');for(let a=5;a<=11;a++){const o=document.createElement('option');o.value=a;o.textContent=a+' අවුරුදු';ca.appendChild(o)}
+ca.value=age;ca.onchange=()=>{age=+ca.value;drawAges();drawGrp();drawDays()};
+let pick=null;
+function weekendDays(){const out=[];const d=new Date();d.setHours(0,0,0,0);d.setDate(d.getDate()+1);while(out.length<4){const w=d.getDay();if(w===6||w===0)out.push(new Date(d));d.setDate(d.getDate()+1)}return out}
+function drawDays(){const g=groupOf(age);$('gname').textContent='· '+g.name;const wrap=$('days');wrap.innerHTML='';pick=null;weekendDays().forEach((d,i)=>{const sat=d.getDay()===6;const n=Math.max(0,g.seats[sat?0:1]-(i>1?1:0));const b=document.createElement('button');b.type='button';b.className='day'+(n?'':' full');b.disabled=!n;b.setAttribute('aria-pressed','false');b.innerHTML=`<b>${d.toLocaleDateString('en-GB',{weekday:'short',day:'numeric',month:'short'})}</b><small>${(sat?g.time:g.time2).split(' ').slice(1).join(' ')} · ${n?n+' seats':'පිරිලා'}</small>`;b.onclick=()=>{pick={d,t:sat?g.time:g.time2};[...wrap.children].forEach(x=>x.setAttribute('aria-pressed',x===b))};wrap.appendChild(b)})}
+$('tf').onsubmit=e=>{e.preventDefault();const pn=$('pn').value.trim(),cn=$('cn').value.trim();if(!pn||!cn){$('err').textContent='ඔයාගේ නමයි දරුවාගේ නමයි දාන්න.';return}if(!pick){$('err').textContent='Trial දවසක් තෝරන්න.';return}$('err').textContent='';const g=groupOf(age);const ref='LL'+String(Date.now()).slice(-4);const msg=`Hello Little Lions! Free trial booking ${ref}\nParent: ${pn}\nChild: ${cn} (${age} years)\nGroup: ${g.name}\nDay: ${pick.d.toDateString()}, ${pick.t}`;$('tf').innerHTML=`<div class="done"><div style="font-size:44px">🎈</div><p>Booking number</p><div class="ref">${ref}</div><p style="margin:10px 0 18px">${cn} ගේ trial class එක: <b>${pick.d.toDateString()}</b><br>${pick.t}</p><a class="btn w" href="https://wa.me/94724996667?text=${encodeURIComponent(msg)}" target="_blank" rel="noopener" style="width:100%">WhatsApp එකෙන් යවන්න</a></div>`};
+drawAges();drawGrp();drawRep();drawFee();drawDays();
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12});
+document.querySelectorAll('.rv').forEach(x=>io.observe(x));
+</script>
+</body></html>
